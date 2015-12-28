@@ -1,0 +1,33 @@
+application: {app_id}
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: True
+
+handlers:
+- url: /vi/s
+  static_dir: vi
+- url: /static
+  static_dir: static
+- url: /resources
+  static_dir: server/resources
+- url: /_tasks
+  script: {app_id}.application
+- url: /admin/user/getAuthMethod
+  script: {app_id}.application
+- url: /admin/.*
+  script: {app_id}.application
+- url: /vi.*
+  script: {app_id}.application
+- url: /.*
+  script: {app_id}.application
+
+libraries:
+- name: jinja2 
+  version: latest
+
+inbound_services:
+- warmup
+
+builtins:
+- deferred: on

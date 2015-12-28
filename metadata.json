@@ -1,0 +1,19 @@
+{
+  "name": "base_hull",
+  "version": "0.1",
+  "authors": ["Stefan Kögl <sk@mausbrand.de>"],
+  "renaming_targets": [
+    {
+      "src_name": "viur_server.py",
+      "dst_fmt": "{0}.py",
+      "dst_args": ["app_id"]
+    }
+  ],
+  "template_targets": [
+    "app.yaml",
+    "index.yaml",
+    "models/user.py",
+    "modules/user.py",
+    "html/index.html"
+  ]
+}
