@@ -1,4 +1,4 @@
-application: {app_id}
+application: {{app_id}}
 version: 1
 runtime: python27
 api_version: 1
@@ -12,15 +12,15 @@ handlers:
 - url: /resources
   static_dir: server/resources
 - url: /_tasks
-  script: {app_id}.application
+  script: {{app_id}}.application
 - url: /admin/user/getAuthMethod
-  script: {app_id}.application
+  script: {{app_id}}.application
 - url: /admin/.*
-  script: {app_id}.application
+  script: {{app_id}}.application
 - url: /vi.*
-  script: {app_id}.application
+  script: {{app_id}}.application
 - url: /.*
-  script: {app_id}.application
+  script: {{app_id}}.application
 
 libraries:
 - name: jinja2 

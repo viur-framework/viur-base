@@ -1,7 +1,8 @@
 {
   "name": "base_hull",
-  "version": "0.1",
-  "authors": ["Stefan Kögl <sk@mausbrand.de>"],
+  "version": "0.2",
+  "authors": ["Stefan Kögl <sk@mausbrand.de>",
+              "Jan Max Meyer <jm@mausbrand.de>"],
   "renaming_targets": [
     {
       "src_name": "viur_server.py",

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+{%- set lang = getLanguage() -%}
+
+{% if not title %}
+	{# The default page title #}
+	{% set title="{{app_id}}" %}
+{% endif %}
+{% if not metaDescr %}
+	{# The default meta description #}
+	{% set metaDescr="default metaDescr" %}
+{% endif %}
+{% if not metaKeywords %}
+	{# Default meta keywords #}
+	{% set metaKeywords="default metaKeywords" %}
+{% endif %}
+{% if not pageContent %}
+	{# Set default page to index #}
+	{% set pageContent="index" %}
+{% endif %}
+
+<html>
+<head lang="{{ lang }}">
+
+	<!-- Herzlich willkommen bei-->
+	<meta name="twitter:title" content="{{ title }}">
+	<meta property="og:title" content="{{ title }}" />
+	<title>{{ title }}</title>
+
+	<!-- Language -->
+	<meta name="content-language" content="{{ lang }}" />
+	<meta name="DC.Language" content="{{ lang }}" />
+	<meta http-equiv="content-language" content="{{ lang }}" />
+
+	<!-- Descriptions -->
+	<meta name="description" lang="{{ lang }}" content="{{ metaDescr }}" />
+	<meta name="twitter:description" content="{{ metaDescr }}">
+	<meta name="DC.Description" content="{{ metaDescr }}" />
+	<meta property="og:description" content="{{ metaDescr }}" />
+	<meta name="keywords" lang="{{ lang }}" content="{{ metaKeywords }}" />
+
+	<!-- Diese Webseite ist ein viur Informationssystem. -->
+	<meta name="generator" content="www.viur.is" />
+	<meta name="author" content="Mausbrand Informationssysteme GmbH" />{# FIXME! Insert page owner here. Will show up in open graph links. #}
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="robots" content="noindex, nofollow" /> {# FIXME! noindex/nofollow for developement purpose only! #}
+	<meta property="og:type" content="website" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+	<!-- icons -->
+	<link rel="shortcut icon" href="/static/meta/favicon.png" type="image/png" />
+
+	<!-- css -->
+	<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+
+	<!-- iPhone -->
+	<link href="/static/meta/apple-touch-icon-precomposed.png" sizes="57x57" rel="apple-touch-icon" />
+	<link href="/static/meta/apple-touch-icon-precomposed.png" sizes="57x57" rel="apple-touch-icon-precomposed" />
+	<link href="/static/meta/apple-touch-startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image" />
+
+	<!-- iPhone (Retina) -->
+	<link href="/static/meta/apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon" />
+	<link href="/static/meta/apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon-precomposed" />
+	<link href="/static/meta/apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
+	<!-- iPhone 5 -->
+	<link href="/static/meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
+	<!-- iPad -->
+	<link href="/static/meta/apple-touch-icon-72x72-precomposed.png" sizes="72x72" rel="apple-touch-icon" />
+	<link href="/static/meta/apple-touch-icon-72x72-precomposed.png" sizes="72x72" rel="apple-touch-icon-precomposed" />
+	<link href="/static/meta/apple-touch-startup-image-768x1004.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image" />
+	<link href="/static/meta/apple-touch-startup-image-748x1024.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image" />
+
+	<!-- iPad (Retina) -->
+	<link href="/static/meta/apple-touch-icon-144x144-precomposed.png" sizes="144x144" rel="apple-touch-icon" />
+	<link href="/static/meta/apple-touch-icon-144x144-precomposed.png" sizes="144x144" rel="apple-touch-icon-precomposed" />
+	<link href="/static/meta/apple-touch-startup-image-1536x2008.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+	<link href="/static/meta/apple-touch-startup-image-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
+	<!-- js -->
+	<script type="application/javascript" src="/static/js/app.js"></script>
+
+	{% block additionalHead %}
+		{# use additionalHead for important template specific JS or CSS file imports. #}
+	{% endblock %}
+
+</head>
+<body>
+
+	<header>
+		{% block header %}
+			{# put your header here #}
+		{% endblock header %}
+	</header>
+	<article class="content {{pageContent}}" role="main"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
+		{% block content %}
+			{# put your content here #}
+		{% endblock content %}
+	</article><!-- content -->
+
+	<footer>
+		{% block footer %}
+			{# put your footer here #}
+		{% endblock footer %}
+	</footer>
+	<!-- Zeitreise. -->
+
+	{% block additionalFooter %}
+		{# use additionalFooter for less important template specific JS or CSS file imports. #}
+	{% endblock %}
+
+</body>
+</html>

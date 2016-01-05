@@ -1,48 +1,5 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <!-- Herzlich willkommen bei-->
-  <meta name="twitter:title" content="{app_id}">
-  <meta property="og:title" content="{app_id}"/>
-  <title>{app_id}</title>
+{% extends "viur_base.html" %}
 
-  <!-- Language -->
-  <meta name="content-language" content="de"/>
-  <meta name="DC.Language" content="de"/>
-  <meta http-equiv="content-language" content="de"/>
-
-  <!-- Descriptions -->
-  <meta name="description" lang="de" content=""/>
-  <meta name="twitter:description" content="">
-  <meta name="DC.Description" content=""/>
-  <meta property="og:description" content=""/>
-  <meta name="keywords" lang="de" content=""/>
-
-  <!-- Diese Webseite ist ein viur Informationssystem. -->
-  <meta name="generator" content="www.viur.is"/>
-  <meta name="author" content="Mausbrand Informationssysteme GmbH"/>
-
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <meta name="robots" content="index, follow"/>
-  <meta property="og:type" content="website"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-
-  <!-- icons -->
-  <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon"/>
-
-  <!-- css -->
-  <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
-  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
-
-  <!-- js -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-  <script type="application/javascript" src="/static/js/app.js"></script>
-
-</head>
-<body lang="de">
-<h1>Hello World!</h1>
-</body>
-</html>
+{% block content %}
+    <h1>Hello World!</h1>
+{% endblock content %}

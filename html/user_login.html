@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
+{% extends "index.html" %}
+
+{% block content %}
 <form method="POST" action="/user/login">
-  <input name="skey" type="hidden" value="{{ getSecurityKey() }}">
-  <ul>
-    <li><label for="name">Email</label><input id="name" name="name" type="text"></li>
-    <li><label for="password">Password</label><input id="password" name="password" type="password"></li>
-    <li><input name="submit" type="submit" value="Login"></li>
-  </ul>
+    <input name="skey" type="hidden" value="{{ getSecurityKey() }}">
+    <ul>
+        <li><label for="name">Email</label><input id="name" name="name" type="text"></li>
+        <li><label for="password">Password</label><input id="password" name="password" type="password"></li>
+        <li><input name="submit" type="submit" value="Login"></li>
+    </ul>
 </form>
-</body>
-</html>
+{% endblock %}

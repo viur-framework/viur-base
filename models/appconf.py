@@ -2,7 +2,6 @@
 from server.bones import *
 from server.skeleton import Skeleton
 
-
 class appconfSkel(Skeleton):
 	kindName = "appconf"
 

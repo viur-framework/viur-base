@@ -1,0 +1,130 @@
+@charset "UTF-8";
+/* ViUR base 2015 */
+/* Color Set */
+/* ViUR red */
+/* grey font */
+/* Green */
+/* Red */
+/* FONT AND CSS IMPORT */
+@import url(reset.css);
+@import "webfonts.css";
+/* 
+    FUNDAMENTALS
+*/
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-size: 100.01%;
+  line-height: 1.5;
+  color: #5c5c5c;
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* Fix for webkit rendering */
+  -webkit-text-size-adjust: 100%;
+}
+/* Links */
+a,
+a:link,
+a:visited {
+  color: #d60016;
+  text-decoration: none;
+  outline: 0;
+}
+a:hover,
+a:focus,
+a:active {
+  color: #3d0006;
+}
+p a,
+p a:visited {
+  line-height: inherit;
+}
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #222222;
+  font-weight: normal;
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  font-weight: inherit;
+}
+h1 {
+  color: #d60016;
+  font-size: 1.5em;
+}
+p {
+  margin-top: 0;
+  line-height: 1.6;
+  font-size: 1em;
+  -moz-hyphens: auto;
+  -o-hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  -moz-hyphenate-limit-chars: auto 5;
+  -moz-hyphenate-limit-lines: 2;
+  -o-hyphenate-limit-chars: auto 5;
+  -o-hyphenate-limit-lines: 2;
+  -webkit-hyphenate-limit-chars: auto 5;
+  -webkit-hyphenate-limit-lines: 2;
+  -ms-hyphenate-limit-chars: auto 5;
+  -ms-hyphenate-limit-lines: 2;
+  hyphenate-limit-chars: auto 5;
+  hyphenate-limit-lines: 2;
+}
+em {
+  font-style: italic;
+  color: #d60016;
+}
+strong {
+  font-family: 'RotisSansSerifStd-Regular', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/* Lists */
+ul {
+  padding: 0;
+  margin: 0;
+}
+/* Clearfix */
+.clear {
+  clear: both;
+}
+/* Selection */
+::-moz-selection {
+  background-color: rgba(0, 81, 135, 0.75);
+  text-shadow: none;
+  color: #fff;
+}
+::selection {
+  background-color: rgba(0, 81, 135, 0.75);
+  text-shadow: none;
+  color: #fff;
+}
+/* #Custom Styles
+================================================== */
+/* #Media Queries
+================================================== */
+/* #Tablet (Landscape)
+================================================== */
+/* #Tablet (Portrait)
+================================================== */
+@media only screen and (max-width: 959px) {
+  body {
+    font-size: 90%;
+  }
+  .no-mobil {
+    display: none;
+  }
+}
+/* #Print
+================================================== */

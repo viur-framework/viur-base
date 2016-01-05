@@ -1,0 +1,44 @@
+{%- extends "index.html" %}
+{% if not module %}
+	{% set module= moduleName() %}
+{% endif %}
+
+{%- set pageContent=module"+-view view" %}
+{%- set completeUrl=module+"/view/"+skel.id|shortKey+"/"+skel.name|string|urlencode %}
+
+{%- set activeItem=skel.name|string|urlencode %}
+{# use activeItem to highlight active menu items #}
+
+{%- block additionalHead %}
+	{# use additionalHead for important template specific JS or CSS file imports, for example:
+		<script type="application/javascript" src="/static/js/{{ module }}_view.js"></script>
+	#}
+{%- endblock %}
+
+{%- block content %}
+	<section class="descr">
+		<h1>{{ skel.name }}</h1>
+		<div class="txt">
+			{{ skel.descr if skel.descr }}
+		</div>
+	</section>
+
+	{%- block gallery %}
+		{%- if skel.images %}
+			<section class="gallery">
+				<ul >
+					{%- for image in skel.images %}
+
+					{%- endfor %}
+				</ul>
+			</section>
+		{%- endif %}
+	{%- endblock gallery %}
+
+{%- endblock content %}
+
+{%- block additionalFooter %}
+	{# use additionalFooter for less important template specific JS or CSS file imports, for example:
+		<script type="application/javascript" src="/static/js/{{ module }}_view_footer.js"></script>
+	#}
+{%- endblock %}

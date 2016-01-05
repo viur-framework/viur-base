@@ -13,14 +13,12 @@ class file(File):
 			return res
 		return []
 
-	adminInfo = {"name": "Dateien",
-	             "handler": "tree.simple.file",
-	             "icon": "icons/modules/my_files.svg",
-	             "sortIndex": 1
+	adminInfo = {
+		"name": u"My Files",
+	    "handler": "tree.simple.file",
+	    "icon": "icons/modules/my_files.svg"
 	}
-
 
 file.jinja2 = True
 file.xml = True
-file.gherkin = True
 file.json = True

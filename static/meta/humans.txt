@@ -1,0 +1,21 @@
+  Made with love in Dortmund, Germany by Mausbrand.
+  Contact: mail@mausbrand.de
+  Twitter: @mausbrand
+  Site: www.mausbrand.de	
+
+/* TEAM */
+  IT-Management: 
+  Contact: 
+  From: 
+
+  Visual Concept: 
+  Contact: 
+  From: 
+
+/* SITE */
+  Doctype: HTML
+  IDE: 
+
+/* SPECIAL THANKS */
+  
+  And, of course, all humanstxt.org team!

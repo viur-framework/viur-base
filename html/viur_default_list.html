@@ -1,0 +1,47 @@
+{%- extends "index.html" %}
+{% if not module %}
+	{% set module= moduleName() %}
+{% endif %}
+
+{% set pageContent=module"+-list list" %}
+{% set completeUrl=module+"/list" %}
+
+{%- block additionalHead %}
+		{# use additionalHead for important template specific JS or CSS file imports, for example:
+			<script type="application/javascript" src="/static/js/{{ module }}_list.js"></script>
+		#}
+{%- endblock %}
+
+{%- block content %}
+	<section id="top" class="descr">
+		<h1>{{ module }}</h1>
+	</section>
+
+	{%- block list %}
+		<section id="{{ module }}-list" class="skellist">
+			<ul>
+				{%- for skel in skellist %}
+					<li id="view-{{ skel.id|shortKey }}"> {# use view-IDs for anchor navigation #}
+						<a href="/{{ lang }}/{{ module }}/view/{{ skel.id|shortKey }}/{{ skel.name|string|urlencode }}">
+							<h2>{{ skel.name }}</h2>
+							<div class="txt">
+								{% if skel.teaser %}
+									{{ skel.teaser }}
+								{% elif skel.descr %}
+									{{ skel.descr|string|striptags|truncate(100) }}
+								{% endif %}
+							</div>
+						</a>
+					</li>
+				{%- endfor %}
+			</ul>
+		</section>
+	{%- endblock list %}
+
+{%- endblock content %}
+
+{%- block additionalFooter %}
+	{# use additionalFooter for less important template specific JS or CSS file imports, for example:
+		<script type="application/javascript" src="/static/js/{{ module }}_list_footer.js"></script>
+	#}
+{%- endblock %}
