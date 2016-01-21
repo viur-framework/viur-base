@@ -3,19 +3,19 @@
 {%- set lang = getLanguage() -%}
 
 {% if not title %}
-	{# The default page title #}
+	{# The default page title. Optimal length for search engines is 50-60 characters. #}
 	{% set title="{{app_id}}" %}
 {% endif %}
 {% if not metaDescr %}
-	{# The default meta description #}
+	{# The default meta description. The description should optimally be between 150-160 characters. #}
 	{% set metaDescr="default metaDescr" %}
 {% endif %}
 {% if not metaKeywords %}
-	{# Default meta keywords #}
+	{# Default meta keywords. Meta keywords have no effect on SEO whatsoever. Length is anywhere from 100 to 255 characters. #}
 	{% set metaKeywords="default metaKeywords" %}
 {% endif %}
 {% if not pageContent %}
-	{# Set default page to index #}
+	{# Set default css page name to index. #}
 	{% set pageContent="index" %}
 {% endif %}
 
@@ -41,6 +41,7 @@
 
 	<!-- Diese Webseite ist ein viur Informationssystem. -->
 	<meta name="generator" content="www.viur.is" />
+	<link type="text/plain" rel="author" href="/static/meta/humans.txt" />
 	<meta name="author" content="Mausbrand Informationssysteme GmbH" />{# FIXME! Insert page owner here. Will show up in open graph links. #}
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

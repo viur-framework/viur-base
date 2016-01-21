@@ -1,21 +1,3 @@
-  Made with love in Dortmund, Germany by Mausbrand.
-  Contact: mail@mausbrand.de
-  Twitter: @mausbrand
-  Site: www.mausbrand.de	
-
-/* TEAM */
-  IT-Management: 
-  Contact: 
-  From: 
-
-  Visual Concept: 
-  Contact: 
-  From: 
-
-/* SITE */
-  Doctype: HTML
-  IDE: 
-
-/* SPECIAL THANKS */
-  
-  And, of course, all humanstxt.org team!
+ViUR is built by a small team of engineers, designers, researchers, robots, and others in Dortmund, Germany.
+It is updated continuously, and built with more tools and technologies than we can shake a stick at.
+If you'd like to help us out, see www.viur.is

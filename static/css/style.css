@@ -1,3 +1,6 @@
+@import url(reset.css);
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300,400italic);
 @charset "UTF-8";
 /* ViUR base 2015 */
 /* Color Set */
@@ -6,8 +9,6 @@
 /* Green */
 /* Red */
 /* FONT AND CSS IMPORT */
-@import url(reset.css);
-@import "webfonts.css";
 /* 
     FUNDAMENTALS
 */
@@ -17,9 +18,10 @@ body {
   font-size: 100.01%;
   line-height: 1.5;
   color: #5c5c5c;
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   /* Fix for webkit rendering */
+
   -webkit-text-size-adjust: 100%;
 }
 /* Links */
@@ -85,10 +87,9 @@ p {
 }
 em {
   font-style: italic;
-  color: #d60016;
 }
 strong {
-  font-family: 'RotisSansSerifStd-Regular', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
 }
 /* Lists */
 ul {
@@ -101,12 +102,12 @@ ul {
 }
 /* Selection */
 ::-moz-selection {
-  background-color: rgba(0, 81, 135, 0.75);
+  background-color: rgba(214, 0, 22, 0.19999999999999996);
   text-shadow: none;
   color: #fff;
 }
 ::selection {
-  background-color: rgba(0, 81, 135, 0.75);
+  background-color: rgba(214, 0, 22, 0.19999999999999996);
   text-shadow: none;
   color: #fff;
 }
@@ -114,17 +115,26 @@ ul {
 ================================================== */
 /* #Media Queries
 ================================================== */
+@media only screen and (max-width: 1400px) {
+  
+}
 /* #Tablet (Landscape)
 ================================================== */
+@media only screen and (max-width: 1220px) {
+  
+}
 /* #Tablet (Portrait)
 ================================================== */
 @media only screen and (max-width: 959px) {
   body {
     font-size: 90%;
   }
-  .no-mobil {
+  .no-mobile {
     display: none;
   }
 }
 /* #Print
 ================================================== */
+@media print {
+  
+}

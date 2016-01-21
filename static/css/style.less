@@ -11,82 +11,80 @@
 
 /* FONT AND CSS IMPORT */
 @import url(reset.css);
-@import "webfonts.css";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300,400italic);
 
 /* 
     FUNDAMENTALS
 */
 
 body {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    font-size:100.01%;
-    line-height:1.5;
-    color:#5c5c5c;
-    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
-    -webkit-text-size-adjust: 100%;
-    }
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-size:100.01%;
+  line-height:1.5;
+  color:#5c5c5c;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+  -webkit-text-size-adjust: 100%;
+}
 
 /* Links */
 
-    a, a:link, a:visited { color: @maincolor; text-decoration: none; outline: 0; }
-    a:hover, a:focus, a:active { color: darken(@maincolor, 30%); }
-    p a, p a:visited { line-height: inherit; }
+a, a:link, a:visited { color: @maincolor; text-decoration: none; outline: 0; }
+a:hover, a:focus, a:active { color: darken(@maincolor, 30%); }
+p a, p a:visited { line-height: inherit; }
 
 /* Typography */
 
-    h1, h2, h3, h4, h5, h6 {color: @font; font-weight: normal; font-size: 1.2em; line-height: 1.6;}
-    h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {font-weight: inherit;}
-    
-    h1 {color: @maincolor; font-size:1.5em;}
-    h2 {}
-    h3 {}
-    h4 {}
-    h5 {}
-    h6 {}
-    
-    p {
-      margin-top:0; 
-      line-height:1.6; 
-      font-size:1em;
-      -moz-hyphens: auto;
-      -o-hyphens: auto;
-      -webkit-hyphens: auto;
-      -ms-hyphens: auto;
-      hyphens: auto;
-      -moz-hyphenate-limit-chars: auto 5;
-      -moz-hyphenate-limit-lines: 2;
-      -o-hyphenate-limit-chars: auto 5;
-      -o-hyphenate-limit-lines: 2;
-      -webkit-hyphenate-limit-chars: auto 5;
-      -webkit-hyphenate-limit-lines: 2; 
-      -ms-hyphenate-limit-chars: auto 5;
-      -ms-hyphenate-limit-lines: 2;
-      hyphenate-limit-chars: auto 5;
-      hyphenate-limit-lines: 2;
-      }
-    em {font-style:italic; color: @maincolor;}
-    strong {font-family: 'RotisSansSerifStd-Regular', "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;}    
+h1, h2, h3, h4, h5, h6 {color: @font; font-weight: normal; font-size: 1.2em; line-height: 1.6;}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {font-weight: inherit;}
+
+h1 {color: @maincolor; font-size:1.5em;}
+h2 {}
+h3 {}
+h4 {}
+h5 {}
+h6 {}
+
+p {
+  margin-top:0;
+  line-height:1.6;
+  font-size:1em;
+  -moz-hyphens: auto;
+  -o-hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  -moz-hyphenate-limit-chars: auto 5;
+  -moz-hyphenate-limit-lines: 2;
+  -o-hyphenate-limit-chars: auto 5;
+  -o-hyphenate-limit-lines: 2;
+  -webkit-hyphenate-limit-chars: auto 5;
+  -webkit-hyphenate-limit-lines: 2;
+  -ms-hyphenate-limit-chars: auto 5;
+  -ms-hyphenate-limit-lines: 2;
+  hyphenate-limit-chars: auto 5;
+  hyphenate-limit-lines: 2;
+}
+
+em {font-style:italic;}
+strong {font-weight:700;}
+
 /* Lists */
-      
-    ul {padding:0; margin:0;}
+ul {padding:0; margin:0;}
 
 /* Clearfix */
-
-.clear{
-  clear:both;
-}
+.clear{clear:both;}
 
 /* Selection */
 ::-moz-selection {
-    background-color: rgba(0,81,135,.75);
+    background-color: fadeout(@maincolor, 80%);
     text-shadow: none;
     color:#fff;
 }
 
 ::selection {
-    background-color: rgba(0,81,135,.75);
+    background-color: fadeout(@maincolor, 80%);
     text-shadow: none;
     color:#fff;
 }
@@ -113,7 +111,7 @@ body {
 
 @media only screen and (max-width: 959px) {
   body {font-size:90%;}
-  .no-mobil {display: none;}
+  .no-mobile {display: none;}
 }
 
 /* #Print
