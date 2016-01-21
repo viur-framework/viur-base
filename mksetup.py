@@ -26,6 +26,8 @@ for dirname, dirnames, filenames in os.walk("."):
 		filename = ((dirname + "/") if dirname else "") + file
 		if filename == "viur_server.py":
 			tfilename = "{{app_id}}.py"
+		elif filename == "start.bat":
+			tfilename = "{{app_id}}.bat"
 		else:
 			tfilename = filename
 
@@ -45,13 +47,37 @@ out += "files = %s\n\n" % files
 
 out += """
 
-def confirm(quest):
-	sys.stdout.write(quest)
-	try:
-		answ = raw_input()
-	except NameError:
-		answ = input()
+print('''
+                iii
+               iii
+              iii
 
+          vvv iii uu      uu rrrrrrrr
+         vvvv iii uu      uu rr     rr
+  v     vvvv  iii uu      uu rr     rr
+ vvv   vvvv   iii uu      uu rr rrrrr
+vvvvv vvvv    iii uu      uu rr rrr
+ vvvvvvvv     iii uu      uu rr  rrr
+  vvvvvv      iii  uu    uu  rr   rrr
+   vvvv       iii   uuuuuu   rr    rrr
+
+  I N F O R M A T I O N    S Y S T E M
+
+Welcome to the raw setup utility!
+''')
+
+
+def prompt(quest = None):
+	if quest:
+		sys.stdout.write(quest)
+
+	try:
+		return raw_input()
+	except NameError:
+		return input()
+
+def confirm(quest):
+	answ = prompt(quest)
 	return answ.lower() in ["y","yes"]
 
 cwd = os.getcwd()
@@ -64,9 +90,13 @@ else:
 
 path = os.path.abspath( os.path.join( path , ".." ) )
 os.chdir(path)
-appid = path[ path.rfind( os.path.sep )+1: ].strip()
+appid = path[path.rfind(os.path.sep) + 1:].strip()
 
-if not confirm("This will initialize the application %s in %s - Continue [y/N]?" % (appid, path)):
+nappid = prompt("Please enter your desired application name [default=%s]" % appid)
+if nappid:
+	appid = nappid
+
+if not confirm("This will setup the application '%s' in '%s' - continue [y/N]?" % (appid, path)):
 	print("Setup aborted.")
 	sys.exit(0)
 
@@ -87,9 +117,10 @@ vars = {
 for name, content in files.items():
 	content = binascii.unhexlify(content)
 
-	for k, v in vars.items():
-		name = name.replace("{{%s}}" % k, v)
-		content = content.replace("{{%s}}" % k, v)
+	if isinstance(content, str):
+		for k, v in vars.items():
+			name = name.replace("{{%s}}" % k, v)
+			content = content.replace("{{%s}}" % k, v)
 
 	name = os.path.join(*name.split("/"))
 

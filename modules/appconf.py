@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from server.applications.singleton import Singleton
+from server.prototypes.singleton import Singleton
 
 class appconf(Singleton):
 

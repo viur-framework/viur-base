@@ -3,7 +3,6 @@ from server.modules.file import File
 from server.bones import *
 from server import utils
 
-
 class file(File):
 	def getAvailableRootNodes(self, name):
 		thisuser = utils.getCurrentUser()
