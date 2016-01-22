@@ -26,33 +26,43 @@
 import os, sys
 
 # include project specific templates.base_template.libs into sys.path
-for lib in os.listdir("libs"):
-	if not lib.lower().endswith(".zip"):  # Skip invalid file
-		continue
-	sys.path.insert(0, os.path.join("libs", lib))
+if os.path.exists("libs"):
+	for lib in os.listdir("libs"):
+		if not lib.lower().endswith(".zip"):  # Skip invalid file
+			continue
+
+		sys.path.insert(0, os.path.join("libs", lib))
 
 from server.config import conf
 
-# --- KONFIG ---
+# ------------------------------------------------------------------------------
+# General configuration
+#
+
+#conf["viur.forceSSL"] = True
+#conf["viur.disableCache"] = True
+
+# ------------------------------------------------------------------------------
+# Language-specific configuration
+#
 
 conf["viur.languageMethod"] = "url"
-conf["admin.vi.name"] = "{{app_name}}"
 conf["viur.defaultlangsvalues"] = {
 	"en": u"English",
 	"de": u"Deutsch",
 	"es": u"Español",
 	"fr": u"Français",
-    "sv": u"Swedish",
-    "it": u"Italiano",
-    "cs": u"Čeština (Czech)",
-    "ru": u"Русский (Russian)",
-    "pt": u"Português",
-    "sk": u"Slovenčina",
-    "da": u"Dansk",
-    "fi": u"Suomi (Finnish)",
-    "pl": u"Polski",
-    "nl": u"Nederlands",
-    "no": u"Norsk" }
+	"sv": u"Swedish",
+	"it": u"Italiano",
+	"cs": u"Čeština (Czech)",
+	"ru": u"Русский (Russian)",
+	"pt": u"Português",
+	"sk": u"Slovenčina",
+	"da": u"Dansk",
+	"fi": u"Suomi (Finnish)",
+	"pl": u"Polski",
+	"nl": u"Nederlands",
+	"no": u"Norsk" }
 
 conf["supported_languages"] = ["de", "en"]
 
@@ -83,9 +93,30 @@ conf["country_names"] = {
 	"ie": u"Ireland"
 }
 
+# ------------------------------------------------------------------------------
+# ViUR admin tool specific configurations
+#
+
+conf["admin.vi.name"] = "{{app_id}}"
+#conf["admin.vi.logo"] = "/static/meta/logo.svg"
+
+# ------------------------------------------------------------------------------
+# Bugsnag: Tell us what is wrong!
+#
+
+#conf["bugsnag.apiKey" ] = "INSERT YOUR BUGSNAG API KEY HERE"
+
+# ------------------------------------------------------------------------------
+# Server imports remain here!
+#
+
 import renders
 import modules
 import server
+
+# ------------------------------------------------------------------------------
+# Server startup
+#
 
 server.setDefaultLanguage("en")
 application = server.setup(modules, renders)
@@ -95,3 +126,4 @@ def main():
 
 if __name__ == '__main__':
 	main()
+
