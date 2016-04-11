@@ -109,9 +109,7 @@ for folder in dirs:
 vars = {
 	"app_id": appid,
 	"path": path,
-	"user_module": "user_custom",
-	"user_module_class": "CustomUser",
-	"timestamp": str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+	"timestamp": str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")),
 }
 
 for name, content in files.items():

@@ -19,8 +19,8 @@
 #
 # Project:      {{app_id}}
 # Created on:	{{timestamp}}
-# Copyright:    ???
-# Authors:      ???
+# Copyright:    mausbrand Informationssysteme GmbH
+# Author(s):    ???
 #
 
 import os, sys
