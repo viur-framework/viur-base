@@ -113,7 +113,8 @@ vars = {
 }
 
 for name, content in files.items():
-	content = binascii.unhexlify(content)
+	if content:
+		content = binascii.unhexlify(content)
 
 	if isinstance(content, str):
 		for k, v in vars.items():
