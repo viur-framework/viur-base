@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block content %}
-<form method="POST" action="/user/login">
+<form method="POST" action="/user/auth_userpassword/login">
     <input name="skey" type="hidden" value="{{ getSecurityKey() }}">
     <ul>
         <li><label for="name">Email</label><input id="name" name="name" type="text"></li>

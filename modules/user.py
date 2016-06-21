@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from server.modules.user import User
-from skeletons.user import userSkel
+from server.modules.user import User, userSkel
 
 class user(User):
 	baseSkel = userSkel

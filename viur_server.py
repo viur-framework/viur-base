@@ -18,22 +18,14 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # Project:      {{app_id}}
-# Created on:	{{timestamp}}
-# Copyright:    mausbrand Informationssysteme GmbH
-# Author(s):    ???
+# Started:	    {{timestamp}}
+# Copyright:    mausbrand GmbH, Dortmund
+# Author:       {{whoami}}
 #
 
-import os, sys
-
-# include project specific templates.base_template.libs into sys.path
-if os.path.exists("libs"):
-	for lib in os.listdir("libs"):
-		if not lib.lower().endswith(".zip"):  # Skip invalid file
-			continue
-
-		sys.path.insert(0, os.path.join("libs", lib))
-
-from server.config import conf
+import server
+import modules
+from server import conf
 
 # ------------------------------------------------------------------------------
 # General configuration
@@ -46,52 +38,27 @@ from server.config import conf
 # Language-specific configuration
 #
 
-conf["viur.languageMethod"] = "url"
-conf["viur.defaultlangsvalues"] = {
-	"en": u"English",
-	"de": u"Deutsch",
-	"es": u"Español",
-	"fr": u"Français",
-	"sv": u"Swedish",
-	"it": u"Italiano",
-	"cs": u"Čeština (Czech)",
-	"ru": u"Русский (Russian)",
-	"pt": u"Português",
-	"sk": u"Slovenčina",
-	"da": u"Dansk",
-	"fi": u"Suomi (Finnish)",
-	"pl": u"Polski",
-	"nl": u"Nederlands",
-	"no": u"Norsk" }
+#conf["viur.languageMethod"] = "url"
+#conf["viur.availableLanguages"] = ["en", "de"]
 
-conf["supported_languages"] = ["de", "en"]
+#conf["viur.defaultlangsvalues"] = {
+# 	"en": u"English",
+# 	"de": u"Deutsch",
+# 	"es": u"Español",
+# 	"fr": u"Français",
+# 	"sv": u"Swedish",
+# 	"it": u"Italiano",
+# 	"cs": u"Čeština (Czech)",
+# 	"ru": u"Русский (Russian)",
+# 	"pt": u"Português",
+# 	"sk": u"Slovenčina",
+# 	"da": u"Dansk",
+# 	"fi": u"Suomi (Finnish)",
+# 	"pl": u"Polski",
+# 	"nl": u"Nederlands",
+# 	"no": u"Norsk" }
 
-conf["country_names"] = {
-	"gb": u"Great Britain",
-	"de": u"Germany",
-	"fr": u"France",
-	"it": u"Italia",
-	"ru": u"Russia",
-	"no": u"Norway",
-	"se": u"Sweden",
-	"dk": u"Denmark",
-	"nl": u"Netherlands",
-	"es": u"Spain",
-	"pt": u"Portugal",
-	"be": u"Belgium",
-	"lu": u"Luxemburg",
-	"ch": u"Switzerland",
-	"at": u"Austrial",
-	"cz": u"Czech Republic",
-	"hu": u"Hungrary",
-	"si": u"Slowenia",
-	"hr": u"Croatia",
-	"fi": u"Finland",
-	"lt": u"Latvia",
-	"gr": u"Greek",
-	"tr": u"Turkey",
-	"ie": u"Ireland"
-}
+#server.setDefaultLanguage("en") #set default language!
 
 # ------------------------------------------------------------------------------
 # ViUR admin tool specific configurations
@@ -107,19 +74,10 @@ conf["admin.vi.name"] = "{{app_id}}"
 #conf["bugsnag.apiKey" ] = "INSERT YOUR BUGSNAG API KEY HERE"
 
 # ------------------------------------------------------------------------------
-# Server imports remain here!
-#
-
-import renders
-import modules
-import server
-
-# ------------------------------------------------------------------------------
 # Server startup
 #
 
-server.setDefaultLanguage("en")
-application = server.setup(modules, renders)
+application = server.setup(modules, server.render)
 
 def main():
 	server.run()

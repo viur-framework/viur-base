@@ -1,10 +1,11 @@
 {%- extends "index.html" %}
+
 {% if not module %}
-	{% set module= moduleName() %}
+	{% set module = moduleName() %}
 {% endif %}
 
-{% set pageContent=module+"-list list" %}
-{% set completeUrl=module+"/list" %}
+{% set pageContent = module + "-list list" %}
+{% set completeUrl = module + "/list" %}
 
 {%- block additionalHead %}
 		{# use additionalHead for important template specific JS or CSS file imports, for example:
@@ -21,8 +22,8 @@
 		<section id="{{ module }}-list" class="skellist">
 			<ul>
 				{%- for skel in skellist %}
-					<li id="view-{{ skel.id|shortKey }}"> {# use view-IDs for anchor navigation #}
-						<a href="/{{ lang }}/{{ module }}/view/{{ skel.id|shortKey }}/{{ skel.name|string|urlencode }}">
+					<li id="view-{{ skel.key|shortKey }}"> {# use view-IDs for anchor navigation #}
+						<a href="/{{ lang }}/{{ module }}/view/{{ skel.key|shortKey }}/{{ skel.name|string|urlencode }}">
 							<h2>{{ skel.name }}</h2>
 							<div class="txt">
 								{% if skel.teaser %}

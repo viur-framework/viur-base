@@ -4,7 +4,7 @@ from server.prototypes.singleton import Singleton
 class appconf(Singleton):
 
 	adminInfo = {
-		"name": u"Configuration",
+		"name": u"Appconf",
 		"handler": "singleton",
 	    "icon": "icons/modules/settings.svg",
 	    "sortIndex": 1

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from server import exposed
-from renders.jinja2 import default as html_default_renderer
+from server.render.jinja2 import defaultRenderer
 
-class index(html_default_renderer):
+class index(defaultRenderer):
 
 	@exposed
 	def index(self, *args, **kwargs):
