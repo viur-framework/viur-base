@@ -23,8 +23,6 @@
 # Author:       {{whoami}}
 #
 
-import server
-import modules
 from server import conf
 
 # ------------------------------------------------------------------------------
@@ -77,6 +75,7 @@ conf["admin.vi.name"] = "{{app_id}}"
 # Server startup
 #
 
+import server, modules
 application = server.setup(modules, server.render)
 
 def main():
