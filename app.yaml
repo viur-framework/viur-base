@@ -19,6 +19,9 @@ handlers:
   script: {{app_id}}.application
 - url: /vi.*
   script: {{app_id}}.application
+- url: /favicon.ico
+  static_files: static/meta/favicon.ico
+  upload: favicon.ico
 - url: /.*
   script: {{app_id}}.application
 
