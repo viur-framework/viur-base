@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from server import exposed
-from server.render.jinja2 import default
+from server.render.html import default
 
 class index(default):
 
