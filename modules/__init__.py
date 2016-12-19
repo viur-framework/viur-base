@@ -37,4 +37,10 @@ for _module in os.listdir(os.path.dirname(__file__)):
 		raise
 
 globals().update(_viurModules)
-del _viurModules, _module, _import, _name, _symbol
+del _viurModules, _module, _import, _name, _symbol, os, logging, server.prototypes.basic
+
+#
+# Manual imports can also be done here!
+#
+
+from server.modules.site import Site as s
