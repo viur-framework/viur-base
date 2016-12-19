@@ -9,4 +9,4 @@ class index(default):
 		template = self.getEnv().get_template("index.html")
 		return template.render(start=True)
 
-index.jinja2 = True
+index.html = True

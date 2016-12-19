@@ -89,8 +89,7 @@ if prgc.startswith("/") or prgc[1] == ":":
 else:
     path = os.path.abspath(os.path.dirname(os.path.join(cwd, prgc)))
 
-path = os.path.abspath( os.path.join( path , ".." ) )
-os.chdir(path)
+path = os.path.abspath(path)
 appid = path[path.rfind(os.path.sep) + 1:].strip()
 
 nappid = prompt("Please enter your desired application name [default=%s]" % appid)

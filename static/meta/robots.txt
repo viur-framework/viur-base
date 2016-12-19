@@ -1,4 +1,3 @@
-﻿Sitemap: /sitemap_xml/sitemap.xml
-User-agent: *
+﻿User-agent: *
 Disallow: /user/*
 Disallow: /de/user/*
