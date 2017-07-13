@@ -1,0 +1,273 @@
+{% macro SkelViewRelBoneFormat(format, value, prefix="") %}
+    {% set ret = {"value": format} %}
+    {% for key, val in value.items() %}
+        {% if val|isDict %}
+            {% do ret.update({"value": SkelViewRelBoneFormat(ret["value"], val, prefix = "%s." % key)}) %}
+        {% else %}
+            {% do ret.update({"value": ret["value"].replace("$(%s)" % (prefix + key), val|string)}) %}
+        {% endif %}
+    {% endfor %}
+
+    {{ ret["value"] }}
+{% endmacro %}
+
+{% macro SkelViewBone(module, skel, path, level = 0, cssBaseClass = "skelview", drillDepth = 0, drillIgnore=[], drillFull=None, structures = {},
+                        emptyValue = "-", skelType="viewSkel", descr=None,
+                            mainTag="li", descrTag="span", valueTag="span") %}
+    {% for step in path.split(".") %}
+        {% if loop.last %}
+            {% if not cssBaseClass %}
+                {% set cssBaseClass = "%s-view" % module %}
+            {% endif %}
+
+            {% if module not in structures.keys() %}
+                {% do structures.update({module: getSkel(module, skel=skelType)}) %}
+            {% endif %}
+
+            {% set structure = structures[module] %}
+
+            {% if step in structure.keys() %} {# step in skel.keys() and structure[step]["visible"]  #}
+                {% set value = skel[step] or None %}
+                {% if not value and not emptyValue %}
+                    {% continue %}
+                {% endif %}
+
+                <{{ mainTag }} class="{{ cssBaseClass }}-bone">
+                    <{{ descrTag }} class="{{ cssBaseClass }}-bone-descr {{ step }}">
+                        {# {{ step }}|{{ structure[step]["type"] }}|  #}
+
+                        {{ descr or structure[step]["descr"] }}
+                    </{{ descrTag }}>
+                    <{{ valueTag }} class="{{ cssBaseClass }}-bone-value {{ step }}">
+                        {% if structure[step]["type"] == "selectone" %}
+                            {{ value.descr if value }}
+                        {% elif structure[step]["type"] == "bool" %}
+                            {{ _("Yes") if value else _("No") }}
+                        {% elif structure[step]["type"] == "date" %}
+                            {% if value %}
+                                {% if structure[step]["date"] and structure[step]["time"] %}
+                                    {{ value.strftime("%d.%m.%Y %H:%M:%S") }}
+                                {% elif structure[step]["time"] %}
+                                    {{ value.strftime("%H:%M:%S") }}
+                                {% else %}
+                                    {{ value.strftime("%d.%m.%Y") }}
+                                {% endif %}
+                            {% endif %}
+                        {% elif structure[step]["type"] == "relational.treeitem.file" %}
+                            {% if value %}
+                                {% if not value|isList %}
+                                    {% set value = [value] %}
+                                {% endif %}
+
+                                {% for item in value or [] %}
+                                    {% if item.servingurl %}
+                                        {% set imgfile = item.servingurl + "=s250" %}
+                                        {% set link = item.servingurl %}
+                                    {% elif item.dlkey %}
+                                        <img src="/file/download/{{ item.servingurl }}">
+                                        {% set imgfile = "/file/download/" + item.dlkey %}
+                                        {% set link = imgfile %}
+                                    {% else %}
+                                        {% set imgfile = None %}
+                                    {% endif %}
+
+                                    {%- if link -%}
+                                        <a href="{{ link }}" data-lightbox="{{ step }}" data-title="{{item.name}}">
+                                    {% endif %}
+                                    {%- if imgfile -%}
+                                        <img src="{{ imgfile }}">
+                                    {%- endif -%}
+                                        {{ item.name }}
+                                    {%- if link -%}
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+
+                            {% else %}
+                                {{ emptyValue }}
+                            {% endif %}
+                        {% elif structure[step]["type"] == "relational" or structure[step]["type"].startswith("relational.") %}
+                            {# Drilldown! #}
+                            {% if drillDepth and value %}
+                                {% if not value|isList %}
+                                    {% set value = [value] %}
+                                {% endif %}
+
+                                {% for item in value or [] %}
+                                    {% if "rel" in item.keys() %}
+                                        {% set rvalue = item["rel"] %}
+                                        {% set dvalue = item["dest"] %}
+                                    {% else %}
+                                        {% set dvalue = item %}
+                                        {% set rvalue = None %}
+                                    {% endif %}
+
+                                    {% if (drillFull|isList and step in drillFull)
+                                            or (drillFull and not drillFull|isList) %}
+                                        {% set dvalue = getEntry(structure[step]["module"], dvalue["key"]) %}
+                                        {% do structures.update({"REL_SKEL": getSkel(structure[step]["module"])}) %}
+                                    {% else %}
+                                        {% do structures.update({"REL_SKEL": structure[step]["relskel"]}) %}
+                                    {% endif %}
+
+                                    {{ SkelView("REL_SKEL", dvalue,
+                                                    level = level + 1,
+                                                        drillDepth = drillDepth - 1,
+                                                            structures = structures,
+                                                                emptyValue = emptyValue,
+                                                                    ignore = drillIgnore) }}
+
+                                    {% if rvalue %}
+                                        {% do structures.update({"USING_SKEL": structure[step]["using"]}) %}
+
+                                        {{ SkelView("USING_SKEL", rvalue,
+                                                        level = level + 1,
+                                                            drillDepth = drillDepth - 1,
+                                                                structures = structures,
+                                                                    emptyValue = emptyValue,
+                                                                        ignore = drillIgnore) }}
+                                    {% endif %}
+                                {% endfor %}
+
+                            {# Print formatted string #}
+                            {% else %}
+                                {% if value %}
+                                    {% if structure[step]["multiple"] %}
+                                        <ul class="{{ cssBaseClass }}-value-items">
+                                            {% for item in value %}
+                                                <li>
+                                                    {% if structure[step]["using"] %}
+                                                        {{ SkelViewRelBoneFormat(
+                                                            SkelViewRelBoneFormat(structure[step]["format"], item["rel"], prefix="rel."),
+                                                                item["dest"], prefix="dest.") }}
+                                                    {% else %}
+                                                        {{ SkelViewRelBoneFormat(structure[step]["format"], item, prefix="dest.") }}
+                                                    {% endif %}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        {% if structure[step]["using"] %}
+                                            {{ SkelViewRelBoneFormat(
+                                                SkelViewRelBoneFormat(structure[step]["format"], value["rel"], prefix="rel."),
+                                                    value["dest"], prefix="dest.") }}
+                                        {% else %}
+                                            {{ SkelViewRelBoneFormat(structure[step]["format"], value, prefix="dest.") }}
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    {{ emptyValue }}
+                                {% endif %}
+                            {% endif %}
+                        {% elif structure[step]["type"] == "str.email" and value %}
+                            <a href="mailto:{{ value }}">{{ value }}</a>
+                        {% elif value and value|isList %}
+                            {{ ", ".join(value) }}
+                        {% else %}
+                            {{ value if value else emptyValue }}
+                        {% endif %}
+                    </{{ valueTag }}>
+                </{{ mainTag }}>
+            {% endif %}
+        {% else %}
+            {% set skel = skel[step] %}
+            {% set structure = structure[step] %}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro SkelView(module, skel, paths=[], ignore=[], level=0, skelType="viewSkel",
+                    cssBaseClass="skelview", drillDepth = 0, drillIgnore=[], drillFull=None,
+                        structures = {}, emptyValue = "-") %}
+    {% if not cssBaseClass %}
+        {% set cssBaseClass = "%s-view" % module %}
+    {% endif %}
+
+    {% if module not in structures.keys() %}
+        {% do structures.update({module: getSkel(module, skel=skelType)}) %}
+    {% endif %}
+
+    <ul class="{{ cssBaseClass }} {{ "level-%d" % level }}">
+        {% if not paths %}
+            {% for bone in structures[module].keys() %}
+                {% if bone in ignore %}
+                    {% continue %}
+                {% endif %}
+
+                {{ SkelViewBone(module, skel, bone, level=level, cssBaseClass=cssBaseClass,
+                                    drillDepth=drillDepth, drillIgnore=drillIgnore, drillFull=drillFull,
+                                        structures=structures, emptyValue=emptyValue) }}
+            {% endfor %}
+        {% else %}
+            {% for path in paths %}
+                {{ SkelViewBone(module, skel, path, level=level, cssBaseClass=cssBaseClass,
+                                    drillDepth=drillDepth, drillIgnore=drillIgnore, drillFull=drillFull,
+                                        structures=structures, emptyValue=emptyValue) }}
+            {% endfor %}
+        {% endif %}
+    </ul>
+{% endmacro %}
+
+{% macro CatSkelView(module, skel, paths=[], ignore=[], skelType="viewSkel",
+                        cssBaseClass="skelview", level=0, drillDepth = 0, drillIgnore=[], drillFull=None,
+                            structures = {}, defaultCat = "", emptyValue="-",
+                                sectionTag="div", titleTag="div", bodyTag="div") %}
+    {% if not cssBaseClass %}
+        {% set cssBaseClass = "%s-view" % module %}
+    {% endif %}
+
+    {% if module not in structures.keys() %}
+        {% do structures.update({module: getSkel(module, skel=skelType)}) %}
+    {% endif %}
+
+    {% set cat = {} %}
+    {% set catOrder = [] %}
+
+    {% if not paths %}
+        {% set paths = structures[module].keys() %}
+    {% endif %}
+
+    {% for bone in paths %}
+        {% if bone in ignore %}
+            {% continue %}
+        {% endif %}
+
+        {% set dfn = structures[module][bone] %}
+
+        {% if "params" in dfn.keys() and dfn["params"] and "category" in dfn["params"].keys() %}
+            {% set mycat = dfn["params"]["category"] %}
+        {% else %}
+            {% set mycat = defaultCat %}
+        {% endif %}
+
+        {% if mycat in catOrder %}
+            {% do cat[mycat].append(bone) %}
+        {% else %}
+            {% do catOrder.append(mycat) %}
+            {% do cat.update({mycat: [bone]}) %}
+        {% endif %}
+    {% endfor %}
+
+    {% for mycat in catOrder %}
+        {% if sectionTag %}
+            <{{ sectionTag }} class="{{ cssBaseClass }}-section">
+        {% endif %}
+
+        {% if titleTag %}
+            <{{ titleTag }} class="{{ cssBaseClass }}-section-title">
+                {{ mycat }}
+            </{{ titleTag }}>
+        {% endif %}
+
+        <{{ bodyTag or "div" }} class="{{ cssBaseClass }}-section-view">
+            {{ SkelView(module, skel, paths=cat[mycat], level = level,
+                        skelType = skelType, cssBaseClass = cssBaseClass,
+                            drillDepth = drillDepth, drillIgnore = drillIgnore,
+                                drillFull = drillFull, structures = structures) }}
+        </{{ bodyTag or "div" }}>
+
+        {% if sectionTag %}
+            </{{ sectionTag }}>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
