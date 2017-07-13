@@ -1,0 +1,4 @@
+queue:
+- name: data-backup
+  rate: 1/s
+  target: ah-builtin-python-bundle
