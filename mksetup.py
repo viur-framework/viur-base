@@ -85,7 +85,7 @@ def download(component):
 	zipname = "%s.zip" % component
 
 	sys.stdout.write("Downloading %s..." % component)
-	urllib.urlretrieve("http://www.viur.is/package/download/%s/latest" % component, zipname)
+	urllib.urlretrieve("https://www.viur.is/package/download/%s/latest" % component, zipname)
 	print("Done")
 
 	sys.stdout.write("Extracting %s..." % component)
