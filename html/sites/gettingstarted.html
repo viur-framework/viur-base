@@ -8,7 +8,7 @@
 
 <section class="section">
 	<h2 class="headline">Logging into the new system</h2>
-	<p>The Vi can be access at <a href="http://localhost:8080/vi">http://localhost:8080/vi</a>, or under your particular port.</p>
+	<p>The Vi can be access at <a href="{{ getHostUrl() }}/vi">{{ getHostUrl() }}/vi</a>.</p>
 	<a href="/static/images/start-vi.png" style="display:block;width:30%;">
 		<figure class="thumbnail">
 			<img class="thumbnail-img" src="/static/images/start-vi.png" alt="start-vi">
@@ -19,9 +19,9 @@
 		</figure>
 	</a>	
 
-	<p>On the first startup, ViUR creates an new admin-user named <code>admin&#64;&lt;your-app-id&gt;.appspot.com</code> with a random password within the database. This password is printed to the server debug console, where you have to copy it out.</p>
+	<p>On the first startup, ViUR creates an new admin-user named <code>admin&#64;{{app_id}}.appspot.com</code> with a random password within the database. This password is printed to the server debug console, where you have to copy it out.</p>
 	<p>Watch out for a line like this:</p>
-	<pre>ViUR created a new admin-user for you! Username: admin@myapp.appspot.com, Password: SU7juUIb1F2aZ</pre>
+	<pre>ViUR created a new admin-user for you! Username: admin@{{app_id}}.appspot.com, Password: SU7juUIb1F2aZ</pre>
 
 	<p>When the system is started in the cloud for the first time, an e-mail with this password is sent to all application administrators.</p>
 	<p>Alternatively, you can login with a simulated Google user. Both login forms are provided by the default server and can be done using the Vi.</p>
@@ -61,7 +61,7 @@
 </pre>
     <br>
 
-	<p>Open the file <code>html/index.html</code>. This file is basically called when you open <a href="http://localhost:8080">http://localhost:8080</a>. Let's take a more closely look.</p>
+	<p>Open the file <code>html/index.html</code>. This file is basically called when you open <a href="{{ getHostUrl() }}">{{ getHostUrl() }}</a>. Let's take a more closely look.</p>
 	<pre>
 &#123;% extends "viur_base.html" %&#125; <mark>this includes the site template</mark>
 
@@ -173,7 +173,7 @@ class Person(List):
 
 	<div class="msg msg-vSuccess has-icon i-check">
 		<h3 class="msg-headline">You did it!</h3>
-		<p>That's all, we created our first module. But how to call these templates now from the frontend? Requests to a ViUR application are performed by a clear and persistent format of how the resulting URLs are made up. By requesting <a href="http://localhost:8080/person/list" target="_blank">http://localhost:8080/person/list</a> on our ViUR system.</p>
+		<p>That's all, we created our first module. But how to call these templates now from the frontend? Requests to a ViUR application are performed by a clear and persistent format of how the resulting URLs are made up. By requesting <a href="{{ getHostUrl() }}/person/list" target="_blank">{{ getHostUrl() }}/person/list</a> on our ViUR system.</p>
 	</div>
 	
 
