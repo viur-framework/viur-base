@@ -11,7 +11,7 @@
 
 {%- block additionalHead %}
 	{# use additionalHead for important template specific JS or CSS file imports, for example:
-		<script type="application/javascript" src="/static/js/{{ module }}_view.js"></script>
+		<script src="/static/js/{{ module }}_view.js"></script>
 	#}
 {%- endblock %}
 
@@ -29,7 +29,7 @@
 				<ul >
 					{%- for image in skel.images %}
 						<li>
-							<a href="{{ image.servingurl }}"><img src="{{ image.servingurl }}=s200" alt="{{ image.name }}" title="{{ image.name }}"/>
+							<a href="{{ image.servingurl }}"><img src="{{ image.servingurl }}=s200" alt="{{ image.name }}" title="{{ image.name }}">
 							</a>
 						</li>
 					{%- endfor %}
@@ -42,6 +42,6 @@
 
 {%- block additionalFooter %}
 	{# use additionalFooter for less important template specific JS or CSS file imports, for example:
-		<script type="application/javascript" src="/static/js/{{ module }}_view_footer.js"></script>
+		<script src="/static/js/{{ module }}_view_footer.js"></script>
 	#}
 {%- endblock %}

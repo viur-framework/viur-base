@@ -66,6 +66,12 @@ conf["admin.vi.name"] = "{{app_id}}"
 #conf["admin.vi.logo"] = "/static/meta/logo.svg"
 
 # ------------------------------------------------------------------------------
+# Content Security Policy
+#
+
+conf["viur.security.contentSecurityPolicy"] = {}
+
+# ------------------------------------------------------------------------------
 # Bugsnag: Tell us what is wrong!
 #
 
@@ -76,6 +82,7 @@ conf["admin.vi.name"] = "{{app_id}}"
 #
 
 import server, modules
+
 application = server.setup(modules, server.render)
 
 def main():
@@ -83,4 +90,3 @@ def main():
 
 if __name__ == '__main__':
 	main()
-

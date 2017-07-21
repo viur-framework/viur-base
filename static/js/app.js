@@ -1,5 +1,3 @@
-$(document).ready(
-    function()
-    {
-        //Insert your application code here!
-    });
+$(function() {
+  //Insert your application code here!
+});

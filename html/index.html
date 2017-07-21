@@ -1,5 +1,59 @@
 {% extends "viur_base.html" %}
 
 {% block content %}
-    <h1>Hello World!</h1>
+	<section class="section">
+		<h1 class="headline" style="font-size: 3em;margin-bottom: 0;">Welcome to {{app_id}}!</h1>
+		<h2 class="subline">A VIUR project</h2>
+	</section>
+	<section class="section">
+		<div class="grid-row">
+			<div class="grid-col">
+				<h3 class="headline">Features</h3>
+			</div>
+		</div>
+
+		<div class="grid-row">
+			<div class="grid-col">
+				<ul class="is-list">
+					<li>Cloud based! Built for the <a href="https://cloud.google.com/appengine/" target="_blank">Google App Engine™</a>.</li>
+					<li>Written in the <a href="https://www.python.org/" target="_blank">Python™ Programming Language</a>.</li>
+					<li>Provides a flexible and consistent API and SDK.</li>
+					<li>Uses well understood concepts, like MVC.</li>
+					<li>Provides lots of customizable modules.</li>
+					<li>Build-in multi-language support.</li>
+					<li>Auto-generated user interfaces and data management facilities.</li>
+				</ul>
+			</div>
+
+			<div class="grid-col">
+				<ul class="is-list">
+					<li>Fast - Rapid prototyping and agile support.</li>
+					<li>Scalable - Build complex solutions with a small set of components.</li>
+					<li>Flexible - Prepared for different output formats (HTML5, XML, JSON, PDF, etc.)</li>
+					<li>Secure - ViUR® protects private data by design!</li>
+					<li>Easy to use - User centric and user friendly interface (PostCMS).</li>
+					<li>Content centric - Adapt to your needs, not the other way around.</li>
+					<li>Open - ViUR® is entirely released to the <a href="/community">Open Source Community</a>.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<h3 class="headline">Contribute</h3>
+		<p>
+			ViUR is an open-source project. That means: we are looking forward to hear from you. Contributions and input are highly welcome. <br>
+			If you are interested you may:<br><br>
+
+			Fork ViUR on <a target="_blank" href="https://bitbucket.org/viur/">Bitbucket</a> and submit pull-request with your modifications.<br>
+			Follow ViUR on <a target="_blank" href="http://twitter.com/weloveViUR">Twitter</a>, <a target="_blank" href="https://www.facebook.com/weloveViUR/">Facebook</a> or <a target="_blank" href="https://plus.google.com/+ViurIs">Google+</a> and ask any question.<br>
+			Join the <a target="_blank" href="https://plus.google.com/communities/102034046048891029088">Google User Group</a> to discuss the future of ViUR.<br>
+			Or you can send us a <a target="_blank" href="https://www.mausbrand.de/site/impressum">Postcard</a>. We love postcards.
+		</p>
+
+		<a href="http://www.viur.is/community">
+			<button class="btn has-icon i-heart" type="button">Join community</button>
+		</a>
+	</section>
+
 {% endblock content %}
