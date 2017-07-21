@@ -1,12 +1,25 @@
-{% extends "index.html" %}
+{% extends "viur_base.html" %}
 
 {% block content %}
-<form method="POST" action="/user/auth_userpassword/login">
-    <input name="skey" type="hidden" value="{{ getSecurityKey() }}">
-    <ul>
-        <li><label for="name">Email</label><input id="name" name="name" type="text"></li>
-        <li><label for="password">Password</label><input id="password" name="password" type="password"></li>
-        <li><input name="submit" type="submit" value="Login"></li>
-    </ul>
-</form>
+	<h1 class="headline">Login</h1>
+
+	<form method="POST" action="/user/auth_userpassword/login">
+		<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
+
+		<div class="inputGroup">
+			<label class="label js-focus" for="name">E-Mail</label>
+			<input class="input" id="name" name="name" type="text" placeholder="E-Mail">
+		</div>
+
+		<div class="inputGroup">
+			<label class="label" for="password">Password</label>
+			<input class="input" id="password" name="password" type="password" placeholder="Passwort">
+		</div>
+
+		<div class="formActions">
+			<input class="btn btn-vPrimary f-left" name="submit" type="submit" value="Login">
+		</div>
+	</form>
+
+	<a href="/user/auth_userpassword/pwrecover">Reset your Password</a>
 {% endblock %}

@@ -1,1 +1,15 @@
-{{ execRequest("index", style="login_success") }}
+{% extends "viur_base.html" %}
+
+{% block content %}
+	<h1 class="headline">Login successful</h1>
+
+	<div class="alert-center">
+		<div class="alert alert-vSuccess has-icon i-check">
+			<h4 class="alert-headline">Login Successful</h4>
+			<p>
+				Hello {{ getCurrentUser().name }}, you're successfully logged in.<br>
+				<a href="{{ getHostUrl() }}/user/logout?skey={{ getSecurityKey() }}">Logout</a>
+			</p>
+		</div>
+	</div>
+{% endblock %}

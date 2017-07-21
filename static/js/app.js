@@ -1,3 +1,5 @@
 $(function() {
-  //Insert your application code here!
+  $( '.js-focus' ).focus();
+
+  // Insert your application code here!
 });

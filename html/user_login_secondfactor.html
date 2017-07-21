@@ -1,0 +1,27 @@
+{%- extends "viur_base.html" %}
+
+{%- block content %}
+	{% if action == "otp" %}
+		<h1 class="headline">OTP</h1>
+		
+		<form action="/user/f2_timebasedotp/otp" method="POST" class="">
+			<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
+
+			<div class="msg msg-vError has-icon i-cross {{ "hidden" if not secondFactorFailed }}">
+				<h3 class="msg-headline">Fehler!</h3>
+				<p>The entered token wasn't vaild!</p>
+			</div>
+
+			<div class="inputGroup">
+				<label class="label has-icon i-token" for="otptoken">OTP Token</label>
+				<input id="username" name="otptoken" type="text" class="input js-focus" placeholder="OTP Token">
+			</div>
+
+			<div class="formActions">
+				<button type="submit" id="submitbtn" name="submit" class="btn btn-vPrimary f-left">Login</button>
+			</div>
+		</form>
+	{% else %}
+		<div>Unimplemented second factor action: {{ action }}</div>
+	{% endif %}
+{%- endblock content %}
