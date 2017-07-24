@@ -1,7 +1,16 @@
 {% extends "viur_base.html" %}
+{%- set req = requestParams() -%}
+
 
 {% block content %}
 	<h1 class="headline">Login</h1>
+
+	{% if loginFailed %}
+		<div class="msg msg-vError has-icon i-cross">
+			<h3 class="msg-headline">Login failed!</h3>
+			<p>Username or Password was wrong. Please try it again or <a href="/user/auth_userpassword/pwrecover">reset your Password</a>.</p>
+		</div>
+	{% endif %}
 
 	<form method="POST" action="/user/auth_userpassword/login">
 		<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
@@ -21,5 +30,9 @@
 		</div>
 	</form>
 
-	<a href="/user/auth_userpassword/pwrecover">Reset your Password</a>
+	{% if req.get("disableGoogle") != "1" %}
+		<div class="google-info">
+			<a href="/user/auth_googleaccount/login">Or Login with Google…</a>
+		</div>
+	{% endif %}
 {% endblock %}
