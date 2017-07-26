@@ -29,8 +29,6 @@
 	</form>
 
 	{% if req.get("disableGoogle") != "1" %}
-		<div class="google-info">
-			<a href="/user/auth_googleaccount/login">Or Login with Google…</a>
-		</div>
+		<a class="btn btn-vGoogle" href="/user/auth_googleaccount/login">Or Login with Google…</a>
 	{% endif %}
 {% endblock %}
