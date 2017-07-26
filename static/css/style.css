@@ -754,7 +754,7 @@ ol.is-list {
 }
 
 .bind {
-  max-width: 1300px;
+  max-width: 1200px;
   padding: 0 20px;
   margin: 0 auto;
   position: relative;
@@ -2414,6 +2414,31 @@ a.btn-vGoogle:focus,
 a.btn-vGoogle:link:focus,
 a.btn-vGoogle:visited:focus {
   background: #ff0000;
+}
+
+.thumbnail {
+  display: block;
+  padding: .5em;
+  margin-bottom: 1em;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: .2s ease border;
+  transition: .2s ease border;
+}
+
+.thumbnail p {
+  color: #222;
+}
+
+a:hover .thumbnail,
+a:focus .thumbnail {
+  border-color: #d00f1c;
+}
+
+.thumbnail-caption {
+  margin-top: .5em;
+  padding: 1em;
 }
 
 @media (min-width: 37.5em) {

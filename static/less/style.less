@@ -41,7 +41,7 @@
 @gridSpace: 20px; // Space between grid items.
 
 // Width, Height and Media Queries
-@pageWidth: 1300px; // max-width of the centered container.
+@pageWidth: 1200px; // max-width of the centered container.
 @paragraphWidth: 720px; // max-width of text paragraphs.
 
 @breakSmall: 37.5em; // smart phones: 600px / 16px = 37.5em;
@@ -114,8 +114,8 @@
 }
 
 
-// styles
 
+// google button, see https://github.com/mausbrand/objects/blob/master/css/button.less
 .btn-vGoogle,
 a.btn-vGoogle,
 a.btn-vGoogle:link,
@@ -136,4 +136,26 @@ a.btn-vGoogle:visited {
   text-align: center;
   display: block;
   &:hover {background: lighten(#cc0000, 10%);}
+}
+
+// thumbnail, see https://github.com/mausbrand/objects/blob/master/css/image.less
+.thumbnail {
+    display: block;
+    padding: .5em;
+    margin-bottom: 1em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: .2s ease border;
+    p {
+      color: @textColor; // reset color, to avoid a link color if is wrapped by a link
+    }
+}
+a:hover .thumbnail {
+  border-color: @mainColor;
+}
+.thumbnail-img {}
+.thumbnail-caption {
+  margin-top: .5em;
+  padding: 1em;
 }
