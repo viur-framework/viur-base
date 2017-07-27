@@ -7,13 +7,14 @@
 		<form action="/user/f2_timebasedotp/otp" method="POST" class="">
 			<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
 
-			<div class="msg msg-vError has-icon i-cross {{ "hidden" if not secondFactorFailed }}">
-				<h3 class="msg-headline">Fehler!</h3>
-				<p>The entered token wasn't vaild!</p>
+			<div class="msg msg-vError has-icon {{ "hide" if not secondFactorFailed }}">
+				{{ icon("cross") }}
+				<h3 class="msg-headline">Error!</h3>
+				<p>The entered token was invaild!</p>
 			</div>
 
 			<div class="inputGroup">
-				<label class="label has-icon i-token" for="otptoken">OTP Token</label>
+				<label class="label has-icon" for="otptoken">{{ icon("token") }}OTP Token</label>
 				<input id="username" name="otptoken" type="text" class="input js-focus" placeholder="OTP Token">
 			</div>
 

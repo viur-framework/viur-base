@@ -6,7 +6,8 @@
 	<h1 class="headline">Login</h1>
 
 	{% if loginFailed %}
-		<div class="msg msg-vError has-icon i-cross">
+		<div class="msg msg-vError has-icon">
+			{{ icon("cross") }}
 			<h3 class="msg-headline">Login failed!</h3>
 			<p>Username or Password was wrong. Please try it again or <a href="/user/auth_userpassword/pwrecover">reset your Password</a>.</p>
 		</div>

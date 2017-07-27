@@ -2242,8 +2242,7 @@ ol.is-list {
   padding-left: 2em;
 }
 
-.alert.has-icon:before {
-  content: "";
+.alert .icon {
   position: absolute;
   display: block;
   height: .8em;
@@ -2252,11 +2251,6 @@ ol.is-list {
   margin-top: 5px;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  background-size: cover;
-  background-position: top left;
-  background-repeat: no-repeat;
-  background-color: inherit;
-  background-blend-mode: multiply;
 }
 
 .alert a {
