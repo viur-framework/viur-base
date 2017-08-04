@@ -99,15 +99,13 @@ def download(component):
 	print("Done")
 
 cwd = os.getcwd()
-prgc = sys.argv[0]
-
-if prgc.startswith("/") or prgc[1] == ":":
-    path = os.path.dirname(prgc)
-else:
-    path = os.path.abspath(os.path.dirname(os.path.join(cwd, prgc)))
-
-path = os.path.abspath(path)
+path = os.path.abspath(cwd)
 appid = path[path.rfind(os.path.sep) + 1:].strip()
+
+# Mausbrand-style repository structure
+if appid == "appengine":
+    tpath = os.path.dirname(cwd)
+    appid = tpath[tpath.rfind(os.path.sep) + 1:].strip() + "-viur"
 
 nappid = prompt("Please enter your desired application name [default=%s]" % appid)
 if nappid:
