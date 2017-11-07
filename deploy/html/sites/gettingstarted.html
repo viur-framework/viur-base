@@ -3,7 +3,7 @@
 {% block content %}
 <section class="section">
 	<h1 class="headline">Getting started</h1>
-	<p>This part of the documentation provides a first steps guide for quickly setting up an application with ViUR. For a detailed introduction visit the <a href="http://docs.viur.is">VIUR Documentation</a>.</p>
+	<p>This part of the documentation provides a first steps guide for quickly setting up an application with ViUR. For a detailed introduction visit the <a href="https://docs.viur.is">VIUR Documentation</a>.</p>
 </section>
 
 <section class="section">
@@ -17,7 +17,7 @@
 				<p>The Vi after setting up a scratch project.</p>
 			</figcaption>
 		</figure>
-	</a>	
+	</a>
 
 	<p>On the first startup, ViUR creates an new admin-user named <code>admin&#64;{{app_id}}.appspot.com</code> with a random password within the database. This password is printed to the server debug console, where you have to copy it out.</p>
 	<p>Watch out for a line like this:</p>
@@ -25,7 +25,7 @@
 
 	<p>When the system is started in the cloud for the first time, an e-mail with this password is sent to all application administrators.</p>
 	<p>Alternatively, you can login with a simulated Google user. Both login forms are provided by the default server and can be done using the Vi.</p>
-	
+
 </section>
 
 <section class="section">
@@ -97,7 +97,7 @@ de = &#123;
 	<pre>&#123;&#123; _( "Hello &#123;&#123;user&#125;&#125;!", user="John Doe" ) &#125;&#125; - &#123;&#123; _( "Welcome to ViUR" ) &#125;&#125;</pre>
 	<p>This will output “Hello John Doe! - Welcome to ViUR” in an english-configured language environment, and “Hallo John Doe! - Willkommen in ViUR” in a german-configured language environment.</p>
 
-	<p><a href="http://docs.viur.is/latest/reference_toplevel.html?highlight=translation#server.translate">Read more about this</a></p>
+	<p><a href="https://docs.viur.is/latest/reference_toplevel.html?highlight=translation#server.translate">Read more about this</a></p>
 
 
 	<h2 class="headline">Create a module</h2>
@@ -156,7 +156,7 @@ class Person(List):
 &#123;% endblock %&#125;
 </pre>
 	<br>
-	
+
 	<p>To connect the Person module from above with these templates, we have to adjust our <code>modules/person.py</code>:</p>
 	<pre>
 #-*- coding: utf-8 -*-
@@ -175,8 +175,8 @@ class Person(List):
 		<h3 class="msg-headline">You did it!</h3>
 		<p>That's all, we created our first module. But how to call these templates now from the frontend? Requests to a ViUR application are performed by a clear and persistent format of how the resulting URLs are made up. By requesting <a href="{{ getHostUrl() }}/person/list" target="_blank">{{ getHostUrl() }}/person/list</a> on our ViUR system.</p>
 	</div>
-	
 
-	
+
+
 </section>
 {% endblock content %}

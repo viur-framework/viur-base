@@ -22,11 +22,14 @@ handlers:
 - url: /favicon.ico
   static_files: static/meta/favicon.ico
   upload: favicon.ico
+- url: /robots.txt
+  static_files: static/meta/robots.txt
+  upload: robots.txt
 - url: /.*
   script: {{app_id}}.application
 
 libraries:
-- name: jinja2 
+- name: jinja2
   version: latest
 
 inbound_services:
