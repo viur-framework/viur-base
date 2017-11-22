@@ -5,5 +5,5 @@ class Person(List):
 	viewTemplate = "person_view" # Name of the template to view one entry
 	listTemplate = "person_list" # Name of the template to list entries
 
-def listFilter(self, filter):
-	return filter # everyone can see everything!
+	def listFilter(self, query):
+		return query # everyone can see everything!
