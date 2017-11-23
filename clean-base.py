@@ -1,4 +1,5 @@
 import sys, os, subprocess, time, datetime
+from sys import argv
 
 whoami = raw_input("Enter Author Name: ")
 appid = raw_input("Enter desired app_id: ")
@@ -22,12 +23,11 @@ else:
 
 for subdir, dirs, files in os.walk(workdir):
 	for file in files:
-		#print os.path.join(subdir, file)
 		filepath = subdir + os.sep + file
 
-		if filepath.endswith(".py") or filepath.endswith(".yaml"):
+		if filepath.endswith(".py") or filepath.endswith(".yaml") or filepath.endswith(".html"):
 			file_list.append(filepath)
-print (file_list)
+#print (file_list)
 
 for file_obj in file_list:
 	lines = []
@@ -43,3 +43,4 @@ for file_obj in file_list:
 orig = os.path.join(workdir, "viur_server.py")
 newname = os.path.join(workdir, appid+".py")
 os.rename(orig, newname)
+os.remove(argv[0])
