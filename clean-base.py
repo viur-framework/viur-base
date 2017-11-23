@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys, os, subprocess, time, datetime
 from sys import argv
 

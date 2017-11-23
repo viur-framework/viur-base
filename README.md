@@ -34,7 +34,7 @@ You need to enter an author name and an app ID to identify your app for later de
 The script will also initialize and update the submodules and untether the app from the viur-base repository.
 
 ```
-python clean-base.py
+./clean-base.py
 ``` 
 
 ## Contributing
