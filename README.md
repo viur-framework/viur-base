@@ -26,6 +26,16 @@ python mksetup.py >setup.py
 
 The setup.py can than be distributed to easily setup new projects from the contents of the ``deploy/`` folder. It automatically downloads the latest ViUR server and pre-compiled vi from the ViUR website to immediatelly provide a running project.
 
+## Cleaning up with clean-base.py
+To make sure that the placeholders in app.yaml and viur_server.py are properly replaced and that you won't accidentally overwrite the viur-base repo, use the included clean-base.py script:
+
+You need to enter an author name and an app ID to identify your app for later deployment and to be able to run the dev_appserver locally.
+The script will also initialize and update the submodules and untether the app from the viur-base repository.
+
+```
+python clean-base.py
+``` 
+
 ## Contributing
 
 We take a great interest in your opinion about ViUR. We appreciate your feedback and are looking forward to hear about your ideas. Share your visions or questions with us and participate in ongoing discussions.
