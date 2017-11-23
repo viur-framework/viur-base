@@ -6,10 +6,13 @@ try:
 	prompt = "Enter Author Name (leave empty to default to %s): " % getpass.getuser()
 	whoami = raw_input(prompt)
 	if whoami == "":
-		whoami == getpass.getuser()
+		whoami = getpass.getuser()
 except:
 	whoami = raw_input("Enter Author Name: ")
-appid = raw_input("Enter desired app_id: ")
+while True:
+	appid = raw_input("Enter desired app_id: ")
+	if appid != "":
+		break
 time = time.time()
 timestamp = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
 
@@ -20,6 +23,7 @@ if os.path.exists(".git"):
 	print("Downloading submodules")
 	subprocess.check_output('git submodule init', shell=True)
 	subprocess.check_output('git submodule update', shell=True)
+	subprocess.check_output('cd vi && git submodule init && git submodule update', shell=True)
 	print("Removing .git tether")
 	try:
 		subprocess.check_output('git remote rm origin', shell=True)
