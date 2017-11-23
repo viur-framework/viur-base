@@ -1,8 +1,14 @@
 #!/usr/bin/env python
-import sys, os, subprocess, time, datetime
+import sys, os, subprocess, time, datetime, getpass
 from sys import argv
 
-whoami = raw_input("Enter Author Name: ")
+try:
+	prompt = "Enter Author Name (leave empty to default to %s): " % getpass.getuser()
+	whoami = raw_input(prompt)
+	if whoami == "":
+		whoami == getpass.getuser()
+except:
+	whoami = raw_input("Enter Author Name: ")
 appid = raw_input("Enter desired app_id: ")
 time = time.time()
 timestamp = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
