@@ -1,18 +1,37 @@
 #!/usr/bin/env python
-import sys, os, subprocess, time, datetime, getpass
+import sys, os, subprocess, time, datetime, getpass, argparse
 from sys import argv
 
 try:
-	prompt = "Enter Author Name (leave empty to default to %s): " % getpass.getuser()
-	whoami = raw_input(prompt)
-	if whoami == "":
-		whoami = getpass.getuser()
+	whoami = getpass.getuser()
 except:
-	whoami = raw_input("Enter Author Name: ")
-while True:
-	appid = raw_input("Enter desired app_id: ")
-	if appid != "":
-		break
+	whoami = "Bernd"
+
+ap = argparse.ArgumentParser(
+		description="Setting up a clean ViUR project base.",
+		epilog="The script runs interactively if not command-line arguments are passed.")
+
+ap.add_argument("-A", "--app_id", type=str, help="The application-id that should be replaced in the arbitrary places.")
+ap.add_argument("-a", "--author", type=str, default=whoami, help="The author's name that is placed in arbitrary places.")
+
+args = ap.parse_args()
+
+appid = args.app_id
+whoami = args.author
+
+if args.app_id is None:
+	try:
+		prompt = "Enter Author Name (leave empty to default to %s): " % getpass.getuser()
+		whoami = raw_input(prompt)
+		if whoami == "":
+			whoami = getpass.getuser()
+	except:
+		whoami = raw_input("Enter Author Name: ")
+	while True:
+		appid = raw_input("Enter desired app_id: ")
+		if appid != "":
+			break
+
 time = time.time()
 timestamp = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
 
