@@ -4,7 +4,7 @@
 
 ## About
 
-This repository works both as a base structure for new projects created with ViUR, and serves a possibility to generate the quick start ``setup.py`` script, which helps to quickly setup an empty, new ViUR project without any compromises.
+This repository works both as a base structure for new projects created with ViUR, and serves a possibility to generate the quick start ``setup.py`` script, which helps to rapidly setup an empty, new ViUR project without any compromises.
 
 ### Using the repository
 
@@ -35,7 +35,29 @@ The script will also initialize and update the submodules and untether the app f
 
 ```
 python clean-base.py
-``` 
+```
+
+### Switch sub-modules to SSH
+
+Especially in ViUR development projects or for projects at Mausbrand that are heavily involved in changes to server and vi, it is necessary to change the HTTPS submodules to SSH. This can easily be done for all submodules and their submodules with these few commands:
+
+```bash
+# change server
+cd deploy/server
+git remote set-url origin git@github.com:viur-framework/server.git
+
+# change vi
+cd vi
+git remote set-url origin git@github.com:viur-framework/vi.git
+cd html5
+git remote set-url origin git@github.com:viur-framework/html5.git
+cd ../public/icons
+git remote set-url origin git@github.com:viur-framework/icons.git
+
+# change ignite
+cd ignite
+git remote set-url origin git@github.com:viur-framework/ignite.git
+```
 
 ## Contributing
 
