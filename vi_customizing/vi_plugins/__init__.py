@@ -3,12 +3,19 @@
 # This is the major Vi plugin init file.
 # Do custom plugin imports and customized settings here.
 
+# Plugin imports
 #import vi_plugins.bones
 
-# Change list settings
-#from config import conf
+# Vi config
+from config import conf
+
+# Change default batch size
 #conf["batchSize"] = 64
+
+# Show bone name identifiers instead of descriptions:
 #conf["showBoneNames"] = False
+
+# To globally disable the internal preview, uncomment this:
 #conf["internalPreview"] = False
 
 # Change language
