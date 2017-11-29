@@ -1,12 +1,9 @@
-[submodule "server"]
-	path = server
-	url = git@bitbucket.org:viur/server.git
-[submodule "ignite"]
-	path = ignite
-	url = git@github.com:viur-framework/ignite.git
 [submodule "deploy/server"]
 	path = deploy/server
-	url = git@github.com:viur-framework/server.git
+	url = https://github.com/viur-framework/server.git
 [submodule "vi"]
 	path = vi
-	url = git@github.com:viur-framework/vi.git
+	url = https://github.com/viur-framework/vi.git
+[submodule "ignite"]
+	path = ignite
+	url = https://github.com/viur-framework/ignite.git
