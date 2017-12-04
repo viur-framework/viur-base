@@ -10,9 +10,11 @@ This is {{app_id}}.
 
 ## Prerequisites
 
-To install prerequisites, do
+To initially install prerequisites, once do
 
-	pip2 install -t appengine/lib -r requirements.txt --upgrade
+	pip2 install -t deploy/lib -r requirements.txt --upgrade
+
+on on prerequisite change/update.
 
 ## Run local development version
 

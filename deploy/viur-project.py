@@ -19,7 +19,7 @@
 #
 # Project:      {{app_id}}
 # Started:	    {{timestamp}}
-# Copyright:    mausbrand GmbH, Dortmund
+# Copyright:    {{whoami}} @ Mausbrand Informationssysteme GmbH, Dortmund
 # Author:       {{whoami}}
 #
 
