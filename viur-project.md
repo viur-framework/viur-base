@@ -8,37 +8,62 @@ https://{{app_id}}.appspot.com
 
 This is {{app_id}}.
 
-## Prerequisites
+## Build the Vi
 
-To initially install prerequisites, once do
+To build the Vi, run
 
-	pip2 install -t deploy/lib -r requirements.txt --upgrade
+```
+cd vi
+make deploy
+```
 
-on on prerequisite change/update.
+## Change Git origin URL
+
+Please set another Git repository origin. The default viur-base origin has been automatically deleted by ``clean-base.py``, for security reasons.
+
+```
+git remote set-url origin git@github.com:{{author}}/{{app_id}}.git
+```
+
+## Install prerequisites
+
+To install prerequisites, once do
+
+```
+pip2 install -t deploy/lib -r requirements.txt --upgrade
+```
+
+or on any prerequisite change/update.
 
 ## Run local development version
 
 To locally run, do
 
-	./local_run.sh
+```
+./local_run.sh
+```
 
 or manually, do
 
-	cd deploy
-	dev_appserver.py -A {{app_id}} --log_level=debug .
+```
+cd deploy
+dev_appserver.py -A {{app_id}} --log_level=debug .
+```
 
 ## Deploy to GAE
 
 Deployment is performed using the gcloud SDK:
 
-	cd deploy
+```
+cd deploy
 
-	# Deploy to dev
-	gcloud app deploy --no-promote -q --project={{app_id}} --version=$USER-dev
+# Deploy to dev
+gcloud app deploy --no-promote -q --project={{app_id}} --version=$USER-dev
 
-	# Deploy to live (beware!)
-	gcloud app deploy -q --project={{app_id}} --version=`date +"%Y-%m-%d"-$USER`
+# Deploy to live (beware!)
+gcloud app deploy -q --project={{app_id}} --version=`date +"%Y-%m-%d"-$USER`
+```
 
 ## Contact
 
-- @{{whoami}}
+Contact @{{whoami}} for help and support.
