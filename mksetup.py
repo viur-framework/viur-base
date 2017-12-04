@@ -27,7 +27,7 @@ for dirname, dirnames, filenames in os.walk("."):
 
 	for file in filenames:
 		filename = ((dirname + "/") if dirname else "") + file
-		if filename == "viur_server.py":
+		if filename == "viur-project.py":
 			tfilename = "{{app_id}}.py"
 		else:
 			tfilename = filename

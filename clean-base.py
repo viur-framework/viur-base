@@ -40,7 +40,7 @@ time = time.time()
 timestamp = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
 
 workdir = os.getcwd()+"/deploy"
-file_list = []
+file_list = ["viur-project.md", "local_run.sh"]
 replacements = {"{{app_id}}":app_id, "{{whoami}}":whoami, "{{timestamp}}":timestamp}
 if os.path.exists(".git"):
 	print("Downloading submodules")
@@ -55,11 +55,11 @@ if os.path.exists(".git"):
 else:
 	print(".git tether already removed")
 
-for subdir, dirs, files in os.walk(workdir):
+for subdir, dirs, files in os.walk("."):
 	for file in files:
 		filepath = subdir + os.sep + file
 
-		if filepath.endswith(".py") or filepath.endswith(".yaml") or filepath.endswith(".html"):
+		if any([filepath.endswith(ext) for ext in [".py", ".yaml", ".html", ".md", ".sh"]]):
 			file_list.append(filepath)
 #print (file_list)
 
@@ -74,7 +74,13 @@ for file_obj in file_list:
 		for line in lines:
 			outfile.write(line)
 
-orig = os.path.join(workdir, "viur_server.py")
+# Rename viur project
+orig = os.path.join(workdir, "viur-project.py")
 newname = os.path.join(workdir, app_id+".py")
 os.rename(orig, newname)
+
+# Create a README.md
+os.rename("viur-project.md", "README.md")
+
+# Remove yourself!
 os.remove(argv[0])
