@@ -1,4 +1,9 @@
-#!/usr/bin/env python
+#!/bin/sh
+# using the following stackoverflow answer to determine where /usr/bin/python points to
+# https://stackoverflow.com/questions/18993438/shebang-env-preferred-python-version
+''''which python2 >/dev/null 2>&1 && exec python2 "$0" "$@" # '''
+''''which python  >/dev/null 2>&1 && exec python  "$0" "$@" # '''
+''''exec echo "Error: I can't find python anywhere"         # '''
 import sys, os, subprocess, time, datetime, getpass, argparse, urllib, zipfile
 from sys import argv
 
