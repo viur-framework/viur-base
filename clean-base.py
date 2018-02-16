@@ -113,6 +113,7 @@ os.rename(orig, newname)
 subprocess.check_output('git add '+ newname, shell=True)
 
 # Create a README.md
+os.remove("README.md")  # this is needed because on windows os.rename will fail caused by existing dest!!!
 os.rename("viur-project.md", "README.md")
 
 # Remove yourself!
