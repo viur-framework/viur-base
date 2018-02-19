@@ -12,29 +12,30 @@ Download or clone the base repository including its submodules into a new direct
 
 When cloning, don't forget to change the remote origin path:
 
-```
-git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+```bash
+$ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 ```
 
 ### Generating a setup.py
 
 To generate a new setup.py, just call the script ``mksetup.py`` like this:
 
-```
-python mksetup.py >setup.py
+```bash
+$ python mksetup.py >setup.py
 ```
 
-The setup.py can than be distributed to easily setup new projects from the contents of the ``deploy/`` folder. It automatically downloads the latest ViUR server and pre-compiled vi from the ViUR website to immediatelly provide a running project.
+The setup.py can than be distributed to easily setup new projects from the contents of the ``deploy/`` folder. It automatically downloads the latest ViUR server and pre-compiled vi from the ViUR website to immediately provide a running project.
 
 ### Cleaning up with clean-base.py
 
-To make sure that the placeholders in app.yaml and viur_server.py are properly replaced and that you won't accidentally overwrite the viur-base repo, use the included clean-base.py script:
+To make sure that the placeholders in app.yaml and viur_server.py are properly replaced and that you won't accidentally overwrite the viur-base repo, use the included clean-base.py script.
 
 You need to enter an author name and an app ID to identify your app for later deployment and to be able to run the dev_appserver locally.
-The script will also initialize and update the submodules and untether the app from the viur-base repository.
 
-```
-python clean-base.py
+The script will also initialize and update the submodules and disconnect the repo from the viur-base repository origin.
+
+```base
+$ python clean-base.py
 ```
 
 ### Switch sub-modules to SSH
@@ -63,9 +64,8 @@ git remote set-url origin git@github.com:viur-framework/ignite.git
 
 We take a great interest in your opinion about ViUR. We appreciate your feedback and are looking forward to hear about your ideas. Share your visions or questions with us and participate in ongoing discussions.
 
-- [ViUR on the web](https://www.viur.is)
-- [#ViUR on freenode IRC](https://webchat.freenode.net/?channels=viur)
-- [ViUR on Google Community](https://plus.google.com/communities/102034046048891029088)
+- [ViUR website](https://www.viur.is)
+- [ViUR on GitHub](https://github.com/viur-framework)
 - [ViUR on Twitter](https://twitter.com/weloveViUR)
 
 ## Credits
@@ -76,7 +76,7 @@ Help of any kind to extend and improve or enhance this project in any kind or wa
 
 ## License
 
-ViUR is Copyright (C) 2012-2017 by Mausbrand Informationssysteme GmbH.
+Copyright (C) 2012-2018 by Mausbrand Informationssysteme GmbH.
 
 Mausbrand and ViUR are registered trademarks of Mausbrand Informationssysteme GmbH.
 
