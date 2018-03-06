@@ -12,25 +12,25 @@ This is {{app_id}}.
 
 To build the Vi, run
 
-```
-cd vi
-make deploy
+```bash
+$ cd vi
+$ make deploy
 ```
 
 ## Change Git origin URL
 
 Please set another Git repository origin. The default viur-base origin has been automatically deleted by ``clean-base.py``, for security reasons.
 
-```
-git remote set-url origin git@github.com:{{author}}/{{app_id}}.git
+```bash
+$ git remote set-url origin git@github.com:{{author}}/{{app_id}}.git
 ```
 
 ## Install prerequisites
 
 To install prerequisites, once do
 
-```
-pip2 install -t deploy/lib -r requirements.txt --upgrade
+```bash
+$ pip2 install -t deploy/lib -r requirements.txt --upgrade
 ```
 
 or on any prerequisite change/update.
@@ -39,29 +39,29 @@ or on any prerequisite change/update.
 
 To locally run, do
 
-```
-./local_run.sh
+```bash
+$ ./local_run.sh
 ```
 
 or manually, do
 
-```
-cd deploy
-dev_appserver.py -A {{app_id}} --log_level=debug .
+```bash
+$ cd deploy
+$ dev_appserver.py -A {{app_id}} --log_level=debug .
 ```
 
 ## Deploy to GAE
 
 Deployment is performed using the gcloud SDK:
 
-```
-cd deploy
+```bash
+$ cd deploy
 
 # Deploy to dev
-gcloud app deploy --no-promote -q --project={{app_id}} --version=$USER-dev
+$ gcloud app deploy --no-promote -q --project={{app_id}} --version=$USER-dev
 
 # Deploy to live (beware!)
-gcloud app deploy -q --project={{app_id}} --version=`date +"%Y-%m-%d"-$USER`
+$ gcloud app deploy -q --project={{app_id}} --version=`date +"%Y-%m-%d"-$USER`
 ```
 
 ## Contact
