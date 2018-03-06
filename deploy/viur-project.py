@@ -15,13 +15,14 @@
 #    vvvv       iii   uuuuuu   rr    rrr
 #
 #   I N F O R M A T I O N    S Y S T E M
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ------------------------------------------------------------------------------
 #
 # Project:      {{app_id}}
-# Started:	    {{timestamp}}
-# Copyright:    {{whoami}} @ Mausbrand Informationssysteme GmbH, Dortmund
+# Initiated:    {{timestamp}}
+# Copyright:    {{whoami}} @ Mausbrand Informationssysteme GmbH
 # Author:       {{whoami}}
 #
+# ------------------------------------------------------------------------------
 
 from server import conf
 
@@ -38,25 +39,6 @@ from server import conf
 
 #conf["viur.languageMethod"] = "url"
 #conf["viur.availableLanguages"] = ["en", "de"]
-
-#conf["viur.defaultlangsvalues"] = {
-# 	"en": u"English",
-# 	"de": u"Deutsch",
-# 	"es": u"Español",
-# 	"fr": u"Français",
-# 	"sv": u"Swedish",
-# 	"it": u"Italiano",
-# 	"cs": u"Čeština (Czech)",
-# 	"ru": u"Русский (Russian)",
-# 	"pt": u"Português",
-# 	"sk": u"Slovenčina",
-# 	"da": u"Dansk",
-# 	"fi": u"Suomi (Finnish)",
-# 	"pl": u"Polski",
-# 	"nl": u"Nederlands",
-# 	"no": u"Norsk" }
-
-#server.setDefaultLanguage("en") #set default language!
 
 # ------------------------------------------------------------------------------
 # ViUR admin tool specific configurations
@@ -83,10 +65,8 @@ conf["viur.security.contentSecurityPolicy"] = {}
 
 import server, modules
 
+#server.setDefaultLanguage("en") #set default language!
 application = server.setup(modules, server.render)
 
-def main():
-	server.run()
-
 if __name__ == '__main__':
-	main()
+	server.run()
