@@ -1,0 +1,11 @@
+{# Return currect image path from a fileBone or file module entry #}
+{% macro getImageSrc(info, width = 350, crop = False) %}
+	{%- if info -%}
+		{%- if info.servingurl and info.mimetype != "image/svg+xml" -%}
+			{{ info.servingurl + ("=s%d" % width) + ("-c" if crop else "") }}
+		{%- else -%}
+			{{ "/file/download/%s" % info.dlkey }}
+		{%- endif -%}
+	{%- endif -%}
+{% endmacro %}
+
