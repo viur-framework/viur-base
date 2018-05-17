@@ -1,7 +1,6 @@
 // Project data
 var srcpaths = {
 	less: './less/**/*.less',
-	projectless: '../deploy/static/less/**/*.less',
 	images: './images/**/*',
 	icons: './icons/**/*',
 };
@@ -41,7 +40,7 @@ gulp.task('css', function () {
 		zindex // reduce z-index values
 	];
 
-	return gulp.src('./less/viur.less')
+	return gulp.src('./less/style.less')
 	.pipe(less({
 		paths: [ path.join(__dirname, 'less', 'includes') ]
 	})) // compile less to css
