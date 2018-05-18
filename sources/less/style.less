@@ -8,104 +8,15 @@
 // ViUR Ignite
 @import "ignite/ignite"; // reset, boiler plate and generic objects like buttons and forms.
 
-// Customized App Configuration
+// Customize Ignite configuration:
 @import "foundation/appconf"; // Here you can configure the styling with global variables.
 
-//
+// Initialize generic Ignite objects:
+@import "generic/button"; // some classic buttons.
+@import "generic/icon"; // inline SVG icons.
+@import "generic/message"; // hints, errors, warnings etc.
 
-.btn {
-  .btn;
-}
-.btn-vPrimary {
-  .colorizeBtn(@successColor);
-}
-.btn-vDanger {
-  .invertColorizedBtn(@failColor);
-}
-.btn-vEdit {
-  .invertColorizedBtn(@hintColor);
-}
+// Import your project specific objects here:
+@import "objects/thumbnail"; // picture thumbnails.
+@import "objects/grid"; // picture thumbnails.
 
-.icon-vSuccess {
-  .colorizeIcon(@successColor)
-}
-.icon-vWarn {
-  .colorizeIcon(@warnColor)
-}
-
-.msg {
-  .msg;
-}
-.msg-vSuccess {
-  .colorizeMsg(@successColor);
-}
-.msg-vWarn {
-  .colorizeMsg(@warnColor);
-}
-.msg-vError {
-  .colorizeMsg(@failColor);
-}
-
-.alert {
-  .alert;
-}
-.alert-vSuccess {
-  .colorizeAlert(@successColor);
-}
-.alert-vWarn {
-  .colorizeAlert(@warnColor);
-}
-.alert-vError {
-  .colorizeAlert(@failColor);
-}
-
-.bar {
-  .bar();
-}
-
-
-
-// google button, see https://github.com/mausbrand/objects/blob/master/css/button.less
-.btn-vGoogle,
-a.btn-vGoogle,
-a.btn-vGoogle:link,
-a.btn-vGoogle:visited {
-  width: 400px;
-  padding: 20px 0px;
-  font-weight: 300;
-  color: #fff;
-  text-shadow: 0px 1px 0 rgba(0, 0, 0, 0.25);
-  background: #cc0000;
-  border: 1px solid #555;
-  cursor: pointer;
-  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.75);
-  -moz-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.75);
-  -webkit-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.75);
-  height: auto;
-  margin: 30px 0;
-  text-align: center;
-  display: block;
-  &:hover {background: lighten(#cc0000, 10%);}
-}
-
-// thumbnail, see https://github.com/mausbrand/objects/blob/master/css/image.less
-.thumbnail {
-    display: block;
-    padding: .5em;
-    margin-bottom: 1em;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: .2s ease border;
-    p {
-      color: @textColor; // reset color, to avoid a link color if is wrapped by a link
-    }
-}
-a:hover .thumbnail {
-  border-color: @mainColor;
-}
-.thumbnail-img {}
-.thumbnail-caption {
-  margin-top: .5em;
-  padding: 1em;
-}
