@@ -44,20 +44,23 @@ Especially in ViUR development projects or for projects at Mausbrand that are he
 
 ```bash
 # change server
-cd deploy/server
+pushd deploy/server
 git remote set-url origin git@github.com:viur-framework/server.git
+popd
 
 # change vi
-cd vi
+pushd vi
 git remote set-url origin git@github.com:viur-framework/vi.git
 cd html5
 git remote set-url origin git@github.com:viur-framework/html5.git
 cd ../public/icons
 git remote set-url origin git@github.com:viur-framework/icons.git
+popd
 
 # change ignite
-cd ignite
+pushd ignite
 git remote set-url origin git@github.com:viur-framework/ignite.git
+popd
 ```
 
 ## Contributing
