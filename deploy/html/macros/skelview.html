@@ -39,7 +39,7 @@
                         {{ descr or structure[step]["descr"] }}
                     </{{ descrTag }}>
                     <{{ valueTag }} class="{{ cssBaseClass }}-bone-value {{ step }}">
-                        {% if structure[step]["type"] == "selectone" %}
+                        {% if structure[step]["type"] == "select" and not structure[step]["multiple"] %}
                             {{ value.descr if value }}
                         {% elif structure[step]["type"] == "bool" %}
                             {{ _("Yes") if value else _("No") }}
