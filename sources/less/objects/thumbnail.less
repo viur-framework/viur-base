@@ -1,0 +1,22 @@
+@charset "UTF-8";
+// thumbnail, see https://github.com/mausbrand/objects/blob/master/css/image.less
+.thumbnail {
+    display: block;
+    padding: .5em;
+    margin-bottom: 1em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: .2s ease border;
+    p {
+      color: @textColor; // reset color, to avoid a link color if is wrapped by a link
+    }
+}
+a:hover .thumbnail {
+  border-color: @mainColor;
+}
+.thumbnail-img {}
+.thumbnail-caption {
+  margin-top: .5em;
+  padding: 1em;
+}

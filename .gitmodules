@@ -4,6 +4,6 @@
 [submodule "vi"]
 	path = vi
 	url = https://github.com/viur-framework/vi.git
-[submodule "ignite"]
-	path = ignite
-	url = https://github.com/viur-framework/ignite.git
+[submodule "sources/less/ignite"]
+	path = sources/less/ignite
+	url = git@github.com:viur-framework/ignite.git

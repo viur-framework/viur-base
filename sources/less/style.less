@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/* {{app_id}} 2018 */
+
+// This is the master file.
+// It imports all less files in their intended order for easy mass-inclusion.
+// Should you need specific files, you can easily customize the imports.
+
+// ViUR Ignite
+@import "ignite/ignite"; // reset, boiler plate and generic objects like buttons and forms.
+
+// Customize Ignite configuration:
+@import "foundation/appconf"; // Here you can configure the styling with global variables.
+
+// Initialize generic Ignite objects:
+@import "generic/bar"; // bar.
+@import "generic/button"; // some classic buttons.
+@import "generic/icon"; // inline SVG icons.
+@import "generic/message"; // hints, errors, warnings etc.
+
+// Import your project specific objects here:
+@import "objects/thumbnail"; // picture thumbnails.
+@import "objects/grid"; // picture thumbnails.
