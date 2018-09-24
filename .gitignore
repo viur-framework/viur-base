@@ -1,3 +1,5 @@
 *.pyc
 .idea
 deploy/vi
+node_modules
+package-lock.json

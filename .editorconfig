@@ -1,4 +1,5 @@
 # editorconfig.org
+# source: https://gist.github.com/sveneberth/b30d6639067177a31b5ab68af63a23e9
 root = true
 
 [*]
@@ -10,6 +11,9 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 max_line_length = 120
 
-[{*.{css,less,yaml},package.json}]
+[*.{css,less,yml,yaml,json}]
 indent_style = space
 indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false

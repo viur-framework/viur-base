@@ -54,7 +54,7 @@ for subdir, dirs, files in os.walk("."):
 	for file in files:
 		filepath = subdir + os.sep + file
 
-		if any([filepath.endswith(ext) for ext in [".py", ".yaml", ".html", ".md", ".sh"]]):
+		if any([filepath.endswith(ext) for ext in [".py", ".yaml", ".html", ".md", ".sh", ".json"]]):
 			file_list.append(filepath)
 
 # Replace placeholders with values entered by user or defaults
