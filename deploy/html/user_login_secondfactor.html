@@ -8,13 +8,13 @@
 			<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
 
 			<div class="msg msg-vError has-icon {{ "hide" if not secondFactorFailed }}">
-				{{ icon("cross") }}
+				{{ embedSvg("icon-cross") }}
 				<h3 class="msg-headline">Error!</h3>
 				<p>The entered token was invaild!</p>
 			</div>
 
 			<div class="inputGroup">
-				<label class="label has-icon" for="otptoken">{{ icon("token") }}OTP Token</label>
+				<label class="label has-icon" for="otptoken">{{ embedSvg("icon-token") }}OTP Token</label>
 				<input id="username" name="otptoken" type="text" class="input js-focus" placeholder="OTP Token">
 			</div>
 

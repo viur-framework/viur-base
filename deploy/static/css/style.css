@@ -188,7 +188,7 @@ q:after {
 
 sub,
 sup {
-  font-size: .65em;
+  font-size: 0.65em;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
@@ -475,7 +475,7 @@ blockquote {
 }
 
 blockquote cite {
-  font-size: .8em;
+  font-size: 0.8em;
   vertical-align: baseline;
 }
 
@@ -492,7 +492,7 @@ blockquote cite:before {
 
 blockquote:after {
   content: attr(cite);
-  font-size: .6em;
+  font-size: 0.6em;
   margin-top: 2em;
 }
 
@@ -538,10 +538,10 @@ kbd {
   box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
   color: #000000;
   display: inline-block;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-family: 'Source Code Pro', Courier, monospace;
   margin: 0 0.1em;
-  padding: .2em .6em;
+  padding: 0.2em 0.6em;
   text-shadow: 0 1px 0 #fff;
   white-space: nowrap;
 }
@@ -621,7 +621,7 @@ ol.is-list {
 }
 
 .content ~ .sidebar {
-  font-size: .9em;
+  font-size: 0.9em;
   -webkit-box-ordinal-group: 205;
   -ms-flex-order: 204;
   order: 204;
@@ -641,7 +641,7 @@ ol.is-list {
 }
 
 .content ~ .sidebar--marginal {
-  font-size: .8em;
+  font-size: 0.8em;
   -webkit-box-flex: 0;
   -ms-flex: 0 0 15%;
   flex: 0 0 15%;
@@ -710,8 +710,8 @@ ol.is-list {
   -ms-flex: 1;
   flex: 1;
   max-width: 100%;
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
   background-position: 150% center;
   background-size: 15px;
   background-repeat: no-repeat;
@@ -862,7 +862,7 @@ ol.is-list {
 }
 
 .input--small {
-  font-size: .8em;
+  font-size: 0.8em;
   font-weight: 400;
 }
 
@@ -973,7 +973,7 @@ ol.is-list {
 }
 
 .label--small {
-  font-size: .8em;
+  font-size: 0.8em;
   font-weight: 400;
   min-width: 90px;
 }
@@ -1011,8 +1011,8 @@ ol.is-list {
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: right center;
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .select:hover,
@@ -1094,7 +1094,7 @@ ol.is-list {
 }
 
 .select--small {
-  font-size: .8em;
+  font-size: 0.8em;
   font-weight: 400;
   background-size: 10px;
 }
@@ -1108,8 +1108,8 @@ ol.is-list {
   background-color: #fff;
   border: 1px solid #e6e6e6;
   color: #222222;
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
   background-position: 150% center;
   background-size: 15px;
   background-repeat: no-repeat;
@@ -1156,8 +1156,8 @@ ol.is-list {
   background: #e6e6e6;
   border-radius: 1px;
   padding: 2px;
-  -webkit-transition: all .4s ease;
-  transition: all .4s ease;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
   outline: 0;
   display: block;
   width: 3em;
@@ -1178,8 +1178,8 @@ ol.is-list {
   width: 50%;
   height: 100%;
   background: #fff;
-  -webkit-transition: all .2s ease;
-  transition: all .2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -1226,8 +1226,8 @@ ol.is-list {
   height: 1em;
   margin-top: -2px;
   text-align: center;
-  -webkit-transition: all .4s ease;
-  transition: all .4s ease;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
   -webkit-box-shadow: inset 0 0 0 2px #fff;
   box-shadow: inset 0 0 0 2px #fff;
 }
@@ -1296,8 +1296,8 @@ ol.is-list {
   height: 1em;
   margin-top: -2px;
   text-align: center;
-  -webkit-transition: all .4s ease;
-  transition: all .4s ease;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
   -webkit-box-shadow: inset 0 0 0 2px #fff;
   box-shadow: inset 0 0 0 2px #fff;
 }
@@ -1337,7 +1337,7 @@ ol.is-list {
   position: relative;
   border-width: 0 1px;
   font-weight: 300;
-  font-size: .75em;
+  font-size: 0.75em;
 }
 
 .option-group .radio:first-child,
@@ -1601,8 +1601,8 @@ ol.is-list {
   -ms-user-select: none;
   user-select: none;
   white-space: nowrap;
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .btn:link,
@@ -1664,15 +1664,15 @@ ol.is-list {
 
 .btn > .icon:first-child {
   margin-left: -0.1em;
-  margin-right: .25em;
+  margin-right: 0.25em;
 }
 
 .btn--small {
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
 .btn--small > .icon:first-child {
-  margin-right: .15em;
+  margin-right: 0.15em;
 }
 
 .btn--large {
@@ -1876,7 +1876,7 @@ a.btn-vGoogle:visited:focus {
   position: relative;
   padding: 15px;
   margin-bottom: 20px;
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: #0e536f;
   background-color: #d0edf9;
   border: 1px solid #14759c;
@@ -1909,7 +1909,7 @@ a.btn-vGoogle:visited:focus {
 }
 
 .msg-headline {
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: inherit;
 }
@@ -1984,7 +1984,7 @@ a.btn-vGoogle:visited:focus {
   user-select: none;
   position: relative;
   padding: 8px 10px;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: #0e536f;
   background-color: #d0edf9;
   border: 1px solid #14759c;
@@ -2009,8 +2009,8 @@ a.btn-vGoogle:visited:focus {
 .alert .icon {
   position: absolute;
   display: block;
-  height: .8em;
-  width: .8em;
+  height: 0.8em;
+  width: 0.8em;
   margin-left: -1em;
   margin-top: 5px;
   -webkit-transform: translateX(-50%);
@@ -2023,7 +2023,7 @@ a.btn-vGoogle:visited:focus {
 }
 
 .alert-headline {
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: inherit;
 }
@@ -2071,13 +2071,13 @@ a.btn-vGoogle:visited:focus {
 
 .thumbnail {
   display: block;
-  padding: .5em;
+  padding: 0.5em;
   margin-bottom: 1em;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
-  -webkit-transition: .2s ease border;
-  transition: .2s ease border;
+  -webkit-transition: 0.2s ease border;
+  transition: 0.2s ease border;
 }
 
 .thumbnail p {
@@ -2090,7 +2090,7 @@ a:focus .thumbnail {
 }
 
 .thumbnail-caption {
-  margin-top: .5em;
+  margin-top: 0.5em;
   padding: 1em;
 }
 
@@ -2295,7 +2295,7 @@ a:focus .thumbnail {
   }
 
   .bar {
-    font-size: .9rem;
+    font-size: 0.9rem;
     -webkit-box-align: stretch;
     -ms-flex-align: stretch;
     align-items: stretch;
