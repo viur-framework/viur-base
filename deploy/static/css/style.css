@@ -138,8 +138,7 @@ a:focus {
 }
 
 a:hover,
-a:active,
-a:focus {
+a:active {
   outline: 0;
 }
 
@@ -1457,15 +1456,7 @@ ol.is-list {
 .input-group .textarea.is-selected,
 .input-group > .radio.is-selected,
 .input-group > .check.is-selected,
-.input-group .option-group.is-selected,
-.input-group .select:focus,
-.input-group .input:focus,
-.input-group .btn:focus,
-.input-group .switch:focus,
-.input-group .textarea:focus,
-.input-group > .radio:focus,
-.input-group > .check:focus,
-.input-group .option-group:focus {
+.input-group .option-group.is-selected {
   z-index: 3;
 }
 
@@ -2541,7 +2532,7 @@ a:focus .thumbnail {
   }
 }
 
-@media (max-width: 36.5em) {
+@media (max-width: 37.45em) {
   .input,
   .label + .input--block,
   .label + .textarea--block,

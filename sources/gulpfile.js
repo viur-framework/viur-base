@@ -7,9 +7,8 @@ var srcpaths = {
 
 var destpaths = {
 	css: '../deploy/static/css',
-	webfonts: '../deploy/static/webfonts',
 	images: '../deploy/static/images',
-	icons: '../deploy/static/icons'
+	icons: '../deploy/html/icons'
 };
 
 // Variables and requirements
@@ -18,6 +17,7 @@ const rename = require('gulp-rename');
 
 const less = require('gulp-less');
 const path = require('path');
+const del = require('del');
 
 const postcss = require('gulp-postcss');
 const zindex = require('postcss-zindex');
@@ -31,6 +31,15 @@ const stylefmt = require('gulp-stylefmt');
 const svgmin = require('gulp-svgmin');
 const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant');
+const cheerio = require('gulp-cheerio');
+
+// clean destination folder: remove css files
+gulp.task('clean', function(){
+	return del([
+			destpaths.css + '/**/*.css',
+			destpaths.icons + '/**/*.svg',
+		], {force: true});
+});
 
 // compilation and postproduction of LESS to CSS
 gulp.task('css', function () {
@@ -80,15 +89,25 @@ gulp.task ('icons', function () {
 		svgoPlugins: [{removeViewBox: false}],
 		use: [pngquant()]
 	}))
+    .pipe(cheerio({
+      run: function ($, file) {
+        $('style').remove()
+        $('[id]').removeAttr('id')
+        //$('[class]').removeAttr('class')
+        $('[fill]').removeAttr('fill')
+        $('svg').addClass('icon')
+      },
+      parserOptions: {xmlMode: true}
+    }))
+	.pipe(rename({prefix: "icon-"}))
 	.pipe(gulp.dest(destpaths.icons));
 });
 
 
 gulp.task('watch', function () {
-	gulp.watch(srcpaths.less, ['css']);
-	gulp.watch(srcpaths.projectless, ['css']);
-	gulp.watch(srcpaths.icons, ['icons']);
-	gulp.watch(srcpaths.images, ['images']);
+	gulp.watch(srcpaths.less, gulp.series('css'));
+	gulp.watch(srcpaths.icons, gulp.series('icons'));
+	gulp.watch(srcpaths.images, gulp.series('images'));
 });
 
-gulp.task('default', ['css', 'images', 'icons']);
+gulp.task('default', gulp.series(['css', 'images', 'icons']));

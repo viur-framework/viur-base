@@ -14,7 +14,7 @@ for dirname, dirnames, filenames in os.walk("."):
 			if ignore in dirnames:
 				dirnames.remove(ignore)
 
-		for ignore in ["README.md", "mksetup.py", ".gitignore", ".gitmodules"]:
+		for ignore in ["README.md", "mksetup.py", ".gitmodules"]:
 			if ignore in filenames:
 				filenames.remove(ignore)
 
@@ -172,11 +172,11 @@ print('''--- ViUR setup completed. ---
 For local development server startup, run
 
 	dev_appserver.py -A %s .
-	
+
 To deploy your app to Google App Engine, create your project first, then type
 
 	gcloud app deploy -q --project %s
-	
+
 Visit https://docs.viur.is for more information.
 Please do not forget to remove setup.py now!''' % (appid, appid))
 """
