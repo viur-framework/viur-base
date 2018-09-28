@@ -1,3 +1,5 @@
+/* {{app_id}} GULP SCRIPT */
+
 // Project data
 var srcpaths = {
 	less: './less/**/*.less',
@@ -13,32 +15,31 @@ var destpaths = {
 
 // Variables and requirements
 const gulp = require('gulp');
+
+const path = require('path');
+const del = require('del');
 const rename = require('gulp-rename');
 
 const less = require('gulp-less');
-const path = require('path');
-const del = require('del');
-
+const autoprefixer = require('gulp-autoprefixer');
 const postcss = require('gulp-postcss');
 const zindex = require('postcss-zindex');
-const autoprefixer = require('gulp-autoprefixer');
 const focus = require('postcss-focus');
 const nocomments = require('postcss-discard-comments');
 const nano = require('gulp-cssnano');
 const jmq = require('gulp-join-media-queries');
 const stylefmt = require('gulp-stylefmt');
 
-const svgmin = require('gulp-svgmin');
 const imagemin = require('gulp-imagemin');
-const pngquant = require('imagemin-pngquant');
 const cheerio = require('gulp-cheerio');
 
 // clean destination folder: remove css files
-gulp.task('clean', function(){
+gulp.task('clean', function () {
 	return del([
-			destpaths.css + '/**/*.css',
-			destpaths.icons + '/**/*.svg',
-		], {force: true});
+		destpaths.css + '/**/*',
+		destpaths.images+ '/**/*',
+		destpaths.icons + '/**/*',
+	], {force: true});
 });
 
 // compilation and postproduction of LESS to CSS
@@ -73,31 +74,41 @@ gulp.task('css', function () {
 // reduce images for web
 gulp.task ('images', function () {
 	return gulp.src(srcpaths.images)
-	.pipe(imagemin({
-		progressive: true,
-		svgoPlugins: [{removeViewBox: false}],
-		use: [pngquant()]
-	}))
+    .pipe(imagemin([
+		imagemin.jpegtran({progressive: true}),
+		imagemin.optipng({optimizationLevel: 5}),
+		imagemin.svgo({
+			plugins: [
+				{removeViewBox: false},
+				{removeDimensions: true}
+			]
+		})
+	]))
 	.pipe(gulp.dest(destpaths.images));
 });
 
 // reduce icons for web
 gulp.task ('icons', function () {
 	return gulp.src(srcpaths.icons)
-	.pipe(imagemin({
-		progressive: true,
-		svgoPlugins: [{removeViewBox: false}],
-		use: [pngquant()]
-	}))
+    .pipe(imagemin([
+		imagemin.jpegtran({progressive: true}),
+		imagemin.optipng({optimizationLevel: 5}),
+		imagemin.svgo({
+			plugins: [
+				{removeViewBox: false},
+				{removeDimensions: true}
+			]
+		})
+	]))
     .pipe(cheerio({
-      run: function ($, file) {
-        $('style').remove()
-        $('[id]').removeAttr('id')
-        //$('[class]').removeAttr('class')
-        $('[fill]').removeAttr('fill')
-        $('svg').addClass('icon')
-      },
-      parserOptions: {xmlMode: true}
+		run: function ($, file) {
+			$('style').remove()
+			$('[id]').removeAttr('id')
+			//$('[class]').removeAttr('class')
+			$('[fill]').removeAttr('fill')
+			$('svg').addClass('icon')
+		},
+		parserOptions: {xmlMode: true}
     }))
 	.pipe(rename({prefix: "icon-"}))
 	.pipe(gulp.dest(destpaths.icons));
@@ -110,4 +121,4 @@ gulp.task('watch', function () {
 	gulp.watch(srcpaths.images, gulp.series('images'));
 });
 
-gulp.task('default', gulp.series(['css', 'images', 'icons']));
+gulp.task('default', gulp.series(['clean', 'css', 'images', 'icons']));
