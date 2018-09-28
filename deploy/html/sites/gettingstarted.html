@@ -171,7 +171,8 @@ class Person(List):
 </pre>
 	<br>
 
-	<div class="msg msg--success has-icon i-check">
+	<div class="msg msg--success has-icon">
+		{{ embedSvg("icon-check") }}
 		<h3 class="msg-headline">You did it!</h3>
 		<p>That's all, we created our first module. But how to call these templates now from the frontend? Requests to a ViUR application are performed by a clear and persistent format of how the resulting URLs are made up. By requesting <a href="{{ getHostUrl() }}/person/list" target="_blank">{{ getHostUrl() }}/person/list</a> on our ViUR system.</p>
 	</div>

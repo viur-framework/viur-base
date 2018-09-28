@@ -29,7 +29,7 @@
 		<input class="btn btn--primary" name="submit" type="submit" value="Login">
 	</form>
 
-	{% if req.get("disableGoogle") != "1" %}
+	{% if not req.get("disableGoogle") %}
 		<a class="btn btn--google" href="/user/auth_googleaccount/login">Or Login with Google…</a>
 	{% endif %}
 {% endblock %}
