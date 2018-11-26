@@ -28,7 +28,7 @@
 
             {% if step in structure.keys() %} {# step in skel.keys() and structure[step]["visible"]  #}
                 {% set value = skel[step] or None %}
-                {% if not value and not emptyValue %}
+                {% if not structure[step]["visible"] or (not value and not emptyValue) %}
                     {% continue %}
                 {% endif %}
 
