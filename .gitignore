@@ -8,7 +8,6 @@
 deploy/vi
 
 node_modules
-package-lock.json
 
 /login
 /acc
