@@ -1,5 +1,5 @@
 {
-  "name": "app_id",
+  "name": "{{app_id}}",
   "version": "1.0.0",
   "description": "{{app_id}}",
   "scripts": {
