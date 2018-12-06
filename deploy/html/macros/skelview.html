@@ -1,3 +1,42 @@
+{#
+skelview.html provides collection of macros used for ViUR skeleton rendering in Jinja2/HTML.
+
+## Available macros ##
+
+- `SkelViewRelBoneFormat()` is (mostly internally) used to replace values in a format string
+- `SkelViewBone()` is used to render the value of one bone
+- `SkelView()` is used to render a skeleton
+- `CatSkelView()` is used to render a skeleton and grouping bones into their categories
+
+### Example calls ###
+
+
+### Output a skeleton ###
+```jinja2
+{% from "macros/skelview.html" import SkelView %}
+{{ SkelView(getModuleName(), skel) }}
+```
+
+### Output a skeleton with categories ###
+```jinja2
+{% from "macros/skelview.html" import CatSkelView %}
+{{ CatSkelView(getModuleName(), skel) }}
+```
+
+## Parameters ##
+
+Available options (see macros for implementation details):
+
+- `paths` allows to specify a list of paths to view. A path can also be something like "reference.dest.name"
+	When this is left empty, all visible fields are printed, except ingored ones
+- `ignore` allows to specifiy a list of paths to be ignored
+- `cssBaseClass` allows to override the CSS-base class for styling
+- `drillDepth` when specified > 0, then relationalBones are deep-rendered also
+- `drillIgnore` paths to ignore when diving into relationalBone
+- `drillFull` when specified, loads the entire referenced skeleton and outputs it
+- `emptyValue` allows to define how unset values are displayed (default: "-")
+#}
+
 {% macro SkelViewRelBoneFormat(format, value, prefix="") %}
     {% set ret = {"value": format} %}
     {% for key, val in value.items() %}
