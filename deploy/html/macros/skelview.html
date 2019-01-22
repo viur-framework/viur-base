@@ -78,8 +78,12 @@ Available options (see macros for implementation details):
                         {{ descr or structure[step]["descr"] }}
                     </{{ descrTag }}>
                     <{{ valueTag }} class="{{ cssBaseClass }}-bone-value {{ step }}">
-                        {% if structure[step]["type"] == "select" and not structure[step]["multiple"] %}
+                        {% if value and (structure[step]["type"] == "select" or structure[step]["type"].startswith("select.")) and not structure[step]["multiple"] %}
                             {{ value.descr if value }}
+                        {% elif value and value|isList and (structure[step]["type"] == "select" or structure[step]["type"].startswith("select.")) and structure[step]["multiple"] %}
+							{% for val in value %}
+								{{val.descr or val|string}}{{", " if not loop.last}}
+							{% endfor %}
                         {% elif structure[step]["type"] == "bool" %}
                             {{ _("Yes") if value else _("No") }}
                         {% elif structure[step]["type"] == "date" %}
