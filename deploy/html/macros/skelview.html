@@ -51,9 +51,9 @@ Available options (see macros for implementation details):
     {{ ret["value"] }}
 {% endmacro %}
 
-{% macro SkelViewBone(skel, path, module=None, level = 0, cssBaseClass = "skelview", drillDepth = 0, drillIgnore=[], drillFull=None, structures = {},
-                        emptyValue = "-", skelType="viewSkel", descr=None,
-                            mainTag="li", descrTag="span", valueTag="span") %}
+{% macro SkelViewBone(skel, path, module=None, level = 0, cssBaseClass = "skelview", drillDepth = 0, drillIgnore=[],
+            drillFull=None, structures = {}, emptyValue = "-", skelType="viewSkel", descr=None,
+                mainTag="li", descrTag="span", valueTag="span") %}
 	{% if not module %}
 		{% set module = moduleName() %}
 	{% endif %}
@@ -228,6 +228,10 @@ Available options (see macros for implementation details):
                         structures = {}, emptyValue = "-") %}
     {% if not cssBaseClass %}
         {% set cssBaseClass = "%s-view" % module %}
+    {% endif %}
+
+    {% if not module %}
+        {% set module = moduleName() %}
     {% endif %}
 
     {% if module not in structures.keys() %}
