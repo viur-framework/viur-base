@@ -1,0 +1,19 @@
+{#
+	This is the default template to add an entry.
+
+	If you would like to customize it for a specific module,
+
+	- copy the template inside the html/ folder as `<Your-Module>_add.html`
+	- add a line `addTemplate = "<Your-Module>_add"` inside your module class
+#}
+
+{% extends "viur_base.html" %}
+
+{% block content %}
+	<h1 class="headline">Add entry to {{ moduleName() }}</h1>
+
+	<form action="/{{ moduleName() }}/add" method="POST">
+		{{ renderEditForm(skel) }}
+		<input class="btn btn--primary" type="submit">
+	</form>
+{% endblock %}

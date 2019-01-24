@@ -1,0 +1,28 @@
+{#
+	This is the default template to view a successfull delete.
+
+	If you would like to customize it for a specific module,
+
+	- copy the template inside the html/ folder as `<Your-Module>_delete_success.html`
+	- add a line `deleteSuccessTemplate = "<Your-Module>_delete_success"` inside your module class
+#}
+
+{% extends "viur_base.html" %}
+
+{% block content %}
+	<h1 class="headline">{{ moduleName() }}: Entry successfully deleted</h1>
+
+	<div class="alertGroup">
+		<div class="alert alert--success has-icon">
+			{{ embedSvg("icon-check") }}
+			<h4 class="alert-headline">Entry has been successfully deleted!</h4>
+			<p>
+				<a class="btn btn--primary" href="/{{ moduleName() }}/list">
+					List entries
+				</a>
+			</p>
+		</div>
+	</div>
+
+{% endblock %}
+

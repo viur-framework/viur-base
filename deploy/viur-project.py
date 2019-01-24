@@ -63,10 +63,10 @@ conf["viur.security.contentSecurityPolicy"] = {}
 # Server startup
 #
 
-import server, modules
+import server, modules, render
 
 #server.setDefaultLanguage("en") #set default language!
-application = server.setup(modules, server.render)
+application = server.setup(modules, render)
 
 if __name__ == '__main__':
 	server.run()

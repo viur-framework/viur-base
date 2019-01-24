@@ -1,0 +1,26 @@
+{% extends "viur_base.html" %}
+{% from "macros/skelview.html" import SkelView %}
+
+{% block content %}
+	{% if not skellist %}
+		<h1 class="headline">{{ moduleName() }} has no entries</h1>
+	{% else %}
+		<h1 class="headline">{{ moduleName() }} has {{ skellist|length }} entries</h1>
+		<ol>
+			{% for skel in skellist %}
+				<li>
+					{{ SkelView(skel) }}
+
+					<div>
+						<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel.key }}">View</a>
+						<a class="btn btn--edit" href="/{{ moduleName() }}/edit/{{ skel.key }}">Edit</a>
+						<a class="btn btn--danger" href="/{{ moduleName() }}/view/{{ skel.key }}?style=delete">Delete</a>
+					</div>
+				</li>
+			{% endfor %}
+		</ol>
+	{% endif %}
+
+	<a class="btn btn--primary" href="/{{ moduleName() }}/add">Add new entry</a>
+
+{% endblock %}

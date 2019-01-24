@@ -1,9 +1,0 @@
-{% extends "viur_base.html" %}
-
-{% block content %}
-	<h1>{{skel.name}}</h1>
-	<strong>Entity:</strong> {{skel.key}}<br>
-	<strong>Age:</strong> {{skel.age}}<br>
-	<strong>Created at: </strong> {{skel.creationdate.strftime("%Y-%m-%d %H:%M")}}<br>
-	<strong>Modified at: </strong> {{skel.changedate.strftime("%Y-%m-%d %H:%M")}}
-{% endblock %}
