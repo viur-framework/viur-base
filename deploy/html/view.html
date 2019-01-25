@@ -1,0 +1,23 @@
+{#
+	This is the default template to view an entry.
+
+	If you would like to customize it for a specific module,
+
+	- copy the template inside the html/ folder as `<Your-Module>_view.html`
+	- add a line `viewTemplate = "<Your-Module>_view"` inside your module class
+#}
+
+{% extends "viur_base.html" %}
+{% from "macros/skelview.html" import SkelView %}
+
+{% block content %}
+	<h1 class="headline">View {{ moduleName() }}</h1>
+
+	{{ SkelView(skel) }}
+
+	<div>
+		<a class="btn btn--primary" href="/{{ moduleName() }}/list">List</a>
+		<a class="btn btn--edit" href="/{{ moduleName() }}/edit/{{ skel.key }}">Edit</a>
+		<a class="btn btn--danger" href="/{{ moduleName() }}/view/{{ skel.key }}?style=delete">Delete</a>
+	</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "viur_base.html" %}
+{% from "macros/skelview.html" import SkelView %}
+
+{% block content %}
+	<h1 class="headline">Delete entry {{ skel.key }} from {{ moduleName() }}</h1>
+
+	<form method="POST" action="/{{ moduleName() }}/delete">
+		<p>
+			Do you really want to delete this entry?
+		</p>
+
+		{{ SkelView(skel) }}
+		<input type="hidden" name="key" value="{{ skel.key }}">
+		<input type="hidden" name="skey" value="{{ getSecurityKey() }}">
+
+		<input type="submit" class="btn btn--danger" value="Yes">
+		<a class="btn" href="/{{ moduleName() }}/list">No</a>
+	</form>
+
+{% endblock %}

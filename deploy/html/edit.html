@@ -1,0 +1,19 @@
+{#
+	This is the default template to edit an entry.
+
+	If you would like to customize it for a specific module,
+
+	- copy the template inside the html/ folder as `<Your-Module>_edit.html`
+	- add a line `editTemplate = "<Your-Module>_edit"` inside your module class
+#}
+
+{% extends "viur_base.html" %}
+
+{% block content %}
+	<h1 class="headline">Edit entry {{ skel.value.key }} of {{ moduleName() }}</h1>
+
+	<form action="{{ moduleName() }}/edit" method="POST">
+		{{ renderEditForm(skel) }}
+		<input class="btn btn--primary" type="submit">
+	</form>
+{% endblock %}

@@ -1,41 +1,28 @@
 # ViUR base
 
-**base** is the ViUR project structure basic repository.
+**base** provides a basic project structure to start a new ViUR project.
 
 ## About
 
 This repository works both as a base structure for new projects created with ViUR, and serves a possibility to generate the quick start ``setup.py`` script, which helps to rapidly setup an empty, new ViUR project without any compromises.
 
-### Using the repository
+### How to use this repository
 
-Download or clone the base repository including its submodules into a new directory of your choice.
-
-When cloning, don't forget to change the remote origin path:
+It is recommended to clone the base repository including its submodules into a new directory of your choice.
 
 ```bash
-$ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+git clone https://github.com/viur-framework/base.git your-project
+cd your-project
 ```
 
-### Generating a setup.py
+Then, to make sure that the placeholders in `app.yaml` and `viur_server.py` are properly replaced and that you won't accidentally overwrite the viur-base repo, use the included `clean-base.py` script.
 
-To generate a new setup.py, just call the script ``mksetup.py`` like this:
-
-```bash
-$ python mksetup.py >setup.py
-```
-
-The setup.py can than be distributed to easily setup new projects from the contents of the ``deploy/`` folder. It automatically downloads the latest ViUR server and pre-compiled vi from the ViUR website to immediately provide a running project.
-
-### Cleaning up with clean-base.py
-
-To make sure that the placeholders in app.yaml and viur_server.py are properly replaced and that you won't accidentally overwrite the viur-base repo, use the included clean-base.py script.
-
-You need to enter an author name and an app ID to identify your app for later deployment and to be able to run the dev_appserver locally.
+You need to enter an author name and an app ID to identify your app for later deployment and to be able to run the `dev_appserver.py` locally.
 
 The script will also initialize and update the submodules and disconnect the repo from the viur-base repository origin.
 
-```base
-$ python clean-base.py
+```bash
+python clean-base.py
 ```
 
 ### Switch sub-modules to SSH
@@ -62,6 +49,16 @@ pushd ignite
 git remote set-url origin git@github.com:viur-framework/ignite.git
 popd
 ```
+
+### Generating a setup.py
+
+To generate a new `setup.py`, just call the script ``mksetup.py`` like this:
+
+```bash
+python mksetup.py >setup.py
+```
+
+The setup.py can than be distributed to easily setup new projects from the contents of the ``deploy/`` folder. It automatically downloads the latest ViUR server and pre-compiled vi from the ViUR website to immediately provide a running project.
 
 ## Contributing
 
