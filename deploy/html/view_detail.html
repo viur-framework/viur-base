@@ -1,0 +1,17 @@
+{#
+	This template is a detailed version of view.html.
+	It can be triggered by appending `?style=detail` to the /module/view/key URL.
+#}
+
+{% extends "viur_base.html" %}
+{% from "macros/skelview.html" import SkelView %}
+
+{% block content %}
+	<h1 class="headline">View {{ moduleName() }}</h1>
+
+	{{ SkelView(skel, drillDepth=99, drillFull=True, options={"showHidden": True, "keyLink": "/$(module)/view/$(key)?style=detail"}) }}
+
+	<div>
+		<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel.key }}">View</a>
+	</div>
+{% endblock %}
