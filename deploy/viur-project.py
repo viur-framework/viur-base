@@ -24,7 +24,7 @@
 #
 # ------------------------------------------------------------------------------
 
-from server import conf
+from server import conf, securityheaders
 
 # ------------------------------------------------------------------------------
 # General configuration
@@ -51,13 +51,52 @@ conf["admin.vi.name"] = "{{app_id}}"
 # Content Security Policy
 #
 
-conf["viur.security.contentSecurityPolicy"] = {}
+# This is an example configuration to allow different content-security policies
+# from several trusted domains.
 
-# ------------------------------------------------------------------------------
-# Bugsnag: Tell us what is wrong!
+# securityheaders.addCspRule("default-src", "*.gstatic.com", "enforce")
+
+# securityheaders.addCspRule("script-src", "unsafe-inline", "enforce")
+# securityheaders.addCspRule("script-src", "*.googleapis.com", "enforce")
+# securityheaders.addCspRule("script-src", "*.google.com", "enforce")
+# securityheaders.addCspRule("script-src", "*.gstatic.com", "enforce")
+# securityheaders.addCspRule("script-src", "*.google-analytics.com", "enforce")
+# securityheaders.addCspRule("script-src", "*.jquery.com", "enforce")
+
+# securityheaders.addCspRule("img-src", "*.google-analytics.com", "enforce")
+
+# securityheaders.addCspRule("img-src", "data:", "enforce")
+# securityheaders.addCspRule("img-src", "unsafe-inline", "enforce")
+# securityheaders.addCspRule("img-src", "unsafe-eval", "enforce")
+
+# securityheaders.addCspRule("style-src", "fonts.googleapis.com", "enforce")
+
+# securityheaders.addCspRule("frame-src", "*.youtube-nocookie.com", "enforce")
+# securityheaders.addCspRule("frame-src", "*.youtube.com", "enforce")
+# securityheaders.addCspRule("frame-src", "*.google.com", "enforce")
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Request preprocessor
 #
 
-#conf["bugsnag.apiKey" ] = "INSERT YOUR BUGSNAG API KEY HERE"
+# The request preprocessor can be used to perform rewritings and other,
+# request-related stuff before the normal ViUR function routing will be
+# executed.
+
+'''
+def handleRequest(path):
+	if "X-AppEngine-TaskName" in server.request.current.get().request.headers:
+		return path
+
+	url = server.request.current.get().request.url
+
+	if url.startswith("https://your-domain.com"):
+		raise server.errors.Redirect(url.replace("https://", "https://www.", 1))
+
+	return path
+
+conf["viur.requestPreprocessor"] = handleRequest
+'''
 
 # ------------------------------------------------------------------------------
 # Server startup
