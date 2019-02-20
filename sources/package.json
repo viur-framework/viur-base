@@ -9,23 +9,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/viur-framework/ignite.git"
+    "url": "git+https://github.com/viur-framework/base.git"
   },
   "keywords": [
-    "viur",
+    "ViUR",
+    "viur-framework",
+    "base",
     "ignite",
     "css",
     "framework",
     "less",
     "gulp",
+    "getting-started",
     "❤"
   ],
-  "author": "VIUR",
+  "author": "ViUR",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/viur-framework/ignite/issues"
+    "url": "https://github.com/viur-framework/base/issues"
   },
-  "homepage": "http://ignite.viur.is",
+  "homepage": "https://www.viur.is/",
   "dependencies": {
     "del": "^3.0.0",
     "gulp": "^4.0.0",
@@ -33,7 +36,7 @@
     "gulp-cheerio": "^0.6.2",
     "gulp-cssnano": "^2.1",
     "gulp-imagemin": "^5.0.3",
-    "gulp-join-media-queries": "0.0.3",
+    "gulp-join-media-queries": "1.0.0",
     "gulp-less": "^4.0.0",
     "gulp-postcss": "^8.0",
     "gulp-rename": "^1.2",
