@@ -24,7 +24,7 @@
 #
 # ------------------------------------------------------------------------------
 
-from server import conf
+from server import conf, securityheaders
 
 # ------------------------------------------------------------------------------
 # General configuration
@@ -45,19 +45,6 @@ from server import conf
 #
 
 conf["admin.vi.name"] = "{{app_id}}"
-#conf["admin.vi.logo"] = "/static/meta/logo.svg"
-
-# ------------------------------------------------------------------------------
-# Content Security Policy
-#
-
-conf["viur.security.contentSecurityPolicy"] = {}
-
-# ------------------------------------------------------------------------------
-# Bugsnag: Tell us what is wrong!
-#
-
-#conf["bugsnag.apiKey" ] = "INSERT YOUR BUGSNAG API KEY HERE"
 
 # ------------------------------------------------------------------------------
 # Server startup
