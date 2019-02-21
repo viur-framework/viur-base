@@ -4,18 +4,18 @@
 
 ## About
 
-This repository works both as a base structure for new projects created with ViUR, and serves a possibility to generate the quick start ``setup.py`` script, which helps to rapidly setup an empty, new ViUR project without any compromises.
+This is the best place to start your new ViUR project from.
 
 ### How to use this repository
 
-It is recommended to clone the base repository including its submodules into a new directory of your choice.
+Clone the base repository including its submodules into a new directory of your choice.
 
 ```bash
 git clone https://github.com/viur-framework/base.git your-project
 cd your-project
 ```
 
-Then, to make sure that the placeholders in `app.yaml` and `viur_server.py` are properly replaced and that you won't accidentally overwrite the viur-base repo, use the included `clean-base.py` script.
+Then, to make sure that the placeholders in `app.yaml` and `viur_server.py` are properly replaced and that you won't accidentally override the viur-base repo, use the included `clean-base.py` script.
 
 You need to enter an author name and an app ID to identify your app for later deployment and to be able to run the `dev_appserver.py` locally.
 
@@ -24,6 +24,8 @@ The script will also initialize and update the submodules and disconnect the rep
 ```bash
 python clean-base.py
 ```
+
+When finished, your repository is disconnected from [base](https://github.com/viur-framework/base) as its origin, and can be configured to point to another origin where your new project lives in future. It then still contains the full history of the base repository. This might be wanted - if not, make `rm -rf .git` to drop the entire history and start over with `git init`.
 
 ### Switch sub-modules to SSH
 
