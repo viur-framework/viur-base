@@ -59,9 +59,7 @@ gulp.task('css', function () {
 		cascade: false
 	})) // add vendor prefixes
 	.pipe(postcss(processors)) // clean up css
-	.pipe(jmq({
-		log: true
-	}))
+	.pipe(jmq())
 	.pipe(stylefmt()) // syntax formatting
 	.pipe(rename('style.css'))
 	.pipe(gulp.dest(destpaths.css)) // save cleaned version
