@@ -6,10 +6,28 @@
 
 This is the best place to start your new ViUR project from.
 
+---
+
 ### How to use this repository
+
+#### Zip
+```bash
+wget -c https://github.com/viur-framework/base/archive/master.zip -O base.zip \
+  && unzip base.zip \
+  && rm -f base.zip
+```
+
+#### Git
 
 Clone the base repository including its submodules into a new directory of your choice.
 
+**Git (Small)**
+```bash
+git clone --depth 1 https://github.com/viur-framework/base.git your-project
+cd your-project
+```
+
+**Git (Complete)**
 ```bash
 git clone https://github.com/viur-framework/base.git your-project
 cd your-project
@@ -52,15 +70,19 @@ git remote set-url origin git@github.com:viur-framework/ignite.git
 popd
 ```
 
+---
+
 ### Generating a setup.py
 
 To generate a new `setup.py`, just call the script ``mksetup.py`` like this:
 
 ```bash
-python mksetup.py >setup.py
+python mksetup.py > setup.py
 ```
 
 The setup.py can than be distributed to easily setup new projects from the contents of the ``deploy/`` folder. It automatically downloads the latest ViUR server and pre-compiled vi from the ViUR website to immediately provide a running project.
+
+---
 
 ## Contributing
 
@@ -71,11 +93,15 @@ We take a great interest in your opinion about ViUR. We appreciate your feedback
 - [ViUR on GitHub](https://github.com/viur-framework)
 - [ViUR on Twitter](https://twitter.com/weloveViUR)
 
+---
+
 ## Credits
 
 ViUR is developed and maintained by [Mausbrand Informationssysteme GmbH](https://www.mausbrand.de/en), from Dortmund in Germany. We are a software company consisting of young, enthusiastic software developers, designers and social media experts, working on exciting projects for different kinds of customers. All of our newer projects are implemented with ViUR, from tiny web-pages to huge company intranets with hundreds of users.
 
 Help of any kind to extend and improve or enhance this project in any kind or way is always appreciated.
+
+---
 
 ## License
 
