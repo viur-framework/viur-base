@@ -43,6 +43,8 @@ python clean-base.py
 
 When finished, your repository is disconnected from [base](https://github.com/viur-framework/base) as its origin, and can be configured to point to another origin where your new project lives in future. It then still contains the full history of the base repository. This might be wanted - if not, make `rm -rf .git` to drop the entire history and start over with `git init`.
 
+---
+
 ### Switch sub-modules to SSH
 
 Especially in ViUR development projects or for projects at Mausbrand that are heavily involved in changes to server and vi, it is necessary to change the HTTPS submodules to SSH. This can easily be done for all submodules and their submodules with these few commands:
