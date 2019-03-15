@@ -2,8 +2,6 @@
 
 **base** provides a basic project structure to start a new ViUR project.
 
-## About
-
 This is the best place to start your new ViUR project from.
 
 ---
