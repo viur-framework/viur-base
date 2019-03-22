@@ -14,7 +14,7 @@ for dirname, dirnames, filenames in os.walk("."):
 			if ignore in dirnames:
 				dirnames.remove(ignore)
 
-		for ignore in ["README.md", "mksetup.py", ".gitmodules"]:
+		for ignore in ["README.md", "mksetup.py", ".gitmodules", "LICENSE"]:
 			if ignore in filenames:
 				filenames.remove(ignore)
 
