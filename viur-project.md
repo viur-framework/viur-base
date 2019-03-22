@@ -22,7 +22,7 @@ $ make deploy
 Please set another Git repository origin. The default viur-base origin has been automatically deleted by ``clean-base.py``, for security reasons.
 
 ```bash
-$ git remote set-url origin git@github.com:{{author}}/{{app_id}}.git
+$ git remote set-url origin git@github.com:{{whoami}}/{{app_id}}.git
 ```
 
 ## Install prerequisites
