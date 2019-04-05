@@ -140,7 +140,8 @@ a:focus {
 }
 
 a:hover,
-a:active {
+a:active,
+a:focus {
   outline: 0;
 }
 
@@ -1458,7 +1459,15 @@ ol.is-list {
 .input-group .textarea.is-selected,
 .input-group > .radio.is-selected,
 .input-group > .check.is-selected,
-.input-group .option-group.is-selected {
+.input-group .option-group.is-selected,
+.input-group .select:focus,
+.input-group .input:focus,
+.input-group .btn:focus,
+.input-group .switch:focus,
+.input-group .textarea:focus,
+.input-group > .radio:focus,
+.input-group > .check:focus,
+.input-group .option-group:focus {
   z-index: 3;
 }
 
