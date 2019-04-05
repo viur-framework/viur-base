@@ -1,11 +1,11 @@
 @charset "UTF-8";
 // ---------------------------------------------------------------------------------------
-//  ViUR Base APPCONFIGURATION
+//  ViUR {{app_id}} APPCONFIGURATION
 // ---------------------------------------------------------------------------------------
 
 // Opt-Ins
 @bar: true;
-@burger: true;
+@burger: false;
 @button: true;
 @form: true;
 @icon: true;
@@ -29,6 +29,11 @@
 @headFonts: 'Source Sans Pro', 'Open Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; // Fonts for headlines, blockquotes and alike.
 @monoFonts: 'Source Code Pro', Courier, monospace; // Fonts for code pieces.
 
+// Font Weights
+@fontWeightLight: 300;
+@fontWeightNormal: 400;
+@fontWeightBold: 700;
+
 // Font Sizes
 @fontSizeSmall: 16px;
 @fontSizeMedium: 17px;
@@ -42,12 +47,14 @@
 @defaultBorderWidth: 1px;
 @defaultBorderRadius: 1px;
 @defaultShadow: 0;
+@defaultShadowHover: 1;
 @defaultShadowColor: #000;
 @defaultInputColor:#fff;
 
 // Spaces
 @outerSpace: 20px; // Space around objects, boxes etc.
 @innerSpace: 10px; // Space within objects: mostly paddings.
+@topSpace: 20px; // The distance between two sections.
 @bottomSpace: 20px; // The distance between two sections.
 @gridSpace: 20px; // Space between grid items.
 
@@ -58,6 +65,6 @@
 @breakSmall: 37.5em; // smart phones: 600px / 16px = 37.5em;
 @breakMedium: 56.25em; // tablets: 900px / 16px = 56.25em;
 @breakLarge: 75em; // screens: 1200px / 16px = 75em;
-@breakXlarge: 112.5em; // huge screeens: 1800px / 16px = 112.5em;
+@breakXlarge: 112.5em; // huge screens: 1800px / 16px = 112.5em;
 @break2x: 2; // hiDPI displays
 @breakPrint: print; // make it printable!

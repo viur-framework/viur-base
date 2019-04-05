@@ -4,13 +4,13 @@
 var srcpaths = {
 	less: './less/**/*.less',
 	images: './images/**/*',
-	icons: './icons/**/*',
+	embedsvg: './embedsvg/**/*',
 };
 
 var destpaths = {
 	css: '../deploy/static/css',
 	images: '../deploy/static/images',
-	icons: '../deploy/html/icons'
+	embedsvg: '../deploy/html/embedsvg'
 };
 
 // Variables and requirements
@@ -33,18 +33,12 @@ const stylefmt = require('gulp-stylefmt');
 const imagemin = require('gulp-imagemin');
 const cheerio = require('gulp-cheerio');
 
-// clean destination folder: remove css files
-gulp.task('clean', () =>
-	del([
-		destpaths.css + '/**/*',
-		destpaths.images + '/**/*',
-		destpaths.icons + '/**/*',
-	], {force: true})
-);
 
 // compilation and postproduction of LESS to CSS
-gulp.task('css', () =>
-	gulp.src('./less/style.less')
+gulp.task('css', () => {
+	del([destpaths.css + '/**/*'], {force: true});
+
+	return gulp.src('./less/style.less')
 		.pipe(less({
 			paths: [path.join(__dirname, 'less', 'includes')]
 		}))
@@ -62,13 +56,15 @@ gulp.task('css', () =>
 		.pipe(gulp.dest(destpaths.css)) // save cleaned version
 		.pipe(nano()) // minify css
 		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest(destpaths.css)) // save minified version
-);
+		.pipe(gulp.dest(destpaths.css)); // save minified version
+});
 
 
 // reduce images for web
-gulp.task('images', () =>
-	gulp.src(srcpaths.images)
+gulp.task('images', () => {
+	del([destpaths.images + '/**/*'], {force: true});
+
+	return gulp.src(srcpaths.images)
 		.pipe(imagemin([
 			imagemin.jpegtran({progressive: true}),
 			imagemin.optipng({optimizationLevel: 5}),
@@ -79,12 +75,14 @@ gulp.task('images', () =>
 				]
 			})
 		]))
-		.pipe(gulp.dest(destpaths.images))
-);
+		.pipe(gulp.dest(destpaths.images));
+});
 
-// reduce icons for web
-gulp.task('icons', () =>
-	gulp.src(srcpaths.icons)
+// reduce embedsvg icons for web
+gulp.task('embedsvg', () => {
+	del([destpaths.embedsvg + '/**/*'], {force: true});
+
+	return gulp.src(srcpaths.embedsvg)
 		.pipe(imagemin([
 			imagemin.jpegtran({progressive: true}),
 			imagemin.optipng({optimizationLevel: 5}),
@@ -99,21 +97,20 @@ gulp.task('icons', () =>
 			run: function ($, file) {
 				$('style').remove()
 				$('[id]').removeAttr('id')
-				//$('[class]').removeAttr('class')
 				$('[fill]').removeAttr('fill')
 				$('svg').addClass('icon')
 			},
 			parserOptions: {xmlMode: true}
 		}))
 		.pipe(rename({prefix: 'icon-'}))
-		.pipe(gulp.dest(destpaths.icons))
-);
+		.pipe(gulp.dest(destpaths.embedsvg));
+});
 
 
 gulp.task('watch', () => {
 	gulp.watch(srcpaths.less, gulp.series('css'));
-	gulp.watch(srcpaths.icons, gulp.series('icons'));
+	gulp.watch(srcpaths.embedsvg, gulp.series('embedsvg'));
 	gulp.watch(srcpaths.images, gulp.series('images'));
 });
 
-gulp.task('default', gulp.series(['clean', 'css', 'images', 'icons']));
+gulp.task('default', gulp.series(['css', 'images', 'embedsvg']));

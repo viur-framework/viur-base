@@ -30,6 +30,7 @@
   },
   "homepage": "https://www.viur.is/",
   "dependencies": {
+    "autoprefixer": "^9.5.0",
     "del": "^4.1.0",
     "gulp": "^4.0.0",
     "gulp-cheerio": "^0.6.3",
@@ -42,8 +43,5 @@
     "gulp-stylefmt": "^1.1",
     "postcss-focus": "^2.0.0",
     "postcss-zindex": "^4.0.1"
-  },
-  "devDependencies": {
-    "autoprefixer": "^9.5.0"
   }
 }

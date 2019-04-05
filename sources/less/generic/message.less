@@ -2,28 +2,15 @@
 //Initialize Ignite Messages
 
 .msg {
-  .msg;
-}
-.msg--success {
-  .colorizeMsg(@successColor);
-}
-.msg--warn {
-  .colorizeMsg(@warnColor);
-}
-.msg--error {
-  .colorizeMsg(@failColor);
-}
+  .msg();
 
-//Initialize Ignite Alerts
-.alert {
-  .alert;
-}
-.alert--success {
-  .colorizeAlert(@successColor);
-}
-.alert--warn {
-  .colorizeAlert(@warnColor);
-}
-.alert--error {
-  .colorizeAlert(@failColor);
+  &--success {
+    .colorizeMsg(@successColor);
+  }
+  &--warn {
+    .colorizeMsg(@warnColor);
+  }
+  &--error {
+    .colorizeMsg(@failColor);
+  }
 }

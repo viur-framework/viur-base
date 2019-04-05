@@ -13,10 +13,10 @@
 {% block content %}
 	<h1 class="headline">{{ moduleName() }}: Entry {{ skel.key }} successfully created</h1>
 
-	<div class="alertGroup">
-		<div class="alert alert--success has-icon">
-			{{ embedSvg("icon-check") }}
-			<h4 class="alert-headline">Entry has been successfully created!</h4>
+	<div class="msg msg--success is-active">
+		{{ embedSvg("icon-check") }}
+		<div class="msg-content">
+			<h3 class="msg-headline">Entry has been successfully created!</h3>
 			<p>
 				<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel.key }}">
 					View entry
