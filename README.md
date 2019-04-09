@@ -8,24 +8,20 @@ This is the best place to start your new ViUR project from.
 
 ### How to use this repository
 
-#### Zip
+#### Extracting from a ZIP-file
+
 ```bash
 wget -c https://github.com/viur-framework/base/archive/master.zip -O base.zip \
   && unzip base.zip \
-  && rm -f base.zip
-```
-
-#### Git
-
-Clone the base repository including its submodules into a new directory of your choice.
-
-**Git (Small)**
-```bash
-git clone --depth 1 https://github.com/viur-framework/base.git your-project
+  && rm -f base.zip \
+mv base-master your-project
 cd your-project
 ```
 
-**Git (Complete)**
+#### Using Git
+
+Clone the base repository including its submodules into a new directory of your choice.
+
 ```bash
 git clone https://github.com/viur-framework/base.git your-project
 cd your-project
@@ -33,7 +29,7 @@ cd your-project
 
 Then, to make sure that the placeholders in `app.yaml` and `viur_server.py` are properly replaced and that you won't accidentally override the viur-base repo, use the included `clean-base.py` script.
 
-You need to enter an author name and an app ID to identify your app for later deployment and to be able to run the `dev_appserver.py` locally.
+You need to enter an author name and an app ID to identify your app for later deployment and to be able to run the `dev_appserver.py` locally. These interactively prompted values can also be provided as command-line parameters.
 
 The script will also initialize and update the submodules and disconnect the repo from the viur-base repository origin.
 
@@ -41,13 +37,13 @@ The script will also initialize and update the submodules and disconnect the rep
 python clean-base.py
 ```
 
-When finished, your repository is disconnected from [base](https://github.com/viur-framework/base) as its origin, and can be configured to point to another origin where your new project lives in future. It then still contains the full history of the base repository. This might be wanted - if not, make `rm -rf .git` to drop the entire history and start over with `git init`.
+When finished, your repository is disconnected from [base](https://github.com/viur-framework/base) as its origin, and can be configured to point to another origin where your new project lives in future. It still contains the full history of the base repository. This might be wanted - if not, make `rm -rf .git` to drop the entire history and start over setting up a clean project with `git init`.
 
 ---
 
 ### Switch sub-modules to SSH
 
-Especially in ViUR development projects or for projects at Mausbrand that are heavily involved in changes to server and vi, it is necessary to change the HTTPS submodules to SSH. This can easily be done for all submodules and their submodules with these few commands:
+Especially in ViUR development projects or for customer projects created at [Mausbrand](https://www.mausbrand.de/en) that are heavily involved in changes to server and vi, it is necessary to change the HTTPS submodules to SSH. This can easily be done for all submodules and their submodules with these few commands:
 
 ```bash
 # change server
@@ -65,22 +61,10 @@ git remote set-url origin git@github.com:viur-framework/icons.git
 popd
 
 # change ignite
-pushd ignite
+pushd sources/less/ignite
 git remote set-url origin git@github.com:viur-framework/ignite.git
 popd
 ```
-
----
-
-### Generating a setup.py
-
-To generate a new `setup.py`, just call the script ``mksetup.py`` like this:
-
-```bash
-python mksetup.py > setup.py
-```
-
-The setup.py can than be distributed to easily setup new projects from the contents of the ``deploy/`` folder. It automatically downloads the latest ViUR server and pre-compiled vi from the ViUR website to immediately provide a running project.
 
 ---
 
