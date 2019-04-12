@@ -117,5 +117,4 @@ os.remove("README.md")  # this is needed because on windows os.rename will fail 
 os.rename("viur-project.md", "README.md")
 
 # Remove yourself!
-os.remove("mksetup.py")
 os.remove(argv[0])
