@@ -5,12 +5,11 @@
 ''''which python  >/dev/null 2>&1 && exec python  "$0" "$@" # '''
 ''''exec echo "Error: I can't find python anywhere"         # '''
 import sys, os, subprocess, time, datetime, getpass, argparse, urllib, zipfile
-from sys import argv
 
 try:
 	whoami = getpass.getuser()
 except:
-	whoami = "Bernd"
+	whoami = "viur"
 
 ap = argparse.ArgumentParser(
 		description="Setting up a clean ViUR project base.",
@@ -25,21 +24,29 @@ app_id = args.app_id
 whoami = args.author
 
 if args.app_id is None:
+	prompt = "Enter Author Name (leave empty to default to %s): " % whoami 
 	try:
-		prompt = "Enter Author Name (leave empty to default to %s): " % getpass.getuser()
-		whoami = raw_input(prompt)
-		if whoami == "":
-			whoami = getpass.getuser()
-	except:
-		whoami = raw_input("Enter Author Name: ")
+		name = raw_input(prompt)
+	except NameError:
+		name = input(prompt)
+
+	if name:
+		whoami = name
+
+	app_id = os.path.split(os.getcwd())[-1]
+
+	if not app_id.endswith("-viur"):
+		app_id += "-viur"
+
+	prompt = "Enter application-id (leave empty to default to %s): " % app_id
+
 	try:
-		def_appid = os.path.split(os.getcwd())[-1]+"-viur"
-		prompt = "Enter application-id (leave empty to default to %s): " % def_appid
-		app_id = raw_input(prompt)
-		if app_id == "":
-			app_id = def_appid
-	except:
-		app_id = raw_input("Enter application-id: ")
+		name = raw_input(prompt)
+	except NameError:
+		name = input(prompt)
+
+	if name:
+		app_id = name
 
 time = time.time()
 timestamp = datetime.datetime.fromtimestamp(time).strftime('%Y-%m-%d %H:%M:%S')
@@ -63,7 +70,7 @@ for file_obj in file_list:
 	lines = []
 	with open(file_obj) as infile:
 		for line in infile:
-			for src, target in replacements.iteritems():
+			for src, target in replacements.items():
 				line = line.replace(src, target)
 			lines.append(line)
 	with open(file_obj, 'w') as outfile:
@@ -117,4 +124,4 @@ os.remove("README.md")  # this is needed because on windows os.rename will fail 
 os.rename("viur-project.md", "README.md")
 
 # Remove yourself!
-os.remove(argv[0])
+os.remove(sys.argv[0])
