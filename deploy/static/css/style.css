@@ -720,7 +720,6 @@ ol.is-list {
   vertical-align: middle;
   font-size: 1em;
   font-weight: 300;
-  line-height: 1.5;
   background-color: #fff;
   color: #222222;
   white-space: nowrap;
@@ -959,7 +958,6 @@ ol.is-list {
   vertical-align: middle;
   font-size: 1em;
   font-weight: 300;
-  line-height: 1.5;
   -ms-flex-item-align: start;
   align-self: flex-start;
   white-space: nowrap;
@@ -1057,7 +1055,6 @@ ol.is-list {
   vertical-align: middle;
   font-size: 1em;
   font-weight: 300;
-  line-height: 1.5;
   max-width: 100%;
   min-width: 0;
   padding-right: 38px;
@@ -1193,7 +1190,6 @@ ol.is-list {
   vertical-align: middle;
   font-size: 1em;
   font-weight: 300;
-  line-height: 1.5;
   background-color: #fafafa;
   color: #000000;
 }
@@ -1259,7 +1255,6 @@ ol.is-list {
   vertical-align: middle;
   font-size: 1em;
   font-weight: 300;
-  line-height: 1.5;
   background-color: #fafafa;
   border: 1px solid #e0e0e0;
   color: #000000;
@@ -1339,7 +1334,6 @@ ol.is-list {
   vertical-align: middle;
   font-size: 1em;
   font-weight: 300;
-  line-height: 1.5;
   background-color: #fafafa;
   border: 1px solid #e0e0e0;
   color: #000000;
@@ -1745,7 +1739,6 @@ h1.headline {
   vertical-align: middle;
   font-size: 1em;
   font-weight: 300;
-  line-height: 1.5;
   font-weight: 400;
   color: #222222;
   background-color: #e7e5e5;
@@ -2096,6 +2089,7 @@ a.btn--google:visited:focus {
   margin-top: -1px;
   border-width: 1px 0;
   border-radius: 0;
+  margin-bottom: 0;
 }
 
 .msg-group {
