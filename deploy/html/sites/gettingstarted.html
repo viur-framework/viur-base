@@ -3,7 +3,7 @@
 {% block content %}
 <section class="section">
 	<h1 class="headline">Getting started</h1>
-	<p>This part of the documentation provides a first steps guide for quickly setting up an application with ViUR. For a detailed introduction visit the <a href="https://docs.viur.is">VIUR Documentation</a>.</p>
+	<p>This part of the documentation provides a first steps guide for quickly setting up an application with ViUR. For a detailed introduction visit the <a href="https://docs.viur.is">ViUR Documentation</a>.</p>
 </section>
 
 <section class="section">
@@ -113,7 +113,7 @@ class personSkel(Skeleton):
   age = numericBone(descr="Age")
 </pre>
 
-	<p>The bones <code>key</code>, <code>creationdate</code>, <code>changedate</code> will be automatically added by VIUR.</p>
+	<p>The bones <code>key</code>, <code>creationdate</code>, <code>changedate</code> will be automatically added by ViUR.</p>
 	<br>
 
 	<p>To connect the Skeleton personSkel defined above with a module implementing a list, put the following few lines in <code>modules/person.py</code>.</p>
@@ -171,10 +171,19 @@ class Person(List):
 </pre>
 	<br>
 
-	<div class="msg msg--success has-icon">
+	<div class="msg msg--success is-active">
 		{{ embedSvg("icon-check") }}
-		<h3 class="msg-headline">You did it!</h3>
-		<p>That's all, we created our first module. But how to call these templates now from the frontend? Requests to a ViUR application are performed by a clear and persistent format of how the resulting URLs are made up. By requesting <a href="{{ getHostUrl() }}/person/list" target="_blank">{{ getHostUrl() }}/person/list</a> on our ViUR system.</p>
+		<div class="msg-content">
+			<h3 class="msg-headline">You did it!</h3>
+			<p>
+				That's all, we created our first module.
+				But how to call these templates now from the frontend?
+				Requests to a ViUR application are performed by a clear and
+				persistent format of how the resulting URLs are made up.
+				By requesting <a href="{{ getHostUrl() }}/person/list" target="_blank">
+					{{ getHostUrl() }}/person/list</a> on our ViUR system.
+			</p>
+		</div>
 	</div>
 
 

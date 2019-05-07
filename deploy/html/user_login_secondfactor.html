@@ -7,10 +7,12 @@
 		<form action="/user/f2_timebasedotp/otp" method="POST" class="">
 			<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
 
-			<div class="msg msg--error has-icon {{ "hide" if not secondFactorFailed }}">
+			<div class="msg msg--error {{ "is-active" if secondFactorFailed }}">
 				{{ embedSvg("icon-cross") }}
-				<h3 class="msg-headline">Error!</h3>
-				<p>The entered token was invaild!</p>
+				<div class="msg-content">
+					<h3 class="msg-headline">Error!</h3>
+					<p>The entered token was invaild!</p>
+				</div>
 			</div>
 
 			<div class="input-group">

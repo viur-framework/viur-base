@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.feature {
+  &-wrap {
+    display: flex;
+    flex-direction: column;
+
+    .mq-min(@breakMedium, {
+      flex-direction: row;
+    });
+  }
+
+  &-container {
+    flex: 1 1 50%;
+  }
+}

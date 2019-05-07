@@ -47,6 +47,14 @@ from server import conf, securityheaders
 conf["admin.vi.name"] = "{{app_id}}"
 
 # ------------------------------------------------------------------------------
+# Content Security Policy
+#
+
+#GitHub Buttons
+securityheaders.addCspRule("script-src", "buttons.github.io", "enforce")
+securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
+
+# ------------------------------------------------------------------------------
 # Server startup
 #
 

@@ -3,10 +3,10 @@
 {% block content %}
 	<h1 class="headline">Login successful</h1>
 
-	<div class="alertGroup">
-		<div class="alert alert--success has-icon">
-			{{ embedSvg("icon-check") }}
-			<h4 class="alert-headline">Login Successful</h4>
+	<div class="msg msg--success is-active">
+		{{ embedSvg("icon-check") }}
+		<div class="msg-content">
+			<h3 class="msg-headline">Login Successful</h3>
 			<p>
 				Hello {{ getCurrentUser().name }}, you're successfully logged in.<br>
 				<a href="{{ getHostUrl() }}/user/logout?skey={{ getSecurityKey() }}">Logout</a>
