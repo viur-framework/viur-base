@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from server import tasks, exposed
 from server.render.html import default
-import logging
+
 
 class index(default):
 
@@ -10,48 +10,81 @@ class index(default):
 		template = self.getEnv().get_template("index.html")
 		return template.render(start=True)
 
-	#@tasks.PeriodicTask(24*60)
+	#@tasks.PeriodicTask(24 * 60)
 	def backup(self, *args, **kwargs):
 		"""
-		Backup job kick-off for Google App Engine datastore admin.
+		Backup job kick-off for Google Cloud Storage.
 
-		Enable it on production systems when necessary enabling and pre-configuration is done.
-		You need to enable GAE datastore admin, initialize a GCS bucket for your app and install
-		another queue specified in queue.yaml to get this run. This is done using
+		Steps for setting up:
 
-		``` gcloud app deploy -q --project=YOUR-PROJECT queue.yaml
+		1. Create a bucket named "backup-dot-YOUR-APPID" in Google Cloud Storage
+		2. Set the following permissions on Google Cloud Console IAM
+		   (https://console.cloud.google.com/iam-admin/iam) for the user
+		   YOUR-APPID@appspot.gserviceaccount.com:
 
-		Then, uncomment above decorator.
+			- Datastore > Cloud Datastore Import Export Admin
+			- Storage > Storage Admin
+
+		   (see screenshot here: https://docs.viur.is/images/backup-settings.png)
+
+		Note: This will only work on App Engine projects that are associated with a billing account.
 		"""
-		from google.appengine.ext.db.metadata import Kind
-		from google.appengine.api.app_identity import get_application_id
-		from google.appengine.api import taskqueue
+		from server import conf
+		import json, logging, httplib
+		from datetime import datetime
+		from google.appengine.api import urlfetch, app_identity
 
-		appname = get_application_id()
-		kinds = []
+		webapp = conf["viur.wsgiApp"]
 
-		q = Kind.all()
-		for kind in q.fetch(100):
-			kindName = kind.kind_name
+		appid = app_identity.get_application_id()
+		bucket = "backup-dot-%s" % appid
 
-			if kindName in ["SharedConfData"] or kindName.startswith("_"):
-				continue
+		access_token, _ = app_identity.get_access_token("https://www.googleapis.com/auth/datastore")
 
-			kinds.append(kindName)
-			logging.debug("Adding kind '%s' to backup" % kindName)
+		timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
 
-		taskqueue.add(
-			url="/_ah/datastore_admin/backup.create",
-			method="GET",
-			queue_name="data-backup",
-			params={
-				"name": "daily_backup", #No ending "_" accepted here, this causes error 400????
-				"filesystem": "gs",
-				"gs_bucket_name": "%s.appspot.com/backup" % appname,
-				"kind": kinds
-			}
-		)
+		output_url_prefix = "gs://%s/%s" % (bucket, timestamp)
 
-		logging.info("Daily backup queued for %s" % ", ".join(kinds))
+		entity_filter = {
+			"kinds": webapp.request.get_all("kind"),
+			"namespace_ids": webapp.request.get_all("namespace_id")
+		}
+
+		request = {
+			"project_id": appid,
+			"output_url_prefix": output_url_prefix,
+			"entity_filter": entity_filter
+		}
+
+		headers = {
+			"Content-Type": "application/json",
+			"Authorization": "Bearer " + access_token
+		}
+
+		url = "https://datastore.googleapis.com/v1/projects/%s:export" % appid
+
+		try:
+			result = urlfetch.fetch(
+				url=url,
+				payload=json.dumps(request),
+				method=urlfetch.POST,
+				deadline=60,
+				headers=headers
+			)
+
+			if result.status_code == httplib.OK:
+				logging.info(result.content)
+
+			elif result.status_code >= 500:
+				logging.error(result.content)
+
+			else:
+				logging.warning(result.content)
+
+		except urlfetch.Error:
+			logging.exception("Failed to initiate export.")
+
+		logging.info("Daily backup queued")
+
 
 index.html = True

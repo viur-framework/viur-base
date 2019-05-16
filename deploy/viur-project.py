@@ -30,7 +30,6 @@ from server import conf, securityheaders
 # General configuration
 #
 
-#conf["viur.forceSSL"] = True
 #conf["viur.disableCache"] = True
 
 # ------------------------------------------------------------------------------
@@ -63,5 +62,5 @@ import server, modules, render
 #server.setDefaultLanguage("en") #set default language!
 application = server.setup(modules, render)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	server.run()
