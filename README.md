@@ -1,24 +1,12 @@
 # ViUR base
 
-**base** provides a basic project structure to start a new ViUR project.
+**base** provides a basic ViUR project structure.
 
-This is the best place to start your new ViUR project from.
+This is the best place to start a new ViUR project from!
 
 ---
 
-### How to use this repository
-
-#### Extracting from a ZIP-file
-
-```bash
-wget -c https://github.com/viur-framework/base/archive/master.zip -O base.zip \
-  && unzip base.zip \
-  && rm -f base.zip \
-mv base-master your-project
-cd your-project
-```
-
-#### Using Git
+## Usage
 
 Clone the base repository including its submodules into a new directory of your choice.
 
