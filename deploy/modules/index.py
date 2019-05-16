@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
-from server import tasks, exposed
+from server import tasks, exposed, errors, utils, conf, request
 from server.render.html import default
+
+from google.appengine.api import urlfetch, app_identity
+
+import json, logging, datetime, httplib
 
 
 class index(default):
@@ -29,10 +33,9 @@ class index(default):
 
 		Note: This will only work on App Engine projects that are associated with a billing account.
 		"""
-		from server import conf
-		import json, logging, httplib
-		from datetime import datetime
-		from google.appengine.api import urlfetch, app_identity
+		if request.current.get().isDevServer:
+			logging.info("Backup tool is disabled on local development server")
+			return
 
 		webapp = conf["viur.wsgiApp"]
 
@@ -41,7 +44,7 @@ class index(default):
 
 		access_token, _ = app_identity.get_access_token("https://www.googleapis.com/auth/datastore")
 
-		timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+		timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 		output_url_prefix = "gs://%s/%s" % (bucket, timestamp)
 
@@ -50,7 +53,7 @@ class index(default):
 			"namespace_ids": webapp.request.get_all("namespace_id")
 		}
 
-		request = {
+		req = {
 			"project_id": appid,
 			"output_url_prefix": output_url_prefix,
 			"entity_filter": entity_filter
@@ -66,7 +69,7 @@ class index(default):
 		try:
 			result = urlfetch.fetch(
 				url=url,
-				payload=json.dumps(request),
+				payload=json.dumps(req),
 				method=urlfetch.POST,
 				deadline=60,
 				headers=headers
@@ -81,10 +84,10 @@ class index(default):
 			else:
 				logging.warning(result.content)
 
-		except urlfetch.Error:
-			logging.exception("Failed to initiate export.")
+			logging.info("Daily backup queued")
 
-		logging.info("Daily backup queued")
+		except urlfetch.Error:
+			raise
 
 
 index.html = True
