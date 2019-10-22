@@ -44,7 +44,6 @@ gulp.task('css', () => {
 		}))
 		.pipe(postcss([
 			autoprefixer({ // add vendor prefixes
-				browsers: ['last 2 versions'],
 				cascade: false
 			}),
 			nocomments, // discard comments
