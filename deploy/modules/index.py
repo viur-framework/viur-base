@@ -1,18 +1,26 @@
 # -*- coding: utf-8 -*-
 from server import tasks, exposed, errors, utils, conf, request
-from server.render.html import default
+from server.render.html import default as default_render
 
 from google.appengine.api import urlfetch, app_identity
 
 import json, logging, datetime, httplib
 
 
-class index(default):
+class index(object):
+
+	def __init__(self, *args, **kwargs):
+		self.render = default_render(self)
 
 	@exposed
 	def index(self, *args, **kwargs):
-		template = self.getEnv().get_template("index.html")
+		template = self.render.getEnv().get_template("index.html")
 		return template.render(start=True)
+
+	@exposed
+	def sitemap_xml(self, *args, **kwargs):
+		request.current.get().response.headers["Content-Type"] = "text/xml"
+		return self.render.view({}, tpl="sitemap")
 
 	#@tasks.PeriodicTask(24 * 60)
 	def backup(self, *args, **kwargs):

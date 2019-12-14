@@ -1,0 +1,31 @@
+{%- set baseUrl = getHostUrl(forceSSL=True) -%}
+
+{%- macro url(link, priority=None) -%}
+	{%- if link and not link.startswith("/") -%}
+		{%- set link = "/%s" % link -%}
+	{%- endif -%}
+
+	<url>
+		<loc>{{ baseUrl }}{{ link }}</loc>
+		{%- if priority -%}
+			<priority>{{ priority }}</priority>
+		{%- endif -%}
+	</url>
+{% endmacro -%}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+	{{ url("", "1.0") }}
+
+	{# Add custom sitemap entries here... #}
+	{{ url("s/gettingstarted", "1.0") }}
+
+	{#
+	{% for entry in getList("blog") %}
+		{{ url("blog/" + entry["seo_url"], "1.0") }}
+	{% endfor %}
+    #}
+</urlset>
