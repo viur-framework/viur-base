@@ -597,6 +597,12 @@ ol.is-list {
   list-style-type: upper-alpha;
 }
 
+::-moz-selection {
+  background-color: #a00c16;
+  text-shadow: none;
+  color: #ffffff;
+}
+
 ::selection {
   background-color: #a00c16;
   text-shadow: none;
@@ -838,9 +844,7 @@ ol.is-list {
   background-position: 150% center;
 }
 
-.input.is-readonly,
-.input:-moz-read-only,
-.input[aria-readonly="true"] {
+.input:-moz-read-only {
   color: #595959;
   border-color: #808080;
   background-color: #e6e6e6;
@@ -895,6 +899,12 @@ ol.is-list {
 
 .input::-webkit-input-placeholder,
 .textarea::-webkit-input-placeholder {
+  color: #a2a2a2;
+  opacity: 1;
+}
+
+.input::-moz-placeholder,
+.textarea::-moz-placeholder {
   color: #a2a2a2;
   opacity: 1;
 }
@@ -2395,15 +2405,19 @@ a:focus .thumbnail {
 
   .form-group--half {
     -webkit-column-count: 2;
+    -moz-column-count: 2;
     column-count: 2;
     -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
     break-inside: avoid;
     -webkit-column-fill: balance;
+    -moz-column-fill: balance;
     column-fill: balance;
   }
 
   .form-group--half * {
     -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
     break-inside: avoid;
   }
 
