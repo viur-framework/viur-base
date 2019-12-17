@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from server import tasks, exposed, errors, utils, conf, request
-from server.render.html import default as default_render
+from viur.core import tasks, exposed, errors, utils, conf, request
+from viur.core.render.html import default as default_render
 
-from google.appengine.api import urlfetch, app_identity
+# from google.appengine.api import urlfetch, app_identity
 
 import json, logging, datetime, httplib
 
@@ -23,7 +23,7 @@ class index(object):
 		return self.render.view({}, tpl="sitemap")
 
 	#@tasks.PeriodicTask(24 * 60)
-	def backup(self, *args, **kwargs):
+	def backup(self, *args, **kwargs): #FIXME
 		"""
 		Backup job kick-off for Google Cloud Storage.
 

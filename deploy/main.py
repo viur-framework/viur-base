@@ -24,7 +24,7 @@
 #
 # ------------------------------------------------------------------------------
 
-from server import conf, securityheaders
+from viur.core import conf, securityheaders
 
 # ------------------------------------------------------------------------------
 # General configuration
@@ -57,10 +57,11 @@ securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 # Server startup
 #
 
-import server, modules, render
+from viur import core
+import modules, render
 
-#server.setDefaultLanguage("en") #set default language!
-application = server.setup(modules, render)
+#core.setDefaultLanguage("en") #set default language!
+app = core.setup(modules, render)
 
 if __name__ == "__main__":
-	server.run()
+	core.run()

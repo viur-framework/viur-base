@@ -1,4 +1,4 @@
-from server.render import admin, html, json, vi, xml
+from viur.core.render import admin, html, json, vi, xml
 
 @html.utils.jinjaGlobalFilter
 def isList(render, val):

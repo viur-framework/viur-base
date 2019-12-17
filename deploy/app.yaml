@@ -1,8 +1,8 @@
 #application: {{app_id}}
 #version: 1
-runtime: python27
-api_version: 1
-threadsafe: False
+runtime: python37
+instance_class: F1
+default_expiration: "30s"
 
 handlers:
 - url: /vi/s
@@ -10,32 +10,32 @@ handlers:
 - url: /static
   static_dir: static
 - url: /resources
-  static_dir: server/resources
-- url: /_tasks
-  script: {{app_id}}.application
-- url: /admin/user/getAuthMethod
-  script: {{app_id}}.application
-- url: /admin/.*
-  script: {{app_id}}.application
-- url: /vi.*
-  script: {{app_id}}.application
+  static_dir: viur/core/resources
+#- url: /_tasks
+#  script: {{app_id}}.application
+#- url: /admin/user/getAuthMethod
+#  script: {{app_id}}.application
+#- url: /admin/.*
+#  script: {{app_id}}.application
+#- url: /vi.*
+#  script: {{app_id}}.application
 - url: /favicon.ico
   static_files: static/meta/favicon.ico
   upload: favicon.ico
 - url: /robots.txt
   static_files: static/meta/robots.txt
   upload: robots.txt
-- url: /.*
-  script: {{app_id}}.application
+#- url: /.*
+#  script: {{app_id}}.application
 
-libraries:
-- name: jinja2
-  version: latest
-- name: pytz
-  version: latest
+#libraries:
+#- name: jinja2
+#  version: latest
+#- name: pytz
+#  version: latest
 
 inbound_services:
 - warmup
 
-builtins:
-- deferred: on
+#builtins:
+#- deferred: on

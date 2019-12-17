@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
-from server.skeleton import Skeleton
-from server.bones import *
+from viur.core.skeleton import Skeleton
+from viur.core.bones import *
 
 class exampleSkel(Skeleton):
 	# Defaults

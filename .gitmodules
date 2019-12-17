@@ -1,6 +1,6 @@
-[submodule "deploy/server"]
-	path = deploy/server
-	url = https://github.com/viur-framework/server.git
+[submodule "deploy/viur/core"]
+	path = deploy/viur/core
+	url = https://github.com/viur-framework/viur-core.git
 [submodule "vi"]
 	path = vi
 	url = https://github.com/viur-framework/vi.git

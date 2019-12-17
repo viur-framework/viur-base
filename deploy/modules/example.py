@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
-from server.prototypes import List
-from server import exposed
+from viur.core.prototypes import List
+from viur.core import exposed
 
 class Example(List):
 
