@@ -62,8 +62,18 @@ options={"keyLink": "/$(module)/view/$(key)?style=raw"}
 
 #}
 
-{% macro SkelViewRelBoneFormat(format, value, prefix="") %}
+
+{% macro SkelViewRelBoneFormat(format, value, prefix="", vars={}) %}
     {% set ret = {"value": format} %}
+
+    {% for key, val in vars.items() %}
+        {% if val|isDict %}
+            {% do ret.update({"value": SkelViewRelBoneFormat(ret["value"], val, prefix = "%s." % key)}) %}
+        {% else %}
+            {% do ret.update({"value": ret["value"].replace("$(%s)" % (prefix + key), val|string)}) %}
+        {% endif %}
+    {% endfor %}
+
     {% for key, val in value.items() %}
         {% if val|isDict %}
             {% do ret.update({"value": SkelViewRelBoneFormat(ret["value"], val, prefix = "%s." % key)}) %}
@@ -241,11 +251,13 @@ options={"keyLink": "/$(module)/view/$(key)?style=raw"}
                         {% elif structure[step]["type"] == "str.email" and value %}
                             <a href="mailto:{{ value }}">{{ value }}</a>
                         {% elif step == "key" and value and options["keyLink"] %}
-                            <a href="{{ SkelViewRelBoneFormat(options["keyLink"], skel)|replace("$(module)", module) }}">
-                                {{ value }}
+                            <a href="{{ SkelViewRelBoneFormat(options["keyLink"], skel, vars={"module": module}) }}">
+                               {{ value }}
                             </a>
                         {% elif value and value|isList %}
-                            {{ ", ".join(value) }}
+                            {% for entry in value %}
+                            	{{entry|string}}{{ "," if not loop.last }}
+                            {% endfor %}
                         {% else %}
                             {# {{ structure[step]["type"] }}| #}
                             {{ value if value else emptyValue }}
