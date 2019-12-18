@@ -18,7 +18,7 @@ for _module in os.listdir(os.path.dirname(__file__)):
 	_module = _module[:-3]
 
 	try:
-		_import = __import__(_module, globals(), locals(), [_module])
+		_import = __import__(_module, globals(), locals(), level=1)
 
 		for _name in dir(_import):
 			if _name.startswith("_"):

@@ -12,7 +12,7 @@ for skelModule in os.listdir(os.path.dirname(__file__)):
 		continue
 
 	try:
-		__import__(skelModule[:-3], globals(), locals())
+		__import__(skelModule[:-3], globals(), locals(), level=1)
 	except ImportError:
 		logging.error("Unable to import skeleton %s" % skelModule[:-3])
 
