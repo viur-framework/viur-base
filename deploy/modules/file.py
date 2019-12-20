@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from server.modules.file import File
+from server.modules.file import File as _File
 
-class file(File):
+
+class File(_File):
 	pass

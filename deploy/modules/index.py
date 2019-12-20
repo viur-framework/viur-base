@@ -7,7 +7,7 @@ from google.appengine.api import urlfetch, app_identity
 import json, logging, datetime, httplib
 
 
-class index(object):
+class Index(object):
 
 	def __init__(self, *args, **kwargs):
 		self.render = default_render(self)
@@ -98,4 +98,4 @@ class index(object):
 			raise
 
 
-index.html = True
+Index.html = True

@@ -1,8 +1,9 @@
-#-*- coding: utf-8 -*-
-from server.skeleton import Skeleton
+# -*- coding: utf-8 -*-
 from server.bones import *
+from server.skeleton import Skeleton
 
-class exampleSkel(Skeleton):
+
+class ExampleSkel(Skeleton):
 	# Defaults
 	name = stringBone(
 		descr=u"Name",
