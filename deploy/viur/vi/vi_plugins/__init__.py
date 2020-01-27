@@ -7,7 +7,7 @@
 #import vi_plugins.bones
 
 # Vi config
-from config import conf
+from vi.config import conf
 
 # Change default batch size
 #conf["batchSize"] = 64

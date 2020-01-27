@@ -7,3 +7,6 @@
 [submodule "sources/less/ignite"]
 	path = sources/less/ignite
 	url = https://github.com/viur-framework/ignite.git
+[submodule "deploy/viur/vi/vi"]
+	path = deploy/viur/vi/vi
+	url = https://github.com/viur-framework/viur-vi.git
