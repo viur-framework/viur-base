@@ -1,5 +1,3 @@
-#application: {{app_id}}
-#version: 1
 runtime: python37
 instance_class: F1
 default_expiration: "30s"
@@ -39,3 +37,7 @@ inbound_services:
 
 #builtins:
 #- deferred: on
+
+env_variables:
+  GOOGLE_APPLICATION_CREDENTIALS: "store_credentials.json"
+ 

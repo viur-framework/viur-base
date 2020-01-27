@@ -37,10 +37,7 @@ if args.app_id is None:
 
 	app_id = os.path.split(os.getcwd())[-1]
 
-	if not app_id.endswith("-viur"):
-		app_id += "-viur"
-
-	prompt = f"Enter application-id (leave empty to default to {app_id}: "
+	prompt = f"Enter application-id (leave empty to default to {app_id}): "
 	name = input(prompt)
 
 	if name:
@@ -91,27 +88,10 @@ if os.path.exists(".git"):
 else:
 	print(".git tether already removed")
 
-# Install latest built of vi
-
-zipname = "vi.zip"
-
-sys.stdout.write("Downloading latest build of vi...")
-urllib.request.urlretrieve("https://www.viur.is/package/download/vi/latest", zipname)
-print("Done downloading latest build of vi")
-
-sys.stdout.write("Extracting latest build of vi...")
-
-zip = zipfile.ZipFile(zipname, "r")
-zip.extractall("deploy/")
-zip.close()
-
-os.remove(zipname)
-
-print("Done extracting vi")
-
 # Create a README.md
 os.remove("README.md")  # this is needed because on windows os.rename will fail caused by existing dest!!!
 os.rename("viur-project.md", "README.md")
 
 # Remove yourself!
 os.remove(sys.argv[0])
+
