@@ -5,22 +5,6 @@
 
 .idea
 
-deploy/vi
-
+deploy/viur/vi/pyodide
 node_modules
 
-/login
-/acc
-/acc.txt
-
-/appengine-db
-/database
-/storage
-
-Thumbs.db
-[Dd]esktop.ini
-$RECYCLE.BIN/
-.DS_Store
-._*
-.Trashes
-.Trash-*

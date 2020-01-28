@@ -76,9 +76,9 @@ for file_obj in file_list:
 
 if os.path.exists(".git"):
 	print("Downloading submodules")
-	subprocess.check_output("git submodule init", shell=True)
-	subprocess.check_output("git submodule update", shell=True)
-	subprocess.check_output("cd vi && git submodule init && git submodule update", shell=True)
+	subprocess.check_output("git submodule init && git submodule update", shell=True)
+	subprocess.check_output("cd deploy/viur/vi/vi && git submodule init && git submodule update", shell=True)
+
 	print("Removing .git tether")
 	try:
 		subprocess.check_output("git remote rm origin", shell=True)
@@ -88,23 +88,16 @@ if os.path.exists(".git"):
 else:
 	print(".git tether already removed")
 
-# Install latest built of Pyodide...
-zipname = "pyodide_2019-09-24-bin.zip"
 
-sys.stdout.write("Downloading latest Pyodide...")
-sys.stdout.flush()
-urllib.request.urlretrieve("https://github.com/mausbrand/pyodide/releases/download/2019-09-24/pyodide_2019-09-24-bin.zip", zipname)
-print("Done")
-
-sys.stdout.write("Extracting Pyodide...")
+# Update pyodide
+sys.stdout.write("Downloading Pyodide...")
 sys.stdout.flush()
 
-zip = zipfile.ZipFile(zipname, "r")
-zip.extractall('deploy/viur/vi')
-zip.close()
+subprocess.check_output("cd deploy/viur/vi && ./get-pyodide.py", shell=True)
 
-os.remove(zipname)
 print("Done")
+
+# Generate files
 
 sys.stdout.write("Generating project documentation...")
 sys.stdout.flush()
