@@ -16,6 +16,10 @@
 		let promises = [];
 
 		let baseURL = window.location.href;
+		let hashIndex = baseURL.indexOf("#");
+		if( hashIndex >= 0 )
+			baseURL = baseURL.substr(0, hashIndex);
+
 		baseURL = baseURL.substr(0, baseURL.lastIndexOf('/')) + '/';
 
 		for (var f in files) {

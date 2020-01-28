@@ -88,10 +88,33 @@ if os.path.exists(".git"):
 else:
 	print(".git tether already removed")
 
+# Install latest built of Pyodide...
+zipname = "pyodide_2019-09-24-bin.zip"
+
+sys.stdout.write("Downloading latest Pyodide...")
+sys.stdout.flush()
+urllib.request.urlretrieve("https://github.com/mausbrand/pyodide/releases/download/2019-09-24/pyodide_2019-09-24-bin.zip", zipname)
+print("Done")
+
+sys.stdout.write("Extracting Pyodide...")
+sys.stdout.flush()
+
+zip = zipfile.ZipFile(zipname, "r")
+zip.extractall('deploy/viur/vi')
+zip.close()
+
+os.remove(zipname)
+print("Done")
+
+sys.stdout.write("Generating project documentation...")
+sys.stdout.flush()
+
 # Create a README.md
 os.remove("README.md")  # this is needed because on windows os.rename will fail caused by existing dest!!!
 os.rename("viur-project.md", "README.md")
 
 # Remove yourself!
 os.remove(sys.argv[0])
+
+print("Done")
 
