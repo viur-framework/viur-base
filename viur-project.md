@@ -6,24 +6,7 @@ https://{{app_id}}.appspot.com
 
 ## Description
 
-This is {{app_id}}.
-
-## Build the Vi
-
-To build the Vi, run
-
-```bash
-$ cd vi
-$ make deploy
-```
-
-## Change Git origin URL
-
-Please set another Git repository origin. The default viur-base origin has been automatically deleted by ``clean-base.py``, for security reasons.
-
-```bash
-$ git remote add git@github.com:{{whoami}}/{{app_id}}.git
-```
+This is {{app_id}}. It is an absolutely nice project written in the powerful ViUR 3 framework.
 
 ## Project setup
 
