@@ -24,6 +24,33 @@ gcloud iam service-accounts keys create deploy/store_credentials.json --iam-acco
 
 gcloud services enable --project=$project cloudtasks.googleapis.com
 
+# Google Cloud Storage
+
+gsutil uniformbucketlevelaccess set on gs://$project.appspot.com/ 
+
+cat <<ENDL >cors$$.json
+[
+    {
+      "origin": [
+	  	"https://$project.appspot.com",
+		"http://localhost:8080",
+		"http://127.0.0.1:8080"
+		],
+      "method": ["GET", "HEAD", "DELETE", "POST", "OPTIONS"],
+	  "responseHeader": [
+        "Content-Type",
+        "Access-Control-Allow-Origin",
+        "x-goog-resumable"],
+      "maxAgeSeconds": 3600
+    }
+]
+ENDL
+
+gsutil cors set cors$$.json gs://$project.appspot.com
+rm cors$$.json
+
+# Deploy
+
 pushd deploy
 for yaml in cron.yaml queue.yaml index.yaml
 do
