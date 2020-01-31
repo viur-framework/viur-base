@@ -9,6 +9,8 @@ handlers:
   mime_type: application/wasm
 - url: /vi/s
   static_dir: viur/vi
+- url: /vi_plugins/s
+  static_dir: vi_plugins
 - url: /static
   static_dir: static
 - url: /resources

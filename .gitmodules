@@ -1,12 +1,9 @@
 [submodule "deploy/viur/core"]
 	path = deploy/viur/core
 	url = https://github.com/viur-framework/viur-core.git
-[submodule "vi"]
-	path = vi
-	url = https://github.com/viur-framework/vi.git
 [submodule "sources/less/ignite"]
 	path = sources/less/ignite
 	url = https://github.com/viur-framework/ignite.git
-[submodule "deploy/viur/vi/vi"]
-	path = deploy/viur/vi/vi
+[submodule "deploy/viur/vi"]
+	path = deploy/viur/vi
 	url = https://github.com/viur-framework/viur-vi.git

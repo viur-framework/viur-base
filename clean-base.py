@@ -77,7 +77,7 @@ for file_obj in file_list:
 if os.path.exists(".git"):
 	print("Downloading submodules")
 	subprocess.check_output("git submodule init && git submodule update", shell=True)
-	subprocess.check_output("cd deploy/viur/vi/vi && git submodule init && git submodule update", shell=True)
+	subprocess.check_output("cd deploy/viur/vi && git submodule init && git submodule update", shell=True)
 
 	print("Removing .git tether")
 	try:
