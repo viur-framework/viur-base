@@ -1,35 +1,30 @@
 # ViUR base
 
-**base** provides a basic ViUR project structure.
+**WARNING: THIS IS AN UNSTABLE PYTHON3 / PYODIDE PORT, WORK IN PROGRESS!**
 
-This is the best place to start a new ViUR project from!
+**viur-base** provides a basic ViUR project structure.
+
+This is the best place to start a new ViUR 3 project from!
 
 ---
 
 ## Usage
 
-Clone the base repository including its submodules into a new directory of your choice.
+To setup your new ViUR project, perform these steps:
 
-```bash
-git clone https://github.com/viur-framework/base.git your-project
-cd your-project
-```
+1. `git clone https://github.com/viur-framework/viur-base.git YOUR-PROJECT`
+2. `cd YOUR-PROJECT`
+3. `./clean-base.py -A YOUR-APP-ID`
+4. `./viur-gcloud-setup.py YOUR-APP-ID` (this step will be improved later!)
 
-Then, to make sure that the placeholders in `app.yaml` and `viur_server.py` are properly replaced and that you won't accidentally override the viur-base repo, use the included `clean-base.py` script.
 
-You need to enter an author name and an app ID to identify your app for later deployment and to be able to run the `dev_appserver.py` locally. These interactively prompted values can also be provided as command-line parameters.
-
-The script will also initialize and update the submodules and disconnect the repo from the viur-base repository origin.
-
-```bash
-python clean-base.py
-```
-
-When finished, your repository is disconnected from [base](https://github.com/viur-framework/base) as its origin, and can be configured to point to another origin where your new project lives in future. It still contains the full history of the base repository. This might be wanted - if not, make `rm -rf .git` to drop the entire history and start over setting up a clean project with `git init`.
+When finished, your repository is disconnected from [viur-base](https://github.com/viur-framework/viur-base) as its origin, and can be configured to point to another origin where your new project lives in future. It still contains the full history of the base repository. This might be wanted or not. Do `rm -rf .git` to drop the entire history and start over setting up a clean project with `git init`.
 
 ---
 
 ### Switch sub-modules to SSH
+
+**WARNING: Not updated to ViUR 3 right now!!!**
 
 Especially in ViUR development projects or for customer projects created at [Mausbrand](https://www.mausbrand.de/en) that are heavily involved in changes to server and vi, it is necessary to change the HTTPS submodules to SSH. This can easily be done for all submodules and their submodules with these few commands:
 
@@ -60,7 +55,7 @@ popd
 
 We take a great interest in your opinion about ViUR. We appreciate your feedback and are looking forward to hear about your ideas. Share your visions or questions with us and participate in ongoing discussions.
 
-- [ViUR website](https://www.viur.is)
+- [ViUR website](https://www.viur.dev)
 - [#ViUR on freenode IRC](https://webchat.freenode.net/?channels=viur)
 - [ViUR on GitHub](https://github.com/viur-framework)
 - [ViUR on Twitter](https://twitter.com/weloveViUR)
@@ -77,7 +72,7 @@ Help of any kind to extend and improve or enhance this project in any kind or wa
 
 ## License
 
-Copyright (C) 2012-2019 by Mausbrand Informationssysteme GmbH.
+Copyright (C) 2012-2020 by Mausbrand Informationssysteme GmbH.
 
 Mausbrand and ViUR are registered trademarks of Mausbrand Informationssysteme GmbH.
 
