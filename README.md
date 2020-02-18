@@ -15,10 +15,10 @@ To setup your new ViUR project, perform these steps:
 1. `git clone https://github.com/viur-framework/viur-base.git YOUR-PROJECT`
 2. `cd YOUR-PROJECT`
 3. `./clean-base.py -A YOUR-APP-ID`
-4. `./viur-gcloud-setup.py YOUR-APP-ID` (this step will be improved later!)
+4. `./viur-gcloud-setup.sh YOUR-APP-ID` (this step will be improved later!)
 
 
-When finished, your repository is disconnected from [viur-base](https://github.com/viur-framework/viur-base) as its origin, and can be configured to point to another origin where your new project lives in future. It still contains the full history of the base repository. This might be wanted or not. Do `rm -rf .git` to drop the entire history and start over setting up a clean project with `git init`.
+When finished, your repository is disconnected from [viur-base](https://github.com/viur-framework/viur-base) as its origin, and can be configured to point to another origin where your new project lives in future. It still contains the full history of the base repository. This might be wanted or not. Do `find . -name .git -exec rm -rf {} \;` to drop the entire history and start over setting up a clean project with `git init`.
 
 ---
 
