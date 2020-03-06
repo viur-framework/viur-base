@@ -37,7 +37,7 @@ class Index(object):
 			- Datastore > Cloud Datastore Import Export Admin
 			- Storage > Storage Admin
 
-		   (see screenshot here: https://docs.viur.is/images/backup-settings.png)
+		   (see screenshot here: https://docs.viur.dev/images/backup-settings.png)
 
 		Note: This will only work on App Engine projects that are associated with a billing account.
 		"""

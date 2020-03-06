@@ -24,7 +24,7 @@ app_id = args.app_id
 whoami = args.author
 
 if args.app_id is None:
-	prompt = "Enter Author Name (leave empty to default to %s): " % whoami 
+	prompt = "Enter Author Name (leave empty to default to %s): " % whoami
 	try:
 		name = raw_input(prompt)
 	except NameError:
@@ -98,7 +98,7 @@ else:
 zipname = "vi.zip"
 
 sys.stdout.write("Downloading latest build of vi...")
-urllib.urlretrieve("https://www.viur.is/package/download/vi/latest", zipname)
+urllib.urlretrieve("https://www.viur.dev/package/download/vi/latest", zipname)
 print("Done downloading latest build of vi")
 
 sys.stdout.write("Extracting latest build of vi...")
