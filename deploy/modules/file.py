@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from viur.core.modules.file import File
+from viur.core import utils
 
 class file(File):
 
