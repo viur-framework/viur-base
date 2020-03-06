@@ -4,6 +4,8 @@
 
 This is the best place to start a new ViUR project from!
 
+**Important note:** We're currently porting ViUR to Python3. Use the branch [viur3](https://github.com/viur-framework/viur-base/tree/viur3) to start a ViUR3 project!
+
 ---
 
 ## Usage
