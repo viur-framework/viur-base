@@ -13,11 +13,6 @@ gcloud app create --project=$project --region=europe-west3
 for role in roles/editor roles/iam.serviceAccountTokenCreator roles/storage.objectAdmin
 do
 	gcloud projects add-iam-policy-binding $project --member serviceAccount:$project@appspot.gserviceaccount.com --role $role
-
-	if [ $? -ne 0 ]
-	then
-		exit $?
-	fi
 done
 
 gcloud iam service-accounts keys create deploy/store_credentials.json --iam-account=$project@appspot.gserviceaccount.com
@@ -54,7 +49,7 @@ rm cors$$.json
 pushd deploy
 for yaml in cron.yaml queue.yaml index.yaml
 do
-	gcloud app deploy -q --project=$project queue.yaml
+	gcloud app deploy -q --project=$project $yaml
 done
 
 echo
