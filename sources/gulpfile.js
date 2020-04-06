@@ -1,115 +1,64 @@
-/* {{app_id}} GULP SCRIPT */
+/* base-ViTest-viur GULP SCRIPT */
 
 // Project data
 var srcpaths = {
 	less: './less/**/*.less',
 	images: './images/**/*',
-	embedsvg: './embedsvg/**/*',
+	icons: './embedsvg/**/*', //icon- prefix, use Textcolor
+	logos: './embedsvg/logos/**/*', //logo- prefix, keep their color
+	js:    './js/scripts/**/*.js',
 };
 
 var destpaths = {
 	css: '../deploy/static/css',
 	images: '../deploy/static/images',
-	embedsvg: '../deploy/html/embedsvg'
+	embedsvg: '../deploy/html/embedsvg',
+	js: '../deploy/static/js',
 };
 
-// Variables and requirements
 const gulp = require('gulp');
+const plugins = require('gulp-load-plugins');
 
-const path = require('path');
-const del = require('del');
-const rename = require('gulp-rename');
+function loadTask(task, options) {
+	return require('./gulptasks/' + task)(gulp, plugins, options)
+}
 
-const less = require('gulp-less');
-const autoprefixer = require('autoprefixer');
-const postcss = require('gulp-postcss');
-const zindex = require('postcss-zindex');
-const focus = require('postcss-focus');
-const nocomments = require('postcss-discard-comments');
-const nano = require('gulp-cssnano');
-const jmq = require('gulp-join-media-queries');
-const stylefmt = require('gulp-stylefmt');
+gulp.task('css', loadTask('css_task', {
+	src: './less/style.less',
+	dest: destpaths.css
+}));
 
-const imagemin = require('gulp-imagemin');
-const cheerio = require('gulp-cheerio');
+gulp.task('icons', loadTask('icon_task', {
+	src: [srcpaths.icons],
+	dest: destpaths.embedsvg
+}));
 
+gulp.task('images', loadTask('image_task', {
+	src: srcpaths.images,
+	dest: destpaths.images
+}));
 
-// compilation and postproduction of LESS to CSS
-gulp.task('css', () => {
-	del([destpaths.css + '/**/*'], {force: true});
+gulp.task('js', loadTask('js_task', {
+	src: srcpaths.js, //scripts to include
+	srcFile: './js/app.js', //entrypoint
+	dest: destpaths.js //output will be main.(min.)js
+}));
 
-	return gulp.src('./less/style.less')
-		.pipe(less({
-			paths: [path.join(__dirname, 'less', 'includes')]
-		}))
-		.pipe(postcss([
-			autoprefixer({ // add vendor prefixes
-				cascade: false
-			}),
-			nocomments, // discard comments
-			focus, // add focus to hover-states
-			zindex, // reduce z-index values
-		])) // clean up css
-		.pipe(jmq())
-		.pipe(stylefmt()) // syntax formatting
-		.pipe(gulp.dest(destpaths.css)) // save cleaned version
-		.pipe(nano()) // minify css
-		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest(destpaths.css)); // save minified version
-});
+gulp.task('lib', loadTask('lib_task', {
+	src: [ //register needed libraries, in correct order
+		'./js/libs/jquery-3.4.1.min.js',
+		'./js/libs/pagination.js',
+	],
+	dest: destpaths.js
+}));
 
-
-// reduce images for web
-gulp.task('images', () => {
-	del([destpaths.images + '/**/*'], {force: true});
-
-	return gulp.src(srcpaths.images)
-		.pipe(imagemin([
-			imagemin.jpegtran({progressive: true}),
-			imagemin.optipng({optimizationLevel: 5}),
-			imagemin.svgo({
-				plugins: [
-					{removeViewBox: false},
-					{removeDimensions: true}
-				]
-			})
-		]))
-		.pipe(gulp.dest(destpaths.images));
-});
-
-// reduce embedsvg icons for web
-gulp.task('embedsvg', () => {
-	del([destpaths.embedsvg + '/**/*'], {force: true});
-
-	return gulp.src(srcpaths.embedsvg)
-		.pipe(imagemin([
-			imagemin.jpegtran({progressive: true}),
-			imagemin.optipng({optimizationLevel: 5}),
-			imagemin.svgo({
-				plugins: [
-					{removeViewBox: false},
-					{removeDimensions: true}
-				]
-			})
-		]))
-		.pipe(cheerio({
-			run: function ($, file) {
-				$('style').remove()
-				$('[id]').removeAttr('id')
-				$('[fill]').removeAttr('fill')
-				$('svg').addClass('icon')
-			},
-			parserOptions: {xmlMode: true}
-		}))
-		.pipe(rename({prefix: 'icon-'}))
-		.pipe(gulp.dest(destpaths.embedsvg));
-});
+const viBuildTasks = require('./vi/vi_tasks');
 
 
 gulp.task('watch', () => {
 	gulp.watch(srcpaths.less, gulp.series('css'));
-	gulp.watch(srcpaths.embedsvg, gulp.series('embedsvg'));
+	gulp.watch(srcpaths.embedsvg, gulp.series('icons'));
 	gulp.watch(srcpaths.images, gulp.series('images'));
 });
 
-gulp.task('default', gulp.series(['css', 'images', 'embedsvg']));
+gulp.task('default', gulp.series(['css', 'images', 'icons', 'js', 'lib', 'vi']));
