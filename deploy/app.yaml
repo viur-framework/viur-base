@@ -5,8 +5,16 @@ api_version: 1
 threadsafe: False
 
 handlers:
+- url: /vi/s/pyodide/(.*\.wasm)$
+  expiration: "10s"
+  static_files: viur/vi/pyodide/\1
+  upload: viur/vi/pyodide/.*\.wasm$
+  mime_type: application/wasm
 - url: /vi/s
-  static_dir: vi
+  expiration: "10s"
+  static_dir: viur/vi
+- url: /vi_plugins/s
+  static_dir: vi_plugins
 - url: /static
   static_dir: static
 - url: /resources
