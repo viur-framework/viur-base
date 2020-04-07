@@ -39,7 +39,7 @@ steps:
       - |
         git config -f .gitmodules submodule.deploy/server.url https://github.com/viur-framework/server.git
         git config -f .gitmodules submodule.vi.url https://github.com/viur-framework/vi.git
-		# more might follow here from step (5) above!
+        # more might follow here from step (5) above!
 
         git submodule update --init --recursive
 
