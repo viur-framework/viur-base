@@ -33,7 +33,7 @@ When finished, your repository is disconnected from [base](https://github.com/vi
 
 ### Switch sub-modules to SSH
 
-Especially in ViUR development projects or for customer projects created at [Mausbrand](https://www.mausbrand.de/en) that are heavily dependend on changes to server and vi, it is necessary to change the HTTPS submodules to SSH. This can easily be done for all submodules and their submodules with these few commands:
+Especially in ViUR development projects or for customer projects created at [Mausbrand](https://www.mausbrand.de/en) that are heavily dependent on changes to server and vi, it is necessary to change the HTTPS submodules to SSH. This can easily be done for all submodules and their submodules with these few commands:
 
 ```bash
 # change server
