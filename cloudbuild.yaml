@@ -1,0 +1,68 @@
+# 1. clone main repository and all private submodules:
+#
+#     https://source.cloud.google.com/
+#
+# 2. create a trigger for main repository here:
+#
+#     https://console.cloud.google.com/cloud-build/triggers/add
+#
+#     add name like "BuildDeploy" and description, like "Build & Deploy"
+#       Event: Push new tag
+#       Source: Regex
+#       - ^release-.*                     matches tags starting with release-
+#       - ^v\d+\.\d+(\.\d+([.-]\w+)?)?$   matches tags like v1.0.3-beta
+#       Build configuration: Cloud Build-Konfigurationsdatei
+#
+# 3. activate App Engine Admin API here:
+#
+# https://console.developers.google.com/apis/api/appengine.googleapis.com/overview
+#
+# 4. allow AppEngine Deployment here:
+#
+# https://console.cloud.google.com/cloud-build/settings
+#
+# 5. Modify project Submodules
+#
+# for private Repos:
+#     git config -f .gitmodules submodule.appengine/server.url https://source.developers.google.com/p/$PROJECT_ID/r/bitbucket_mausbrand-server
+# for public Repos:
+#     use https urls
+#     git config -f .gitmodules submodule.sources/less/ignite.url https://github.com/viur-framework/ignite.git
+#
+
+steps:
+  #retrieve sources
+  - name: 'gcr.io/cloud-builders/git'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        git config -f .gitmodules submodule.deploy/server.url https://github.com/viur-framework/server.git
+        git config -f .gitmodules submodule.vi.url https://github.com/viur-framework/vi.git
+		# more might follow here from step (5) above!
+
+        git submodule update --init --recursive
+
+  #build
+  - name: mausbrand/viur-build:latest
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        mkdir -p /workspace/appengine/vi
+        /pip-requirements.sh
+        /buildvi.sh
+        /gulp.sh
+        #cd /workspace/deploy/pyodide-app && ./get-pyodide.py
+
+  #deploy
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - -c
+      - |
+        gcloud app deploy \
+          ./appengine/app.yaml \
+          --project=$PROJECT_ID \
+          --version=gcb-$SHORT_SHA-$(echo $TAG_NAME | sed 's/[.]/-/g') \
+          --no-promote
