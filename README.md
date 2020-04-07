@@ -27,13 +27,13 @@ The script will also initialize and update the submodules and disconnect the rep
 python clean-base.py
 ```
 
-When finished, your repository is disconnected from [base](https://github.com/viur-framework/base) as its origin, and can be configured to point to another origin where your new project lives in future. It still contains the full history of the base repository. This might be wanted - if not, make `rm -rf .git` to drop the entire history and start over setting up a clean project with `git init`.
+When finished, your repository is disconnected from [base](https://github.com/viur-framework/base) as its origin, and can be configured to point to another origin where your new project will live from now on. It still contains the full history of the base repository. If you do not want that, do `rm -rf .git` to drop the entire history and start over setting up a clean project with `git init`.
 
 ---
 
 ### Switch sub-modules to SSH
 
-Especially in ViUR development projects or for customer projects created at [Mausbrand](https://www.mausbrand.de/en) that are heavily involved in changes to server and vi, it is necessary to change the HTTPS submodules to SSH. This can easily be done for all submodules and their submodules with these few commands:
+Especially in ViUR development projects or for customer projects created at [Mausbrand](https://www.mausbrand.de/en) that are heavily dependend on changes to server and vi, it is necessary to change the HTTPS submodules to SSH. This can easily be done for all submodules and their submodules with these few commands:
 
 ```bash
 # change server
@@ -60,7 +60,7 @@ popd
 
 ## Contributing
 
-We take a great interest in your opinion about ViUR. We appreciate your feedback and are looking forward to hear about your ideas. Share your visions or questions with us and participate in ongoing discussions.
+We take great interest in your opinion about ViUR. We appreciate your feedback and are looking forward to hear about your ideas. Share your vision or questions with us and participate in ongoing discussions.
 
 - [ViUR website](https://www.viur.dev)
 - [#ViUR on freenode IRC](https://webchat.freenode.net/?channels=viur)
