@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -ex
 project=$1
 
