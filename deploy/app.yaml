@@ -3,46 +3,33 @@ instance_class: F1
 default_expiration: "30s"
 
 handlers:
-- url: /vi/s/pyodide/(.*\.wasm)$
-  static_files: viur/vi/pyodide/\1
-  upload: viur/vi/pyodide/.*\.wasm$
-  mime_type: application/wasm
+
+# For a local Pyodide installation, activate below and run get-pyodide.py from project root.
+#- url: /pyodide/(.*\.wasm)$
+#  static_files: pyodide/\1
+#  upload: pyodide/.*\.wasm$
+#  mime_type: application/wasm
+#- url: /pyodide
+#  static_dir: pyodide
+
+# Activate when vi_plugins should be enabled (order of the handlers matter!)
+#- url: /vi/s/vi_plugins
+#  static_dir: vi_plugins
 - url: /vi/s
   static_dir: viur/vi
-- url: /vi_plugins/s
-  static_dir: vi_plugins
 - url: /static
   static_dir: static
 - url: /resources
   static_dir: viur/core/resources
-#- url: /_tasks
-#  script: {{app_id}}.application
-#- url: /admin/user/getAuthMethod
-#  script: {{app_id}}.application
-#- url: /admin/.*
-#  script: {{app_id}}.application
-#- url: /vi.*
-#  script: {{app_id}}.application
 - url: /favicon.ico
   static_files: static/meta/favicon.ico
   upload: favicon.ico
 - url: /robots.txt
   static_files: static/meta/robots.txt
   upload: robots.txt
-#- url: /.*
-#  script: {{app_id}}.application
-
-#libraries:
-#- name: jinja2
-#  version: latest
-#- name: pytz
-#  version: latest
 
 inbound_services:
 - warmup
-
-#builtins:
-#- deferred: on
 
 env_variables:
   GOOGLE_APPLICATION_CREDENTIALS: "store_credentials.json"

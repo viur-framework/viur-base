@@ -5,7 +5,7 @@
 
 .idea
 
-deploy/viur/vi/pyodide
+deploy/pyodide
 node_modules
 
 deploy/store_credentials.json
