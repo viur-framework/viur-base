@@ -17,3 +17,21 @@ indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
+
+[{*.pyw,*.py}]
+# Codestyle
+ij_python_align_multiline_imports = true
+ij_python_blank_lines_after_imports = 1
+ij_python_blank_lines_after_local_imports = 0
+ij_python_from_import_new_line_after_left_parenthesis = false
+ij_python_from_import_new_line_before_right_parenthesis = false
+ij_python_from_import_parentheses_force_if_multiline = false
+ij_python_from_import_trailing_comma_if_multiline = false
+ij_python_from_import_wrapping = 1
+# Optimize Imports
+ij_python_optimize_imports_always_split_from_imports = false
+ij_python_optimize_imports_case_insensitive_order = false
+ij_python_optimize_imports_join_from_imports_with_same_source = true
+ij_python_optimize_imports_sort_by_type_first = true
+ij_python_optimize_imports_sort_imports = true
+ij_python_optimize_imports_sort_names_in_from_imports = true

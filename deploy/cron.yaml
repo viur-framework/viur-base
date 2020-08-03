@@ -1,4 +1,4 @@
 cron:
 - description: Task trigger
-  url: /_tasks
+  url: /_tasks/cron
   schedule: every 4 hours

@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
-from viur.core import tasks, exposed, errors, utils, conf, request
+import datetime
+import json
+import logging
+
+from viur.core import conf, exposed, request
 from viur.core.render.html import default as default_render
+from viur.core.utils import currentRequest
+
 
 # from google.appengine.api import urlfetch, app_identity
 
-import json, logging, datetime
-#import httplib #fixme ViUR3 port
+
+# import httplib #fixme ViUR3 port
 
 
 class index(object):
@@ -20,11 +26,11 @@ class index(object):
 
 	@exposed
 	def sitemap_xml(self, *args, **kwargs):
-		request.current.get().response.headers["Content-Type"] = "text/xml"
+		currentRequest.get().response.headers["Content-Type"] = "text/xml"
 		return self.render.view({}, tpl="sitemap")
 
-	#@tasks.PeriodicTask(24 * 60)
-	def backup(self, *args, **kwargs): #FIXME
+	# @tasks.PeriodicTask(24 * 60)
+	def backup(self, *args, **kwargs):  # FIXME
 		"""
 		Backup job kick-off for Google Cloud Storage.
 
