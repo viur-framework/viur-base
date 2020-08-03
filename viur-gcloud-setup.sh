@@ -1,5 +1,4 @@
 #!/bin/bash
-set -ex
 project=$1
 
 if [ -z "$project" ]
@@ -7,6 +6,22 @@ then
 	echo "Usage: $0 PROJECT_ID"
 	exit 1
 fi
+
+echo "##############################################################"
+echo "# Please check and confirm that your project is created and  #"
+echo "# connected with a billing account in Google Cloud console.  #"
+echo "# Otherwise, some of the following calls may fail.           #"
+echo "##############################################################"
+echo "Continue? [Y/n]"
+read Y
+
+if [[ ! ( "$Y" = "y" || "$Y" = "Y" || -z "$Y" ) ]]
+then
+  	echo "User aborted."
+  	exit 1
+fi
+
+set -ex
 
 gcloud app create --project=$project --region=europe-west3
 
@@ -21,7 +36,7 @@ gcloud services enable --project=$project cloudtasks.googleapis.com
 
 # Google Cloud Storage
 
-gsutil uniformbucketlevelaccess set on gs://$project.appspot.com/ 
+gsutil uniformbucketlevelaccess set on gs://$project.appspot.com/
 
 cat <<ENDL >cors$$.json
 [
@@ -44,7 +59,7 @@ ENDL
 gsutil cors set cors$$.json gs://$project.appspot.com
 rm cors$$.json
 
-# Deploy
+# Deployment of cron, queue and index settings
 
 pushd deploy
 for yaml in cron.yaml queue.yaml index.yaml

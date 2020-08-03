@@ -93,7 +93,7 @@ else:
 sys.stdout.write("Downloading Pyodide...")
 sys.stdout.flush()
 
-subprocess.check_output("cd deploy/viur/vi && ./get-pyodide.py", shell=True)
+subprocess.check_output("./get-pyodide.py", shell=True)
 
 print("Done")
 
