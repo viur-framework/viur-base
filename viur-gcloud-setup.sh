@@ -23,8 +23,10 @@ fi
 
 set -ex
 
+# Create the app engine app
 gcloud app create --project=$project --region=europe-west3
 
+# Configure service account and IAM policies
 for role in roles/editor roles/iam.serviceAccountTokenCreator roles/storage.objectAdmin
 do
 	gcloud projects add-iam-policy-binding $project --member serviceAccount:$project@appspot.gserviceaccount.com --role $role
@@ -32,10 +34,13 @@ done
 
 gcloud iam service-accounts keys create deploy/store_credentials.json --iam-account=$project@appspot.gserviceaccount.com
 
-gcloud services enable --project=$project cloudtasks.googleapis.com
+# Activate APIs and Services
+for service in cloudtasks.googleapis.com iamcredentials.googleapis.com
+do
+	gcloud services enable --project=$project $service
+done
 
-# Google Cloud Storage
-
+# Configure Google Cloud Storage
 gsutil uniformbucketlevelaccess set on gs://$project.appspot.com/
 
 cat <<ENDL >cors$$.json
