@@ -12,9 +12,9 @@
 					{{ SkelView(skel) }}
 
 					<div>
-						<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel.key }}">View</a>
-						<a class="btn btn--edit" href="/{{ moduleName() }}/edit/{{ skel.key }}">Edit</a>
-						<a class="btn btn--danger" href="/{{ moduleName() }}/view/{{ skel.key }}?style=delete">Delete</a>
+						<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel["key"] }}">View</a>
+						<a class="btn btn--edit" href="/{{ moduleName() }}/edit/{{ skel["key"] }}">Edit</a>
+						<a class="btn btn--danger" href="/{{ moduleName() }}/view/{{ skel["key"] }}?style=delete">Delete</a>
 					</div>
 				</li>
 			{% endfor %}

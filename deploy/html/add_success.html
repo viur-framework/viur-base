@@ -11,14 +11,14 @@
 {% from "macros/skelview.html" import SkelView %}
 
 {% block content %}
-	<h1 class="headline">{{ moduleName() }}: Entry {{ skel.key }} successfully created</h1>
+	<h1 class="headline">{{ moduleName() }}: Entry {{ skel["key"] }} successfully created</h1>
 
 	<div class="msg msg--success is-active">
 		{{ embedSvg("icon-check") }}
 		<div class="msg-content">
 			<h3 class="msg-headline">Entry has been successfully created!</h3>
 			<p>
-				<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel.key }}">
+				<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel["key"] }}">
 					View entry
 				</a>
 			</p>

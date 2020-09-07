@@ -2,7 +2,7 @@
 {% from "macros/skelview.html" import SkelView %}
 
 {% block content %}
-	<h1 class="headline">Delete entry {{ skel.key }} from {{ moduleName() }}</h1>
+	<h1 class="headline">Delete entry {{ skel["key"] }} from {{ moduleName() }}</h1>
 
 	<form method="POST" action="/{{ moduleName() }}/delete">
 		<p>
@@ -10,7 +10,7 @@
 		</p>
 
 		{{ SkelView(skel) }}
-		<input type="hidden" name="key" value="{{ skel.key }}">
+		<input type="hidden" name="key" value="{{ skel["key"] }}">
 		<input type="hidden" name="skey" value="{{ getSecurityKey() }}">
 
 		<input type="submit" class="btn btn--danger" value="Yes">

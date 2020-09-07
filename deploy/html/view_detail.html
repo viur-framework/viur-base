@@ -12,6 +12,6 @@
 	{{ SkelView(skel, drillDepth=99, drillFull=True, options={"showHidden": True, "keyLink": "/$(module)/view/$(key)?style=detail"}) }}
 
 	<div>
-		<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel.key }}">View</a>
+		<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel["key"] }}">View</a>
 	</div>
 {% endblock %}

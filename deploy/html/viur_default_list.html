@@ -22,8 +22,8 @@
 		<section id="{{ module }}-list" class="skellist">
 			<ul>
 				{%- for skel in skellist %}
-					<li id="view-{{ skel.key|shortKey }}"> {# use view-IDs for anchor navigation #}
-						<a href="/{{ lang }}/{{ module }}/view/{{ skel.key|shortKey }}/{{ skel.name|string|urlencode }}">
+					<li id="view-{{ skel["key"]|shortKey }}"> {# use view-IDs for anchor navigation #}
+						<a href="/{{ lang }}/{{ module }}/view/{{ skel["key"]|shortKey }}/{{ skel.name|string|urlencode }}">
 							<h2>{{ skel.name }}</h2>
 							<div class="txt">
 								{% if skel.teaser %}

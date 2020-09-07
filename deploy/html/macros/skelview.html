@@ -284,7 +284,7 @@ options={"keyLink": "/$(module)/view/$(key)?style=raw"}
     {% endif %}
 
     {% if module not in structures.keys() %}
-        {% do structures.update({module: getSkel(module, skel=skelType)}) %}
+        {% do structures.update({module: getStructure(module, skel=skelType)}) %}
     {% endif %}
 
     <ul class="{{ cssBaseClass }} {{ "level-%d" % level }}">

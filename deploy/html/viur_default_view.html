@@ -4,7 +4,7 @@
 {% endif %}
 
 {%- set pageContent=module+"-view view" %}
-{%- set completeUrl=module+"/view/"+skel.key|shortKey+"/"+skel.name|string|urlencode %}
+{%- set completeUrl=module+"/view/"+skel["key"]|shortKey+"/"+skel.name|string|urlencode %}
 
 {%- set activeItem=skel.name|string|urlencode %}
 {# use activeItem to highlight active menu items #}
