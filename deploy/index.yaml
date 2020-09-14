@@ -5,6 +5,16 @@ indexes:
   - name: weak
   - name: creationdate
 
+- kind: file
+  properties:
+  - name: parententry
+  - name: sortindex
+
+- kind: file_rootNode
+  properties:
+  - name: parententry
+  - name: sortindex
+
 - kind: viur-relations
   properties:
   - name: dest.__key__
