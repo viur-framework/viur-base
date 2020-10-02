@@ -1,3 +1,4 @@
+# last updated 02.10.2020
 # 1. clone main repository and all private submodules:
 #
 #     https://source.cloud.google.com/
@@ -44,7 +45,7 @@ steps:
         git submodule update --init --recursive
 
   #build
-  - name: mausbrand/viur-build:latest
+  - name: viur/viur-build:latest
     entrypoint: bash
     args:
       - '-c'
