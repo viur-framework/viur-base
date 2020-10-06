@@ -4,7 +4,7 @@ google-cloud-redis==0.3.0
 google-cloud-logging==1.11.0
 google-cloud-storage==1.25.0
 google-cloud-tasks==2.0.0
-google-auth==1.18.0
+google-auth==1.21.1
 
 jinja2==2.11.0
 webob==1.8.6
