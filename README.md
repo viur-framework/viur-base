@@ -1,7 +1,5 @@
 # ViUR base
 
-**WARNING: THIS IS AN UNSTABLE PYTHON3 / PYODIDE PORT, WORK IN PROGRESS!**
-
 **viur-base** provides a basic ViUR project structure.
 
 This is the best place to start a new ViUR 3 project from!
