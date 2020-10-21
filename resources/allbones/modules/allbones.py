@@ -1,13 +1,6 @@
-"""
-This is only a test module that generates bones in any valid configurations.
-
-It is used for Vi testing and development. Copy it into the deploy/modules
-folder of your ViUR project and use it.
-"""
-
 import json, logging, urllib
 
-from skeletons.asset import CoordRelSkel
+from skeletons.allbones import StringRelSkel
 from viur.core.bones import *
 from viur.core.prototypes import List
 from viur.core.skeleton import RelSkel
