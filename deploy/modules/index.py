@@ -21,6 +21,13 @@ class index(object):
 
 	@exposed
 	def index(self, *args, **kwargs):
+		"""
+		The first two lines of code here ensure that requesting a non-existent module or template will throw a 404
+		instead of referring to index. Remove them if you wish to alter this behaviour.
+		"""
+		if len(args) >= 1:
+			raise errors.NotFound()
+		
 		template = self.render.getEnv().get_template("index.html")
 		return template.render(start=True)
 
