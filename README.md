@@ -9,15 +9,18 @@ This is the best place to start a new ViUR 3 project from!
 ## Usage
 
 To setup your new ViUR project, perform these steps:
+You need to create a Gcloud-Project first:  https://console.cloud.google.com/projectcreate
+You have to have Git, python3, python3-requests and GCloud-SDK installed
+
 
 1. `git clone https://github.com/viur-framework/viur-base.git YOUR-PROJECT`
 2. `cd YOUR-PROJECT`
-3. `git checkout viur3`
-4. `./clean-base.py -A YOUR-APP-ID`
-5. `./viur-gcloud-setup.sh YOUR-APP-ID` (this step will be improved later!)
+3. `./clean-base.py -A YOUR-APP-ID`
+4. `./viur-gcloud-setup.sh YOUR-APP-ID` (this step will be improved later!)
 
 
 When finished, your repository is disconnected from [viur-base](https://github.com/viur-framework/viur-base) as its origin, and can be configured to point to another origin where your new project lives in future. It still contains the full history of the base repository. This might be wanted or not. Do `find . -name .git -exec rm -rf {} \;` to drop the entire history and start over setting up a clean project with `git init`.
+
 
 ---
 
