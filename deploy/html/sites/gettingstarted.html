@@ -136,7 +136,7 @@ class Person(List):
   &lt;ul&gt;
     &#123;% for skel in skellist %&#125;
       &lt;li&gt;
-        &lt;a href="/person/view/&#123;&#123;skel.key&#125;&#125;">&#123;&#123;skel.name&#125;&#125;&lt;/a&gt; is &#123;&#123;skel.age&#125;&#125; year&#123;&#123;"s" if skel.age != 1 &#125;&#125; old
+        &lt;a href="/person/view/&#123;&#123;skel['key']&#125;&#125;">&#123;&#123;skel['name']&#125;&#125;&lt;/a&gt; is &#123;&#123;skel['age']&#125;&#125; year&#123;&#123;"s" if skel['age'] != 1 &#125;&#125; old
       &lt;/li&gt;
     &#123;% endfor %&#125;
   &lt;/ul&gt;
@@ -148,11 +148,11 @@ class Person(List):
 &#123;% extends "viur_base.html" %&#125;
 
 &#123;% block content %&#125;
-  &lt;h1&gt;&#123;&#123;skel.name&#125;&#125;&lt;/h1&gt;
-  &lt;strong&gt;Entity:&lt;/strong&gt; &#123;&#123;skel.key&#125;&#125;&lt;br&gt;
-  &lt;strong&gt;Age:&lt;/strong&gt; &#123;&#123;skel.age&#125;&#125;&lt;br&gt;
-  &lt;strong&gt;Created at: &lt;/strong&gt; &#123;&#123;skel.creationdate.strftime("%Y-%m-%d %H:%M")&#125;&#125;&lt;br&gt;
-  &lt;strong&gt;Modified at: &lt;/strong&gt; &#123;&#123;skel.changedate.strftime("%Y-%m-%d %H:%M")&#125;&#125;
+  &lt;h1&gt;&#123;&#123;skel['name']&#125;&#125;&lt;/h1&gt;
+  &lt;strong&gt;Entity:&lt;/strong&gt; &#123;&#123;skel['key']&#125;&#125;&lt;br&gt;
+  &lt;strong&gt;Age:&lt;/strong&gt; &#123;&#123;skel['age']&#125;&#125;&lt;br&gt;
+  &lt;strong&gt;Created at: &lt;/strong&gt; &#123;&#123;skel["creationdate"].strftime("%Y-%m-%d %H:%M")&#125;&#125;&lt;br&gt;
+  &lt;strong&gt;Modified at: &lt;/strong&gt; &#123;&#123;skel["changedate"].strftime("%Y-%m-%d %H:%M")&#125;&#125;
 &#123;% endblock %&#125;
 </pre>
 	<br>
