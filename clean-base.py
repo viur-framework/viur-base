@@ -18,15 +18,26 @@ except:
 
 ap = argparse.ArgumentParser(
 	description="Setting up a clean ViUR project base.",
-	epilog="The script runs interactively if not command-line arguments are passed.")
+	epilog="The script runs interactively if not command-line arguments are passed."
+)
 
-ap.add_argument("-A", "--app_id", type=str, help="The application-id that should be replaced in the arbitrary places.")
-ap.add_argument("-a", "--author", type=str, default=whoami, help="The author's name that is placed in arbitrary places.")
+ap.add_argument(
+	"-A", "--app_id",
+	type=str,
+	help="The application-id that should be replaced in the arbitrary places."
+)
+ap.add_argument(
+	"-a", "--author",
+	type=str,
+	default=whoami,
+	help="The author's name that is placed in arbitrary places."
+)
 
 args = ap.parse_args()
 
 app_id = args.app_id
 whoami = args.author
+update = True  # this might be changed by command-line flag later on
 
 if args.app_id is None:
 	prompt = f"Enter Author Name (leave empty to default to {whoami}): "
@@ -75,26 +86,37 @@ for file_obj in file_list:
 # Update submodules
 
 if os.path.exists(".git"):
-	print("Downloading submodules")
-	subprocess.check_output("git submodule init && git submodule update", shell=True)
-	subprocess.check_output("cd deploy/viur/vi && git submodule init && git submodule update", shell=True)
+	print("Initializing and updating submodules")
+	subprocess.check_output("git submodule update --init --recursive", shell=True)
+	print("---")
+
+	if update:
+		print("Updating viur/core to latest master")
+		subprocess.check_output(
+			"cd deploy/viur/core && git checkout master && git pull && git submodule update --recursive",
+			shell=True
+		)
+		print("---")
+
+		print("Updating viur/vi to latest master")
+		subprocess.check_output(
+			"cd deploy/viur/vi && git checkout master && git pull && git submodule update --recursive",
+			shell=True
+		)
+		print("---")
 
 	print("Removing .git tether")
 	try:
 		subprocess.check_output("git remote rm origin", shell=True)
-		print(".git remote tether removed")
+		print("---")
 	except:
 		pass
-else:
-	print(".git tether already removed")
-
 
 # Update pyodide
-sys.stdout.write("Downloading Pyodide...")
+sys.stdout.write("Installing self-hosted Pyodide...")
 sys.stdout.flush()
 
 subprocess.check_output("./get-pyodide.py", shell=True)
-
 print("Done")
 
 # Generate files
@@ -110,4 +132,5 @@ os.rename("viur-project.md", "README.md")
 os.remove(sys.argv[0])
 
 print("Done")
-
+print("---")
+print("All done, have fun!")
