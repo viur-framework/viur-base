@@ -1,4 +1,5 @@
 # ViUR requirements
+safeeval==0.0.5
 google-cloud-datastore==1.10.0
 google-cloud-redis==0.3.0
 google-cloud-logging==1.11.0
@@ -8,10 +9,12 @@ google-auth==1.21.1
 
 jinja2==2.11.0
 webob==1.8.6
-pillow==7.0.0
+pillow==8.0.1
 urlfetch==1.1.3
+
+webob==1.8.6
+gunicorn==20.0
 
 # Project requirements
 #cryptography==2.8.0
 #pyjwt==1.7.1
-
