@@ -3,7 +3,7 @@ import datetime
 import json
 import logging
 
-from viur.core import conf, exposed, request
+from viur.core import conf, exposed, request, errors
 from viur.core.render.html import default as default_render
 from viur.core.utils import currentRequest
 
@@ -25,9 +25,9 @@ class index(object):
 		The first two lines of code here ensure that requesting a non-existent module or template will throw a 404
 		instead of referring to index. Remove them if you wish to alter this behaviour.
 		"""
-		if args or kwargs:
+		if len(args) > 1 or kwargs:
 			raise errors.NotFound()
-		
+
 		template = self.render.getEnv().get_template("index.html")
 		return template.render(start=True)
 

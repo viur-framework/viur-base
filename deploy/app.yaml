@@ -1,17 +1,27 @@
 runtime: python37
 
-# (1) Under some circumstances, you need to set a higher instance_class, like F2 or F4.
-#     Unfortunatelly, this will increase App Engine cost, see https://cloud.google.com/appengine/pricing.
+# (1) Under some circumstances, you need to set a higher instance_class,
+#     like F2 or F4. Unfortunatelly, this will increase App Engine cost,
+#     see https://cloud.google.com/appengine/pricing.
 instance_class: F1
 default_expiration: "30s"
 
-# (2) To get more memory and concurrent requests, a separate gunicorn must be run.
+# (2) To get more memory and concurrent requests, a separate gunicorn is run.
 entrypoint: gunicorn -b :$PORT -w 1 --threads 2 --disable-redirect-access-to-syslog main:app
 automatic_scaling:
   max_concurrent_requests: 2
 
+
+# (3) Limited scaling is default, to keep frontend instance hours low.
+#     Please change these values on your demands.
+automatic_scaling:
+  max_concurrent_requests: 2
+  max_instances: 1
+  max_idle_instances: 1
+
+
 handlers:
-# (3) For a local Pyodide installation, activate below and run get-pyodide.py from project root.
+# (4) For a local Pyodide installation, activate below and run get-pyodide.py from project root.
 #     Leave the comments to use the CDN-version of Pyodide, which also runs very well.
 #- url: /pyodide/(.*\.wasm)$
 #  static_files: pyodide/\1
@@ -20,7 +30,7 @@ handlers:
 #- url: /pyodide
 #  static_dir: pyodide
 
-# (4) Activate this when vi_plugins should be used
+# (5) Activate this when vi_plugins should be used
 #- url: /vi/s/vi_plugins
 #  static_dir: vi_plugins
 
