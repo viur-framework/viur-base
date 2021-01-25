@@ -6,52 +6,38 @@ This is the best place to start a new ViUR 3 project from!
 
 ---
 
+## Prerequisites
+
+Before you start, please check out the following prerequisites:
+
+1. Create a new Google Cloud project [here](https://console.cloud.google.com/projectcreate) and activate billing
+2. `git` and `python3` with `python3-requests` is installed
+3. [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) with `app-engine-python` and `app-engine-python-extras` components is installed (see [here](https://docs.viur.dev/latest/start.html#prerequisites) for further help)
+
+---
+
 ## Usage
 
-To setup your new ViUR project, perform these steps:
-You need to create a Gcloud-Project first:  https://console.cloud.google.com/projectcreate
-You have to have Git, python3, python3-requests and GCloud-SDK installed
+To setup your new ViUR project, check and perform these steps:
 
+3. `git clone https://github.com/viur-framework/viur-base.git YOUR-PROJECT`
+4. `cd YOUR-PROJECT`
+5. `./clean-base.py -A YOUR-APP-ID`
+6. `./viur-gcloud-setup.sh YOUR-APP-ID` (this step will be improved later!)
 
-1. `git clone https://github.com/viur-framework/viur-base.git YOUR-PROJECT`
-2. `cd YOUR-PROJECT`
-3. `./clean-base.py -A YOUR-APP-ID`
-4. `./viur-gcloud-setup.sh YOUR-APP-ID` (this step will be improved later!)
-
-
-When finished, your repository is disconnected from [viur-base](https://github.com/viur-framework/viur-base) as its origin, and can be configured to point to another origin where your new project lives in future. It still contains the full history of the base repository. This might be wanted or not. Do `find . -name .git -exec rm -rf {} \;` to drop the entire history and start over setting up a clean project with `git init`.
-
+You can then start your project locally with `./local_run.sh` or deploy it with `gcloud app deploy`.
+See the [documentation](https://docs.viur.dev/latest/start.html#first-startup) for further help.
 
 ---
 
-### Switch sub-modules to SSH
+## Clean git history
 
-**WARNING: Not updated to ViUR 3 right now!!!**
-
-Especially in ViUR development projects or for customer projects created at [Mausbrand](https://www.mausbrand.de/en) that are heavily involved in changes to server and vi, it is necessary to change the HTTPS submodules to SSH. This can easily be done for all submodules and their submodules with these few commands:
+It is recommended to clean the git history before you push your new project to a remote git repository. This can easily be done with
 
 ```bash
-# change server
-pushd deploy/server
-git remote set-url origin git@github.com:viur-framework/server.git
-popd
-
-# change vi
-pushd vi
-git remote set-url origin git@github.com:viur-framework/vi.git
-cd html5
-git remote set-url origin git@github.com:viur-framework/html5.git
-cd ../public/icons
-git remote set-url origin git@github.com:viur-framework/icons.git
-popd
-
-# change ignite
-pushd sources/less/ignite
-git remote set-url origin git@github.com:viur-framework/ignite.git
-popd
+$ git checkout --orphan main  # create new orphaned branch with empty history
+$ git branch -D master  # remove old viur-base master
 ```
-
----
 
 ## Contributing
 
@@ -74,8 +60,9 @@ Help of any kind to extend and improve or enhance this project in any kind or wa
 
 ## License
 
-Copyright (C) 2012-2020 by Mausbrand Informationssysteme GmbH.
+Copyright (C) 2012-2021 by Mausbrand Informationssysteme GmbH.
 
 Mausbrand and ViUR are registered trademarks of Mausbrand Informationssysteme GmbH.
 
-You may use, modify and distribute this software under the terms and conditions of the GNU Lesser General Public License (LGPL). See the file LICENSE provided within this package for more information.
+You may use, modify and distribute this software under the terms and conditions of the GNU Lesser General Public License (LGPL).
+See the file LICENSE provided within this package for more information.

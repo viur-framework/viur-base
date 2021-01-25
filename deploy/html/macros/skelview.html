@@ -124,7 +124,7 @@ options={"keyLink": "/$(module)/view/$(key)?style=raw"}
 								{{val.descr or val|string}}{{", " if not loop.last}}
 							{% endfor %}
                         {% elif structure[step]["type"] == "bool" %}
-                            {{ _("Yes") if value else _("No") }}
+                            {{ ("Yes") if value else ("No") }}
                         {% elif structure[step]["type"] == "date" %}
                             {% if value %}
                                 {% if structure[step]["date"] and structure[step]["time"] %}
