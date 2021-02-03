@@ -47,5 +47,3 @@ handlers:
 inbound_services:
 - warmup
 
-env_variables:
-  GOOGLE_APPLICATION_CREDENTIALS: "store_credentials.json"
