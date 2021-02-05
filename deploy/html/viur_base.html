@@ -87,7 +87,7 @@
 	<article class="wrap">
 		<div class="bind flex">
 
-			<article class="content {{pageContent}}" role="main"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
+			<div class="content {{pageContent}}" role="main"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
 				<header>
 					{% block header %}
 						{# put your header here #}
@@ -117,14 +117,13 @@
 				{% block content %}
 					{# put your content here #}
 				{% endblock content %}
-			</article><!-- content -->
 
-			<footer>
-				{% block footer %}
-					{# put your footer here #}
-				{% endblock footer %}
-			</footer>
-
+				<footer>
+					{% block footer %}
+						{# put your footer here #}
+					{% endblock footer %}
+				</footer>
+			</div><!-- content -->
 		</div>
 	</article>
 
