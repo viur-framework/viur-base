@@ -83,43 +83,45 @@
 
 	</head>
 	<body>
-		<header>
-			{% block header %}
-				{# put your header here #}
-				<nav class="bar">
-					<div class="bar-group bar-group--left bar-group--nav">
-						<a class="bar-link" href="https://docs.viur.is/latest/start.html" target="_blank">Documentation</a>
-					</div>
-					<div class="bar-group bar-group--center bar-group--nav">
-						<div class="bar-item">
-							<a class="github-button" href="https://github.com/viur-framework/server" data-icon="octicon-star" data-show-count="true" aria-label="Star viur-framework/server on GitHub">Star</a>
-						</div>
-						<div class="bar-item">
-							<a class="github-button" href="https://github.com/viur-framework/server/subscription" data-icon="octicon-eye" data-show-count="true" aria-label="Watch viur-framework/server on GitHub">Watch</a>
-						</div>
-					</div>
-					<div class="bar-group bar-group--right bar-group--nav">
-						<a class="bar-link" href="{{ getHostUrl() }}/">Welcome</a>
-						<a class="bar-link" href="{{ getHostUrl() }}/s/gettingstarted">Getting started</a>
-						<a class="bar-link" href="{{ getHostUrl() }}/vi">Vi</a>
-					</div>
-				</nav>
-			{% endblock header %}
-		</header>
 		<div class="wrap">
 			<div class="bind flex">
-				<main class="content {{pageContent}}"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
-		{% block content %}
-			{# put your content here #}
-		{% endblock content %}
-				</main><!-- content -->
+				<div class="content">
+					<header>
+						{% block header %}
+							{# put your header here #}
+							<nav class="bar">
+								<div class="bar-group bar-group--left bar-group--nav">
+									<a class="bar-link" href="https://docs.viur.is/latest/start.html" target="_blank">Documentation</a>
+								</div>
+								<div class="bar-group bar-group--center bar-group--nav">
+									<div class="bar-item">
+										<a class="github-button" href="https://github.com/viur-framework/server" data-icon="octicon-star" data-show-count="true" aria-label="Star viur-framework/server on GitHub">Star</a>
+									</div>
+									<div class="bar-item">
+										<a class="github-button" href="https://github.com/viur-framework/server/subscription" data-icon="octicon-eye" data-show-count="true" aria-label="Watch viur-framework/server on GitHub">Watch</a>
+									</div>
+								</div>
+								<div class="bar-group bar-group--right bar-group--nav">
+									<a class="bar-link" href="{{ getHostUrl() }}/">Welcome</a>
+									<a class="bar-link" href="{{ getHostUrl() }}/s/gettingstarted">Getting started</a>
+									<a class="bar-link" href="{{ getHostUrl() }}/vi">Vi</a>
+								</div>
+							</nav>
+						{% endblock header %}
+					</header>
+					<main class="{{pageContent}}"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
+			{% block content %}
+				{# put your content here #}
+			{% endblock content %}
+					</main><!-- content -->
+					<footer>
+						{% block footer %}
+							{# put your footer here #}
+						{% endblock footer %}
+					</footer>
+				</div>
 			</div>
 		</div>
-		<footer>
-			{% block footer %}
-				{# put your footer here #}
-			{% endblock footer %}
-		</footer>
 		{% block additionalFooter %}
 			{# use additionalFooter for less important template specific JS or CSS file imports. #}
 			<script async defer src="https://buttons.github.io/buttons.js"></script>
