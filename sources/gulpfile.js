@@ -26,7 +26,7 @@ const postcss = require('gulp-postcss');
 const zindex = require('postcss-zindex');
 const focus = require('postcss-focus');
 const nocomments = require('postcss-discard-comments');
-const nano = require('gulp-cssnano');
+const cleancss = require('gulp-clean-css');
 const jmq = require('gulp-join-media-queries');
 const stylefmt = require('gulp-stylefmt');
 
@@ -53,7 +53,7 @@ gulp.task('css', () => {
 		.pipe(jmq())
 		.pipe(stylefmt()) // syntax formatting
 		.pipe(gulp.dest(destpaths.css)) // save cleaned version
-		.pipe(nano()) // minify css
+		.pipe(cleancss()) // minify css
 		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest(destpaths.css)); // save minified version
 });
