@@ -20,122 +20,112 @@
 {%- endif -%}
 
 <html>
-<head lang="{{ lang }}">
-	<meta charset="utf-8">
+	<head lang="{{ lang }}">
+		<meta charset="utf-8">
 
-	<!-- Herzlich willkommen bei-->
-	<meta name="twitter:title" content="{{ title }}">
-	<meta property="og:title" content="{{ title }}">
-	<title>{{ title }}</title>
+		<!-- Herzlich willkommen bei-->
+		<meta name="twitter:title" content="{{ title }}">
+		<meta property="og:title" content="{{ title }}">
+		<title>{{ title }}</title>
 
-	<!-- Descriptions -->
-	<meta name="description" lang="{{ lang }}" content="{{ metaDescr }}">
-	<meta name="twitter:description" content="{{ metaDescr }}">
-	<meta name="DC.Description" content="{{ metaDescr }}">
-	<meta property="og:description" content="{{ metaDescr }}">
-	<meta name="keywords" lang="{{ lang }}" content="{{ metaKeywords }}">
+		<!-- Descriptions -->
+		<meta name="description" lang="{{ lang }}" content="{{ metaDescr }}">
+		<meta name="twitter:description" content="{{ metaDescr }}">
+		<meta name="DC.Description" content="{{ metaDescr }}">
+		<meta property="og:description" content="{{ metaDescr }}">
+		<meta name="keywords" lang="{{ lang }}" content="{{ metaKeywords }}">
 
-	<!-- Diese Webseite ist ein viur Informationssystem. -->
-	<meta name="generator" content="www.viur.is">
-	<link type="text/plain" rel="author" href="/static/meta/humans.txt">
-	<meta name="author" content="Mausbrand Informationssysteme GmbH">{# FIXME! Insert page owner here. Will show up in open graph links. #}
+		<!-- Diese Webseite ist ein viur Informationssystem. -->
+		<meta name="generator" content="www.viur.is">
+		<link type="text/plain" rel="author" href="/static/meta/humans.txt">
+		<meta name="author" content="Mausbrand Informationssysteme GmbH">{# FIXME! Insert page owner here. Will show up in open graph links. #}
 
-	<meta name="robots" content="noindex, nofollow">
-	{# <meta name="robots" content="index, follow"> #}
+		<meta name="robots" content="noindex, nofollow">
+		{# <meta name="robots" content="index, follow"> #}
 
-	<meta property="og:type" content="website">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta property="og:type" content="website">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-	<!-- icons -->
-	<link rel="shortcut icon" href="/static/meta/favicon.png" type="image/png">
+		<!-- icons -->
+		<link rel="shortcut icon" href="/static/meta/favicon.png" type="image/png">
 
-	<!-- css -->
-	<link href="/static/css/style.min.css" rel="stylesheet">
+		<!-- css -->
+		<link href="/static/css/style.min.css" rel="stylesheet">
 
-	<!-- iPhone -->
-	<link href="/static/meta/apple-touch-icon-precomposed.png" sizes="57x57" rel="apple-touch-icon">
-	<link href="/static/meta/apple-touch-icon-precomposed.png" sizes="57x57" rel="apple-touch-icon-precomposed">
-	<link href="/static/meta/apple-touch-startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+		<!-- iPhone -->
+		<link href="/static/meta/apple-touch-icon-precomposed.png" sizes="57x57" rel="apple-touch-icon">
+		<link href="/static/meta/apple-touch-icon-precomposed.png" sizes="57x57" rel="apple-touch-icon-precomposed">
+		<link href="/static/meta/apple-touch-startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
 
-	<!-- iPhone (Retina) -->
-	<link href="/static/meta/apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon">
-	<link href="/static/meta/apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon-precomposed">
-	<link href="/static/meta/apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+		<!-- iPhone (Retina) -->
+		<link href="/static/meta/apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon">
+		<link href="/static/meta/apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+		<link href="/static/meta/apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 
-	<!-- iPhone 5 -->
-	<link href="/static/meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+		<!-- iPhone 5 -->
+		<link href="/static/meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 
-	<!-- iPad -->
-	<link href="/static/meta/apple-touch-icon-72x72-precomposed.png" sizes="72x72" rel="apple-touch-icon">
-	<link href="/static/meta/apple-touch-icon-72x72-precomposed.png" sizes="72x72" rel="apple-touch-icon-precomposed">
-	<link href="/static/meta/apple-touch-startup-image-768x1004.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-	<link href="/static/meta/apple-touch-startup-image-748x1024.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+		<!-- iPad -->
+		<link href="/static/meta/apple-touch-icon-72x72-precomposed.png" sizes="72x72" rel="apple-touch-icon">
+		<link href="/static/meta/apple-touch-icon-72x72-precomposed.png" sizes="72x72" rel="apple-touch-icon-precomposed">
+		<link href="/static/meta/apple-touch-startup-image-768x1004.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+		<link href="/static/meta/apple-touch-startup-image-748x1024.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
 
-	<!-- iPad (Retina) -->
-	<link href="/static/meta/apple-touch-icon-144x144-precomposed.png" sizes="144x144" rel="apple-touch-icon">
-	<link href="/static/meta/apple-touch-icon-144x144-precomposed.png" sizes="144x144" rel="apple-touch-icon-precomposed">
-	<link href="/static/meta/apple-touch-startup-image-1536x2008.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-	<link href="/static/meta/apple-touch-startup-image-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+		<!-- iPad (Retina) -->
+		<link href="/static/meta/apple-touch-icon-144x144-precomposed.png" sizes="144x144" rel="apple-touch-icon">
+		<link href="/static/meta/apple-touch-icon-144x144-precomposed.png" sizes="144x144" rel="apple-touch-icon-precomposed">
+		<link href="/static/meta/apple-touch-startup-image-1536x2008.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+		<link href="/static/meta/apple-touch-startup-image-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 
-	{% block additionalHead %}
-		{# use additionalHead for important template specific JS or CSS file imports. #}
-	{% endblock %}
+		{% block additionalHead %}
+			{# use additionalHead for important template specific JS or CSS file imports. #}
+		{% endblock %}
 
-</head>
-<body>
-
-	<article class="wrap">
-		<div class="bind flex">
-
-			<div class="content {{pageContent}}" role="main"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
-				<header>
-					{% block header %}
-						{# put your header here #}
-						<section class="section">
-							<nav class="bar">
-								<div class="bar-group bar-group--left bar-group--nav">
-									<a class="bar-link" href="https://docs.viur.is/latest/start.html" target="_blank">Documentation</a>
-								</div>
-								<div class="bar-group bar-group--center bar-group--nav">
-									<div class="bar-item">
-										<a class="github-button" href="https://github.com/viur-framework/server" data-icon="octicon-star" data-show-count="true" aria-label="Star viur-framework/server on GitHub">Star</a>
-									</div>
-									<div class="bar-item">
-										<a class="github-button" href="https://github.com/viur-framework/server/subscription" data-icon="octicon-eye" data-show-count="true" aria-label="Watch viur-framework/server on GitHub">Watch</a>
-									</div>
-								</div>
-								<div class="bar-group bar-group--right bar-group--nav">
-									<a class="bar-link" href="{{ getHostUrl() }}/">Welcome</a>
-									<a class="bar-link" href="{{ getHostUrl() }}/s/gettingstarted">Getting started</a>
-									<a class="bar-link" href="{{ getHostUrl() }}/vi">Vi</a>
-								</div>
-							</nav>
-						</section>
-					{% endblock header %}
-				</header>
-
-				{% block content %}
-					{# put your content here #}
-				{% endblock content %}
-
-				<footer>
-					{% block footer %}
-						{# put your footer here #}
-					{% endblock footer %}
-				</footer>
-			</div><!-- content -->
+	</head>
+	<body>
+		<header>
+			{% block header %}
+				{# put your header here #}
+				<nav class="bar">
+					<div class="bar-group bar-group--left bar-group--nav">
+						<a class="bar-link" href="https://docs.viur.is/latest/start.html" target="_blank">Documentation</a>
+					</div>
+					<div class="bar-group bar-group--center bar-group--nav">
+						<div class="bar-item">
+							<a class="github-button" href="https://github.com/viur-framework/server" data-icon="octicon-star" data-show-count="true" aria-label="Star viur-framework/server on GitHub">Star</a>
+						</div>
+						<div class="bar-item">
+							<a class="github-button" href="https://github.com/viur-framework/server/subscription" data-icon="octicon-eye" data-show-count="true" aria-label="Watch viur-framework/server on GitHub">Watch</a>
+						</div>
+					</div>
+					<div class="bar-group bar-group--right bar-group--nav">
+						<a class="bar-link" href="{{ getHostUrl() }}/">Welcome</a>
+						<a class="bar-link" href="{{ getHostUrl() }}/s/gettingstarted">Getting started</a>
+						<a class="bar-link" href="{{ getHostUrl() }}/vi">Vi</a>
+					</div>
+				</nav>
+			{% endblock header %}
+		</header>
+		<div class="wrap">
+			<div class="bind flex">
+				<main class="content {{pageContent}}"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
+		{% block content %}
+			{# put your content here #}
+		{% endblock content %}
+				</main><!-- content -->
+			</div>
 		</div>
-	</article>
-
-	{% block additionalFooter %}
-		{# use additionalFooter for less important template specific JS or CSS file imports. #}
-		<script async defer src="https://buttons.github.io/buttons.js"></script>
-	{% endblock %}
-
-
-	<!-- js -->
-	<script src="/static/js/jquery-3.2.1.min.js"></script>
-	<script src="/static/js/app.js"></script>
-
-</body>
+		<footer>
+			{% block footer %}
+				{# put your footer here #}
+			{% endblock footer %}
+		</footer>
+		{% block additionalFooter %}
+			{# use additionalFooter for less important template specific JS or CSS file imports. #}
+			<script async defer src="https://buttons.github.io/buttons.js"></script>
+		{% endblock %}
+		<!-- js -->
+		<script src="/static/js/jquery-3.2.1.min.js"></script>
+		<script src="/static/js/app.js"></script>
+	</body>
 </html>
