@@ -28,7 +28,7 @@ handlers:
 #  static_dir: pyodide
 
 # (5) Activate this when vi_plugins should be used
-#- url: /vi/s/vi_plugins
+#- url: /vi_plugins/s
 #  static_dir: vi_plugins
 
 - url: /vi/s
@@ -47,5 +47,3 @@ handlers:
 inbound_services:
 - warmup
 
-env_variables:
-  GOOGLE_APPLICATION_CREDENTIALS: "store_credentials.json"
