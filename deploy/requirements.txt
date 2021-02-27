@@ -2,7 +2,7 @@
 safeeval==0.0.5
 
 google-cloud-datastore==1.10.0
-google-cloud-logging==1.11.0
+google-cloud-logging==2.2.0
 google-cloud-storage==1.35.1
 google-cloud-tasks==2.0.0
 google-cloud-iam==2.1.0
