@@ -9,3 +9,4 @@ deploy/pyodide
 node_modules
 
 deploy/store_credentials.json
+storage
