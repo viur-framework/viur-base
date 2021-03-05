@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
 import datetime
 from typing import Dict, List
 
 from viur.core import db, utils
-from viur.core.modules.file import File
+from viur.core.modules.file import File as _File
 from viur.core.prototypes.tree import TreeType
 
 
-class file(File):
+class File(_File):
 
 	def getAvailableRootNodes(self, *args, **kwargs) -> List[Dict]:
 		if utils.getCurrentUser():

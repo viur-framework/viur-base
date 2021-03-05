@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import argparse
 import datetime
@@ -8,8 +7,6 @@ import os
 import subprocess
 import sys
 import time
-import urllib.request
-import zipfile
 
 try:
 	whoami = getpass.getuser()

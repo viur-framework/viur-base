@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-import os, sys, json, requests
+import json
+import os
+import sys
+
+import requests
 
 VERSION = "0.15.0"
 CDN = "https://pyodide-cdn2.iodide.io"
@@ -92,7 +95,7 @@ with open(file, "w") as f:
 		},
 		"import_name_to_package_name": {
 			"distlib": "distlib",
-			"setuptools":"setuptools",
+			"setuptools": "setuptools",
 			"micropip": "micropip"
 		}
 	}))
