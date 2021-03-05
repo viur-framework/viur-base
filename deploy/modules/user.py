@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-from viur.core.modules.user import User
+from viur.core.modules.user import User as _User
 
-class user(User):
+class User(_User):
 	pass

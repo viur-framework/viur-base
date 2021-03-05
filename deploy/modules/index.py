@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 import datetime
 import json
 import logging
 
-from viur.core import conf, exposed, request, errors
+from viur.core import conf, errors, exposed, request
 from viur.core.render.html import default as default_render
 from viur.core.utils import currentRequest
 
@@ -14,7 +13,7 @@ from viur.core.utils import currentRequest
 # import httplib #fixme ViUR3 port
 
 
-class index(object):
+class Index(object):
 
 	def __init__(self, *args, **kwargs):
 		self.render = default_render(self)
@@ -112,4 +111,4 @@ class index(object):
 			raise
 
 
-index.html = True
+Index.html = True

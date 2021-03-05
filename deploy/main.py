@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 #
 #                 iii
 #                iii
@@ -90,6 +89,3 @@ import modules, render
 
 #core.setDefaultLanguage("en") #set default language!
 app = core.setup(modules, render)
-
-if __name__ == "__main__":
-	core.run()

@@ -1,8 +1,8 @@
-#-*- coding: utf-8 -*-
-from viur.core.skeleton import Skeleton
 from viur.core.bones import *
+from viur.core.skeleton import Skeleton
 
-class exampleSkel(Skeleton):
+
+class ExampleSkel(Skeleton):
 	# Defaults
 	name = stringBone(
 		descr=u"Name",

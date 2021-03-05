@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
-#
 # This is the ViUR default module importer;
 # If any other importing logic is wanted, please switch to manual import calls in this file, and remove
 # the dynamic code provided below.
-#
 
-import os, logging
+import logging
+import os
+
 import viur.core.prototypes.basic
 
 _viurModules = {}
@@ -43,4 +42,5 @@ del _viurModules, _module, _import, _name, _symbol, os, logging, viur.core.proto
 # Manual imports can also be done here!
 #
 
+# noinspection PyUnresolvedReferences
 from viur.core.modules.site import Site as s
