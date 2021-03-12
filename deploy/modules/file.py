@@ -3,7 +3,6 @@ from typing import Dict, List
 
 from viur.core import db, utils
 from viur.core.modules.file import File as _File
-from viur.core.prototypes.tree import TreeType
 
 
 class File(_File):
@@ -25,5 +24,5 @@ class File(_File):
 		:returns: The entity of the root-node.
 		"""
 		key = "rep_module_repo"
-		kindName = self.viewSkel(TreeType.Node).kindName
+		kindName = self.viewSkel("node").kindName
 		return db.GetOrInsert(db.Key(kindName, key), creationdate=datetime.datetime.now(), rootNode=1)
