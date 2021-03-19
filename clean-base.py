@@ -111,9 +111,10 @@ if os.path.exists(".git"):
 	except:
 		pass
 
+# commented out, we are using pyodide from cdn
 # Update pyodide
-sys.stdout.write("Installing self-hosted Pyodide...")
-sys.stdout.flush()
+# sys.stdout.write("Installing self-hosted Pyodide...")
+# sys.stdout.flush()
 
 subprocess.check_output("./get-pyodide.py", shell=True)
 print("Done")
