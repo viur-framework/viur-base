@@ -32,7 +32,7 @@ handlers:
 #  static_dir: vi_plugins
 
 - url: /vi/s
-  static_dir: viur/vi
+  static_dir: vi
 - url: /static
   static_dir: static
 - url: /resources

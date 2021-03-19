@@ -90,14 +90,16 @@ if os.path.exists(".git"):
 	if update:
 		print("Updating viur/core to latest master")
 		subprocess.check_output(
-			"cd deploy/viur/core && git checkout master && git pull && git submodule update --recursive",
+			"cd deploy/viur && git checkout master && git pull && git submodule update --recursive",
 			shell=True
 		)
 		print("---")
 
-		print("Updating viur/vi to latest master")
+		print("Downloading latest viur/vi release")
 		subprocess.check_output(
-			"cd deploy/viur/vi && git checkout master && git pull && git submodule update --recursive",
+			"cd deploy && mkdir vi && cd vi && \
+			wget -P /tmp https://github.com/viur-framework/viur-vi/releases/latest/download/viur-vi.zip && \
+			unzip /tmp/viur-vi.zip",
 			shell=True
 		)
 		print("---")
