@@ -116,8 +116,8 @@ if os.path.exists(".git"):
 # sys.stdout.write("Installing self-hosted Pyodide...")
 # sys.stdout.flush()
 
-subprocess.check_output("./get-pyodide.py", shell=True)
-print("Done")
+# subprocess.check_output("./get-pyodide.py", shell=True)
+# print("Done")
 
 # Generate files
 
