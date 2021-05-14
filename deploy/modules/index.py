@@ -3,20 +3,15 @@ import json
 import logging
 
 from viur.core import conf, errors, exposed, request
-from viur.core.render.html import default as default_render
+from viur.core.prototypes import BasicApplication
 from viur.core.utils import currentRequest
 
 
 # from google.appengine.api import urlfetch, app_identity
-
-
 # import httplib #fixme ViUR3 port
 
 
-class Index(object):
-
-	def __init__(self, *args, **kwargs):
-		self.render = default_render(self)
+class Index(BasicApplication):
 
 	@exposed
 	def index(self, *args, **kwargs):
@@ -109,6 +104,3 @@ class Index(object):
 
 		except urlfetch.Error:
 			raise
-
-
-Index.html = True
