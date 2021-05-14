@@ -30,6 +30,8 @@ from viur.core.modules.file import thumbnailer
 # General configuration
 #
 
+conf["viur.validApplicationIDs"] = ["{{app_id}}"]
+
 #conf["viur.disableCache"] = True
 #conf["viur.debug.traceExternalCallRouting"] = True
 
