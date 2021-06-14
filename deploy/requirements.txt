@@ -1,21 +1,12 @@
 # ViUR requirements
-safeeval==0.0.5
-
-google-cloud-datastore==1.10.0
-google-cloud-logging==2.2.0
-google-cloud-storage==1.35.1
-google-cloud-tasks==2.0.0
-google-cloud-iam==2.1.0
-google-auth==1.21.1
-
-jinja2==2.11.3
-webob==1.8.6
-pillow==8.2.0
-urlfetch==1.1.3
-gunicorn==20.0.4
+-r viur/requirements.txt
 
 # Project requirements
-#google-cloud-kms==1.4.0
-#python-dateutil==2.8.1
-#cryptography==2.8.0
-#pyjwt==1.7.1
+# These may have to be hashed with the tool hashin.
+# More information about hashed dependencies can be found here:
+# https://www.peterbe.com/plog/bestest-python-dependencies
+
+# google-cloud-kms==1.4.0
+# python-dateutil==2.8.1
+# cryptography==2.8.0
+# pyjwt==1.7.1
