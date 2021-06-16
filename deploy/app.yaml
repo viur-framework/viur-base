@@ -20,9 +20,9 @@ automatic_scaling:
 handlers:
 # (4) For a local Pyodide installation, activate below and run get-pyodide.py from project root.
 #     Leave the comments to use the CDN-version of Pyodide, which also runs very well.
-#- url: /pyodide/(.*\.wasm)$
+#- url: /pyodide/(.*\.(wasm|data))$
 #  static_files: pyodide/\1
-#  upload: pyodide/.*\.wasm$
+#  upload: pyodide/.*\.(wasm|data)$
 #  mime_type: application/wasm
 #- url: /pyodide
 #  static_dir: pyodide
