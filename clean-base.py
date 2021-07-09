@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
-
-import argparse
-import datetime
-import getpass
-import os
-import subprocess
-import sys
-import time
+import argparse, datetime, getpass, io, os, subprocess, sys, time, zipfile
+from urllib.request import urlopen
 
 try:
 	whoami = getpass.getuser()
@@ -34,7 +28,7 @@ args = ap.parse_args()
 
 app_id = args.app_id
 whoami = args.author
-update = True  # this might be changed by command-line flag later on
+update = False  # this might be changed by command-line flag later on
 
 if args.app_id is None:
 	prompt = f"Enter Author Name (leave empty to default to {whoami}): "
@@ -88,18 +82,9 @@ if os.path.exists(".git"):
 	print("---")
 
 	if update:
-		print("Updating viur/core to latest master")
+		print("Updating viur to latest master")
 		subprocess.check_output(
 			"cd deploy/viur && git checkout master && git pull && git submodule update --recursive",
-			shell=True
-		)
-		print("---")
-
-		print("Downloading latest viur/vi release")
-		subprocess.check_output(
-			"cd deploy && mkdir vi && cd vi && \
-			wget -P /tmp https://github.com/viur-framework/viur-vi/releases/latest/download/viur-vi.zip && \
-			unzip /tmp/viur-vi.zip",
 			shell=True
 		)
 		print("---")
@@ -110,6 +95,15 @@ if os.path.exists(".git"):
 		print("---")
 	except:
 		pass
+
+
+# Install prebuilt Vi
+sys.stdout.write("Downloading latest build of viur-vi...")
+zip = urlopen("https://github.com/viur-framework/viur-vi/releases/download/v3.0.0-rc.5/viur-vi.zip").read()
+zip = zipfile.ZipFile(io.BytesIO(zip))
+zip.extractall('deploy/vi')
+zip.close()
+print("Done")
 
 # commented out, we are using pyodide from cdn
 # Update pyodide
@@ -132,5 +126,8 @@ os.rename("viur-project.md", "README.md")
 os.remove(sys.argv[0])
 
 print("Done")
-print("---")
-print("All done, have fun!")
+
+print("##############################################################")
+print("# Well done! Project repository has been set-up now.         #")
+print("# Please run ./viur-gcloud-setup.sh now as next step.        #")
+print("##############################################################")

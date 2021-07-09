@@ -1,31 +1,28 @@
 # ViUR base
 
-**viur-base** provides a basic ViUR project structure.
-
-This is the best place to start a new ViUR 3 project from!
+**viur-base** provides a basic ViUR project structure and template.<br>
+This is the best place to start a new ViUR project from!
 
 ---
 
 ## Prerequisites
 
-Before you start, please check out the following prerequisites:
+Before you start, please check out the following system prerequisites:
 
-1. Create a new Google Cloud project [here](https://console.cloud.google.com/projectcreate) and activate billing
-2. `git` and `python3` with `python3-requests` is installed
-3. [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) with `app-engine-python` and `app-engine-python-extras` components is installed (see [here](https://docs.viur.dev/latest/start.html#prerequisites) for further help)
+1. `git` and `python >= 3.8` should be installed
+2. [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) with `app-engine-python` and `app-engine-python-extras` components (see [here](https://docs.viur.dev/latest/start.html#prerequisites) for further help)
 
 ---
 
-## Usage
+## Start a new project
 
-To setup your new ViUR project, check and perform these steps:
+1. Create a new Google Cloud project [here](https://console.cloud.google.com/projectcreate) and activate billing
+2. Clone this repository with `git clone https://github.com/viur-framework/viur-base.git YOUR-PROJECT`
+3. `cd YOUR-PROJECT`
+4. `./clean-base.py -A YOUR-APP-ID`
+5. `./viur-gcloud-setup.sh YOUR-APP-ID`
+6. Locally run your project with `./local_run.sh` or deploy it with `gcloud app deploy`.
 
-3. `git clone https://github.com/viur-framework/viur-base.git YOUR-PROJECT`
-4. `cd YOUR-PROJECT`
-5. `./clean-base.py -A YOUR-APP-ID`
-6. `./viur-gcloud-setup.sh YOUR-APP-ID` (this step will be improved later!)
-
-You can then start your project locally with `./local_run.sh` or deploy it with `gcloud app deploy`.
 See the [documentation](https://docs.viur.dev/latest/start.html#first-startup) for further help.
 
 ---
@@ -35,9 +32,11 @@ See the [documentation](https://docs.viur.dev/latest/start.html#first-startup) f
 It is recommended to clean the git history before you push your new project to a remote git repository. This can easily be done with
 
 ```bash
-$ git checkout --orphan main  # create new orphaned branch with empty history
-$ git branch -D master  # remove old viur-base master
+$ git checkout --orphan fresh  # create new orphaned branch with empty history
+$ git branch -D main  # remove old viur-base main
 ```
+
+After it, you can branch main from fresh again and remove fresh.
 
 ## Contributing
 
