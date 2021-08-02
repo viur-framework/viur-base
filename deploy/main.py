@@ -75,10 +75,10 @@ conf["admin.vi.name"] = "{{app_id}}"
 # Content Security Policy
 #
 
-# Google Cloud Storage
-securityheaders.addCspRule("img-src", "storage.googleapis.com", "enforce")
+securityheaders.addCspRule("connect-src", "self", "enforce")  # fixme: Temporary fix, will be enforced by viur-core soon
 
 #GitHub Buttons
+securityheaders.addCspRule("style-src", "unsafe-inline", "enforce")  # yes, GitHub buttons need this :-(
 securityheaders.addCspRule("script-src", "buttons.github.io", "enforce")
 securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 
