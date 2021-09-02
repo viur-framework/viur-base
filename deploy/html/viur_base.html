@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 
 {%- set lang = getLanguage() -%}
+{%- set settings = getSkel("settings") -%}
 
 {%- if not title -%}
+	{%-set TITLE = settings["site_title"] + " - " + settings["site_slogan"] -%}
 	{#- The default page title. Optimal length for search engines is 50-60 characters. -#}
-	{%- set title="{{app_id}}" -%}
+{%- else  -%}
+	{%- set TITLE = title + " - " + settings["site_title"] -%}
 {%- endif -%}
+
 {%- if not metaDescr -%}
 	{#- The default meta description. The description should optimally be between 150-160 characters. -#}
-	{%- set metaDescr="default metaDescr" -%}
+	{%- set metaDescr=settings -%}
 {%- endif -%}
 {%- if not metaKeywords -%}
 	{#- Default meta keywords. Meta keywords have no effect on SEO whatsoever. Length is anywhere from 100 to 255 characters. -#}
