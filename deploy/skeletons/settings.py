@@ -24,11 +24,16 @@ class SettingsSkel(Skeleton):
 		descr="SEO Description",
 		params={"category": "SEO"}
 	)
-	seo_keywords = stringBone(
-		descr="SEO Keywords",
-		params={"category": "SEO"}
-	)
 	seo_image = fileBone(
 		descr="SEO Preview Image",
 		params={"category": "SEO"}
+	)
+	'''
+	Caution!
+		This switches <meta name="robots" content="index, follow"> in viur_base.html on.
+		We recommend you switching this via the VI.
+	'''
+	is_development = booleanBone(
+		descr="This Website is in development mode (noindex nofollow is set). Disabling this sets index and follow",
+		defaultValue=True
 	)

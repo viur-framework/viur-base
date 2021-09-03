@@ -2,6 +2,7 @@
 
 {%- set lang = getLanguage() -%}
 {%- set settings = getSkel("settings") -%}
+{%- set url = getHostUrl() %}
 
 {%- if not title -%}
 	{%-set TITLE = settings["site_title"] + " - " + settings["site_slogan"] -%}
@@ -15,77 +16,56 @@
 	{%- set metaDescr = settings["seo_description"] or "This is a ViUR project"-%}
 {%- endif -%}
 
-{%- if not metaKeywords -%}
-	{#- Default meta keywords. Meta keywords have no effect on SEO whatsoever. Length is anywhere from 100 to 255 characters. -#}
-	{%- set metaKeywords = settings["seo_keywords"] or "default metaKeywords" %}
-{%- endif -%}
-
 {%- if not pageContent -%}
 	{#- Set default css page name to index. -#}
 	{%- set pageContent="index" -%}
 {%- endif -%}
 
-<html>
-	<head lang="{{ lang }}">
+	{# Set Default Meta Image  #}
+{%- if not metaImage and settings["seo_image"] -%}
+	{%- set metaImage = settings["seo_image"] %}
+{%- endif  %}
+
+<html lang="{{ lang }}">
+	<head>
 		<meta charset="utf-8">
 
-		<!-- Herzlich willkommen bei-->
-		<meta name="twitter:title" content="{{ title }}">
+        {# Weclome to #}
 		<meta property="og:title" content="{{ title }}">
 		<title>{{ TITLE }}</title>
 
-		<!-- Descriptions -->
+        {# Descriptions #}
 		<meta name="description" lang="{{ lang }}" content="{{ metaDescr }}">
-		<meta name="twitter:description" content="{{ metaDescr }}">
-		<meta name="DC.Description" content="{{ metaDescr }}">
 		<meta property="og:description" content="{{ metaDescr }}">
-		<meta name="keywords" lang="{{ lang }}" content="{{ metaKeywords }}">
-
-		<!-- Diese Webseite ist ein viur Informationssystem. -->
-		<meta name="generator" content="www.viur.is">
-		<link type="text/plain" rel="author" href="/static/meta/humans.txt">
-		<meta name="author" content="Mausbrand Informationssysteme GmbH">{# FIXME! Insert page owner here. Will show up in open graph links. #}
-
-		<meta name="robots" content="noindex, nofollow">
-		{# <meta name="robots" content="index, follow"> #}
-
 		<meta property="og:type" content="website">
-		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta property="og:url" content="{{ url }}">
 
+		{%- if metaImage -%}
+			<meta property="og:image" content="{{ metaImage }}">
+		{%- endif  %}
+
+        {# This website is a ViUR Information System #}
+		<meta name="generator" content="www.viur.dev">
+		<link type="text/plain" rel="author" href="/static/meta/humans.txt">
+		{# Insert page owner here. Will show up in open graph links. #}
+		<meta name="author" content="Mausbrand Informationssysteme GmbH">
+
+		{# Robots #}
+		{%- if settings["is_development"]  %}
+			<meta name="robots" content="noindex, nofollow">
+		{%- else  %}
+			<meta name="robots" content="index, follow">
+		{%- endif  %}
+
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 		<!-- icons -->
 		<link rel="shortcut icon" href="/static/meta/favicon.png" type="image/png">
-
 		<!-- css -->
 		<link href="/static/css/style.min.css" rel="stylesheet">
 
-		<!-- iPhone -->
-		<link href="/static/meta/viur-apple-touch-icon-precomposed.png" sizes="57x57" rel="apple-touch-icon">
-		<link href="/static/meta/viur-apple-touch-icon-precomposed.png" sizes="57x57" rel="apple-touch-icon-precomposed">
-		<link href="/static/meta/viur-apple-touch-startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-
-		<!-- iPhone (Retina) -->
-		<link href="/static/meta/viur-apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon">
-		<link href="/static/meta/viur-apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon-precomposed">
-		<link href="/static/meta/viur-apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-
-		<!-- iPhone 5 -->
-		<link href="/static/meta/viur-apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-
-		<!-- iPad -->
-		<link href="/static/meta/viur-apple-touch-icon-72x72-precomposed.png" sizes="72x72" rel="apple-touch-icon">
-		<link href="/static/meta/viur-apple-touch-icon-72x72-precomposed.png" sizes="72x72" rel="apple-touch-icon-precomposed">
-		<link href="/static/meta/viur-apple-touch-startup-image-768x1004.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-		<link href="/static/meta/viur-apple-touch-startup-image-748x1024.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-
-		<!-- iPad (Retina) -->
-		<link href="/static/meta/viur-apple-touch-icon-144x144-precomposed.png" sizes="144x144" rel="apple-touch-icon">
-		<link href="/static/meta/viur-apple-touch-icon-144x144-precomposed.png" sizes="144x144" rel="apple-touch-icon-precomposed">
-		<link href="/static/meta/viur-apple-touch-startup-image-1536x2008.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-		<link href="/static/meta/viur-apple-touch-startup-image-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-
 		{% block additionalHead %}
 			{# use additionalHead for important template specific JS or CSS file imports. #}
-		{% endblock %}
+		{% endblock additionalHead %}
 
 	</head>
 	<body>
@@ -115,11 +95,14 @@
 							</nav>
 						{% endblock header %}
 					</header>
-					<main class="{{pageContent}}"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
+
+					{# name this content class after the page name AND function for better css addressing,
+					 e.g.: 'index', 'page_view view', 'product_list list' #}
+					<main class="{{ pageContent }}">
 						{% block content %}
 							{# put your content here #}
 						{% endblock content %}
-					</main><!-- content -->
+					</main>
 					<footer>
 						{% block footer %}
 							{# put your footer here #}
@@ -131,8 +114,8 @@
 		{% block additionalFooter %}
 			{# use additionalFooter for less important template specific JS or CSS file imports. #}
 			<script async defer src="https://buttons.github.io/buttons.js"></script>
-		{% endblock %}
-		<!-- js -->
+		{% endblock additionalFooter %}
+		{# Script #}
 		<script async defer src="/static/js/app.js"></script>
 	</body>
 </html>
