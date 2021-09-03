@@ -58,9 +58,23 @@
 		{%- endif  %}
 
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
-		<!-- icons -->
-		<link rel="shortcut icon" href="/static/meta/favicon.png" type="image/png">
-		<!-- css -->
+
+		{# icons and images #}
+		<link rel="shortcut icon" href="/static/meta/favicon.png" type="image/png"/>
+		<link href="/static/meta/viur-apple-touch-icon-144x144.png" rel="apple-touch-icon"/>
+		<link href="/static/meta/viur-apple-touch-startup-image-1536x2008.png"
+			  media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)"
+			  rel="apple-touch-startup-image"/>
+		<link href="/static/meta/viur-apple-touch-startup-image-1496x2048.png"
+			  media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)"
+			  rel="apple-touch-startup-image"/>
+
+		{# default colors for theming engines #}
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+		<meta name="theme-color" content="#d00f1c"/> {# this is the standard ViUR red #}
+
+		{# css #}
 		<link href="/static/css/style.min.css" rel="stylesheet">
 
 		{% block additionalHead %}
