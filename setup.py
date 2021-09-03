@@ -131,3 +131,4 @@ print("##############################################################")
 print("# Well done! Project repository has been set-up now.         #")
 print("# Please run ./viur-gcloud-setup.sh now as next step.        #")
 print("##############################################################")
+
