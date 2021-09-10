@@ -10,29 +10,26 @@ var srcpaths = {
 var destpaths = {
 	css: '../deploy/static/css',
 	images: '../deploy/static/images',
-	embedsvg: '../deploy/html/embedsvg'
+	embedsvg: '../deploy/static/svg'
 };
 
 // Variables and requirements
-const gulp = require('gulp');
+import gulp from 'gulp';
+import path from 'path';
+globalThis.__dirname = path.dirname(import.meta.url);
 
-const path = require('path');
-const del = require('del');
-const rename = require('gulp-rename');
-
-const less = require('gulp-less');
-const autoprefixer = require('autoprefixer');
-const postcss = require('gulp-postcss');
-const zindex = require('postcss-zindex');
-const focus = require('postcss-focus');
-const nocomments = require('postcss-discard-comments');
-const cleancss = require('gulp-clean-css');
-const jmq = require('gulp-join-media-queries');
-const stylefmt = require('gulp-stylefmt');
-
-const imagemin = require('gulp-imagemin');
-const cheerio = require('gulp-cheerio');
-
+import del from 'del';
+import rename from 'gulp-rename';
+import less from 'gulp-less';
+import autoprefixer from 'autoprefixer';
+import postcss from 'gulp-postcss'
+import zindex from 'postcss-zindex';
+import focus from 'postcss-focus';
+import nocomments from 'postcss-discard-comments';
+import cleancss from 'gulp-clean-css';
+import jmq from 'gulp-join-media-queries';
+import imagemin from 'gulp-imagemin';
+import cheerio from 'gulp-cheerio';
 
 // compilation and postproduction of LESS to CSS
 gulp.task('css', () => {
@@ -51,13 +48,11 @@ gulp.task('css', () => {
 			zindex, // reduce z-index values
 		])) // clean up css
 		.pipe(jmq())
-		.pipe(stylefmt()) // syntax formatting
 		.pipe(gulp.dest(destpaths.css)) // save cleaned version
 		.pipe(cleancss()) // minify css
 		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest(destpaths.css)); // save minified version
 });
-
 
 // reduce images for web
 gulp.task('images', () => {
@@ -65,7 +60,7 @@ gulp.task('images', () => {
 
 	return gulp.src(srcpaths.images)
 		.pipe(imagemin([
-			imagemin.jpegtran({progressive: true}),
+			imagemin.mozjpeg({progressive: true}),
 			imagemin.optipng({optimizationLevel: 5}),
 			imagemin.svgo({
 				plugins: [
@@ -83,7 +78,7 @@ gulp.task('embedsvg', () => {
 
 	return gulp.src(srcpaths.embedsvg)
 		.pipe(imagemin([
-			imagemin.jpegtran({progressive: true}),
+			imagemin.mozjpeg({progressive: true}),
 			imagemin.optipng({optimizationLevel: 5}),
 			imagemin.svgo({
 				plugins: [
