@@ -40,23 +40,15 @@ conf["viur.file.derivers"] = {
 	"thumbnail": thumbnailer
 }
 
+conf["viur.downloadUrlFor.expiration"] = 0
+
 conf["derives"] = {
-	"big": {
-		"callee": "thumbnail",
-		"group": "srcset",
-		"width": 1920
-	},
-	"normal": {
-		"callee": "thumbnail",
-		"group": "srcset",
-		"width": 900
-	},
-	"small": {
-		"callee": "thumbnail",
-		"group": "srcset",
-		"width": 500
-	}
-}
+	"thumbnail": [
+		{"width": 1920},
+		{"width": 1280},
+		{"width": 900},
+		{"width": 500}
+	]}
 
 # ------------------------------------------------------------------------------
 # Language-specific configuration
