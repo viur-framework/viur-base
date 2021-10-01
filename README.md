@@ -9,7 +9,7 @@ This is the best place to start a new ViUR project from!
 
 Before you start, please check out the following system prerequisites:
 
-1. `git` and `python >= 3.8` should be installed
+1. `git`, `python >= 3.9` and `pipenv` should be installed
 2. [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) with `app-engine-python` and `app-engine-python-extras` components (see [here](https://docs.viur.dev/latest/start.html#prerequisites) for further help)
 
 ---
@@ -21,7 +21,7 @@ Before you start, please check out the following system prerequisites:
 3. `cd YOUR-PROJECT`
 4. `./clean-base.py -A YOUR-APP-ID`
 5. `./viur-gcloud-setup.sh YOUR-APP-ID`
-6. Locally run your project with `./local_run.sh` or deploy it with `gcloud app deploy`.
+6. Locally run your project with `pipenv run ./local_run.sh` or deploy it with `gcloud app deploy`.
 
 See the [documentation](https://docs.viur.dev/latest/start.html#first-startup) for further help.
 
