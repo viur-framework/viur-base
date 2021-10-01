@@ -63,12 +63,6 @@ else
 	set -ex  # enable exit on error
 fi
 
-# Configure service account and IAM policies
-for role in roles/editor roles/iam.serviceAccountTokenCreator roles/storage.objectAdmin
-do
-	gcloud projects add-iam-policy-binding $project --member serviceAccount:$project@appspot.gserviceaccount.com --role $role >/dev/null
-done
-
 # Activate APIs and Services
 for service in cloudtasks.googleapis.com iamcredentials.googleapis.com cloudscheduler.googleapis.com
 do

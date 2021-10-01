@@ -65,7 +65,7 @@ gulp.task('images', () => {
 
 	return gulp.src(srcpaths.images)
 		.pipe(imagemin([
-			imagemin.jpegtran({progressive: true}),
+			imagemin.mozjpeg({progressive: true}),
 			imagemin.optipng({optimizationLevel: 5}),
 			imagemin.svgo({
 				plugins: [
@@ -83,7 +83,7 @@ gulp.task('embedsvg', () => {
 
 	return gulp.src(srcpaths.embedsvg)
 		.pipe(imagemin([
-			imagemin.jpegtran({progressive: true}),
+			imagemin.mozjpeg({progressive: true}),
 			imagemin.optipng({optimizationLevel: 5}),
 			imagemin.svgo({
 				plugins: [
