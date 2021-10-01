@@ -1,36 +1,38 @@
 from viur.core.bones import *
 from viur.core.skeleton import Skeleton
+from viur.core import conf
 
 
 class ExampleSkel(Skeleton):
 	# Defaults
 	name = stringBone(
-		descr=u"Name",
+		descr="Name",
 		required=True
 	)
 	sortindex = numericBone(
-		descr=u"Sort index",
+		descr="Sort index",
 		indexed=True,
 		required=True
 	)
 	image = fileBone(
-		descr=u"Image"
+		descr="Image",
+		derive=conf["derives"]
 	)
 
 	# SEO
 	seo_title = stringBone(
-		descr=u"SEO Title",
-		params={"category": u"SEO"}
+		descr="SEO Title",
+		params={"category": "SEO"}
 	)
 	seo_description = stringBone(
-		descr=u"SEO Description",
-		params={"category": u"SEO"}
+		descr="SEO Description",
+		params={"category": "SEO"}
 	)
 	seo_keywords = stringBone(
-		descr=u"SEO Keywords",
-		params={"category": u"SEO"}
+		descr="SEO Keywords",
+		params={"category": "SEO"}
 	)
 	seo_image = fileBone(
-		descr=u"SEO Preview Image",
-		params={"category": u"SEO"}
+		descr="SEO Preview Image",
+		params={"category": "SEO"}
 	)

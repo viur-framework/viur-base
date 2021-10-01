@@ -1,0 +1,15 @@
+{% extends "viur_base.html" %}
+
+{% block content %}
+	<h1 class="headline">View {{ moduleName() }}</h1>
+
+	{% for skel in skellist %}
+		<div>{{ skel["name"] }}</div>
+		{% if skel["image"] %}
+					<div>
+						<img src="{{ downloadUrlFor(skel["image"]["dest"], derived="thumbnail-w500.webp") }}">
+					</div>
+				{% endif %}
+	{% endfor %}
+
+{% endblock %}
