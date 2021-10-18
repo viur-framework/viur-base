@@ -1,4 +1,4 @@
-runtime: python38
+runtime: python39
 
 # (1) Under some circumstances, you need to set a higher instance_class,
 #     like F2 or F4. Unfortunately, this will increase App Engine cost,
@@ -15,7 +15,6 @@ automatic_scaling:
   max_concurrent_requests: 2
   max_instances: 1
   max_idle_instances: 1
-
 
 handlers:
 # (4) For a local Pyodide installation, activate below and run get-pyodide.py from project root.
