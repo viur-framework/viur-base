@@ -1,5 +1,4 @@
-
-Subject: ViMail Dummy
+ViMail Subject (always first line)
 {% extends "viur_mail_default.html" %}
 
 {% block title %}
