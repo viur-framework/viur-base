@@ -82,6 +82,11 @@ conf["admin.vi.name"] = "{{app_id}}"
 
 conf["viur.email.sendInBlue.apiKey"] = "xkeysib-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 conf["viur.email.transportClass"] = email.EmailTransportSendInBlue
+# conf["viur.email.senderOverride"] = "mail@viur.dev"
+
+# Email debugging config
+# conf["viur.email.sendFromLocalDevelopmentServer"] = True  # enable sending emails from local development server
+# conf["viur.email.recipientOverride"] = ["debug@viur.dev"]  # send all emails to this recipient
 
 # ------------------------------------------------------------------------------
 # Content Security Policy (CSP)
