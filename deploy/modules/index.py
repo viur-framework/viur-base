@@ -1,14 +1,10 @@
-import datetime
-import json
-import logging
+import datetime, logging
 
-from viur.core import conf, errors, exposed, request
+from viur.core import utils, tasks, conf, errors, exposed
 from viur.core.prototypes import BasicApplication
 from viur.core.utils import currentRequest
 
-
-# from google.appengine.api import urlfetch, app_identity
-# import httplib #fixme ViUR3 port
+from google.cloud.datastore_admin_v1.services.datastore_admin.client import DatastoreAdminClient
 
 
 class Index(BasicApplication):
@@ -31,76 +27,24 @@ class Index(BasicApplication):
 		return self.render.view({}, tpl="sitemap")
 
 	# @tasks.PeriodicTask(24 * 60)
-	def backup(self, *args, **kwargs):  # FIXME
+	def backup(self, *args, **kwargs):
 		"""
 		Backup job kick-off for Google Cloud Storage.
-
-		Steps for setting up:
-
-		1. Create a bucket named "backup-dot-YOUR-APPID" in Google Cloud Storage
-		2. Set the following permissions on Google Cloud Console IAM
-		   (https://console.cloud.google.com/iam-admin/iam) for the user
-		   YOUR-APPID@appspot.gserviceaccount.com:
-
-			- Datastore > Cloud Datastore Import Export Admin
-			- Storage > Storage Admin
-
-		   (see screenshot here: https://docs.viur.is/images/backup-settings.png)
-
-		Note: This will only work on App Engine projects that are associated with a billing account.
+		Use the maintenance script setup/enable-backup.sh to configure your project for backups.
 		"""
-		if request.current.get().isDevServer:
+		if utils.isLocalDevelopmentServer:
 			logging.info("Backup tool is disabled on local development server")
 			return
 
-		webapp = conf["viur.wsgiApp"]
-
-		appid = app_identity.get_application_id()
-		bucket = "backup-dot-%s" % appid
-
-		access_token, _ = app_identity.get_access_token("https://www.googleapis.com/auth/datastore")
-
+		bucket = "backup-dot-%s" % utils.projectID
+		admin_client = DatastoreAdminClient()
 		timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 		output_url_prefix = "gs://%s/%s" % (bucket, timestamp)
 
-		entity_filter = {
-			"kinds": webapp.request.get_all("kind"),
-			"namespace_ids": webapp.request.get_all("namespace_id")
-		}
+		admin_client.export_entities(
+			project_id=utils.projectID,
+			output_url_prefix=output_url_prefix
+		)
 
-		req = {
-			"project_id": appid,
-			"output_url_prefix": output_url_prefix,
-			"entity_filter": entity_filter
-		}
-
-		headers = {
-			"Content-Type": "application/json",
-			"Authorization": "Bearer " + access_token
-		}
-
-		url = "https://datastore.googleapis.com/v1/projects/%s:export" % appid
-
-		try:
-			result = urlfetch.fetch(
-				url=url,
-				payload=json.dumps(req),
-				method=urlfetch.POST,
-				deadline=60,
-				headers=headers
-			)
-
-			if result.status_code == httplib.OK:
-				logging.info(result.content)
-
-			elif result.status_code >= 500:
-				logging.error(result.content)
-
-			else:
-				logging.warning(result.content)
-
-			logging.info("Daily backup queued")
-
-		except urlfetch.Error:
-			raise
+		logging.info("Backup queued to be exported to %r", output_url_prefix)
