@@ -4,3 +4,6 @@
 [submodule "deploy/viur"]
 	path = deploy/viur
 	url = git@github.com:viur-framework/viur-core.git
+[submodule "sources/vi"]
+	path = sources/vi
+	url = git@github.com:viur-framework/viur-vi.git
