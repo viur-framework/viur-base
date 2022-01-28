@@ -1,4 +1,5 @@
-# ViUR base
+# viur-base
+![Base Logo](assets/img/base-logo.webp)
 
 **viur-base** provides a basic ViUR project structure and template.<br>
 This is the best place to start a new ViUR project from!
