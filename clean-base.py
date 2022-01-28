@@ -2,6 +2,8 @@
 import argparse, datetime, getpass, io, os, subprocess, sys, time, zipfile
 from urllib.request import urlopen
 
+VI_VERSION = "3.0.10"
+
 try:
 	whoami = getpass.getuser()
 except:
@@ -99,9 +101,9 @@ if os.path.exists(".git"):
 
 # Install prebuilt Vi
 sys.stdout.write("Downloading latest build of viur-vi...")
-zip = urlopen("https://github.com/viur-framework/viur-vi/releases/download/v3.0.5/viur-vi.zip").read()
+zip = urlopen(f"https://github.com/viur-framework/viur-vi/releases/download/v{VI_VERSION}/viur-vi.zip").read()
 zip = zipfile.ZipFile(io.BytesIO(zip))
-zip.extractall('deploy/vi')
+zip.extractall("deploy/vi")
 zip.close()
 print("Done")
 

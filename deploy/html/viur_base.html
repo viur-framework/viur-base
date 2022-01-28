@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 {%- set lang = getLanguage() -%}
 
 {%- if not title -%}
@@ -19,8 +18,8 @@
 	{%- set pageContent="index" -%}
 {%- endif -%}
 
-<html>
-	<head lang="{{ lang }}">
+<html lang="{{ lang }}">
+	<head>
 		<meta charset="utf-8">
 
 		<!-- Herzlich willkommen bei-->
@@ -36,7 +35,7 @@
 		<meta name="keywords" lang="{{ lang }}" content="{{ metaKeywords }}">
 
 		<!-- Diese Webseite ist ein viur Informationssystem. -->
-		<meta name="generator" content="www.viur.is">
+		<meta name="generator" content="www.viur.dev">
 		<link type="text/plain" rel="author" href="/static/meta/humans.txt">
 		<meta name="author" content="Mausbrand Informationssysteme GmbH">{# FIXME! Insert page owner here. Will show up in open graph links. #}
 
@@ -52,35 +51,15 @@
 		<!-- css -->
 		<link href="/static/css/style.min.css" rel="stylesheet">
 
-		<!-- iPhone -->
-		<link href="/static/meta/viur-apple-touch-icon-precomposed.png" sizes="57x57" rel="apple-touch-icon">
-		<link href="/static/meta/viur-apple-touch-icon-precomposed.png" sizes="57x57" rel="apple-touch-icon-precomposed">
-		<link href="/static/meta/viur-apple-touch-startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-
-		<!-- iPhone (Retina) -->
-		<link href="/static/meta/viur-apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon">
-		<link href="/static/meta/viur-apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon-precomposed">
-		<link href="/static/meta/viur-apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-
-		<!-- iPhone 5 -->
-		<link href="/static/meta/viur-apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-
-		<!-- iPad -->
-		<link href="/static/meta/viur-apple-touch-icon-72x72-precomposed.png" sizes="72x72" rel="apple-touch-icon">
-		<link href="/static/meta/viur-apple-touch-icon-72x72-precomposed.png" sizes="72x72" rel="apple-touch-icon-precomposed">
-		<link href="/static/meta/viur-apple-touch-startup-image-768x1004.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-		<link href="/static/meta/viur-apple-touch-startup-image-748x1024.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-
-		<!-- iPad (Retina) -->
-		<link href="/static/meta/viur-apple-touch-icon-144x144-precomposed.png" sizes="144x144" rel="apple-touch-icon">
-		<link href="/static/meta/viur-apple-touch-icon-144x144-precomposed.png" sizes="144x144" rel="apple-touch-icon-precomposed">
-		<link href="/static/meta/viur-apple-touch-startup-image-1536x2008.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-		<link href="/static/meta/viur-apple-touch-startup-image-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+		<!-- Touch Icons -->
+		<link rel="apple-touch-icon" href="/static/images/touch-icon-120.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/static/images/touch-icon-180.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/static/images/touch-icon-152.png">
+		<link rel="apple-touch-icon" sizes="167x167" href="/static/images/touch-icon-167.png">
 
 		{% block additionalHead %}
 			{# use additionalHead for important template specific JS or CSS file imports. #}
 		{% endblock %}
-
 	</head>
 	<body>
 		<div class="wrap">
