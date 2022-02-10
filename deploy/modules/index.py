@@ -1,6 +1,6 @@
-import datetime, logging
+import datetime, logging, io, traceback
 
-from viur.core import utils, tasks, conf, errors, exposed
+from viur.core import exposed, tasks, conf, errors, utils
 from viur.core.prototypes import BasicApplication
 from viur.core.utils import currentRequest
 
@@ -11,10 +11,8 @@ class Index(BasicApplication):
 
 	@exposed
 	def index(self, *args, **kwargs):
-		"""
-		The first two lines of code here ensure that requesting a non-existent module or template will throw a 404
-		instead of referring to index. Remove them if you wish to alter this behaviour.
-		"""
+		# The first two lines of code here ensure that requesting a non-existent module or template will throw a 404
+		# instead of referring to index. Remove them if you wish to alter this behaviour.
 		if len(args) > 1 or kwargs:
 			raise errors.NotFound()
 
@@ -48,3 +46,45 @@ class Index(BasicApplication):
 		)
 
 		logging.info("Backup queued to be exported to %r", output_url_prefix)
+
+	@staticmethod
+	def error_handler(e):
+		"""
+		This is the error handling function that renders an error-message
+		in a corporate style. Change the template html/errors.html on your demands.
+		"""
+
+		if isinstance(e, errors.HTTPException):
+			code = int(e.status)
+			name = e.name
+			descr = e.descr
+		else:
+			code = 500
+			name = "Internal Server Error"
+			descr = "An internal server error occurred"
+
+		if utils.isLocalDevelopmentServer:
+			trace_back = io.StringIO()
+			traceback.print_exc(file=trace_back)
+			trace_back = trace_back.getvalue(). \
+				replace("\n", "--br--"). \
+				replace(" ", "&nbsp;"). \
+				replace("--br--", "<br />")
+		else:
+			trace_back = None
+
+		return conf["viur.mainApp"].render.view(
+			{
+				"name": name,
+				"code": code,
+				"descr": descr,
+				"traceback": trace_back
+			},
+			tpl="error"
+		)
+
+
+Index.html = True
+
+# Assign error handler by config
+conf["viur.errorHandler"] = Index.error_handler

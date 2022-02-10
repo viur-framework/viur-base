@@ -37,7 +37,7 @@
 		<!-- Diese Webseite ist ein viur Informationssystem. -->
 		<meta name="generator" content="www.viur.dev">
 		<link type="text/plain" rel="author" href="/static/meta/humans.txt">
-		<meta name="author" content="Mausbrand Informationssysteme GmbH">{# FIXME! Insert page owner here. Will show up in open graph links. #}
+		<meta name="author" content="Mausbrand Informationssysteme GmbH">
 
 		<meta name="robots" content="noindex, nofollow">
 		{# <meta name="robots" content="index, follow"> #}
@@ -52,10 +52,10 @@
 		<link href="/static/css/style.min.css" rel="stylesheet">
 
 		<!-- Touch Icons -->
-		<link rel="apple-touch-icon" href="/static/images/touch-icon-120.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/static/images/touch-icon-180.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/static/images/touch-icon-152.png">
-		<link rel="apple-touch-icon" sizes="167x167" href="/static/images/touch-icon-167.png">
+		<link rel="apple-touch-icon" href="/static/meta/touch-icon-120.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/static/meta/touch-icon-180.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/static/meta/touch-icon-152.png">
+		<link rel="apple-touch-icon" sizes="167x167" href="/static/meta/touch-icon-167.png">
 
 		{% block additionalHead %}
 			{# use additionalHead for important template specific JS or CSS file imports. #}
@@ -69,21 +69,10 @@
 						{% block header %}
 							{# put your header here #}
 							<nav class="bar">
-								<div class="bar-group bar-group--left bar-group--nav">
-									<a class="bar-link" href="https://docs.viur.is/latest/start.html" target="_blank">Documentation</a>
-								</div>
-								<div class="bar-group bar-group--center bar-group--nav">
-									<div class="bar-item">
-										<a class="github-button" href="https://github.com/viur-framework/viur-core" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star viur-framework/viur-core on GitHub">Star</a>
-									</div>
-									<div class="bar-item">
-										<a class="github-button" href="https://github.com/viur-framework/viur-core/subscription" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch viur-framework/viur-core on GitHub">Watch</a>
-									</div>
-								</div>
 								<div class="bar-group bar-group--right bar-group--nav">
-									<a class="bar-link" href="{{ getHostUrl() }}/">Welcome</a>
-									<a class="bar-link" href="{{ getHostUrl() }}/s/gettingstarted">Getting started</a>
-									<a class="bar-link" href="{{ getHostUrl() }}/vi">Vi</a>
+									<a class="bar-link" href="{{ getHostUrl() }}/">Start</a>
+									<a class="bar-link" href="https://github.com/viur-framework/awesome-viur">Awesome ViUR</a>
+									<a class="bar-link" href="{{ getHostUrl() }}/vi">Administration</a>
 								</div>
 							</nav>
 						{% endblock header %}
@@ -102,8 +91,6 @@
 			</div>
 		</div>
 		{% block additionalFooter %}
-			{# use additionalFooter for less important template specific JS or CSS file imports. #}
-			<script async defer src="https://buttons.github.io/buttons.js"></script>
 		{% endblock %}
 		<!-- js -->
 		<script async defer src="/static/js/app.js"></script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>{{ skel["code"] }} - {{ skel["name"] }}</title>
+	<link rel="stylesheet" href="/static/css/style.min.css">
+	<script src="/static/js/app.js"></script>
+</head>
+
+<body>
+<div class="errorsitewrapper">
+	<div class="errorsite-logo">
+		<img src="/static/mega/viur.svg">
+		<a href="/" class="btn btn--large btn--primary">Home</a>
+	</div>
+	<div class="errorsite-content">
+		<div class="msg is-active {{ "msg--warning" if skel["code"] in [401, 403, 404] else "msg--error" }}">
+			<div class="msg-content is-errorsitecontent">
+				<div class="errorsite-head">
+					<div class="errorsite-icon">
+						{% if skel["code"] == 500 %}
+							{{ embedSvg("icon-bug") }}
+						{% elif skel["code"] == 404 %}
+							{{ embedSvg("icon-question") }}
+						{% elif skel["code"] in [401, 403] %}
+							{{ embedSvg("icon-lock-closed") }}
+						{% else %}
+							{{ embedSvg("icon-error") }}
+						{% endif %}
+					</div>
+					<div class="errorsite-error">
+						<h3 class="msg-headline">{{ skel["code"] }} - {{ skel["name"] }}</h3>
+						<h4>{{ skel["descr"]|replace("\n", "<br>") }}</h4>
+					</div>
+				</div>
+				{% if skel["traceback"] and skel["code"] == 500 %}
+					<pre>{{ skel["traceback"] }}</pre>
+				{% endif %}
+				<a href="/" class="btn btn--large btn--primary">Home</a>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

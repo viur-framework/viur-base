@@ -6,10 +6,10 @@
 	{% for skel in skellist %}
 		<div>{{ skel["name"] }}</div>
 		{% if skel["image"] %}
-					<div>
-						<img src="{{ downloadUrlFor(skel["image"]["dest"], derived="thumbnail-w500.webp") }}">
-					</div>
-				{% endif %}
+			<div>
+				<img src="{{ downloadUrlFor(skel["image"]["dest"], derived="thumbnail-w500.webp") }}">
+			</div>
+		{% endif %}
 	{% endfor %}
 
 {% endblock %}

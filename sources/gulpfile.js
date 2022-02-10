@@ -10,7 +10,7 @@ var srcpaths = {
 var destpaths = {
 	css: '../deploy/static/css',
 	images: '../deploy/static/images',
-	embedsvg: '../deploy/static/svg'
+	embedsvg: '../deploy/static/svgs'
 };
 
 // Variables and requirements

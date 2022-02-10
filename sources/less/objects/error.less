@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+.errorsitewrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: #f1f1f1;
+}
+
+.errorsite-logo {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  min-height: 100px;
+  background-color: #fff;
+  top: 0;
+
+  img {
+    height: 60px;
+    width: auto;
+  }
+
+  .btn {
+    position: absolute;
+    right: 20px;
+    padding: 5px 15px;
+  }
+
+}
+
+.errorsite-content {
+  margin: 30px auto;
+  width: 90%;
+  max-width: 1280px;
+  max-height: 80vh;
+  overflow: auto;
+  margin-top: 10vh;
+  border-top: 1px solid #ccc;
+
+  .msg--error {
+    border: none;
+    background-color: transparent;
+  }
+
+  .is-errorsitecontent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+
+  .errorsite-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+    margin-bottom: 30px;
+
+    .errorsite-icon {
+      margin-right: 30px;
+    }
+
+
+    .errorsite-error {
+
+      h3 {
+        color: #555;
+      }
+
+      h4 {
+        color: #555;
+      }
+
+    }
+
+  }
+
+  pre {
+    background-color: #fff;
+    border: 1px solid #ddd;
+  }
+
+
+  .btn {
+    padding: 5px 15px;
+    margin-top: 20px;
+    align-self: center;
+  }
+
+
+}
+
+.msg-content {
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
+}
