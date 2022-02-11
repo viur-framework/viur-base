@@ -1,65 +1,82 @@
 <!DOCTYPE html>
 {%- set lang = getLanguage() -%}
+{%- set settings = getSkel("settings") -%}
+{%- set url = getHostUrl() %}
 
 {%- if not title -%}
+	{%-set TITLE = settings["site_title"] + " - " + settings["site_slogan"] -%}
 	{#- The default page title. Optimal length for search engines is 50-60 characters. -#}
-	{%- set title="{{app_id}}" -%}
+{%- else  -%}
+	{%- set TITLE = title + " - " + settings["site_title"] -%}
 {%- endif -%}
+
 {%- if not metaDescr -%}
 	{#- The default meta description. The description should optimally be between 150-160 characters. -#}
-	{%- set metaDescr="default metaDescr" -%}
+	{%- set metaDescr = settings["seo_description"] or "This is a ViUR project"-%}
 {%- endif -%}
-{%- if not metaKeywords -%}
-	{#- Default meta keywords. Meta keywords have no effect on SEO whatsoever. Length is anywhere from 100 to 255 characters. -#}
-	{%- set metaKeywords="default metaKeywords" -%}
-{%- endif -%}
+
 {%- if not pageContent -%}
 	{#- Set default css page name to index. -#}
 	{%- set pageContent="index" -%}
 {%- endif -%}
 
+	{# Set Default Meta Image  #}
+{%- if not metaImage and settings["seo_image"] -%}
+	{%- set metaImage = settings["seo_image"] %}
+{%- endif  %}
+
 <html lang="{{ lang }}">
 	<head>
 		<meta charset="utf-8">
 
-		<!-- Herzlich willkommen bei-->
-		<meta name="twitter:title" content="{{ title }}">
+        {# Weclome to #}
 		<meta property="og:title" content="{{ title }}">
-		<title>{{ title }}</title>
+		<title>{{ TITLE }}</title>
 
-		<!-- Descriptions -->
+        {# Descriptions #}
 		<meta name="description" lang="{{ lang }}" content="{{ metaDescr }}">
-		<meta name="twitter:description" content="{{ metaDescr }}">
-		<meta name="DC.Description" content="{{ metaDescr }}">
 		<meta property="og:description" content="{{ metaDescr }}">
-		<meta name="keywords" lang="{{ lang }}" content="{{ metaKeywords }}">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="{{ url }}">
 
-		<!-- Diese Webseite ist ein viur Informationssystem. -->
+		{%- if metaImage -%}
+			<meta property="og:image" content="{{ metaImage }}">
+		{%- endif  %}
+
+        {# This website is a ViUR Information System #}
 		<meta name="generator" content="www.viur.dev">
 		<link type="text/plain" rel="author" href="/static/meta/humans.txt">
+		{# Insert page owner here. Will show up in open graph links. #}
 		<meta name="author" content="Mausbrand Informationssysteme GmbH">
 
-		<meta name="robots" content="noindex, nofollow">
-		{# <meta name="robots" content="index, follow"> #}
+		{# Robots #}
+		{%- if settings["is_development"]  %}
+			<meta name="robots" content="noindex, nofollow">
+		{%- else  %}
+			<meta name="robots" content="index, follow">
+		{%- endif  %}
 
-		<meta property="og:type" content="website">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-		<!-- icons -->
-		<link rel="shortcut icon" href="/static/meta/favicon.png" type="image/png">
+		{# icons and images #}
+		<link rel="shortcut icon" href="/static/meta/favicon.png" type="image/png"/>
+        <link rel="apple-touch-icon" href="/static/meta/touch-icon-120.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/meta/touch-icon-180.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/static/meta/touch-icon-152.png">
+        <link rel="apple-touch-icon" sizes="167x167" href="/static/meta/touch-icon-167.png">
 
-		<!-- css -->
+		{# default colors for theming engines #}
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+		<meta name="theme-color" content="#d00f1c"/> {# this is the standard ViUR red #}
+
+		{# css #}
 		<link href="/static/css/style.min.css" rel="stylesheet">
-
-		<!-- Touch Icons -->
-		<link rel="apple-touch-icon" href="/static/meta/touch-icon-120.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/static/meta/touch-icon-180.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/static/meta/touch-icon-152.png">
-		<link rel="apple-touch-icon" sizes="167x167" href="/static/meta/touch-icon-167.png">
 
 		{% block additionalHead %}
 			{# use additionalHead for important template specific JS or CSS file imports. #}
-		{% endblock %}
+		{% endblock additionalHead %}
+
 	</head>
 	<body>
 		<div class="wrap">
@@ -77,11 +94,14 @@
 							</nav>
 						{% endblock header %}
 					</header>
-					<main class="{{pageContent}}"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
+
+					{# name this content class after the page name AND function for better css addressing,
+					 e.g.: 'index', 'page_view view', 'product_list list' #}
+					<main class="{{ pageContent }}">
 						{% block content %}
 							{# put your content here #}
 						{% endblock content %}
-					</main><!-- content -->
+					</main>
 					<footer>
 						{% block footer %}
 							{# put your footer here #}
@@ -91,8 +111,10 @@
 			</div>
 		</div>
 		{% block additionalFooter %}
-		{% endblock %}
-		<!-- js -->
+			{# use additionalFooter for less important template specific JS or CSS file imports. #}
+			<script async defer src="https://buttons.github.io/buttons.js"></script>
+		{% endblock additionalFooter %}
+		{# Script #}
 		<script async defer src="/static/js/app.js"></script>
 	</body>
 </html>

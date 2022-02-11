@@ -93,7 +93,7 @@ conf["viur.email.transportClass"] = email.EmailTransportSendInBlue
 #
 
 # GitHub Buttons
-securityheaders.addCspRule("style-src", "unsafe-inline", "enforce")  # yes, GitHub buttons need this...
+securityheaders.addCspRule("style-src", "unsafe-inline", "enforce")  # yes, GitHub buttons need this :-(
 securityheaders.addCspRule("script-src", "buttons.github.io", "enforce")
 securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 

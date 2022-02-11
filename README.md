@@ -20,7 +20,7 @@ Before you start, please check out the following system prerequisites:
 1. Create a new Google Cloud project [here](https://console.cloud.google.com/projectcreate) and activate billing
 2. Clone this repository with `git clone https://github.com/viur-framework/viur-base.git YOUR-PROJECT`
 3. `cd YOUR-PROJECT`
-4. `./clean-base.py -A YOUR-APP-ID`
+4. `./setup.py -A YOUR-APP-ID`
 5. `./viur-gcloud-setup.sh YOUR-APP-ID`
 6. Locally run your project with `pipenv run ./local_run.sh` or deploy it with `gcloud app deploy`.
 
@@ -44,7 +44,6 @@ After it, you can branch main from fresh again and remove fresh.
 We take a great interest in your opinion about ViUR. We appreciate your feedback and are looking forward to hear about your ideas. Share your visions or questions with us and participate in ongoing discussions.
 
 - [ViUR website](https://www.viur.dev)
-- [#ViUR on freenode IRC](https://webchat.freenode.net/?channels=viur)
 - [ViUR on GitHub](https://github.com/viur-framework)
 - [ViUR on Twitter](https://twitter.com/weloveViUR)
 
