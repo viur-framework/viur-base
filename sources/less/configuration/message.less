@@ -1,0 +1,16 @@
+@charset "UTF-8";
+//Initialize Ignite Messages
+
+.msg {
+  .genericMsg();
+
+  &--success {
+    .colorizeMsg(@successColor);
+  }
+  &--warn {
+    .colorizeMsg(@warnColor);
+  }
+  &--error {
+    .colorizeMsg(@failColor);
+  }
+}

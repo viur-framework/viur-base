@@ -1,0 +1,113 @@
+{% macro bar(left=False, right=False, center=False, modifiers=None, identifier=False, addClass=False) %}
+	<div class="bar{% if modifiers %}{% for modifier in modifiers %}{{ ' bar--' + modifier if modifier }}{% endfor %}{% endif %}{{ ' ignt-' + identifier if identifier }}{{ ' ' + addClass if addClass }}">
+		{% if left %}
+		<div class="bar-group{{ ' ignt-' + identifier + '-left' if identifier }} bar-group--left">
+			{{ left }}
+		</div>
+		{% endif %}
+		{% if center %}
+		<div class="bar-group{{ ' ignt-' + identifier + '-center' if identifier }} bar-group--center">
+			{{ center }}
+		</div>
+		{% endif %}
+		{% if right %}
+		<div class="bar-group{{ ' ignt-' + identifier + '-right' if identifier }} bar-group--right">
+			{{ right }}
+		</div>
+		{% endif %}
+	</div>
+{% endmacro %}
+
+{% macro box(head=False, body=False, foot=False, modifiers=None, identifier=False, addClass=False) %}
+	<div class="box{% if modifiers %}{% for modifier in modifiers %}{{ ' box--' + modifier if modifier }}{% endfor %}{% endif %}{{ ' ignt-' + identifier if identifier }}{{ ' ' + addClass if addClass }}">
+		{% if head %}
+			<header class="box-head{{ ' ignt-' + identifier + '-head' if identifier }} box--content">
+				{{ head }}
+			</header>
+		{% endif %}
+		{% if body %}
+			<div class="box-body{{ ' ignt-' + identifier + '-body' if identifier }} box--content">
+				{{ body }}
+			</div>
+		{% endif %}
+		{% if foot %}
+			<footer class="box-foot{{ ' ignt-' + identifier + '-foot' if identifier }} box--content">
+				{{ foot }}
+			</footer>
+		{% endif %}
+	</div>
+{% endmacro %}
+
+{% macro burger(modifiers=None, identifier=False, addClass=False) %}
+	<div class="burger{% if modifiers %}{% for modifier in modifiers %}{{ ' burger--' + modifier if modifier }}{% endfor %}{% endif %}{{ ' ignt-' + identifier if identifier }}{{ ' ' + addClass if addClass }}">
+		<span class="burger-box{{ ' ignt-' + identifier + '-box' if identifier }}"></span>
+	</div>
+{% endmacro %}
+
+{% macro btn(text="Button", icon=False, tag="button", active=True, modifiers=None, identifier=None, addClass=None) %}
+	<button class="btn{% if modifiers %}{% for modifier in modifiers %}{{ ' btn--' + modifier if modifier }}{% endfor %}{% endif %}{{ ' ignt-' + identifier if identifier }}{{ ' ' + addClass if addClass }}{{ ' is-disabled' if not active }}">
+		{{ embedSvg(icon) if icon }}
+		{{ text if text }}
+	</button>
+{% endmacro %}
+
+{% macro input(value=None, type="text", name="input", id="input", title=False, required=False, readonly=False, active=True, modifiers=None, identifier=None, addClass=None) %}
+	<input name="{{ name }}"
+		   value="{{ value if value }}"
+		   type="{{ type }}"
+		   id="{{ id }}"
+		   {% if title %}title="{{ title }}"{% endif %}
+		   {% if required %}required{% endif %}
+		   {% if readonly %}readonly{% endif %}
+		   {% if not active %}disabled{% endif %}
+		   {{ caller() }}
+		   class="input{% if modifiers %}{% for modifier in modifiers %}{{ ' input--' + modifier if modifier }}{% endfor %}{% endif %}{{ ' ignt-' + identifier if identifier }}{{ ' ' + addClass if addClass }}{{ ' is-disabled' if not active }}">
+{% endmacro %}
+
+{% macro label(text="Label", for=False, active=True, modifiers=None, identifier=None, addClass=None) %}
+	<label{% if for %} for="{{ for }}"{% endif %} class="label{% if modifiers %}{% for modifier in modifiers %}{{ ' label--' + modifier if modifier }}{% endfor %}{% endif %}{{ ' ignt-' + identifier if identifier }}{{ ' ' + addClass if addClass }}{{ ' is-disabled' if not active }}">
+		{{ text if text }}
+	</label>
+{% endmacro %}
+
+{% macro select(options={"test":"test"}, selected=None, name="select", id="select", title=False, required=False, active=True, modifiers=None, identifier=None, addClass=None) %}
+	<select name="{{ name }}"
+			id="{{ id }}"
+			{% if title %}title="{{ title }}"{% endif %}
+			{% if required %}required{% endif %}
+			{% if not active %}disabled{% endif %}
+			class="select{% if modifiers %}{% for modifier in modifiers %}{{ ' select--' + modifier if modifier }}{% endfor %}{% endif %}{{ ' ignt-' + identifier if identifier }}{{ ' ' + addClass if addClass }}{{ ' is-disabled' if not active }}">
+		{% for value,description in options %}
+			<option value="{{ value }}"{{ " selected" if value==selected }}>{{ description }}</option>
+		{% endfor %}
+		{% if not selected %}
+			<option selected disabled value="">-</option>
+		{% endif %}
+	</select>
+{% endmacro %}
+
+{% macro msg(text=None, headline=None, icon=False, condition=True, active=False, modifiers=None, identifier=None, addClass=None) %}
+	{% if condition and (headline or msg) %}
+		<div class="msg{% if modifiers %}{% for modifier in modifiers %}{{ ' msg--' + modifier if modifier }}{% endfor %}{% endif %}{{ ' is-active' if active }}{{ ' ignt-' + identifier if identifier }}{{ ' ' + addClass if addClass }}">
+			{{ embedSvg(icon) if icon }}
+			<div class="msg-content{{ ' ignt-' + identifier + '-content' if identifier }}">
+				{% if headline %}<h3 class="msg-headline{{ ' ignt-' + identifier + '-headline' if identifier }}">{{ headline }}</h3>{% endif %}
+				{% if text %}<p class="msg-text{{ ' ignt-' + identifier + '-text' if identifier }}">{{ text }}</p>{% endif %}
+			</div>
+		</div>
+	{% endif %}
+{% endmacro %}
+
+{% macro popup(position="center", closable=False, overlay=False, active=False, modifiers=None, identifier=None, addClass=None) %}
+	<div class="popup popup--{{ position }}{% if modifiers %}{% for modifier in modifiers %}{{ ' popup--' + modifier if modifier }}{% endfor %}{% endif %}{{ ' ignt-' + identifier if identifier }}{{ ' is-active' if active }}{{ ' ' + addClass if addClass }}">
+		{{ caller() }}
+		{% if closable %}
+			<button class="popup-close{{ ' ignt-' + identifier + '-close' if identifier }} has-icon">&times;</button>
+		{% endif %}
+	</div>
+	{% if overlay %}
+		<div class="popup-overlay{{ ' ignt-' + identifier + '-overlay' if identifier }}"></div>
+	{% endif %}
+{% endmacro %}
+
+
