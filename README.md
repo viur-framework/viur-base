@@ -17,17 +17,20 @@ Before you start, please check out the following system prerequisites:
 
 ## Start a new project
 
-1. Create a new Google Cloud project [here](https://console.cloud.google.com/projectcreate) and activate billing
-2. Clone this repository with `git clone https://github.com/viur-framework/viur-base.git YOUR-PROJECT`
+1. Create a new Google Cloud project [here](https://console.cloud.google.com/projectcreate) and activate billing.
+   
+    We will refer to the name of the project you created as `YOUR-APP-ID`.
+2. Clone this repository with `git clone https://github.com/viur-framework/viur-base.git YOUR-PROJECT`.
+
+    This creates a new local folder `YOUR-PROJECT`. In most cases, `YOUR-PROJECT` and `YOUR-APP-ID` should be identical.
 3. `cd YOUR-PROJECT`
 4. `./clean-base.py -A YOUR-APP-ID`
 5. `./viur-gcloud-setup.sh YOUR-APP-ID`
 6. Locally run your project with `pipenv run ./local_run.sh` or deploy it with `gcloud app deploy`.
 
-See the [documentation](https://docs.viur.dev/latest/start.html#first-startup) for further help.
+See the [documentation](https://viur-core.readthedocs.io/en/latest/doc_start/index.html) for further help.
 
 ---
-
 ## Clean git history
 
 It is recommended to clean the git history before you push your new project to a remote git repository. This can easily be done with
