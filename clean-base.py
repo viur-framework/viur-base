@@ -25,11 +25,18 @@ ap.add_argument(
 	default=whoami,
 	help="The author's name that is placed in arbitrary places."
 )
+ap.add_argument(
+	"-c", "--clean-history",
+	action="store_true",
+	default=True,
+	help="Clean the git history."
+)
 
 args = ap.parse_args()
 
 app_id = args.app_id
 whoami = args.author
+clean_history = args.clean_history
 update = False  # this might be changed by command-line flag later on
 
 if args.app_id is None:
@@ -46,6 +53,11 @@ if args.app_id is None:
 
 	if name:
 		app_id = name
+
+	prompt = "Do you want to clean the git history? [Y/n] "
+	while (option := input(prompt).lower().strip()) not in {"", "y", "n"}:
+		print(f'Invalid option "{option}". "y", "n" or empty input expected.')
+	clean_history = option != "n"
 
 time = time.time()
 timestamp = datetime.datetime.fromtimestamp(time).strftime("%Y-%m-%d %H:%M:%S")
@@ -97,6 +109,14 @@ if os.path.exists(".git"):
 		print("---")
 	except:
 		pass
+
+	if clean_history:
+		print("Clean git history")
+		subprocess.check_output("git checkout --orphan main_tmp", shell=True)
+		print(subprocess.check_output("git branch -D main", shell=True).decode().rstrip("\n"))
+		subprocess.check_output("git branch -m main", shell=True)
+		print("Current branch is:", subprocess.check_output("git branch --show-current", shell=True).decode().rstrip("\n"))
+		print("---")
 
 
 # Install prebuilt Vi
