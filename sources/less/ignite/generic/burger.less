@@ -1,0 +1,78 @@
+@charset "UTF-8";
+/* MENU BURGER */
+
+// Less Burger © 2015, Mark Rabey. Released under the MIT License.
+// https://github.com/MarkRabey/less-burger
+
+@burger-width: 30px;
+@burger-height: 5px;
+@burger-gutter: 3px;
+@burger-color: @mainColor;
+@burger-borderRadius: @defaultBorderRadius;
+@burger-transitionDuration: .3s;
+
+.genericBurger(
+  @width: @burger-width,
+  @height: @burger-height,
+  @gutter: @burger-gutter,
+  @color: @burger-color,
+  @borderRadius: @burger-borderRadius,
+  @transitionDuration: @burger-transitionDuration
+  ) {
+  display: block;
+  align-self: center;
+  .mq-min(@breakMedium, { display: none; });
+
+  &-box {
+    position: relative;
+    margin-top: @height + @gutter;
+    margin-bottom: @height + @gutter;
+    cursor: pointer;
+    user-select: none;
+
+    &,
+    &:before,
+    &:after {
+      display: block;
+      width: @width;
+      height: @height;
+      background-color: @color;
+      .border-radius(@borderRadius);
+      transition-property: background-color, transform;
+      transition-duration: @transitionDuration;
+    }
+
+    &:before,
+    &:after {
+      position: absolute;
+      content: "";
+    }
+
+    &:before {
+      top: -(@height + @gutter);
+    }
+
+    &:after {
+      top: @height + @gutter;
+    }
+  }
+
+  // Burger animations
+  &--to-cross &-box {
+    background-color: transparent;
+
+    &:before,
+    &:after {
+      background-color: @color;
+    }
+
+    &:before {
+      transform: translateY(@gutter + @height) rotate(45deg);
+    }
+
+    &:after {
+      transform: translateY(-(@gutter + @height)) rotate(-45deg);
+    }
+  }
+}
+

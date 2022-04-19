@@ -1,0 +1,193 @@
+@charset "UTF-8";
+/* TABLES */
+
+// Prefixes and objects:
+// .table-
+// .table-head-
+// .table-body-
+// .table-foot-
+
+@table-headBackgroundColor: @mainColor;
+@table-rowBackgroundColor: #fefefe;
+@table-relectionColor: @successColor;
+@table-headPadding: @defaultPadding;
+@table-padding: @defaultPadding;
+@table-borderWidth: @defaultBorderWidth;
+
+.genericTable(
+  @headBackgroundColor: @table-headBackgroundColor,
+  @rowBackgroundColor: @table-rowBackgroundColor,
+  @selectionColor: @table-relectionColor,
+  @headPadding: @table-headPadding,
+  @padding: @table-padding,
+  @borderWidth: @table-borderWidth) {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 1.5em;
+  padding: 0;
+
+  &-body,
+  &-body-row,
+  &-body-cell,
+  &-head-row,
+  &-head-cell,
+  &-foot,
+  &-foot-row,
+  &-foot-cell {
+    display: block;
+    padding: 0;
+    white-space: normal;
+    text-align: right;
+    vertical-align: middle;
+  }
+
+  &-head-cell {
+    padding: @headPadding;
+  }
+
+  &-body-cell,
+  &-foot-cell {
+    padding: @padding;
+  }
+
+  &-head { // hide workaround
+    position: absolute;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+  }
+
+  &-head-cell {
+    background-color: @headBackgroundColor;
+    .border(@borderWidth, solid, darken(@headBackgroundColor, 15%));
+    font-weight: @fontWeightNormal;
+    text-align: center;
+    color: contrast(darken(@headBackgroundColor,15%));
+  }
+
+  &-body-row,
+  &-foot-row {
+    .border(@borderWidth, solid, darken(@headBackgroundColor, 15%));
+    &.is-active {
+      background-color: darken(@selectionColor, 2%);
+      &-body-cell, &-foot-cell { color: contrast(@selectionColor); }
+    }
+  }
+
+  &-body-row {
+    margin-bottom: 1em;
+    &:last-of-type { margin-bottom: 0; }
+  }
+
+  &-foot {
+    border-top: @borderWidth solid darken(@rowBackgroundColor, 40%);
+    margin-top: 1em;
+  }
+
+  &-foot-row {
+    margin-top: 1em;
+  }
+
+  &-body-cell[scope="row"],
+  &-foot-cell[scope="row"] {
+    background-color: @selectionColor;
+    color: contrast(@selectionColor);
+  }
+
+  &-body-cell[data-title]:before,
+  &-foot-cell[data-title]:before {
+    content: attr(data-title);
+    float: left;
+    color: fadeout(@textColor, 25%);
+  }
+
+  .mq-min(@breakSmall, {
+    &-head-cell {
+      padding: @headPadding @headPadding*1.25;
+    }
+    &-body-cell,
+    &-foot-cell {
+      padding: @padding @padding*1.25;
+
+    }
+    &-body-row:not(:last-of-type) &-body-cell,
+    &-foot-row:not(:last-of-type) &-foot-cell {
+      border-bottom: @borderWidth solid darken(@rowBackgroundColor, 15%);
+    }
+  });
+  .mq-min(@breakMedium, {
+    &-head { // show workaround
+      position: relative;
+      clip: auto;
+      height: auto;
+      width: auto;
+      overflow: auto;
+    }
+    &-body,
+    &-foot {
+      display: table-row-group;
+    }
+    &-head-row,
+    &-body-row,
+    &-foot-row {
+      display: table-row;
+    }
+    &-body-row,
+    &-foot-row {
+      border-width: 1px;
+      &:nth-of-type(even) { background-color: darken(@rowBackgroundColor, 2%); }
+      &:nth-of-type(odd) { background-color: darken(@rowBackgroundColor, 4%); }
+      &:nth-of-type(even):hover { background-color: lighten(@rowBackgroundColor, 6%); }
+      &:nth-of-type(odd):hover { background-color: lighten(@rowBackgroundColor, 6%); }
+      &:nth-of-type(even).is-active { background-color: darken(@selectionColor, 2%); }
+      &:nth-of-type(odd).is-active { background-color: darken(@selectionColor, 4%); }
+      &:nth-of-type(even).is-active:hover { background-color: lighten(@selectionColor, 6%); }
+      &:nth-of-type(odd).is-active:hover { background-color: lighten(@selectionColor, 6%); }
+    }
+    &-head-cell,
+    &-body-cell,
+    &-foot-cell {
+      display: table-cell;
+    }
+    &-head-cell {
+      padding: @headPadding @headPadding*2;
+    }
+    &-body-cell,
+    &-foot-cell {
+      padding: @padding @headPadding*2;
+      &[data-title]:before { content: none; }
+      &[scope="row"] {
+        background-color: transparent;
+        color: contrast(@rowBackgroundColor);
+        text-align: center;
+      }
+    }
+  });
+  .mq-min(@breakLarge, {
+    &-head-cell {
+      padding: @headPadding @headPadding*3;
+    }
+    &-body-cell,
+    &-foot-cell {
+      padding: @padding @padding*3;
+    }
+  });
+  .mq-min(@breakXlarge, {
+    & {
+      font-size: .8rem; // 80% of body text.
+    }
+    &-head-cell {
+      padding: @headPadding*1.5 @headPadding*3;
+    }
+    &-body-cell,
+    &-foot-cell {
+      padding: @padding*1.5 @padding*3;
+    }
+  });
+}
+

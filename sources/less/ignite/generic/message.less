@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+/* MESSAGES  */
+
+// Prefixes and objects:
+// .msg-
+
+@msg-color: @hintColor;
+@msg-borderWidth: @defaultBorderWidth;
+@msg-borderRadius: @defaultBorderRadius;
+
+.genericMsg(
+  @color: @msg-color,
+  @borderWidth: @msg-borderWidth,
+  @borderRadius: @msg-borderRadius) {
+  position: relative;
+  padding: 15px;
+  font-size: .9rem;
+  color: darken(@color, 25%);
+  background-color: lighten(@color, 40%);
+  .border(@borderWidth, solid, darken(@color, 15%));
+  .border-radius(@borderRadius);
+  display: none;
+  opacity: 0;
+  transition: opacity .5s ease;
+  &:not(:last-child) {margin-bottom: 20px;}
+  &.is-active {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    opacity: 1;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+  & .icon {
+    height: 2.4em;
+    width: 2.4em;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+  & a {
+    color: darken(@color, 35%);
+    border-bottom: 1px solid fadeout(darken(@color, 35%), 50%);
+  }
+  &-content {
+    flex-basis: 100%;
+  }
+  &-headline {
+    font-size: .9rem;
+    font-weight: @fontWeightBold;
+    color: inherit;
+  }
+
+  // Close button #FIXME!
+  &-close {
+    float: right;
+    width: 34px;
+    height: 44px;
+    margin: -11px;
+    line-height: 40px;
+    color: inherit;
+    text-align: center;
+    cursor: pointer;
+    // Undo `<button>` styles
+    background: none;
+    border: 0;
+    -webkit-appearance: none;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &--full {
+    margin-top: -1px;
+    border-width: @borderWidth 0;
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
+  // Contain the messages
+  &-group {
+    margin-bottom: @bottomSpace;
+  }
+}
+
+// Variations
+.colorizeMsg(@color) {
+  color: darken(@color, 25%);
+  background-color: lighten(@color, 35%);
+  border-color: darken(@color, 15%);
+  & a {
+    color: darken(@color, 35%);
+    border-bottom-color: fadeout(darken(@color, 35%), 50%);
+  }
+}

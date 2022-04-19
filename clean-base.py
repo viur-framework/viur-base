@@ -2,7 +2,7 @@
 import argparse, datetime, getpass, io, os, subprocess, sys, time, zipfile
 from urllib.request import urlopen
 
-VI_VERSION = "3.0.10"
+VI_VERSION = "3.0.20"
 
 try:
 	whoami = getpass.getuser()
@@ -63,7 +63,7 @@ time = time.time()
 timestamp = datetime.datetime.fromtimestamp(time).strftime("%Y-%m-%d %H:%M:%S")
 
 workdir = os.getcwd() + "/deploy"
-file_list = ["viur-project.md", "local_run.sh"]
+file_list = ["viur-project.md"]
 replacements = {"{{app_id}}": app_id, "{{whoami}}": whoami, "{{timestamp}}": timestamp}
 
 # Build file list in which to search for placeholders to replace
@@ -90,34 +90,13 @@ for file_obj in file_list:
 
 # Update submodules
 
-if os.path.exists(".git"):
-	print("Initializing and updating submodules")
-	subprocess.check_output("git submodule update --init --recursive", shell=True)
+if os.path.exists(".git") and clean_history:
+	print("Clean git history")
+	subprocess.check_output("git checkout --orphan main_tmp", shell=True)
+	print(subprocess.check_output("git branch -D main", shell=True).decode().rstrip("\n"))
+	subprocess.check_output("git branch -m main", shell=True)
+	print("Current branch is:", subprocess.check_output("git branch --show-current", shell=True).decode().rstrip("\n"))
 	print("---")
-
-	if update:
-		print("Updating viur to latest master")
-		subprocess.check_output(
-			"cd deploy/viur && git checkout master && git pull && git submodule update --recursive",
-			shell=True
-		)
-		print("---")
-
-	print("Removing .git tether")
-	try:
-		subprocess.check_output("git remote rm origin", shell=True)
-		print("---")
-	except:
-		pass
-
-	if clean_history:
-		print("Clean git history")
-		subprocess.check_output("git checkout --orphan main_tmp", shell=True)
-		print(subprocess.check_output("git branch -D main", shell=True).decode().rstrip("\n"))
-		subprocess.check_output("git branch -m main", shell=True)
-		print("Current branch is:", subprocess.check_output("git branch --show-current", shell=True).decode().rstrip("\n"))
-		print("---")
-
 
 # Install prebuilt Vi
 sys.stdout.write("Downloading latest build of viur-vi...")
@@ -127,16 +106,7 @@ zip.extractall("deploy/vi")
 zip.close()
 print("Done")
 
-# commented out, we are using pyodide from cdn
-# Update pyodide
-# sys.stdout.write("Installing self-hosted Pyodide...")
-# sys.stdout.flush()
-
-# subprocess.check_output("./get-pyodide.py", shell=True)
-# print("Done")
-
 # Generate files
-
 sys.stdout.write("Generating project documentation...")
 sys.stdout.flush()
 

@@ -16,14 +16,15 @@ Before you start, please check out the following preliminaries are met:
 
 1. Create a new Google Cloud project [here](https://console.cloud.google.com/projectcreate) and activate billing.
    
-    We will refer to the name of the project you created as `YOUR-APP-ID`.
+    > We will refer to the name of the project you created as `YOUR-APP-ID`.
 2. Clone this repository with `git clone https://github.com/viur-framework/viur-base.git YOUR-PROJECT`.
 
-    This creates a new local folder `YOUR-PROJECT`. In most cases, `YOUR-PROJECT` and `YOUR-APP-ID` should be identical.
+    > This creates a new local folder `YOUR-PROJECT`. In most cases, `YOUR-PROJECT` and `YOUR-APP-ID` should be identical.
 3. `cd YOUR-PROJECT`
 4. `./clean-base.py -A YOUR-APP-ID`
 5. `./viur-gcloud-setup.sh YOUR-APP-ID`
-6. Locally run your project with `pipenv run viur run` or deploy it with `pipenv run viur deploy app`.
+6. Install local development dependencies with `pipenv install --dev`
+7. Locally run your project with `pipenv run viur run` or deploy it with `pipenv run viur deploy app`. Run a `pipenv shell` to work with the [viur-cli](https://github.com/viur-framework/viur-cli) command line tool. 
 
 See the [documentation](https://viur-core.readthedocs.io/en/latest/doc_start/index.html) for further help.
 

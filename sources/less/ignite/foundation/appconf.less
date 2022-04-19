@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* FALLBACK IGNITE 2021 APPCONFIGURATION */
+
+// Color and Shadow Sets
+@mainColor: #d00f1c; // The corporate color - defining most of the looks.
+@complementColor: #333; // A color used to sit next to the maincolor.
+@textColor: #222;
+@invTextColor: #f4f4f4;
+@backgroundColor: #fafafa;
+@clearColor: #fff;
+
+@successColor: #4cad42; // Green
+@warnColor: #f5b639; // Orange
+@failColor: #f44336; // Red
+@hintColor: #1da7e0; // Blue
+
+// Font Stacks
+@bodyFonts: 'Source Sans Pro', 'Open Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; // Default font stack.
+@headFonts: 'Source Sans Pro', 'Open Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; // Fonts for headlines, blockquotes and alike.
+@monoFonts: 'Source Code Pro', Courier, monospace; // Fonts for code pieces.
+
+// Font Weights
+@fontWeightLight: 300;
+@fontWeightNormal: 400;
+@fontWeightBold: 700;
+
+// Font Sizes
+@fontSizeSmall: 15px;
+@fontSizeMedium: 17px;
+@fontSizeLarge: 19px;
+@fontSizeExtraLarge: 21px;
+@fontSizeXxLarge: 23px;
+@fontSize4k: 25px;
+
+@defaultLineHeight: 1.5;
+
+// Buttons and Forms
+@defaultPadding: .3em; // please use em — otherwise elements won't scale
+@defaultMargin: 0; // please use em — otherwise elements won't scale
+@defaultBorderWidth: 1px;
+@defaultBorderRadius: .4em;
+@defaultShadow: 0;
+@defaultShadowHover: 1;
+@defaultShadowColor: #000;
+@defaultFormColor: #fff;
+
+// Spaces
+@spaceSmall: 10px;
+@spaceMedium: 20px;
+@spaceLarge: 30px;
+
+@outerSpace: @spaceMedium; // Space around objects, boxes etc.
+@innerSpace: @spaceSmall; // Space within objects: mostly paddings.
+@topSpace: @spaceMedium; // The Y distance between two sections.
+@bottomSpace: @spaceMedium; // The Y distance between two sections.
+@gridSpace: @spaceMedium; // Space between grid items.
+
+// Width, Height and Media Queries
+@pageWidth: 1400px; // max-width of the centered container.
+@paragraphWidth: 77ch; // max-width of text paragraphs: 77 characters.
+
+// Supported screen sizes:
+@breakTiny:  23em; // old smart phones or gadgets like smart watches up to: 368px / 16px = 23em;
+@breakSmall: 40em; // smart phones up to: 640px / 16px = 40em;
+@breakMedium: 65em; // tablets up to: 1040px / 16px = 65em;
+@breakLarge: 75em; // screens: 1200px / 16px = 75em;
+@breakXlarge: 93.75em; // big screens: 1500px / 16px = 93.75em;
+@breakXxlarge: 112.5em; // huge screens: 1800px / 16px = 112.5em;
+@break4k: 225em; // 4k screens: 3600px / 16px = 225em;
+@break2x: 2; // hiDPI displays
+
+@breakPrint: print; // make it printable!
+

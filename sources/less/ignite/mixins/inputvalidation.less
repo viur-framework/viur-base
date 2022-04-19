@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/* INPUT VALIDATION */
+
+// This helps to align form validation feedback.
+
+.inputValidation(@inputColor, @validationColor, @backgroundImage:false, @cursor:false, @focus:false) {
+  color: darken(@validationColor, 15%);
+  border-color: @validationColor;
+  background-color: lighten(@validationColor, 40%);
+  & when not (@backgroundImage=false) {
+    background-image: url(@backgroundImage);
+    background-position: ~"calc(100% - "@form-padding*2~")" center;
+  }
+  & when not (@cursor=false) {
+    cursor: @cursor;
+  }
+  &:focus when not (@focus=false) {
+    color: contrast(@inputColor, #222222, #f4f4f4);
+    border-color: darken(@inputColor, 10%);
+    background-color: @inputColor;
+
+    & when not (@backgroundImage=false) {
+      background-position: 150% center;
+    }
+  }
+}

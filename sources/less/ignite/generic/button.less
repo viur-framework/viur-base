@@ -1,0 +1,196 @@
+@charset "UTF-8";
+/* BUTTON – A simple button with a complex feature set. */
+
+/*
+Buttons are used for actions, like in forms. Buttons can contain text and icons. They often open separate windows or dialogs so the user can complete a task.
+Configure a primary button the user is likely to select as the default. A primary button is prominent in appearance. There can only be a single primary button in a view.
+
+Use the standard .btn for form actions and common page actions. These are used extensively around any site.
+
+When using a <button> element, always specify a type. When using a <a> element, always add role="button" for accessibility.
+
+Colorized and inverted buttons are a way to enhance generic buttons — they can be used to style primary, edit and other special buttons.
+ */
+
+// Prefixes and objects:
+// .btn-
+
+
+@btn-backgroundColor: #eeecec;
+@btn-hoverColor: lighten(@btn-backgroundColor, 5%);
+@btn-activeColor: lighten(@btn-backgroundColor, 10%);
+@btn-disabledColor: desaturate(@btn-backgroundColor, 20%);
+@btn-padding: @defaultPadding;
+@btn-margin: @defaultMargin;
+@btn-borderColor: darken(@btn-backgroundColor, 10%);
+@btn-borderWidth: @defaultBorderWidth;
+@btn-borderRadius: @defaultBorderRadius;
+@btn-shadow: @defaultShadow;
+@btn-shadowHover: @defaultShadow+1;
+@btn-shadowColor: @defaultShadowColor;
+@btn-fontWeight: @fontWeightNormal;
+
+.genericBtn(
+  @backgroundColor: @btn-backgroundColor,
+  @padding: @btn-padding,
+  @margin: @btn-margin,
+  @borderRadius: @btn-borderRadius,
+  @borderColor: @btn-borderColor,
+  @borderWidth: @btn-borderWidth,
+  @shadow: @btn-shadow,
+  @shadowHover: @btn-shadowHover,
+  @shadowColor: @btn-shadowColor,
+  @fontWeight: @btn-fontWeight) {
+  .basicInput(@padding, @margin, @borderRadius, @borderWidth, @borderColor, @fontWeight);
+  color: contrast(@backgroundColor, #222222, #f4f4f4);
+  background-color: @backgroundColor;
+  .boxShadow(@shadow, @shadowColor);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: all .3s ease;
+  &:link,
+  &:visited {
+    color: contrast(@backgroundColor, #222222, #f4f4f4);
+  }
+  &:hover {
+    color: contrast(@btn-hoverColor);
+    background-color: @btn-hoverColor;
+    .boxShadow(@shadowHover, @shadowColor);
+  }
+  &:active,
+  &.is-active {
+    color: contrast(@btn-activeColor);
+    background-color: @btn-activeColor;
+  }
+  &.is-disabled,
+  &:disabled,
+  &[aria-disabled=true] {
+    &:hover,
+    & {
+      color: darken(@btn-disabledColor, 10%);
+      cursor: not-allowed;
+      border-style: dashed;
+      background-color: lighten(@btn-disabledColor, 30%);
+      .boxShadow(0);
+    }
+  }
+  &.is-busy,
+  &.is-loading,
+  &[aria-busy=true] {
+    cursor: progress;
+
+    &:hover {
+      .boxShadow(@shadow, @shadowColor);
+    }
+  }
+  & > .icon,
+  & > .logo {
+    align-self: center;
+    width: 1.3em;
+    height: 1.3em;
+
+    &:first-child {
+      margin-left: -(@padding/2);
+      margin-right: @padding;
+    }
+  }
+  &--small {
+    font-size: .8em;
+
+    & > .icon:first-child,
+    & > .logo:first-child {
+      margin-right: .15em;
+    }
+  }
+  &--large {
+    font-size: 1.2em;
+  }
+  &--block {
+    margin: @margin 0;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.colorizeBtn(
+  @backgroundColor,
+  @borderWidth: @defaultBorderWidth,
+  @shadow: 1,
+  @shadowHover: 2) {
+  color: contrast(darken(@backgroundColor, 15%), #222222, #f4f4f4);
+  background-color: @backgroundColor;
+  border: @borderWidth solid darken(@backgroundColor, 10%);
+  .boxShadow(@shadow, @backgroundColor);
+  &:link,
+  &:visited {
+    color: contrast(darken(@backgroundColor, 15%), #222222, #f4f4f4);
+  }
+  &:hover {
+    color: contrast(darken(@backgroundColor, 15%));
+    background-color: lighten(@backgroundColor, 5%);
+    border: @borderWidth solid darken(@backgroundColor, 5%);
+    .boxShadow(@shadowHover, @backgroundColor);
+  }
+  &:active,
+  &.is-active {
+    color: contrast(darken(@backgroundColor, 20%));
+    background-color: lighten(@backgroundColor, 10%);
+    border: @borderWidth solid lighten(@backgroundColor, 5%);
+  }
+  &.is-disabled,
+  &:disabled,
+  &[aria-disabled=true] {
+    &:hover,
+    & {
+      color: lighten(desaturate(@backgroundColor, 20%), 10%);
+      .boxShadow(0);
+      border-style: dashed;
+      background-color: lighten(desaturate(@backgroundColor, 20%), 30%);
+    }
+  }
+  .input-group & {
+    .zIndex('content', 1); // border colors are important here.
+  }
+}
+
+.invertColorizedBtn(
+  @backgroundColor,
+  @borderWidth: @defaultBorderWidth,
+  @shadow: 0,
+  @shadowHover: 1) {
+  color: darken(@backgroundColor, 5%);
+  border: @borderWidth solid darken(@backgroundColor, 10%);
+  .boxShadow(@shadow, @backgroundColor);
+  &:link,
+  &:visited {
+    color: darken(@backgroundColor, 5%);
+  }
+  &:hover {
+    color: contrast(darken(@backgroundColor, 15%));
+    background-color: lighten(@backgroundColor, 5%);
+    border: @borderWidth solid darken(@backgroundColor, 5%);
+    .boxShadow(@shadowHover, @backgroundColor);
+  }
+  &:active,
+  &.is-active {
+    color: contrast(darken(@backgroundColor, 20%));
+    background-color: lighten(@backgroundColor, 10%);
+    border: @borderWidth solid lighten(@backgroundColor, 5%);
+  }
+  &.is-disabled,
+  &:disabled,
+  &[aria-disabled=true] {
+    &:hover,
+    & {
+      color: lighten(desaturate(@backgroundColor, 20%), 30%);
+      background-color: lighten(desaturate(@backgroundColor, 20%), 15%);
+      border: @borderWidth dashed lighten(desaturate(@backgroundColor, 20%), 30%);
+      .boxShadow(0);
+    }
+  }
+  .input-group & {
+    .zIndex('content', 1); // border colors are important here.
+  }
+}
+

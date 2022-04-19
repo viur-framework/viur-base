@@ -1,0 +1,11 @@
+@charset "UTF-8";
+/* BORDER STYLES */
+
+// Helper Mixins
+.border-radius(@radius) when not(@radius = 0) {
+  border-radius: @radius;
+}
+
+.border(@width, @style, @color) when not (@width = 0) {
+  border: @width @style @color;
+}

@@ -1,0 +1,328 @@
+@charset "UTF-8";
+/* BASICS, FUNDAMENTALS and TYPE */
+
+// ViUR Ignite supports the 100% Easy to read standard:
+// https://ia.net/know-how/100e2r
+
+// The body font size is 100%. The root font size adapts to different displays.
+// Objects use a font size based on this size: using »rem« (root em).
+// Inline elements and type should react to their direct surroundings - thus use »em«.
+
+
+@basic-bodyBackgroundColor: @backgroundColor;
+@basic-bodyLineHeight: @defaultLineHeight;
+@basic-bodyTextColor: @textColor;
+@basic-bodyFonts: @bodyFonts;
+@basic-bodyFontWeight: @fontWeightNormal;
+@basic-linkColor: @mainColor;
+@basic-linkHoverColor: darken(@mainColor, 10%);
+@basic-headColor: @mainColor;
+@basic-headFonts: @headFonts;
+@basic-headFontWeight: @fontWeightNormal;
+@basic-headLineHeight: 1.6;
+@basic-subColor: lighten(@complementColor, 20%);
+@basic-leadFontWeight: @fontWeightLight;
+@basic-markColor: lighten(@mainColor,40%);
+@basic-quoteColor: @complementColor;
+@basic-codeBackgroundColor: darken(@backgroundColor, 5%);
+@basic-kbdBackgroundColor: darken(@backgroundColor, 10%);
+@basic-selectionBackgroundColor: darken(@mainColor, 10%);
+
+
+*, *::before, *::after {
+  .mq-print({
+    text-shadow: none !important;
+    box-shadow: none !important;
+  });
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-size: @fontSizeSmall;
+  // Font-size scales with screen-size:
+  .mq-min (@breakMedium, {
+    font-size: @fontSizeMedium;
+  });
+  .mq-min (@breakLarge, {
+    font-size: @fontSizeLarge;
+  });
+  .mq-min (@breakXlarge, {
+    font-size: @fontSizeExtraLarge;
+  });
+  .mq-min (@breakXxlarge, {
+    font-size: @fontSizeXxLarge;
+  });
+  .mq-min (@break4k, {
+    font-size: @fontSize4k;
+  });
+  .mq-print({
+    padding-left: 1.8cm;
+    padding-right: 1.8cm;
+    padding-top: 2.54cm;
+    padding-bottom: 2.54cm;
+    background: none;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  });
+}
+
+body {
+  background: @basic-bodyBackgroundColor;
+  line-height: @basic-bodyLineHeight;
+  color: @basic-bodyTextColor;
+  font-family: @basic-bodyFonts;
+  -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+  -webkit-text-size-adjust: 100%;
+  min-height: 100vh;
+  font-size: 100.01%;
+  font-weight: @basic-bodyFontWeight;
+}
+
+/* Links */
+a,
+.link {
+  color: @basic-linkColor;
+  text-decoration: none;
+  outline: 0;
+  transition: all ease-in-out .3s;
+  &:hover,
+  &:active {
+    color: @basic-linkHoverColor;
+  }
+  p &,
+  p &:visited {
+    line-height: inherit;
+  }
+  // Force empty links to show:
+  &[href^="http"]:empty::before {
+    content: attr(href);
+  }
+}
+
+
+a[href^="http://"]:after,
+a[href^="https://"]:after,
+a[href^="ftp://"]:after {
+  .mq-print({
+    content: " (" attr(href) ")";
+    font-size: 80%;
+  });
+}
+
+// Typography
+
+// Please style your headlines with the help of classes (e.g.: .headline, .subline, .heading)
+h1, h2, h3, h4, h5, h6 {
+  color: inherit;
+  font-family: @basic-headFonts;
+  font-weight: inherit;
+  line-height: @basic-headLineHeight;
+  a {font-weight: inherit; color: inherit;}
+  .mq-print({
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  });
+}
+
+// Use .headline for your important headlines.
+.headline {
+  font-family: @basic-headFonts;
+  font-weight: @basic-headFontWeight;
+  color: @basic-headColor;
+}
+
+// Use .subline to your headline
+.subline {
+  font-family: @basic-headFonts;
+  color: @basic-subColor;
+}
+
+// remove margin-top of .subline after .headline
+.headline + .subline {
+  margin-top: 0;
+}
+
+// Use .lead to emphasize the first paragraph of a section.
+.lead {
+  font-size: 1.3em;
+  font-weight: @basic-leadFontWeight;
+}
+
+p {
+  &:not(:last-of-type){
+    margin-bottom: @bottomSpace;
+  }
+  .mq-print({
+    orphans: 3;
+    widows: 3;
+  });
+}
+
+.paragraph {
+  font-size: 1.1em;
+  line-height: 1.6;
+  text-align: justify;
+  hyphens: auto;
+  max-width: @paragraphWidth;
+  margin: 0 auto @bottomSpace 0;
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: @basic-headFontWeight;
+    margin-bottom: @innerSpace;
+  }
+}
+
+strong {font-weight: @fontWeightBold;}
+em {font-style:italic;}
+small {font-size: .8em}
+
+ins {
+  text-decoration: none;
+  border-bottom: 1px dashed;
+}
+
+mark {
+  background: @basic-markColor;
+  color: contrast(@basic-markColor, @textColor, @invTextColor);
+  padding: 1px;
+  &:before,
+  &:after {
+    letter-spacing: -0.2em;
+    content: "\00a0";
+  }
+}
+
+blockquote {
+  font-family: @basic-headFonts;
+  font-style: italic;
+  font-size: 1.2em;
+  color: @basic-quoteColor;
+  padding: 0 15px;
+  border-left: 7px solid @basic-quoteColor;
+  cite {
+    font-size: .8em;
+    vertical-align: baseline;
+    * {vertical-align: baseline;}
+    &:before {
+      display: inline-block;
+      content: '\2014';
+      margin-right: 3px;
+      color: @basic-quoteColor;
+    }
+  }
+  &:after {
+    content: attr(cite);
+    font-size: .6em;
+    margin-top: 2em;
+  }
+}
+
+code, pre {
+  font-family: @monoFonts;
+  background: @basic-codeBackgroundColor;
+  color: contrast(@basic-codeBackgroundColor);
+}
+code {
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  tab-size: 4;
+  hyphens: none;
+  padding: 3px;
+  border-radius: 3px;
+  margin: 0 3px;
+  &:before,
+  &:after {
+    letter-spacing: -0.2em;
+    content: "\00a0";
+  }
+}
+pre {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+}
+
+// Keys
+.kbd,
+kbd {
+  background-color: @basic-kbdBackgroundColor;
+  border: 1px solid darken(@basic-kbdBackgroundColor, 5%);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  color: contrast(@basic-kbdBackgroundColor);
+  display: inline-block;
+  font-size: .8rem;
+  font-family: @monoFonts;
+  margin: 0 0.1em;
+  padding: .2em .6em;
+  text-shadow: 0 1px 0 #fff;
+  white-space: nowrap;
+  &.kbd--dark {
+    border: 1px solid contrast(darken(@basic-kbdBackgroundColor, 5%));
+    background-color: contrast(@basic-kbdBackgroundColor);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px lighten(contrast(@basic-kbdBackgroundColor), 20%) inset;
+    color: @basic-kbdBackgroundColor;
+  }
+}
+
+// Lists
+ul.is-list {
+  padding: 3px 4ch;
+  margin: 0;
+  list-style-type: disc;
+}
+
+.is-list ul {
+  padding: 3px 4ch;
+  list-style-type: square;
+}
+
+.is-list ul ul,
+.is-list ol ul {
+  list-style-type: circle;
+}
+
+ol.is-list {
+  padding: 3px 4ch;
+  margin: 0;
+  list-style-type: decimal;
+}
+
+.is-list ol {
+  padding: 3px 4ch;
+  list-style-type: upper-roman;
+}
+
+.is-list ol ol,
+.is-list ul ol {
+  list-style-type: upper-alpha;
+}
+
+table, blockquote, pre, code, figure, li, hr, ul, ol, a {
+  .mq-print({
+    page-break-inside: avoid;
+  });
+}
+
+// Selections
+::-moz-selection {
+  background-color: @basic-selectionBackgroundColor;
+  text-shadow: none;
+  color: contrast(@basic-selectionBackgroundColor);
+}
+
+::selection {
+  background-color: @basic-selectionBackgroundColor;
+  text-shadow: none;
+  color: contrast(@basic-selectionBackgroundColor);
+}
+
+:focus {
+  outline: 1px dotted #ddd;
+}

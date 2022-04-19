@@ -1,0 +1,29 @@
+@charset "UTF-8";
+/* INLINESVG ICONS */
+
+.genericIcon() {
+  display: inline-block;
+  vertical-align: text-top;
+  fill: currentcolor;
+  color: inherit;
+  width: 1em;
+  height: 1em;
+
+  & path,
+  & circle,
+  & rect,
+  & ellipse,
+  & polygon,
+  & polyline {
+    fill: inherit;
+    stroke: none;
+  }
+}
+
+.colorizeIcon(@color) {
+  & .icon,
+  &.icon {
+    color: darken(@color, 25%);
+  }
+}
+

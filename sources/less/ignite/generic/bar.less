@@ -1,0 +1,74 @@
+@charset "UTF-8";
+/* HORIZONTAL BAR */
+
+// The .bar element is a horizontal stripe that can contain any other item.
+// Use it for vertical alignment and horizontal distribution, such as navigation bars or inline forms.
+
+// Prefixes and objects:
+// .bar-
+// .bar-group-
+
+.genericBar() {
+  display: flex;
+  text-align: left;
+
+  .mq-max(@breakSmall, {
+    flex-direction: column;
+    & > * + * {margin-top: 10px;}
+  });
+
+  .mq-min(@breakSmall, {
+    font-size: .9rem;
+    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 35px;
+    position: relative;
+    text-align: center;
+    justify-content: space-between;
+    & > * + * {margin-left: 10px;}
+    &-item {
+      align-self: center;
+      &--left {margin-right: auto !important;}
+      &--right {margin-left: auto !important;}
+      &--center {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    }
+  });
+
+  &-link {
+    .mq-min(@breakSmall, { display: flex; });
+  }
+  &-group {
+    display: flex;
+    & > * {display: flex; align-items: center;}
+    .mq-max(@breakSmall, {
+      flex-direction: column;
+      & > * + * {margin-top: 10px;}
+    });
+
+    .mq-min(@breakSmall, {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      &--left {
+        justify-content: flex-start;
+      }
+      &--center {
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      &--right {
+          justify-content: flex-end;
+          &:first-child { margin-left: auto;}
+      }
+
+      & > * {margin-bottom: 0 !important; margin-top: 0 !important;};
+      & > * + * {margin-left: 10px;}
+    });
+  }
+}
