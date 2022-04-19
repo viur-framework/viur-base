@@ -1,0 +1,4 @@
+{%  if boneValue and (boneParams["type"] == "relational" or boneParams["type"].startswith("relational.")) %}
+	{% set boneValue = boneValue["dest"]["key"] %}
+{%  endif %}
+<input type="hidden" name="{{ boneName }}" value="{{ boneValue or "" }}">
