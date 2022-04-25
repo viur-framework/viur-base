@@ -15,6 +15,11 @@ indexes:
   - name: parententry
   - name: sortindex
 
+- kind: viur-emails
+  properties:
+  - name: isSend
+  - name: creationDate
+
 - kind: viur-relations
   properties:
   - name: dest.__key__
