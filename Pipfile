@@ -9,7 +9,7 @@ verify_ssl = true
 name = "testpypi"
 
 [packages]
-viur-core = "==3.1.0"
+viur-core = "*"
 
 [dev-packages]
 viur-cli = "*"
