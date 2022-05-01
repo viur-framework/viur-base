@@ -64,7 +64,7 @@ else
 fi
 
 # Activate APIs and Services
-for service in cloudtasks.googleapis.com iamcredentials.googleapis.com cloudscheduler.googleapis.com
+for service in firestore.googleapis.com iamcredentials.googleapis.com cloudbuild.googleapis.com cloudtasks.googleapis.com cloudscheduler.googleapis.com
 do
 	gcloud services enable --project=$project $service
 done
@@ -115,11 +115,11 @@ echo "##############################################################"
 echo "# All done!                                                  #"
 echo "# You should now be able to run your project locally with    #"
 echo "#                                                            #"
-echo "#   ./local_run.sh                                           #"
+echo "#   viur run                                                 #"
 echo "#                                                            #"
 echo "# At first run, it might happen that some functions are      #"
 echo "# causing error 500 because indexes are not immediately      #"
-echo "# served.                                                    #"
+echo "# served. Therefore, maybe wait a few minutes.               #"
 echo "#                                                            #"
 echo "# Have a nice day.                                           #"
 echo "##############################################################"
