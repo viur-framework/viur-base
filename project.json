@@ -5,7 +5,7 @@
         "format": "1.0.0",
         "pyodide": "v0.19.1",
         "sources_folder": "./sources",
-        "vi": "submodule"
+        "vi": "v3.0.20"
     },
     "develop": {
         "application_name": "{{app_id}}",
