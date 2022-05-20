@@ -96,6 +96,8 @@ conf["viur.email.transportClass"] = email.EmailTransportSendInBlue
 securityheaders.addCspRule("style-src", "unsafe-inline", "enforce")  # yes, GitHub buttons need this...
 securityheaders.addCspRule("script-src", "buttons.github.io", "enforce")
 securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
+# Enable this if you want to use the captcha, but not unsafe-inline:
+# securityheaders.addCspRule("script-src", "sha256-TLq3i7CjxmHUoz+BrQ6w5D2+hv35BEkew240zhZ0uvA=", "enforce")
 
 # ------------------------------------------------------------------------------
 # Server startup
