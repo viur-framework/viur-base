@@ -418,11 +418,11 @@
         },
         "proto-plus": {
             "hashes": [
-                "sha256:b06be21c3848fbc20387d1d6891a9b97dfa1cdd0f10d3d42ef70b5700ec0f423",
-                "sha256:f28b225bc9e6c14e206fb7f8e996a46fb2ccd902648e512d496abb6a716a4ae5"
+                "sha256:3cfaac30676793d5ee764a0982bc30481beb5059f315e2a2422d7c73ded5b601",
+                "sha256:6653541c2f1209e4d5268d3e6302791f72a95cc5f8bdcf3e60d943edc657e70a"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==1.20.3"
+            "version": "==1.20.4"
         },
         "protobuf": {
             "hashes": [
@@ -786,11 +786,11 @@
         },
         "viur-cli": {
             "hashes": [
-                "sha256:0531aa5695ba166d6c536812780975b45aef3d825aa5c4d93697ba28c2423b63",
-                "sha256:2ebaf6aa8bddbda5564d402b78afccf1b27dd4a1f6fbfb6d0bc8845e53a89564"
+                "sha256:cb2c2fb1810f1e7c730668c2dac2595e7e9826a22adcfb968248c156a9dee1e3",
+                "sha256:ee560ebdd4c334900e109bd2b8ca0fc8d0fac5a3ba27ed509833f2fffe49ccac"
             ],
             "index": "pypi",
-            "version": "==0.6.19"
+            "version": "==0.7.0"
         },
         "watchdog": {
             "hashes": [

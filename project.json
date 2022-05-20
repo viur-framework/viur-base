@@ -9,6 +9,6 @@
     },
     "develop": {
         "application_name": "{{app_id}}",
-        "version": "dev"
+        "version": "$(year)-$(month)-$(day)-$(user)"
     }
 }
