@@ -1,4 +1,25 @@
 <div class="hidden2formfield">
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-    <div class="g-recaptcha" data-sitekey="{{ boneValue }}"></div>
+	<script src="https://www.google.com/recaptcha/api.js?render={{ boneValue }}"></script>
+	<input type="hidden" class="recaptcha" name="g-recaptcha-response"
+		   data-sitekey="{{ boneValue }}"
+		   data-action="{{ boneParams["action"]|default("form") }}">
 </div>
+
+<script>
+	(function () {
+		function fetchToken(input) {
+			grecaptcha.ready(function () {
+				const {sitekey, action} = input.dataset;
+				grecaptcha.execute(sitekey, {action})
+					.then(token => {
+						input.value = token;
+						// A reCAPTCHA token expires after two minutes,
+						// refresh it 10 seconds before.
+						setTimeout(fetchToken, (2 * 60 - 10) * 1000, input);
+					});
+			});
+		}
+
+		document.querySelectorAll('.recaptcha').forEach(fetchToken);
+	})();
+</script>
