@@ -4,7 +4,36 @@ window.onload = () => {
 
 function init() {
 	document.querySelectorAll(".js-viur-bones-file-upload-file-button").forEach((addButton) => {
-		addButton.addEventListener("click", addButtonClick)
+		console.log()
+		if (addButton.parentElement.dataset.multiple === "0") {
+			addButton.addEventListener("click", addButtonClick)
+		} else //Multiple value
+		{
+			const addMultipleBtn = document.querySelector(".js-viur-bones-file-add-files");
+			addMultipleBtn.addEventListener("click", (event) => {
+				const newElement = event.target.parentElement.querySelector(".vi-file").cloneNode(true);
+				//clear new element
+				console.log(newElement)
+				const boneName = newElement.dataset.name;
+				newElement.querySelector('[name="' + boneName + '"]').value = "";
+				newElement.querySelector(".input").innerText = "";
+
+				event.target.parentElement.querySelector(".vi-file").parentElement.appendChild(newElement);
+				newElement.querySelectorAll(".js-viur-bones-file-upload-file-button").forEach((addButton) => {
+
+					addButton.addEventListener("click", addButtonClick)
+				});
+
+			})
+			addButton.addEventListener("click", addButtonClick)
+		}
+	})
+	document.querySelectorAll(".js-viur-bones-file-remove-file").forEach((cancelButton) => {
+		cancelButton.addEventListener("click", () => {
+			const boneName = cancelButton.parentElement.dataset.name;
+			cancelButton.parentElement.querySelector('[name="' + boneName + '"]').value = "";
+			cancelButton.parentElement.querySelector(".input").innerText = "";
+		})
 	})
 }
 
@@ -17,11 +46,16 @@ function addButtonClick(event) {
 		const file = e.target.files[0];
 
 		getUploadUrl(file).then(uploadData => {
+
+			const parent = event.target.parentElement;
+			const inputspan = parent.querySelector('.input');
+			inputspan.innerText="Uploading..."
 			uploadFile(file, uploadData).then(resp => {
-				const parent = event.target.parentElement;
+
 				const inputName = parent.dataset["name"];
 				const keyinput = parent.querySelector('[name="' + inputName + '"]');
-				addFile(uploadData,keyinput)
+
+				addFile(uploadData, keyinput, inputspan)
 
 			});
 		});
@@ -66,7 +100,7 @@ function uploadFile(file, uploadData) {
 
 }
 
-function addFile(uploadData, keyinput) {
+function addFile(uploadData, keyinput, inputSpan) {
 	var currentUpload = {}
 	return new Promise((resolve, reject) => {
 		currentUpload["key"] = uploadData["values"]["uploadKey"];
@@ -85,6 +119,16 @@ function addFile(uploadData, keyinput) {
 				response => response.json()).then((data) => {
 
 				keyinput.value = data.values.key;
+				//Refresh skey
+				const skeyInput = document.querySelector('[name="skey"]');
+				console.log(skeyInput)
+				inputSpan.innerText = "Upload done."
+				if (skeyInput !== null) {
+					getSkey().then((skey) => {
+						skeyInput.value = skey;
+					})
+
+				}
 			});
 		});
 	});
