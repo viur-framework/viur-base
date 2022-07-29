@@ -13,7 +13,6 @@ function init() {
 			addMultipleBtn.addEventListener("click", (event) => {
 				const newElement = event.target.parentElement.querySelector(".vi-file").cloneNode(true);
 				//clear new element
-				console.log(newElement)
 				const boneName = newElement.dataset.name;
 				newElement.querySelector('[name="' + boneName + '"]').value = "";
 				newElement.querySelector(".input").innerText = "";
@@ -23,6 +22,12 @@ function init() {
 
 					addButton.addEventListener("click", addButtonClick)
 				});
+				newElement.querySelectorAll(".js-viur-bones-file-remove-file").forEach((cancelButton) => {
+					cancelButton.addEventListener("click", () => {newElement.outerHTML = "";})
+
+
+				});
+
 
 			})
 			addButton.addEventListener("click", addButtonClick)
@@ -49,13 +54,13 @@ function addButtonClick(event) {
 
 			const parent = event.target.parentElement;
 			const inputspan = parent.querySelector('.input');
-			inputspan.innerText="Uploading..."
+			inputspan.innerText = "Uploading..."
 			uploadFile(file, uploadData).then(resp => {
 
 				const inputName = parent.dataset["name"];
 				const keyinput = parent.querySelector('[name="' + inputName + '"]');
 
-				addFile(uploadData, keyinput, inputspan)
+				addFile(uploadData, keyinput, inputspan, file)
 
 			});
 		});
@@ -100,7 +105,8 @@ function uploadFile(file, uploadData) {
 
 }
 
-function addFile(uploadData, keyinput, inputSpan) {
+function addFile(uploadData, keyinput, inputSpan, file) {
+	const internUploadData = JSON.parse(JSON.stringify(uploadData))
 	var currentUpload = {}
 	return new Promise((resolve, reject) => {
 		currentUpload["key"] = uploadData["values"]["uploadKey"];
@@ -121,8 +127,8 @@ function addFile(uploadData, keyinput, inputSpan) {
 				keyinput.value = data.values.key;
 				//Refresh skey
 				const skeyInput = document.querySelector('[name="skey"]');
-				console.log(skeyInput)
-				inputSpan.innerText = "Upload done."
+
+				inputSpan.innerText = file.name;
 				if (skeyInput !== null) {
 					getSkey().then((skey) => {
 						skeyInput.value = skey;
