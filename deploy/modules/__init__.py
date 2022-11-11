@@ -24,8 +24,8 @@ for _module in os.listdir(os.path.dirname(__file__)):
 				continue
 
 			_symbol = getattr(_import, _name)
-			if (getattr(_symbol, "__module__", None) != "modules.%s" % _module
-				or isinstance(_symbol, viur.core.prototypes.basic.BasicApplication)):
+			if not (getattr(_symbol, "__module__", None) == f"modules.{_module}"
+					or isinstance(_symbol, viur.core.prototypes.basic.BasicApplication)):
 				continue
 
 			_viurModules[_name.lower()] = _symbol
