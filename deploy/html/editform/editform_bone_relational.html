@@ -4,9 +4,11 @@
 		class="select ignt-select ignt-select--{{ boneName }}
 			{{ "is-required" if boneParams.required }}
 			{{ "is-readonly" if boneParams.readOnly }}
+			{{ "is-multiple" if boneParams.multiple }}
 			{{ "is-invalid" if boneWasInvalid else "is-valid" }}"
 		{{'readonly' if boneParams.readOnly}}
 		{{'required' if boneParams.required}}
+        {{'multiple' if boneParams.multiple}}
     >
 {% set ns = namespace(cursor="") %}
 {% for i in range(0, 1000, 100) %}
@@ -25,9 +27,14 @@
                 -
             </option>
         {% endif %}
-        <option value="{{ entry["key"] }}" {{ "selected" if boneValue and entry["key"] == boneValue["dest"]["key"] }}>
-            {{ entry["name"] }}
-        </option>
+            <option value="{{ entry["key"] }}"
+                    {% if boneParams.multiple %}
+                        {{ "selected" if entry["key"] in boneValue|map(attribute='dest.key') }}
+                    {% else %}
+                        {{ "selected" if boneValue and boneValue['dest'] and entry["key"] == boneValue["dest"]["key"] }}
+                    {% endif %}>
+                {{ entry["name"] }}
+            </option>
     {% endfor %}
 {% endfor %}
 
