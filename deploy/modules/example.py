@@ -2,7 +2,7 @@ from viur.core.prototypes import List
 
 
 class Example(List):
-	listTemplate = "example_list"
+    listTemplate = "example_list"
 
-	def listFilter(self, query):
-		return query  # everyone can see everything!
+    def listFilter(self, query):
+        return query  # everyone can see everything!
