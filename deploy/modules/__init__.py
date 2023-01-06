@@ -43,9 +43,9 @@ for _module in os.listdir(os.path.dirname(__file__)):
             _viurModules[_name.lower()] = _symbol
             logging.debug("Importing %s as %s" % (_symbol, _name.lower()))
 
-    except ImportError:
+    except Exception as e:
         logging.error("Unable to import '%s'" % _module)
-        raise
+        raise e
 
 globals().update(_viurModules)
 del _viurModules, _module, _import, _name, _symbol, os, logging, viur.core.prototypes.basic

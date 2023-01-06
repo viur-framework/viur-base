@@ -16,8 +16,9 @@ VI_VERSION = "3.0.20"
 
 try:
     whoami = getpass.getuser()
-except EnvironmentError:
+except Exception as e:
     whoami = "viur"
+    raise e
 
 ap = argparse.ArgumentParser(
     description="Setting up a clean ViUR project base.",
