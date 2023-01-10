@@ -67,7 +67,7 @@ options={"keyLink": "/$(module)/view/$(key)?style=raw"}
     {% set ret = {"value": format} %}
 
     {% for key, val in vars.items() %}
-        {% if val|isDict %}
+        {% if val is dict %}
             {% do ret.update({"value": SkelViewRelBoneFormat(ret["value"], val, prefix = "%s." % key)}) %}
         {% else %}
             {% do ret.update({"value": ret["value"].replace("$(%s)" % (prefix + key), val|string)}) %}
@@ -75,7 +75,7 @@ options={"keyLink": "/$(module)/view/$(key)?style=raw"}
     {% endfor %}
 
     {% for key, val in value.items() %}
-        {% if val|isDict %}
+        {% if val is dict %}
             {% do ret.update({"value": SkelViewRelBoneFormat(ret["value"], val, prefix = "%s." % key)}) %}
         {% else %}
             {% do ret.update({"value": ret["value"].replace("$(%s)" % (prefix + key), val|string)}) %}
@@ -119,7 +119,7 @@ options={"keyLink": "/$(module)/view/$(key)?style=raw"}
                     <{{ valueTag }} class="{{ cssBaseClass }}-bone-value {{ step }}">
                         {% if value and (structure[step]["type"] == "select" or structure[step]["type"].startswith("select.")) and not structure[step]["multiple"] %}
                             {{ value.descr if value }}
-                        {% elif value and value|isList and (structure[step]["type"] == "select" or structure[step]["type"].startswith("select.")) and structure[step]["multiple"] %}
+                        {% elif value and value is list and (structure[step]["type"] == "select" or structure[step]["type"].startswith("select.")) and structure[step]["multiple"] %}
 							{% for val in value %}
 								{{val.descr or val|string}}{{", " if not loop.last}}
 							{% endfor %}
@@ -137,7 +137,7 @@ options={"keyLink": "/$(module)/view/$(key)?style=raw"}
                             {% endif %}
                         {% elif structure[step]["type"] == "relational.treeitem.file" %}
                             {% if value %}
-                                {% if not value|isList %}
+                                {% if value is not list %}
                                     {% set value = [value] %}
                                 {% endif %}
 
@@ -171,7 +171,7 @@ options={"keyLink": "/$(module)/view/$(key)?style=raw"}
                         {% elif structure[step]["type"] == "relational" or structure[step]["type"].startswith("relational.") %}
                             {# Drilldown! #}
                             {% if drillDepth and value %}
-                                {% if not value|isList %}
+                                {% if value is not list %}
                                     {% set value = [value] %}
                                 {% endif %}
 
@@ -184,8 +184,8 @@ options={"keyLink": "/$(module)/view/$(key)?style=raw"}
                                         {% set rvalue = None %}
                                     {% endif %}
 
-                                    {% if (drillFull|isList and step in drillFull)
-                                            or (drillFull and not drillFull|isList) %}
+                                    {% if (drillFull is list and step in drillFull)
+                                            or (drillFull and drillFull is not list) %}
                                         {% set dvalue = getEntry(structure[step]["module"], dvalue["key"]) %}
                                         {% do structures.update({structure[step]["module"]: getSkel(structure[step]["module"])}) %}
                                     {% else %}
@@ -254,7 +254,7 @@ options={"keyLink": "/$(module)/view/$(key)?style=raw"}
                             <a href="{{ SkelViewRelBoneFormat(options["keyLink"], skel, vars={"module": module}) }}">
                                {{ value }}
                             </a>
-                        {% elif value and value|isList %}
+                        {% elif value and value is list %}
                             {% for entry in value %}
                             	{{entry|string}}{{ "," if not loop.last }}
                             {% endfor %}
