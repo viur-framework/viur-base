@@ -1,41 +1,39 @@
 <select
-		id="ignt-id-{{ boneName }}"
-		name="{{ boneName }}"
-		class="select ignt-select ignt-select--{{ boneName }}
+        id="ignt-id-{{ boneName }}"
+        name="{{ boneName }}"
+        class="select ignt-select ignt-select--{{ boneName }}
 			{{ "is-required" if boneParams.required }}
 			{{ "is-readonly" if boneParams.readOnly }}
 			{{ "is-multiple" if boneParams.multiple }}
 			{{ "is-invalid" if boneWasInvalid else "is-valid" }}"
-		{{'readonly' if boneParams.readOnly}}
-		{{'required' if boneParams.required}}
-        {{'multiple' if boneParams.multiple}}
-    >
-{% set ns = namespace(cursor="") %}
-{% for i in range(0, 1000, 100) %}
-	{% if ns.cursor == "" %}
-		{% set skellist = getList(boneParams.module, limit=100) %}
-		{% set ns.cursor = skellist.getCursor() %}
-	{% elif ns.cursor != none %}
-		{% set skellist = getList(boneParams.module, cursor=ns.cursor, limit=100) %}
-		{% set ns.cursor = skellist.getCursor() %}
-	{% else %}
-		{% set skellist = [] %}
-	{% endif %}
-    {% for entry in skellist %}
-        {% if loop.first %}
-            <option value="" {{ "selected" if not boneValue }} {{ "disabled" if boneParams.required}} hidden>
-                -
-            </option>
+            {{ 'readonly' if boneParams.readOnly }}
+            {{ 'required' if boneParams.required }}
+            {{ 'multiple' if boneParams.multiple }}>
+    {% set ns = namespace(cursor="") %}
+    {% for i in range(0, 1000, 100) %}
+        {% if ns.cursor == "" %}
+            {% set skellist = getList(boneParams.module, limit=100) %}
+            {% set ns.cursor = skellist.getCursor() %}
+        {% elif ns.cursor != none %}
+            {% set skellist = getList(boneParams.module, cursor=ns.cursor, limit=100) %}
+            {% set ns.cursor = skellist.getCursor() %}
+        {% else %}
+            {% set skellist = [] %}
         {% endif %}
+        {% for entry in skellist %}
+            {% if loop.first %}
+                <option value="" {{ "selected" if not boneValue }} {{ "disabled" if boneParams.required }} hidden>
+                    -
+                </option>
+            {% endif %}
             <option value="{{ entry["key"] }}"
-                    {% if boneParams.multiple %}
+                    {%- if boneParams.multiple -%}
                         {{ "selected" if entry["key"] in boneValue|map(attribute='dest.key') }}
-                    {% else %}
+                    {%- else -%}
                         {{ "selected" if boneValue and boneValue['dest'] and entry["key"] == boneValue["dest"]["key"] }}
-                    {% endif %}>
-                {{ entry["name"] }}
+                    {%- endif -%}>
+                {{ entry.get("name", entry["key"]) }}
             </option>
+        {% endfor %}
     {% endfor %}
-{% endfor %}
-
-    </select>
+</select>
