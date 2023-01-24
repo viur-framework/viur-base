@@ -3,7 +3,6 @@ import argparse
 import datetime
 import getpass
 import io
-import logging
 import os
 import subprocess
 import sys
@@ -16,9 +15,8 @@ VI_VERSION = "3.0.20"
 
 try:
     whoami = getpass.getuser()
-except Exception as e:
+except:
     whoami = "viur"
-    raise e
 
 ap = argparse.ArgumentParser(
     description="Setting up a clean ViUR project base.",
@@ -107,7 +105,10 @@ if os.path.exists(".git") and clean_history:
     print(subprocess.check_output("git branch -D main", shell=True).decode().rstrip("\n"))
     subprocess.check_output("git branch -m main", shell=True)
     print(
-        "Current branch is:", subprocess.check_output("git branch --show-current", shell=True).decode().rstrip("\n"))
+        "Current branch is:",
+        subprocess.check_output("git branch --show-current", shell=True)
+        .decode().rstrip("\n")
+    )
     print("---")
 
 # Install prebuilt Vi

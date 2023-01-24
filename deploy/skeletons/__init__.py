@@ -14,7 +14,4 @@ for skelModule in os.listdir(os.path.dirname(__file__)):
     except ImportError:
         logging.error("Unable to import skeleton %s" % skelModule[:-3])
 
-    except Exception as e:
-        raise e
-
 del skelModule

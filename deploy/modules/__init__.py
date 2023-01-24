@@ -2,21 +2,13 @@
 # If any other importing logic is wanted, please switch to manual import calls in this file, and remove
 # the dynamic code provided below.
 
+import logging
+import os
+import viur.core.prototypes.basic
+
 ###################################
 # Automatic imports are done here!#
 ###################################
-
-import logging
-import os
-
-import viur.core.prototypes.basic
-
-########################################
-# Manual imports can also be done here!#
-########################################
-
-# noinspection PyUnresolvedReferences
-from viur.core.modules.site import Site as s
 
 # start of script
 _viurModules = {}
@@ -49,3 +41,10 @@ for _module in os.listdir(os.path.dirname(__file__)):
 
 globals().update(_viurModules)
 del _viurModules, _module, _import, _name, _symbol, os, logging, viur.core.prototypes.basic
+
+########################################
+# Manual imports can also be done here!#
+########################################
+
+# noinspection PyUnresolvedReferences
+from viur.core.modules.site import Site as s

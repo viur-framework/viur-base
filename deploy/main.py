@@ -31,10 +31,7 @@ from viur.core.modules.file import thumbnailer
 # General configuration
 #
 
-conf["viur.validApplicationIDs"] = \
-    [
-        "{{app_id}}"
-    ]
+conf["viur.validApplicationIDs"] = ["{{app_id}}"]
 
 # ------------------------------------------------------------------------------
 # Debugging & Performance
