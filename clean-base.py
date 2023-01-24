@@ -15,7 +15,7 @@ VI_VERSION = "3.0.20"
 
 try:
     whoami = getpass.getuser()
-except:
+except Exception:
     whoami = "viur"
 
 ap = argparse.ArgumentParser(
