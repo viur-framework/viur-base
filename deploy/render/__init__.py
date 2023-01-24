@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from viur.core.render import html
 
 
@@ -9,3 +10,6 @@ def isList(render, val):
 @html.utils.jinjaGlobalFilter
 def isDict(render, val):
     return isinstance(val, dict)
+=======
+from viur.core.render import admin, html, json, vi, xml
+>>>>>>> feature/pep8Action
