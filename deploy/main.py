@@ -31,9 +31,7 @@ from viur.core.modules.file import thumbnailer
 # General configuration
 #
 
-conf["viur.validApplicationIDs"] = [
-	"{{app_id}}"
-]
+conf["viur.validApplicationIDs"] = ["{{app_id}}"]
 
 # ------------------------------------------------------------------------------
 # Debugging & Performance
@@ -55,16 +53,16 @@ conf["viur.validApplicationIDs"] = [
 # conf["viur.render.json.downloadUrlExpiration"] = timedelta(hours=1)
 
 conf["viur.file.derivers"] = {
-	"thumbnail": thumbnailer
+    "thumbnail": thumbnailer
 }
 
 conf["derives"] = {
-	"thumbnail": [
-		{"width": 1920},
-		{"width": 1280},
-		{"width": 900},
-		{"width": 500}
-	]
+    "thumbnail": [
+        {"width": 1920},
+        {"width": 1280},
+        {"width": 900},
+        {"width": 500}
+    ]
 }
 
 # ------------------------------------------------------------------------------
