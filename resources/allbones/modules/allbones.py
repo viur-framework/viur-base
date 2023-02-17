@@ -1,136 +1,132 @@
-import json, logging, urllib
-
-from skeletons.allbones import StringRelSkel
 from viur.core.bones import *
 from viur.core.prototypes import List
-from viur.core.skeleton import RelSkel
 
 flags = [
-	{
-		"required": False,
-		"readOnly": False,
-		"visible": False,
-		"multiple": False,
-	},
-	{
-		"required": True,
-		"readOnly": False,
-		"visible": False,
-		"multiple": False,
-	},
-	{
-		"required": False,
-		"readOnly": True,
-		"visible": False,
-		"multiple": False,
-	},
-	{
-		"required": False,
-		"readOnly": False,
-		"visible": True,
-		"multiple": False,
-	},
-	{
-		"required": True,
-		"readOnly": True,
-		"visible": False,
-		"multiple": False,
-	},
-	{
-		"required": True,
-		"readOnly": False,
-		"visible": True,
-		"multiple": False,
-	},
-	{
-		"required": False,
-		"readOnly": True,
-		"visible": True,
-		"multiple": False,
-	},
-	{
-		"required": True,
-		"readOnly": True,
-		"visible": True,
-		"multiple": False,
-	},
-	{
-		"required": False,
-		"readOnly": False,
-		"visible": False,
-		"multiple": True,
-	},
-	{
-		"required": True,
-		"readOnly": False,
-		"visible": False,
-		"multiple": True,
-	},
-	{
-		"required": False,
-		"readOnly": True,
-		"visible": False,
-		"multiple": True,
-	},
-	{
-		"required": False,
-		"readOnly": False,
-		"visible": True,
-		"multiple": True,
-	},
-	{
-		"required": True,
-		"readOnly": True,
-		"visible": False,
-		"multiple": True,
-	},
-	{
-		"required": True,
-		"readOnly": False,
-		"visible": True,
-		"multiple": True,
-	},
-	{
-		"required": False,
-		"readOnly": True,
-		"visible": True,
-		"multiple": True,
-	},
-	{
-		"required": True,
-		"readOnly": True,
-		"visible": True,
-		"multiple": True,
-	},
+    {
+        "required": False,
+        "readOnly": False,
+        "visible": False,
+        "multiple": False,
+    },
+    {
+        "required": True,
+        "readOnly": False,
+        "visible": False,
+        "multiple": False,
+    },
+    {
+        "required": False,
+        "readOnly": True,
+        "visible": False,
+        "multiple": False,
+    },
+    {
+        "required": False,
+        "readOnly": False,
+        "visible": True,
+        "multiple": False,
+    },
+    {
+        "required": True,
+        "readOnly": True,
+        "visible": False,
+        "multiple": False,
+    },
+    {
+        "required": True,
+        "readOnly": False,
+        "visible": True,
+        "multiple": False,
+    },
+    {
+        "required": False,
+        "readOnly": True,
+        "visible": True,
+        "multiple": False,
+    },
+    {
+        "required": True,
+        "readOnly": True,
+        "visible": True,
+        "multiple": False,
+    },
+    {
+        "required": False,
+        "readOnly": False,
+        "visible": False,
+        "multiple": True,
+    },
+    {
+        "required": True,
+        "readOnly": False,
+        "visible": False,
+        "multiple": True,
+    },
+    {
+        "required": False,
+        "readOnly": True,
+        "visible": False,
+        "multiple": True,
+    },
+    {
+        "required": False,
+        "readOnly": False,
+        "visible": True,
+        "multiple": True,
+    },
+    {
+        "required": True,
+        "readOnly": True,
+        "visible": False,
+        "multiple": True,
+    },
+    {
+        "required": True,
+        "readOnly": False,
+        "visible": True,
+        "multiple": True,
+    },
+    {
+        "required": False,
+        "readOnly": True,
+        "visible": True,
+        "multiple": True,
+    },
+    {
+        "required": True,
+        "readOnly": True,
+        "visible": True,
+        "multiple": True,
+    },
 ]
 
 bonesToTest = [
-	# (baseBone, [], {}),
-	(booleanBone, [], {}),
-	# (captchaBone, [], {"privateKey": "foo", "publicKey": "bar"}),
-	# (colorBone, [], {}),
-	# (credentialBone, [], {}),
-	# (dateBone, [], {}),
-	# (emailBone, [], {}),
-	# (fileBone, [], {}),
-	# (keyBone, [], {}),
-	(numericBone, [], {}),
-	# (passwordBone, [], {}),
-	# (randomSliceBone, [], {}),
-	# (recordBone, [], {"using": CoordRelSkel, "format": "$(lat) - $(lng)"}),
-	# (relationalBone, [], {"module": "feedentry", "kind": "feedentry"}),
-	# (selectBone, [], {"values": {"true": "Option A", "false": "Option B"}}),
-	# (selectCountryBone, [], {}),
-	# (spatialBone, [(50, 57), (7, 0), (10, 10)], {}),
-	(stringBone, [], {}),
-	# (treeLeafBone,  [], {"module": "file", "kind": "file"}),
-	# (treeNodeBone,  [], {"module": "file", "kind": "file"}),
-	# (userBone, [], {}),
+    # (baseBone, [], {}),
+    (booleanBone, [], {}),
+    # (captchaBone, [], {"privateKey": "foo", "publicKey": "bar"}),
+    # (colorBone, [], {}),
+    # (credentialBone, [], {}),
+    # (dateBone, [], {}),
+    # (emailBone, [], {}),
+    # (fileBone, [], {}),
+    # (keyBone, [], {}),
+    (numericBone, [], {}),
+    # (passwordBone, [], {}),
+    # (randomSliceBone, [], {}),
+    # (recordBone, [], {"using": CoordRelSkel, "format": "$(lat) - $(lng)"}),
+    # (relationalBone, [], {"module": "feedentry", "kind": "feedentry"}),
+    # (selectBone, [], {"values": {"true": "Option A", "false": "Option B"}}),
+    # (selectCountryBone, [], {}),
+    # (spatialBone, [(50, 57), (7, 0), (10, 10)], {}),
+    (stringBone, [], {}),
+    # (treeLeafBone,  [], {"module": "file", "kind": "file"}),
+    # (treeNodeBone,  [], {"module": "file", "kind": "file"}),
+    # (userBone, [], {}),
 ]
 
 
 class AllBones(List):
-	pass
+    pass
 
 # 	def addSkel(self, *args, **kwargs):
 # 		skel = super().addSkel()

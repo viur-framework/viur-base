@@ -3,7 +3,7 @@
 root = true
 
 [*]
-indent_style = tab
+indent_style = space
 tab_width = 4
 end_of_line = lf
 charset = utf-8
@@ -11,8 +11,7 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 max_line_length = 120
 
-[*.{css,less,yml,yaml,json}]
-indent_style = space
+[*.{css,less,yml,yaml,json,vue,js,ts}]
 indent_size = 2
 
 [*.md]
