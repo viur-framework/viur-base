@@ -22,7 +22,7 @@ then
 fi
 
 # Create a bucket
-gsutil mb -l EUROPE-WEST3 -p $project gs://backup-dot-$project
+gsutil mb -l EUROPE-WEST3 -p $project gs://backups-$project
 if [ $? -ne 0 ]
 then
   exit 1
