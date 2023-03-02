@@ -11,7 +11,7 @@ import zipfile
 
 from urllib.request import urlopen
 
-VI_VERSION = "3.0.20"
+VI_VERSION = "3.0.31"
 
 try:
     whoami = getpass.getuser()
