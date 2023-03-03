@@ -29,7 +29,7 @@ then
 		exit 1
 	fi
 
-	gcloud auth login
+	gcloud auth login --no-browser
 	if [ $? -ne 0 ]
 	then
 		exit 1
