@@ -3,17 +3,13 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
-#[[source]]
-#url = "https://test.pypi.org/simple/"
-#verify_ssl = true
-#name = "testpypi"
-
 [packages]
-viur-core = "*"
+viur-core = "==3.3.5"
 
 [dev-packages]
-viur-cli = "*"
-pycodestyle = "*"
+viur-cli = "==0.7.7"
+pycodestyle = "==2.10.0"
+watchdog = "==2.2.1"
 
 [requires]
-python_version = "3.9"
+python_version = "3.10"
