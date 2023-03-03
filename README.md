@@ -15,7 +15,7 @@ project demands.
 
 Before you start, please check out the following preliminaries are met:
 
-1. You either need Linux, macOS, or Windows with WSL. See [awesome-viur](https://github.com/viur-framework/awesome-viur#tutorials--examples) for further help and information for specific operating systems.
+1. You either need Linux, macOS, or Windows with WSL. See [awesome-viur](https://awesome.viur.dev/README#tutorials--examples) for further help and information for specific operating systems.
 2. `git`, `python >= 3.10` and `pipenv` should be installed
 3. [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) with `app-engine-python` and `app-engine-python-extras` components (see [here](https://docs.viur.dev/latest/start.html#prerequisites) for further help)
 
