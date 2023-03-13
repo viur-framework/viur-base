@@ -3,6 +3,7 @@ import logging
 from viur.core import current, errors, exposed, utils, Module
 from google.cloud.datastore_admin_v1.services.datastore_admin.client import DatastoreAdminClient
 
+
 class Index(Module):
 
     @exposed
@@ -15,7 +16,7 @@ class Index(Module):
             raise errors.NotFound()
 
         template = self.render.getEnv().get_template("index.html")
-        return template.render(start=True)
+        return template.render()
 
     @exposed
     def sitemap_xml(self, *args, **kwargs):
