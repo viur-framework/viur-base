@@ -39,7 +39,7 @@ for _module in os.listdir(os.path.dirname(__file__)):
         raise e
 
 globals().update(_viur_modules)
-del _viur_modules, _module, _import, _name, _symbol, os, logging  # remove private variables
+del _viur_modules, _module, _import, _name, _symbol, logging, os, viur  # remove private variables
 
 #########################################
 # Manual imports can also be done here! #
