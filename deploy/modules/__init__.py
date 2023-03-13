@@ -4,8 +4,7 @@
 
 import logging
 import os
-
-from viur.core import Module
+import viur
 
 ####################################
 # Automatic imports are done here! #
@@ -29,7 +28,7 @@ for _module in os.listdir(os.path.dirname(__file__)):
                 continue
 
             _symbol = getattr(_import, _name)
-            if getattr(_symbol, "__module__", None) != f"modules.{_module}" or isinstance(_symbol, Module):
+            if getattr(_symbol, "__module__", None) != f"modules.{_module}" or isinstance(_symbol, viur.core.Module):
                 continue
 
             _viur_modules[_name.lower()] = _symbol
@@ -40,11 +39,11 @@ for _module in os.listdir(os.path.dirname(__file__)):
         raise e
 
 globals().update(_viur_modules)
-del _viur_modules, _module, _import, _name, _symbol, os, logging, Module  # remove private variables
+del _viur_modules, _module, _import, _name, _symbol, os, logging  # remove private variables
 
-########################################
-# Manual imports can also be done here!#
-########################################
+#########################################
+# Manual imports can also be done here! #
+#########################################
 
 # noinspection PyUnresolvedReferences
 from viur.core.modules.site import Site as s
