@@ -1,6 +1,6 @@
 {
     "default": {
-        "core": "3.3.5",
+        "core": "3.4.0b1",
         "distribution_folder": "./deploy",
         "format": "1.0.0",
         "pyodide": "v0.19.1",

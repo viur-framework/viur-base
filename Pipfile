@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-viur-core = "==3.3.5"
+viur-core = "==3.4.0b1"
 
 [dev-packages]
 viur-cli = "==0.7.7"

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "efe8160db1694a93dcb8cef895a463f9e8abd8de4a1e21d129d8b5c6e3c11b49"
+            "sha256": "f622f09ce2c595100d68adc92eca7c3467f105c3dcd6ffb4e0a1c3b474db4027"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -572,7 +572,7 @@
                 "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926",
                 "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==1.16.0"
         },
         "tzdata": {
@@ -601,10 +601,10 @@
         },
         "viur-core": {
             "hashes": [
-                "sha256:eddbc82e11bbd82bd04543a9ec0517cedc98b636827eb32fda8b06c47df23801"
+                "sha256:589c3254c92e330b3a2efb38f77e622b427379d6feccc43245e3e9543c85fdef"
             ],
             "index": "pypi",
-            "version": "==3.3.5"
+            "version": "==3.4.0b1"
         },
         "viur-datastore": {
             "hashes": [
@@ -618,7 +618,7 @@
                 "sha256:73aae30359291c14fa3b956f8b5ca31960e420c28c1bec002547fb04928cf89b",
                 "sha256:b64ef5141be559cfade448f044fa45c2260351edcb6a8ef6b7e00c7dcef0c323"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==1.8.7"
         }
     },
@@ -785,7 +785,7 @@
                 "sha256:81397b9ec5bf1690e76b358c45af4ba6fa01be2739b478d4c1362b1fcdcf790b",
                 "sha256:8c3d6b891af5c42d57d9b21f4d30db860dcb8cdb1e22517f1350c4e906405569"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2' and python_version < '3.11'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3' and python_version < '3.11'",
             "version": "==2.5.0"
         },
         "pyyaml": {
@@ -847,7 +847,7 @@
                 "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926",
                 "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==1.16.0"
         },
         "toml": {
@@ -855,7 +855,7 @@
                 "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b",
                 "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"
             ],
-            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==0.10.2"
         },
         "viur-cli": {
