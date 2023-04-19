@@ -12,7 +12,7 @@ entrypoint: gunicorn -b :$PORT -w 1 --threads 2 --disable-redirect-access-to-sys
 # (3) Limited scaling is default, to keep frontend instance hours low.
 #     Please change these values on your demands.
 automatic_scaling:
-  max_concurrent_requests: 2
+  # max_concurrent_requests: 10
   max_instances: 1
   max_idle_instances: 1
 
