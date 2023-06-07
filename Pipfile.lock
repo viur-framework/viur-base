@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0e02aa42aff2726b6a51d8ba206c8a3f1e59f31f88afd25be004eca7c7daf8ca"
+            "sha256": "ad7aba88a8eab730b932d09fb3b88ca10267b9cb0cd08c72214c32a2fe3f4c2d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -650,10 +650,10 @@
         },
         "viur-core": {
             "hashes": [
-                "sha256:c11f9a70d4368480a6cb0de412232b19bdcdd5c9df0cf6592a67706b2bb278e7"
+                "sha256:8e28a0fe5d0e5e0650682aebdf1c46e3a8748c36b9cb21b130c818251f2d4363"
             ],
             "index": "pypi",
-            "version": "==3.4.0.rc1"
+            "version": "==3.4.3"
         },
         "viur-datastore": {
             "hashes": [
@@ -674,11 +674,11 @@
     "develop": {
         "app-server": {
             "hashes": [
-                "sha256:81d89ae01b3927ce5e55f27ca52ac7f336bd75b38137d6d428ba393691b41c8b",
-                "sha256:a92581860f45ecd4a93d0cc3213dd76cd74cebfdfff7b31bcb8e9c3ef5f17a35"
+                "sha256:a3bd2b6a8877d7a7eabc1df725d329b3502524e9b8e4f4a083ad50f56214a267",
+                "sha256:cda55a0f1723bc212467bddcce57957883fe4c745f42968e5dde000ffe77d063"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==0.9.3"
+            "version": "==0.9.4"
         },
         "appdirs": {
             "hashes": [
@@ -909,11 +909,11 @@
         },
         "viur-cli": {
             "hashes": [
-                "sha256:5381f3b838cb03835d3ca3f18b9a8df38e54754f4a746324b2614efd663261c9",
-                "sha256:dd890fb7456bf1bcf5e5510fcc802c4e10066881126a89930bf8420333ab9067"
+                "sha256:adffef53c0bad8eea87f302fd238cfb1779709076fcc8c63a87c93a941e5327f",
+                "sha256:bd54a8abacc97375649ec10659e50c6ad4fb0c0779a5b5c1f744dba2d50965fc"
             ],
             "index": "pypi",
-            "version": "==1.0.0"
+            "version": "==1.0.4"
         },
         "watchdog": {
             "hashes": [

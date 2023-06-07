@@ -1,8 +1,9 @@
 {
     "default": {
-        "core": "3.4.0rc1",
+        "builds": {},
+        "core": "3.4.3",
         "distribution_folder": "./deploy",
-        "format": "1.1.0",
+        "format": "1.1.1",
         "pyodide": "0.19.1",
         "sources_folder": "./sources",
         "vi": "3.0.36"
