@@ -1,4 +1,4 @@
-from viur.core.modules.user import User as User
+from viur.core.modules.user import User
 
 
 class User(User):
