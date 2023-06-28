@@ -3,7 +3,7 @@
 
 {%- if not title -%}
 	{#- The default page title. Optimal length for search engines is 50-60 characters. -#}
-	{%- set title="{{app_id}}" -%}
+	{%- set title="ag-dev-viur3" -%}
 {%- endif -%}
 {%- if not metaDescr -%}
 	{#- The default meta description. The description should optimally be between 150-160 characters. -#}
@@ -51,56 +51,37 @@
 		<!-- css -->
 		<link href="/static/css/style.min.css" rel="stylesheet">
 
-		<!-- Touch Icons -->
-		<link rel="apple-touch-icon" href="/static/images/touch-icon-120.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/static/images/touch-icon-180.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="/static/images/touch-icon-152.png">
-		<link rel="apple-touch-icon" sizes="167x167" href="/static/images/touch-icon-167.png">
-
 		{% block additionalHead %}
 			{# use additionalHead for important template specific JS or CSS file imports. #}
 		{% endblock %}
 	</head>
 	<body>
-		<div class="wrap">
-			<div class="bind flex">
-				<div class="content">
-					<header>
-						{% block header %}
-							{# put your header here #}
-							<nav class="bar">
-								<div class="bar-group bar-group--left bar-group--nav">
-									<a class="bar-link" href="https://docs.viur.is/latest/start.html" target="_blank">Documentation</a>
-								</div>
-								<div class="bar-group bar-group--center bar-group--nav">
-									<div class="bar-item">
-										<a class="github-button" href="https://github.com/viur-framework/viur-core" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star viur-framework/viur-core on GitHub">Star</a>
-									</div>
-									<div class="bar-item">
-										<a class="github-button" href="https://github.com/viur-framework/viur-core/subscription" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch viur-framework/viur-core on GitHub">Watch</a>
-									</div>
-								</div>
-								<div class="bar-group bar-group--right bar-group--nav">
-									<a class="bar-link" href="{{ getHostUrl() }}/">Welcome</a>
-									<a class="bar-link" href="{{ getHostUrl() }}/s/gettingstarted">Getting started</a>
-									<a class="bar-link" href="{{ getHostUrl() }}/vi">Vi</a>
-								</div>
-							</nav>
-						{% endblock header %}
-					</header>
-					<main class="{{pageContent}}"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
-						{% block content %}
-							{# put your content here #}
-						{% endblock content %}
-					</main><!-- content -->
-					<footer>
-						{% block footer %}
-							{# put your footer here #}
-						{% endblock footer %}
-					</footer>
-				</div>
-			</div>
-		</div>
+        <header class="header">
+            {% block header %}
+                {# put your header here #}
+                <a href="/" class="logo">
+                    <img src="/static/images/viur-logo.svg">
+                </a>
+                <nav class="bar">
+                    <div class="bar-group bar-group--right bar-group--nav">
+                        <a class="bar-link" href="{{ getHostUrl() }}/">Welcome</a>
+                        <a class="bar-link" href="{{ getHostUrl() }}/s/gettingstarted">Getting started</a>
+                        <a class="bar-link" href="https://docs.viur.is/latest/start.html" target="_blank">Documentation</a>
+                        <a class="bar-link" href="{{ getHostUrl() }}/vi">Vi</a>
+                    </div>
+                </nav>
+            {% endblock header %}
+        </header>
+        <main class="main {{pageContent}}"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
+            {% block content %}
+                {# put your content here #}
+            {% endblock content %}
+        </main><!-- content -->
+        <footer class>
+            {% block footer %}
+                {# put your footer here #}
+            {% endblock footer %}
+        </footer>
 		{% block additionalFooter %}
 			{# use additionalFooter for less important template specific JS or CSS file imports. #}
 			<script async defer src="https://buttons.github.io/buttons.js"></script>

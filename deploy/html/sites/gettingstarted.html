@@ -1,192 +1,208 @@
 {% extends "viur_base.html" %}
 
 {% block content %}
-<section class="section">
-	<h1 class="headline">Getting started</h1>
-	<p>This part of the documentation provides a first steps guide for quickly setting up an application with ViUR. For a detailed introduction visit the <a href="https://docs.viur.is">ViUR Documentation</a>.</p>
-</section>
+    <section class="stage small">
+        <div class="bind">
+            <h1 class="headline">Getting started</h1>
+            <p>This part of the documentation provides a first steps guide for quickly setting up an application with ViUR. For a detailed introduction visit the <a href="https://docs.viur.is">ViUR Documentation</a>.</p>
+        </div>
+    </section>
 
-<section class="section">
-	<h2 class="headline">Logging into the new system</h2>
-	<p>The Vi can be access at <a href="{{ getHostUrl() }}/vi">{{ getHostUrl() }}/vi</a>.</p>
-	<a href="/static/images/start-vi.png" style="display:block;width:30%;">
-		<figure class="thumbnail">
-			<img class="thumbnail-img" src="/static/images/start-vi.png" alt="start-vi">
-			<figcaption class="thumbnail-caption">
-				<h3 class="headline">Vi</h3>
-				<p>The Vi after setting up a scratch project.</p>
-			</figcaption>
-		</figure>
-	</a>
+    <div class="wrap">
+        <div class="bind">
+            <section class="section">
 
-	<p>On the first startup, ViUR creates an new admin-user named <code>admin&#64;{{app_id}}.appspot.com</code> with a random password within the database. This password is printed to the server debug console, where you have to copy it out.</p>
-	<p>Watch out for a line like this:</p>
-	<pre>ViUR created a new admin-user for you! Username: admin@{{app_id}}.appspot.com, Password: SU7juUIb1F2aZ</pre>
-
-	<p>When the system is started in the cloud for the first time, an e-mail with this password is sent to all application administrators.</p>
-	<p>Alternatively, you can login with a simulated Google user. Both login forms are provided by the default server and can be done using the Vi.</p>
-
-</section>
-
-<section class="section">
-	<h2 class="headline">Build a template with Jinja2</h2>
-	<p>The default renderer in ViUR is <code>html</code>, which is a binding to the powerful <a href="http://jinja.pocoo.org/">Jinja2 template engine</a> to generate HTML output. Jinja2 is used because it has a powerful inheritance mechanism, build-in control structures and can easily be extended to custom functions. Please refer to the Jinja2 documentation to get an detailed overview about its features and handling. Any template files related to the jinja2 renderer are located in the folder <code>html/</code> within the project structure.</p>
-
-	<h3 class="subline">Template Inheritance</h3>
-	<p>Templates usually take advantage of inheritance, which includes a single base template that defines the basic structure of all subsequent child templates. You use the tags <code>&#123;% extends %&#125;</code> and <code>&#123;% block %&#125;</code> to implement inheritance.</p>
-	<p>The use case for this is simple: <em>as your application grows, and you continue adding new templates, you will need to keep common code (like a HTML navigation bar, Javascript libraries, CSS stylesheets, and so forth) in sync, which can be a lot of work.</em> Using inheritance, we can move those common pieces to a parent/base template so that we can create or edit such code once and all child templates will inherent that code.</p>
-	<br>
-
-	<p>Let's create the base (or parent) template <code>html/base_viur.html</code></p>
-	<pre>
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;Base Project&lt;/title&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;link href=&quot;static/css/style.css&quot; rel=&quot;stylesheet&quot;&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;div class=&quot;container&quot;&gt;
-      &lt;h1&gt;This is part of my base template&lt;/h1&gt;
-      &lt;article class=&quot;content&quot;&gt;
-        &#123;% block content %&#125;
-        &#123;% endblock %&#125;
-      &lt;/article&gt;
-      &lt;h2&gt;This is part of my base template&lt;/h2&gt;
-    &lt;/div&gt;
-    &lt;script src=&quot;static/js/app.js&quot;&gt;&lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</pre>
-    <br>
-
-	<p>Open the file <code>html/index.html</code>. This file is basically called when you open <a href="{{ getHostUrl() }}">{{ getHostUrl() }}</a>. Let's take a more closely look.</p>
-	<pre>
-&#123;% extends "viur_base.html" %&#125; <mark>this includes the site template</mark>
-
-&#123;% block content %&#125; <mark>individual content for the index site</mark>
-  &lt;h1&gt;Hello World!&lt;/h1&gt;
-&#123;% endblock content %&#125;
-</pre>
-	<p>The <code>&#123;% extends %&#125;</code> informs the template engine that this template extands another template, <code>html/viur_base.html</code>. The <code>&#123;% block %&#125;</code> tags defines a block that child templates can fill in, so the (empty) content block in the <code>html/viur_base.html</code> will be replaced by the "Hello World".</p>
-
-	<h3 class="subline">Variables</h3>
-	<p>Use some variables to print often used strings.</p>
-	<pre>
-&#123;% set question = "What is a dog?" %&#125;
-&#123;% set answer = "An animal." %&#125;
-&lt;strong&gt;&#123;&#123; question &#125;&#125;&lt;/strong&gt; - &#123;&#123; answer &#125;&#125;
-</pre>
-	<p>You should see:</p>
-	<pre><strong>What is a dog?</strong> - An animal.</pre>
-
-<h3 class="subline">Translation</h3>
-    <p>Translations are provided in the applications translations module in form of a dict, where the keys should be the language strings in the project’s major language (usually english), and the values the strings provided in the particular language implemented. The translation key strings must be given in a lower-case order, altought they may be capitalized or upper-case written. If no key is found within a specific translation, it is directly used as the output string.</p>
-    <br>
-
-    <p>In this simple example, a file translations/de.py is implemented with the content:</p>
-    <pre>
-de = &#123;
-  "welcome to viur": u"Willkommen in ViUR",
-  "hello &#123;&#123;user&#125;&#125;!": u"Hallo, &#123;&#123;user&#125;&#125;!"
-}
-</pre>
-
-	<p>Print this out in a Jinja2-template:</p>
-	<pre>&#123;&#123; _( "Hello &#123;&#123;user&#125;&#125;!", user="John Doe" ) &#125;&#125; - &#123;&#123; _( "Welcome to ViUR" ) &#125;&#125;</pre>
-	<p>This will output “Hello John Doe! - Welcome to ViUR” in an english-configured language environment, and “Hallo John Doe! - Willkommen in ViUR” in a german-configured language environment.</p>
-
-	<p><a href="https://docs.viur.is/latest/reference_toplevel.html?highlight=translation#server.translate">Read more about this</a></p>
+                <div class="feature-wrap">
+                    <div class="feature-container">
+                        <h2 class="subline">Logging into the new system</h2>
+                        <p>The Vi can be access at <a href="{{ getHostUrl() }}/vi">{{ getHostUrl() }}/vi</a>.</p>
 
 
-	<h2 class="headline">Create a module</h2>
-	<p>First we have to define the data model of this module, the skeleton. Each skeleton are made of bones, they represent a data field.</p>
-	<p>So, Let's define the Skeleton for our example, it would be stored in <code>skeletons/person.py</code>.</p>
-	<pre>
-#-*- coding: utf-8 -*-
-from server.skeleton import Skeleton
-from server.bones import *
+                        <p>On the first startup, ViUR creates an new admin-user named <code>admin&#64;ag-dev-viur3.appspot.com</code> with a random password within the database. This password is printed to the server debug console, where you have to copy it out.</p>
+                        <p>Watch out for a line like this:</p>
+                        <pre>ViUR created a new admin-user for you! Username: admin@ag-dev-viur3.appspot.com, Password: SU7juUIb1F2aZ</pre>
 
-class personSkel(Skeleton):
-  name = stringBone(descr="Name")
-  age = numericBone(descr="Age")
-</pre>
+                        <p>When the system is started in the cloud for the first time, an e-mail with this password is sent to all application administrators.</p>
+                        <p>Alternatively, you can login with a simulated Google user. Both login forms are provided by the default server and can be done using the Vi.</p>
 
-	<p>The bones <code>key</code>, <code>creationdate</code>, <code>changedate</code> will be automatically added by ViUR.</p>
-	<br>
+                    </div>
+                    <div class="feature-container">
+                        <a href="/static/images/start-vi.png" style="display:block;width:100%;margin-left: 30px;">
+                            <figure class="thumbnail">
+                                <img class="thumbnail-img" src="/static/images/start-vi.png" alt="start-vi">
+                                <figcaption class="thumbnail-caption">
+                                    <h3 class="headline">Vi</h3>
+                                    <p>The Vi after setting up a scratch project.</p>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </div>
+                </div>
 
-	<p>To connect the Skeleton personSkel defined above with a module implementing a list, put the following few lines in <code>modules/person.py</code>.</p>
-	<pre>
-modules/person.py
-#-*- coding: utf-8 -*-
-from server.prototypes import List
+            </section>
 
-class Person(List):
-   pass
-</pre>
-	<br>
+            <section class="section">
+                <h2 class="subline">Build a template with Jinja2</h2>
+                <p>The default renderer in ViUR is <code>html</code>, which is a binding to the powerful <a href="http://jinja.pocoo.org/">Jinja2 template engine</a> to generate HTML output. Jinja2 is used because it has a powerful inheritance mechanism, build-in control structures and can easily be extended to custom functions. Please refer to the Jinja2 documentation to get an detailed overview about its features and handling. Any template files related to the jinja2 renderer are located in the folder <code>html/</code> within the project structure.</p>
 
-	<p>Let’s create two simple HTML templates to render the list of persons and to show one person entry. First, the listing template is stored in <code>html/person_list.html</code>.</p>
-	<pre>
-&#123;% extends "viur_base.html" %&#125;
+                <h3 class="subline">Template Inheritance</h3>
+                <p>Templates usually take advantage of inheritance, which includes a single base template that defines the basic structure of all subsequent child templates. You use the tags <code>&#123;% extends %&#125;</code> and <code>&#123;% block %&#125;</code> to implement inheritance.</p>
+                <p>The use case for this is simple: <em>as your application grows, and you continue adding new templates, you will need to keep common code (like a HTML navigation bar, Javascript libraries, CSS stylesheets, and so forth) in sync, which can be a lot of work.</em> Using inheritance, we can move those common pieces to a parent/base template so that we can create or edit such code once and all child templates will inherent that code.</p>
+                <br>
 
-&#123;% block content %&#125;
-  &lt;h1&gt;Persons&lt;/h1&gt;
-  &lt;ul&gt;
-    &#123;% for skel in skellist %&#125;
-      &lt;li&gt;
-        &lt;a href="/person/view/&#123;&#123;skel['key']&#125;&#125;">&#123;&#123;skel['name']&#125;&#125;&lt;/a&gt; is &#123;&#123;skel['age']&#125;&#125; year&#123;&#123;"s" if skel['age'] != 1 &#125;&#125; old
-      &lt;/li&gt;
-    &#123;% endfor %&#125;
-  &lt;/ul&gt;
-&#123;% endblock %&#125;
-</pre>
+                <p>Let's create the base (or parent) template <code>html/base_viur.html</code></p>
+                <pre>
+            &lt;!DOCTYPE html&gt;
+            &lt;html&gt;
+              &lt;head&gt;
+                &lt;title&gt;Base Project&lt;/title&gt;
+                &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+                &lt;link href=&quot;static/css/style.css&quot; rel=&quot;stylesheet&quot;&gt;
+              &lt;/head&gt;
+              &lt;body&gt;
+                &lt;div class=&quot;container&quot;&gt;
+                  &lt;h1&gt;This is part of my base template&lt;/h1&gt;
+                  &lt;article class=&quot;content&quot;&gt;
+                    &#123;% block content %&#125;
+                    &#123;% endblock %&#125;
+                  &lt;/article&gt;
+                  &lt;h2&gt;This is part of my base template&lt;/h2&gt;
+                &lt;/div&gt;
+                &lt;script src=&quot;static/js/app.js&quot;&gt;&lt;/script&gt;
+              &lt;/body&gt;
+            &lt;/html&gt;
+            </pre>
+                <br>
 
-	<p>Then, the single entry viewing template is stored as <code>html/person_view.html</code>.</p>
-	<pre>
-&#123;% extends "viur_base.html" %&#125;
+                <p>Open the file <code>html/index.html</code>. This file is basically called when you open <a href="{{ getHostUrl() }}">{{ getHostUrl() }}</a>. Let's take a more closely look.</p>
+                <pre>
+            &#123;% extends "viur_base.html" %&#125; <mark>this includes the site template</mark>
 
-&#123;% block content %&#125;
-  &lt;h1&gt;&#123;&#123;skel['name']&#125;&#125;&lt;/h1&gt;
-  &lt;strong&gt;Entity:&lt;/strong&gt; &#123;&#123;skel['key']&#125;&#125;&lt;br&gt;
-  &lt;strong&gt;Age:&lt;/strong&gt; &#123;&#123;skel['age']&#125;&#125;&lt;br&gt;
-  &lt;strong&gt;Created at: &lt;/strong&gt; &#123;&#123;skel["creationdate"].strftime("%Y-%m-%d %H:%M")&#125;&#125;&lt;br&gt;
-  &lt;strong&gt;Modified at: &lt;/strong&gt; &#123;&#123;skel["changedate"].strftime("%Y-%m-%d %H:%M")&#125;&#125;
-&#123;% endblock %&#125;
-</pre>
-	<br>
+            &#123;% block content %&#125; <mark>individual content for the index site</mark>
+              &lt;h1&gt;Hello World!&lt;/h1&gt;
+            &#123;% endblock content %&#125;
+            </pre>
+                <p>The <code>&#123;% extends %&#125;</code> informs the template engine that this template extands another template, <code>html/viur_base.html</code>. The <code>&#123;% block %&#125;</code> tags defines a block that child templates can fill in, so the (empty) content block in the <code>html/viur_base.html</code> will be replaced by the "Hello World".</p>
 
-	<p>To connect the Person module from above with these templates, we have to adjust our <code>modules/person.py</code>:</p>
-	<pre>
-#-*- coding: utf-8 -*-
-from server.prototypes import List
+                <h3 class="subline">Variables</h3>
+                <p>Use some variables to print often used strings.</p>
+                <pre>
+            &#123;% set question = "What is a dog?" %&#125;
+            &#123;% set answer = "An animal." %&#125;
+            &lt;strong&gt;&#123;&#123; question &#125;&#125;&lt;/strong&gt; - &#123;&#123; answer &#125;&#125;
+            </pre>
+                <p>You should see:</p>
+                <pre><strong>What is a dog?</strong> - An animal.</pre>
 
-class Person(List):
-  viewTemplate = "person_view" # Name of the template to view one entry
-  listTemplate = "person_list" # Name of the template to list entries
+            <h3 class="subline">Translation</h3>
+                <p>Translations are provided in the applications translations module in form of a dict, where the keys should be the language strings in the project’s major language (usually english), and the values the strings provided in the particular language implemented. The translation key strings must be given in a lower-case order, altought they may be capitalized or upper-case written. If no key is found within a specific translation, it is directly used as the output string.</p>
+                <br>
 
-  def listFilter(self, filter):
-    return filter # everyone can see everything!
-</pre>
-	<br>
+                <p>In this simple example, a file translations/de.py is implemented with the content:</p>
+                <pre>
+            de = &#123;
+              "welcome to viur": u"Willkommen in ViUR",
+              "hello &#123;&#123;user&#125;&#125;!": u"Hallo, &#123;&#123;user&#125;&#125;!"
+            }
+            </pre>
 
-	<div class="msg msg--success is-active">
-		{{ embedSvg("icon-check") }}
-		<div class="msg-content">
-			<h3 class="msg-headline">You did it!</h3>
-			<p>
-				That's all, we created our first module.
-				But how to call these templates now from the frontend?
-				Requests to a ViUR application are performed by a clear and
-				persistent format of how the resulting URLs are made up.
-				By requesting <a href="{{ getHostUrl() }}/person/list" target="_blank">
-					{{ getHostUrl() }}/person/list</a> on our ViUR system.
-			</p>
-		</div>
-	</div>
+                <p>Print this out in a Jinja2-template:</p>
+                <pre>&#123;&#123; _( "Hello &#123;&#123;user&#125;&#125;!", user="John Doe" ) &#125;&#125; - &#123;&#123; _( "Welcome to ViUR" ) &#125;&#125;</pre>
+                <p>This will output “Hello John Doe! - Welcome to ViUR” in an english-configured language environment, and “Hallo John Doe! - Willkommen in ViUR” in a german-configured language environment.</p>
+
+                <p><a href="https://docs.viur.is/latest/reference_toplevel.html?highlight=translation#server.translate">Read more about this</a></p>
 
 
+                <h2 class="subline">Create a module</h2>
+                <p>First we have to define the data model of this module, the skeleton. Each skeleton are made of bones, they represent a data field.</p>
+                <p>So, Let's define the Skeleton for our example, it would be stored in <code>skeletons/person.py</code>.</p>
+                <pre>
+            #-*- coding: utf-8 -*-
+            from server.skeleton import Skeleton
+            from server.bones import *
 
-</section>
+            class personSkel(Skeleton):
+              name = stringBone(descr="Name")
+              age = numericBone(descr="Age")
+            </pre>
+
+                <p>The bones <code>key</code>, <code>creationdate</code>, <code>changedate</code> will be automatically added by ViUR.</p>
+                <br>
+
+                <p>To connect the Skeleton personSkel defined above with a module implementing a list, put the following few lines in <code>modules/person.py</code>.</p>
+                <pre>
+            modules/person.py
+            #-*- coding: utf-8 -*-
+            from server.prototypes import List
+
+            class Person(List):
+               pass
+            </pre>
+                <br>
+
+                <p>Let’s create two simple HTML templates to render the list of persons and to show one person entry. First, the listing template is stored in <code>html/person_list.html</code>.</p>
+                <pre>
+            &#123;% extends "viur_base.html" %&#125;
+
+            &#123;% block content %&#125;
+              &lt;h1&gt;Persons&lt;/h1&gt;
+              &lt;ul&gt;
+                &#123;% for skel in skellist %&#125;
+                  &lt;li&gt;
+                    &lt;a href="/person/view/&#123;&#123;skel['key']&#125;&#125;">&#123;&#123;skel['name']&#125;&#125;&lt;/a&gt; is &#123;&#123;skel['age']&#125;&#125; year&#123;&#123;"s" if skel['age'] != 1 &#125;&#125; old
+                  &lt;/li&gt;
+                &#123;% endfor %&#125;
+              &lt;/ul&gt;
+            &#123;% endblock %&#125;
+            </pre>
+
+                <p>Then, the single entry viewing template is stored as <code>html/person_view.html</code>.</p>
+                <pre>
+            &#123;% extends "viur_base.html" %&#125;
+
+            &#123;% block content %&#125;
+              &lt;h1&gt;&#123;&#123;skel['name']&#125;&#125;&lt;/h1&gt;
+              &lt;strong&gt;Entity:&lt;/strong&gt; &#123;&#123;skel['key']&#125;&#125;&lt;br&gt;
+              &lt;strong&gt;Age:&lt;/strong&gt; &#123;&#123;skel['age']&#125;&#125;&lt;br&gt;
+              &lt;strong&gt;Created at: &lt;/strong&gt; &#123;&#123;skel["creationdate"].strftime("%Y-%m-%d %H:%M")&#125;&#125;&lt;br&gt;
+              &lt;strong&gt;Modified at: &lt;/strong&gt; &#123;&#123;skel["changedate"].strftime("%Y-%m-%d %H:%M")&#125;&#125;
+            &#123;% endblock %&#125;
+            </pre>
+                <br>
+
+                <p>To connect the Person module from above with these templates, we have to adjust our <code>modules/person.py</code>:</p>
+                <pre>
+            #-*- coding: utf-8 -*-
+            from server.prototypes import List
+
+            class Person(List):
+              viewTemplate = "person_view" # Name of the template to view one entry
+              listTemplate = "person_list" # Name of the template to list entries
+
+              def listFilter(self, filter):
+                return filter # everyone can see everything!
+            </pre>
+                <br>
+
+                <div class="msg msg--success is-active">
+                    {{ embedSvg("icon-check") }}
+                    <div class="msg-content">
+                        <h3 class="msg-headline">You did it!</h3>
+                        <p>
+                            That's all, we created our first module.
+                            But how to call these templates now from the frontend?
+                            Requests to a ViUR application are performed by a clear and
+                            persistent format of how the resulting URLs are made up.
+                            By requesting <a href="{{ getHostUrl() }}/person/list" target="_blank">
+                                {{ getHostUrl() }}/person/list</a> on our ViUR system.
+                        </p>
+                    </div>
+                </div>
+
+
+
+            </section>
+        </div>
+    </div>
+
 {% endblock content %}
