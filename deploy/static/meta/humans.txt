@@ -1,3 +1,3 @@
 ViUR is built by a small team of engineers, designers, researchers, robots, and others in Dortmund, Germany.
 It is updated continuously, and built with more tools and technologies than we can shake a stick at.
-If you'd like to help us out, see www.viur.is
+If you'd like to help us out, see www.viur.dev

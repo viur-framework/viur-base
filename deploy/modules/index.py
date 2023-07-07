@@ -19,6 +19,10 @@ class Index(Module):
         return template.render()
 
     @exposed
+    def scriptor(self):
+        raise errors.Redirect("/scriptor/index.html")
+
+    @exposed
     def sitemap_xml(self, *args, **kwargs):
         current.request.get().response.headers["Content-Type"] = "text/xml"
         return self.render.view({}, tpl="sitemap")

@@ -34,6 +34,9 @@ handlers:
   static_dir: vi
 - url: /static
   static_dir: static
+- url: /scriptor/(.+)$
+  static_files: scriptor/\1
+  upload: scriptor/.+$
 - url: /resources
   static_dir: viur/core/resources
 - url: /favicon.ico

@@ -1,7 +1,7 @@
 {
     "default": {
         "builds": {},
-        "core": "3.4.3",
+        "core": "3.4.4",
         "distribution_folder": "./deploy",
         "format": "1.1.1",
         "pyodide": "0.19.1",
