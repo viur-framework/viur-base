@@ -1,13 +1,10 @@
 import datetime
 import logging
-
+from viur.core import current, errors, exposed, utils, Module
 from google.cloud.datastore_admin_v1.services.datastore_admin.client import DatastoreAdminClient
-from viur.core import errors, exposed, utils
-from viur.core.prototypes import BasicApplication
-from viur.core.utils import currentRequest
 
 
-class Index(BasicApplication):
+class Index(Module):
 
     @exposed
     def index(self, *args, **kwargs):
@@ -19,7 +16,7 @@ class Index(BasicApplication):
             raise errors.NotFound()
 
         template = self.render.getEnv().get_template("index.html")
-        return template.render(start=True)
+        return template.render()
 
     @exposed
     def scriptor(self):
@@ -27,7 +24,7 @@ class Index(BasicApplication):
 
     @exposed
     def sitemap_xml(self, *args, **kwargs):
-        currentRequest.get().response.headers["Content-Type"] = "text/xml"
+        current.request.get().response.headers["Content-Type"] = "text/xml"
         return self.render.view({}, tpl="sitemap")
 
     # @tasks.PeriodicTask(24 * 60)

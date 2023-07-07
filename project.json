@@ -1,11 +1,12 @@
 {
     "default": {
-        "core": "3.3.5",
+        "builds": {},
+        "core": "3.4.4",
         "distribution_folder": "./deploy",
-        "format": "1.0.0",
-        "pyodide": "v0.19.1",
+        "format": "1.1.1",
+        "pyodide": "0.19.1",
         "sources_folder": "./sources",
-        "vi": "v3.0.31"
+        "vi": "3.0.36"
     },
     "develop": {
         "application_name": "{{app_id}}",

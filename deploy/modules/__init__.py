@@ -4,14 +4,14 @@
 
 import logging
 import os
-import viur.core.prototypes.basic
+import viur
 
-###################################
-# Automatic imports are done here!#
-###################################
+####################################
+# Automatic imports are done here! #
+####################################
 
 # start of script
-_viurModules = {}
+_viur_modules = {}
 
 for _module in os.listdir(os.path.dirname(__file__)):
 
@@ -28,23 +28,22 @@ for _module in os.listdir(os.path.dirname(__file__)):
                 continue
 
             _symbol = getattr(_import, _name)
-            if not (getattr(_symbol, "__module__", None) == f"modules.{_module}"
-                    or isinstance(_symbol, viur.core.prototypes.basic.BasicApplication)):
+            if getattr(_symbol, "__module__", None) != f"modules.{_module}" or isinstance(_symbol, viur.core.Module):
                 continue
 
-            _viurModules[_name.lower()] = _symbol
+            _viur_modules[_name.lower()] = _symbol
             logging.debug("Importing %s as %s" % (_symbol, _name.lower()))
 
     except Exception as e:
         logging.error("Unable to import '%s'" % _module)
         raise e
 
-globals().update(_viurModules)
-del _viurModules, _module, _import, _name, _symbol, os, logging, viur.core.prototypes.basic
+globals().update(_viur_modules)
+del _viur_modules, _module, _import, _name, _symbol, logging, os, viur  # remove private variables
 
-########################################
-# Manual imports can also be done here!#
-########################################
+#########################################
+# Manual imports can also be done here! #
+#########################################
 
 # noinspection PyUnresolvedReferences
 from viur.core.modules.site import Site as s
