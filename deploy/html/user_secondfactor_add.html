@@ -1,0 +1,18 @@
+{%- extends "viur_base.html" %}
+
+{%- block content %}
+<h1 class="headline">Add Second Factor</h1>
+	<p>Please scan the QR code with your Authenticator App and Enter the OTP token in the input below</p>
+		{{otp_uri_to_qrcode(otp_uri)}}
+
+<form method="POST" action="/user/f2_authenticatorotp/add">
+		<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
+
+		<div class="input-group">
+			<label class="label" for="otp">OTP Token</label>
+			<input class="input" id="otp" name="otp" type="text" placeholder="OTP Token">
+		</div>
+
+		<input class="btn btn--primary" type="submit" value="Validate Second Factor">
+	</form>
+{%- endblock content %}
