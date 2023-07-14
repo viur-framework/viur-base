@@ -64,3 +64,9 @@ globals().update(_viur_modules)
 
 # remove private variables
 del _viur_modules, _module, _import, _name, _symbol, logging, os, viur, _control, _folder_name, _current_path
+
+#########################################
+# Manual imports can also be done here! #
+#########################################
+
+# import XYZ as ZYX
