@@ -15,7 +15,7 @@ import viur
 ####################################
 
 # start of script
-_prefix = True  # set prefix if modules are in subfolder. Default: True, set to False if u don't want to prefix modules
+_prefix = True  # set prefix if modules are in subfolder. Default: True, set to False if u don't want prefixing
 
 _viur_modules = {}
 _current_path = os.path.dirname(os.path.realpath(__file__))
@@ -62,4 +62,5 @@ for _root, _dirs, _files in os.walk(_current_path):
 
 globals().update(_viur_modules)
 
-del _viur_modules, _module, _import, _name, _symbol, logging, os, viur, _control, _folder_name, _current_path  # remove private variables
+# remove private variables
+del _viur_modules, _module, _import, _name, _symbol, logging, os, viur, _control, _folder_name, _current_path
