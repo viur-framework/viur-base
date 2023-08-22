@@ -10,6 +10,11 @@ indexes:
   - name: parententry
   - name: sortindex
 
+- kind: file
+  properties:
+  - name: pending
+  - name: creationdate
+
 - kind: file_rootNode
   properties:
   - name: parententry
