@@ -1,17 +1,26 @@
 {%- extends "viur_base.html" %}
 
 {%- block content %}
-	{% if action == "otp" %}
-		<h1 class="headline">OTP</h1>
+	{% if action == "otp" or action == "authenticatorOTP"  %}
+		<h1 class="headline">{{ action }}</h1>
 
-		<form action="/user/f2_timebasedotp/otp" method="POST" class="">
+		<form action="/user/f2_{{ action|lower }}/otp" method="POST" class="">
 			<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
+
+			{% for error in skel["errors"] %}
+				<div class="msg msg--error is-active">
+					{{ embedSvg("icon-cross") }}
+					<div class="msg-content">
+						<h3 class="msg-headline">{{ error["errorMessage"] }}</h3>
+					</div>
+				</div>
+			{% endfor %}
 
 			<div class="msg msg--error {{ "is-active" if secondFactorFailed }}">
 				{{ embedSvg("icon-cross") }}
 				<div class="msg-content">
 					<h3 class="msg-headline">Error!</h3>
-					<p>The entered token was invaild!</p>
+					<p>The entered token was invalid!</p>
 				</div>
 			</div>
 
