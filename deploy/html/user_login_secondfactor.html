@@ -1,10 +1,10 @@
 {%- extends "viur_base.html" %}
 
 {%- block content %}
-
+	{% if action == "otp" or action == "authenticatorOTP"  %}
 		<h1 class="headline">{{ action }}</h1>
 
-		<form action="{{action}}" method="POST" class="">
+		<form action="/user/f2_{{ action|lower }}/otp" method="POST" class="">
 			<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
 
 			{% for error in skel["errors"] %}
@@ -31,5 +31,7 @@
 
 			<button type="submit" id="submitbtn" name="submit" class="btn btn--primary">Login</button>
 		</form>
-
+	{% else %}
+		<div>Unimplemented second factor action: {{ action }}</div>
+	{% endif %}
 {%- endblock content %}

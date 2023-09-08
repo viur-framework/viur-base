@@ -1,35 +1,21 @@
 {%- extends "viur_base.html" %}
 
 {%- block content %}
+<h1 class="headline">Add Second Factor</h1>
+	<p>Please scan the QR code with your Authenticator App and Enter the OTP token in the input below</p>
 
-		<h1 class="headline">SecondFactor</h1>
+<a href="{{ otp_uri }}">
+  {{otp_uri_to_qrcode(otp_uri)}}
+</a>
 
-		<form action="{{action}}" method="POST" class="">
-			<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
+<form method="POST" action="/user/f2_authenticatorotp/add">
+		<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
 
-			{% for error in skel["errors"] %}
-				<div class="msg msg--error is-active">
-					{{ embedSvg("icon-cross") }}
-					<div class="msg-content">
-						<h3 class="msg-headline">{{ error["errorMessage"] }}</h3>
-					</div>
-				</div>
-			{% endfor %}
+		<div class="input-group">
+			<label class="label" for="otp">OTP Token</label>
+			<input class="input" id="otp" name="otp" type="text" placeholder="OTP Token">
+		</div>
 
-			<div class="msg msg--error {{ "is-active" if secondFactorFailed }}">
-				{{ embedSvg("icon-cross") }}
-				<div class="msg-content">
-					<h3 class="msg-headline">Error!</h3>
-					<p>The entered token was invalid!</p>
-				</div>
-			</div>
-
-			<div class="input-group">
-				<label class="label has-icon" for="otptoken">{{ embedSvg("icon-token") }}OTP Token</label>
-				<input id="username" name="otptoken" type="text" class="input js-focus" placeholder="OTP Token">
-			</div>
-
-			<button type="submit" id="submitbtn" name="submit" class="btn btn--primary">Login</button>
-		</form>
-
+		<input class="btn btn--primary" type="submit" value="Validate Second Factor">
+	</form>
 {%- endblock content %}
