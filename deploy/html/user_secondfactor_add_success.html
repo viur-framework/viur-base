@@ -1,16 +1,15 @@
 {% extends "viur_base.html" %}
 
 {% block content %}
-	<h1 class="headline">Second Factor</h1>
+    <h1 class="headline">{% translate "user_second_factor_add_headline", "Add Second Factor" %}</h1>
 
-	<div class="msg msg--success is-active">
-		{{ embedSvg("icon-check") }}
-		<div class="msg-content">
-			<h3 class="msg-headline">Second Factor Add success !</h3>
-			<p>Your Second Factor has been added successfully.</p>
-		</div>
-	</div>
+    <div class="msg msg--success is-active">
+        {{ embedSvg("icon-check") }}
+        <div class="msg-content">
+            <h3 class="msg-headline">{% translate "user_second_factor_add_success_msg", "Done" %}</h3>
+            <p>{% translate "user_second_factor_add_success_text", "Your second factor has been successfully added." %}</p>
+        </div>
+    </div>
 
-	<a href="/user/auth_userpassword/login">Login</a>
-
+    <a href="/user/login">{% translate "login", "Login" %}</a>
 {% endblock %}

@@ -1,21 +1,33 @@
 {%- extends "viur_base.html" %}
 
 {%- block content %}
-<h1 class="headline">Add Second Factor</h1>
-	<p>Please scan the QR code with your Authenticator App and Enter the OTP token in the input below</p>
+    <h1 class="headline">{% translate "user_second_factor_add_headline", "Add Second Factor" %}: {{ name }}</h1>
 
-<a href="{{ otp_uri }}">
-  {{otp_uri_to_qrcode(otp_uri)}}
-</a>
+    {% if action_name == "authenticator_otp" %}
+        <p>{% translate "user_second_factor_add_authenticator_otp_text", "Please scan the QR code below with your authentication app (Google Authenticator, Authy, ...) and then enter the OTP token in the field below to confirm successful setup." %}</p>
 
-<form method="POST" action="/user/f2_authenticatorotp/add">
-		<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
+        <a href="{{ otp_uri }}">
+            {{ qrcode(otp_uri) }}
+        </a>
 
-		<div class="input-group">
-			<label class="label" for="otp">OTP Token</label>
-			<input class="input" id="otp" name="otp" type="text" placeholder="OTP Token">
-		</div>
+        <form method="POST" action="{{ add_url }}">
+            <input name="skey" type="hidden" value="{{ getSecurityKey() }}">
 
-		<input class="btn btn--primary" type="submit" value="Validate Second Factor">
-	</form>
+            <div class="input-group">
+                <label class="label" for="otp">
+                    {% translate "user_second_factor_token", "OTP Token" %}
+                </label>
+                <input class="input" id="otp" name="otp" type="text"
+                       placeholder="{% translate "user_second_factor_token", "OTP Token" %}">
+            </div>
+
+            <input class="btn btn--primary" type="submit"
+                   value="{% translate "user_second_factor_add_submit", "Validate Second Factor" %}">
+        </form>
+    {% else %}
+        <p>
+            {% translate "user_second_factor_unimplemented", "Unimplemented second factor action:" %} {{ name }}
+            ({{ action_name }})
+        </p>
+    {% endif %}
 {%- endblock content %}

@@ -1,37 +1,50 @@
 {%- extends "viur_base.html" %}
 
 {%- block content %}
-	{% if action == "otp" or action == "authenticatorOTP"  %}
-		<h1 class="headline">{{ action }}</h1>
+    <h1 class="headline">{{ name }}</h1>
 
-		<form action="/user/f2_{{ action|lower }}/otp" method="POST" class="">
-			<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
+    {% if action_name == "otp" or action_name == "authenticator_otp" %}
+        {% if action_name == "otp" -%}
+            <p>{% translate "user_second_factor_otp_text", "Please enter your OTP token from your generator." %}</p>
+        {%- elif action_name == "authenticator_otp" -%}
+            <p>{% translate "user_second_factor_authenticator_otp_text", "Please enter your OTP token from your authenticator app." %}</p>
+        {%- endif %}
 
-			{% for error in skel["errors"] %}
-				<div class="msg msg--error is-active">
-					{{ embedSvg("icon-cross") }}
-					<div class="msg-content">
-						<h3 class="msg-headline">{{ error["errorMessage"] }}</h3>
-					</div>
-				</div>
-			{% endfor %}
+        <form action="{{ action_url }}" method="POST" class="">
+            <input name="skey" type="hidden" value="{{ getSecurityKey() }}">
 
-			<div class="msg msg--error {{ "is-active" if secondFactorFailed }}">
-				{{ embedSvg("icon-cross") }}
-				<div class="msg-content">
-					<h3 class="msg-headline">Error!</h3>
-					<p>The entered token was invalid!</p>
-				</div>
-			</div>
+            {% for error in skel["errors"] %}
+                <div class="msg msg--error is-active">
+                    {{ embedSvg("icon-cross") }}
+                    <div class="msg-content">
+                        <h3 class="msg-headline">{{ error["errorMessage"] }}</h3>
+                    </div>
+                </div>
+            {% endfor %}
 
-			<div class="input-group">
-				<label class="label has-icon" for="otptoken">{{ embedSvg("icon-token") }}OTP Token</label>
-				<input id="username" name="otptoken" type="text" class="input js-focus" placeholder="OTP Token">
-			</div>
+            <div class="msg msg--error {{ "is-active" if secondFactorFailed }}">
+                {{ embedSvg("icon-cross") }}
+                <div class="msg-content">
+                    <h3 class="msg-headline">{% translate "error", "Error!" %}</h3>
+                    <p>{% translate "user_second_factor_invalid_token", "The entered token was invalid!" %}</p>
+                </div>
+            </div>
 
-			<button type="submit" id="submitbtn" name="submit" class="btn btn--primary">Login</button>
-		</form>
-	{% else %}
-		<div>Unimplemented second factor action: {{ action }}</div>
-	{% endif %}
+            <div class="input-group">
+                <label class="label has-icon" for="otptoken">
+                    {{ embedSvg("icon-token") }}{% translate "user_second_factor_token", "OTP Token" %}
+                </label>
+                <input id="otptoken" name="otptoken" type="text" class="input js-focus"
+                       placeholder="{% translate "user_second_factor_token", "OTP Token" %}">
+            </div>
+
+            <button type="submit" id="submitbtn" name="submit"
+                    class="btn btn--primary">{% translate "user_second_factor_submit", "Login" %}</button>
+        </form>
+    {% else %}
+        <p>
+            {% translate "user_second_factor_unimplemented", "Unimplemented second factor action:" %} {{ name }}
+            ({{ action_name }})
+        </p>
+    {% endif %}
 {%- endblock content %}
