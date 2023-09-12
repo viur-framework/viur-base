@@ -1,0 +1,17 @@
+{%- extends "viur_base.html" %}
+
+{%- block content %}
+    <h1 class="headline">{% translate "user_second_factor_choice_headline", "Second Factor" %}</h1>
+
+    <p>{% translate "user_second_factor_choice_text", "Your account is secured by a second factor. Please choose with which one you want to continue the login." %}</p>
+
+    <p>
+        <strong>{% translate "user_second_factor_choice_list", "Available factors" %}</strong><br>
+
+        {% for second_factor in second_factors %}
+            <a href="{{ second_factor.start_url }}">{{ translate(second_factor.NAME) }}</a>
+            {% if not loop.last %}<br>{% endif %}
+        {% endfor %}
+    </p>
+
+{%- endblock content %}

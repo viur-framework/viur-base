@@ -1,0 +1,33 @@
+{%- extends "viur_base.html" %}
+
+{%- block content %}
+    <h1 class="headline">{% translate "user_second_factor_add_headline", "Add Second Factor" %}: {{ name }}</h1>
+
+    {% if action_name == "authenticator_otp" %}
+        <p>{% translate "user_second_factor_add_authenticator_otp_text", "Please scan the QR code below with your authentication app (Google Authenticator, Authy, ...) and then enter the OTP token in the field below to confirm successful setup." %}</p>
+
+        <a href="{{ otp_uri }}">
+            {{ qrcode(otp_uri) }}
+        </a>
+
+        <form method="POST" action="{{ add_url }}">
+            <input name="skey" type="hidden" value="{{ getSecurityKey() }}">
+
+            <div class="input-group">
+                <label class="label" for="otp">
+                    {% translate "user_second_factor_token", "OTP Token" %}
+                </label>
+                <input class="input" id="otp" name="otp" type="text"
+                       placeholder="{% translate "user_second_factor_token", "OTP Token" %}">
+            </div>
+
+            <input class="btn btn--primary" type="submit"
+                   value="{% translate "user_second_factor_add_submit", "Validate Second Factor" %}">
+        </form>
+    {% else %}
+        <p>
+            {% translate "user_second_factor_unimplemented", "Unimplemented second factor action:" %} {{ name }}
+            ({{ action_name }})
+        </p>
+    {% endif %}
+{%- endblock content %}
