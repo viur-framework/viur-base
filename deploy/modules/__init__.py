@@ -19,38 +19,35 @@ _viur_modules = {}
 BLACKLIST = []  # filenames that should be blacklisted for the import
 
 
-def _import_modules(_path, _prefix=""):
-    for _module in Path(_path).iterdir():
-        _module_name = _module.name
-
-        if _module.is_dir():
-            _import_modules(_module, f"{_prefix}{_module_name}.")
+def _import_modules(_dir: Path, _prefix: str = "") -> None:
+    for _path in _dir.iterdir():
+        if _path.is_dir():
+            _import_modules(_path, f"{_prefix}{_path.stem}.")
             continue
 
-        elif _module_name.startswith("_") or not _module_name.endswith(".py"):
+        elif _path.stem.startswith("_") or _path.suffix != ".py":
             continue
 
-        _module_name = _prefix + _module_name[:-3]
+        _module = _prefix + _path.stem
 
         try:
-            _import = __import__(_module_name, globals(), locals(), [_module_name], level=1)
+            _import = __import__(_module, globals(), locals(), [_module], level=1)
 
             for _name in dir(_import):
                 if _name.startswith("_"):
                     continue
 
-                # logging.info(getattr(_import, _name))
                 _symbol = getattr(_import, _name)
-                if (getattr(_symbol, "__module__", None) != f"modules.{_module_name}"
+                if (getattr(_symbol, "__module__", None) != f"modules.{_module}"
                         or isinstance(_symbol, viur.core.Module) or isinstance(_symbol, types.FunctionType)):
                     continue
 
-                if _name.lower() not in BLACKLIST:
-                    logging.debug(f"Importing {_symbol} as {_prefix}{_name.lower()}")
-                    _viur_modules[f"{_prefix}{_name.lower()}"] = _symbol
+                if (alias := f"{_prefix}{_name.lower()}") not in BLACKLIST:
+                    logging.debug(f"Importing {_symbol} as {alias}")
+                    _viur_modules[alias] = _symbol
 
         except Exception:
-            logging.exception(f"Unable to import '{_module_name}'")
+            logging.exception(f"Unable to import '{_module}'")
             raise
 
 
@@ -60,11 +57,9 @@ globals().update(_viur_modules)
 
 del _viur_modules, Path, logging, viur, _import_modules, BLACKLIST
 
-
 #########################################
 # Manual imports can also be done here! #
 #########################################
 
-# import MODULE
-# import MODULE as NAME
-# from MODULE import CLASS/FUNCTION as NAME
+# noinspection PyUnresolvedReferences
+from viur.core.modules.site import Site as s
