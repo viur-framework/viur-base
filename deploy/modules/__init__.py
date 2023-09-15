@@ -62,4 +62,4 @@ del _viur_modules, Path, logging, viur, _import_modules, BLACKLIST
 #########################################
 
 # noinspection PyUnresolvedReferences
-from viur.core.modules.site import Site as s
+from viur.core.modules.site import Site as s  # noqa: E402
