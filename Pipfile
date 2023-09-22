@@ -7,7 +7,7 @@ name = "pypi"
 viur-core = "==3.5.0"
 
 [dev-packages]
-viur-cli  = "~=1.0"
+viur-cli = "~=1.0"
 pycodestyle = "==2.10.0"
 
 [requires]

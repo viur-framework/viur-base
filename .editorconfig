@@ -34,3 +34,6 @@ ij_python_optimize_imports_join_from_imports_with_same_source = true
 ij_python_optimize_imports_sort_by_type_first = true
 ij_python_optimize_imports_sort_imports = true
 ij_python_optimize_imports_sort_names_in_from_imports = true
+
+[project.json]
+insert_final_newline = false
