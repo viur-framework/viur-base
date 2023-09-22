@@ -1,15 +1,29 @@
 {
     "default": {
-        "builds": {},
-        "core": "3.4.4",
+        "builds": {
+            "npm": {
+                "command": "build",
+                "kind": "npm",
+                "source": ""
+            },
+            "vi": {
+                "command": "viur install admin",
+                "kind": "exec"
+            }
+        },
+        "core": "3.5.0",
         "distribution_folder": "./deploy",
         "format": "1.1.1",
         "pyodide": "0.19.1",
         "sources_folder": "./sources",
-        "vi": "3.0.36"
+        "vi": "admin-v4.0.4"
     },
     "develop": {
         "application_name": "{{app_id}}",
-        "version": "$(year)-$(month)-$(day)-$(user)"
+        "version": "dev-$(user)"
+    },
+    "live": {
+        "application_name": "{{app_id}}",
+        "version": "live-$(year)-$(month)-$(day)-$(hour)-$(minute)-$(second)"
     }
 }
