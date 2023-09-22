@@ -24,7 +24,7 @@
 # ------------------------------------------------------------------------------
 
 from viur import core
-from viur.core import conf, email, securityheaders
+from viur.core import conf, db, email, securityheaders, secret
 from viur.core.modules.file import thumbnailer
 
 # ------------------------------------------------------------------------------
@@ -33,16 +33,21 @@ from viur.core.modules.file import thumbnailer
 
 conf["viur.validApplicationIDs"] = ["{{app_id}}"]
 
+# Client-ID for OAuth with google
+# conf["viur.user.google.clientID"] = ""
+
 # ------------------------------------------------------------------------------
 # Debugging & Performance
 #
 
 # conf["viur.disableCache"] = True
+# conf["viur.debug.trace"] = True
 # conf["viur.debug.traceQueries"] = True
 # conf["viur.debug.traceExternalCallRouting"] = True
 # conf["viur.debug.traceExceptions"] = True
+# db.config["traceQueries"] = True
 
-# VIUR<3.4 compatibility feature disabling
+# ViUR<3.4 compatibility feature disabling
 # conf["viur.compatibility"].remove("json.bone.structure.keytuples")  # render new dict-style bone-structure
 # conf["viur.compatibility"].remove("json.bone.structure.camelcasenames")  # render new keys in bone structure only
 
@@ -80,13 +85,15 @@ conf["derives"] = {
 # ViUR admin tool specific configurations
 #
 
-conf["admin.vi.name"] = "{{app_id}}"
+conf["admin.name"] = "{{app_id}}"
 
 # ------------------------------------------------------------------------------
 # Email configuration
 #
 
 conf["viur.email.sendInBlue.apiKey"] = "xkeysib-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+# Alternatively: Get the api-key from Secret Manager and keep your main.py free of credentials
+# conf["viur.email.sendInBlue.apiKey"] = secret.get("sib-api-key")
 conf["viur.email.transportClass"] = email.EmailTransportSendInBlue
 # conf["viur.email.senderOverride"] = "mail@viur.dev"
 
