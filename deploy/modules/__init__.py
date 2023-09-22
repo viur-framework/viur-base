@@ -1,49 +1,65 @@
-# This is the ViUR default module importer;
-# If any other importing logic is wanted, please switch to manual import calls in this file, and remove
-# the dynamic code provided below.
+"""
+This is the ViUR default module importer.
 
-import logging
-import os
-import viur
+If any other importing logic is wanted, please switch to manual import calls in this file, and remove
+the dynamic code provided below.
+"""
 
 ####################################
 # Automatic imports are done here! #
 ####################################
 
-# start of script
+import logging
+import types
+import viur
+from pathlib import Path
+
 _viur_modules = {}
 
-for _module in os.listdir(os.path.dirname(__file__)):
+BLACKLIST = []  # filenames that should be blacklisted for the import
 
-    if _module == "__init__.py" or not _module.endswith(".py"):
-        continue
 
-    _module = _module[:-3]
+def _import_modules(_dir: Path, _prefix: str = "") -> None:
+    for _path in _dir.iterdir():
+        if _path.is_dir():
+            _import_modules(_path, f"{_prefix}{_path.stem}.")
+            continue
 
-    try:
-        _import = __import__(_module, globals(), locals(), level=1)
+        elif _path.stem.startswith("_") or _path.suffix != ".py":
+            continue
 
-        for _name in dir(_import):
-            if _name.startswith("_"):
-                continue
+        _module = _prefix + _path.stem
 
-            _symbol = getattr(_import, _name)
-            if getattr(_symbol, "__module__", None) != f"modules.{_module}" or isinstance(_symbol, viur.core.Module):
-                continue
+        try:
+            _import = __import__(_module, globals(), locals(), [_module], level=1)
 
-            _viur_modules[_name.lower()] = _symbol
-            logging.debug("Importing %s as %s" % (_symbol, _name.lower()))
+            for _name in dir(_import):
+                if _name.startswith("_"):
+                    continue
 
-    except Exception as e:
-        logging.error("Unable to import '%s'" % _module)
-        raise e
+                _symbol = getattr(_import, _name)
+                if (getattr(_symbol, "__module__", None) != f"modules.{_module}"
+                        or isinstance(_symbol, viur.core.Module) or isinstance(_symbol, types.FunctionType)):
+                    continue
+
+                if (alias := f"{_prefix}{_name.lower()}") not in BLACKLIST:
+                    logging.debug(f"Importing {_symbol} as {alias}")
+                    _viur_modules[alias] = _symbol
+
+        except Exception:
+            logging.exception(f"Unable to import '{_module}'")
+            raise
+
+
+_import_modules(Path(__file__).resolve().parent)
 
 globals().update(_viur_modules)
-del _viur_modules, _module, _import, _name, _symbol, logging, os, viur  # remove private variables
+
+del _viur_modules, Path, logging, viur, _import_modules, BLACKLIST
 
 #########################################
 # Manual imports can also be done here! #
 #########################################
 
 # noinspection PyUnresolvedReferences
-from viur.core.modules.site import Site as s
+from viur.core.modules.site import Site as s  # noqa: E402
