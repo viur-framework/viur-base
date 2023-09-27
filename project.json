@@ -11,7 +11,7 @@
                 "kind": "exec"
             }
         },
-        "core": "3.5.0",
+        "core": "3.5.1",
         "distribution_folder": "./deploy",
         "format": "1.1.1",
         "pyodide": "0.19.1",
