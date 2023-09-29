@@ -73,6 +73,22 @@ conf["derives"] = {
 # Language-specific configuration
 #
 
+if conf["viur.instance.is_dev_server"]:
+    conf["viur.security.enableCORP"] = "cross-origin"
+
+    def preprocessRequestHandler(path):
+        referer = current.request.get().request.referer
+        if referer and referer in ["http://localhost:8081/", "http://localhost:8082/", "http://localhost:8083/"]:
+            referer = current.request.get().request.referer[:-1]
+            current.request.get().response.headers["Access-Control-Allow-Origin"] = referer
+        current.request.get().response.headers["Access-Control-Allow-Credentials"] = "true"
+        return path
+conf["viur.requestPreprocessor"] = preprocessRequestHandler
+
+# ------------------------------------------------------------------------------
+# Language-specific configuration
+#
+
 # conf["viur.languageMethod"] = "url"
 # conf["viur.availableLanguages"] = ["en", "de"]
 
@@ -113,3 +129,10 @@ import modules
 import render
 
 app = core.setup(modules, render)
+
+if conf["viur.instance.is_dev_server"]:
+    print()
+    print("===============SERVER IS UP AND READY===============")
+    print(
+        f"==============app: \033[1;31m{conf['viur.instance.project_id']}\033[0m, core: \033[1;32m{core.version.__version__}\033[0m===============")
+    print()

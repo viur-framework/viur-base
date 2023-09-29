@@ -1,0 +1,29 @@
+{
+  "name": "base-vue",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --port=8081",
+    "build": "vite build",
+    "preview": "vite preview",
+    "sprite": "node build_sprites.mjs"
+  },
+  "dependencies": {
+    "@viur/shoelace": "^0.6.2-v2.9.0",
+    "@viur/vue-utils": "^1.0.4",
+    "pinia": "^2.1.6",
+    "pinia-plugin-persistedstate": "^3.2.0",
+    "vue": "^3.3.4",
+    "vue-i18n": "^9.5.0",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.3.4",
+    "front-matter": "^4.0.2",
+    "globby": "^13.2.2",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "svgo": "^3.0.2",
+    "vite": "^4.4.9 "
+  }
+}

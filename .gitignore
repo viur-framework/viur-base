@@ -10,3 +10,4 @@ deploy/vi
 node_modules
 
 storage
+sources/app/public/shoelace/assets
