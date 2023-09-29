@@ -1254,12 +1254,12 @@
         },
         "viur-cli": {
             "hashes": [
-                "sha256:5338934cf5362c644569af2e30d413098079a00dff59f9d148e976f2cfd45f3d",
-                "sha256:9b20bff1a14d23a46a2f86acd3eadc40091fc9fbda23e944f5e11af77a8ad635"
+                "sha256:11e3771f57aac659248a5e30d1cea747dbee9cd7678f3f810874cc614f158cfc",
+                "sha256:f59bb8e2fa0c84b463804c6226a513aab99974809e116a96c39be1d5c47fe21a"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==1.0.15"
+            "version": "==1.0.16"
         },
         "watchgod": {
             "hashes": [
