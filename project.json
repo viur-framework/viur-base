@@ -1,14 +1,15 @@
 {
     "default": {
+        "admin": "4.0.8",
         "builds": {
+            "admin": {
+                "command": "viur install admin",
+                "kind": "exec"
+            },
             "npm": {
                 "command": "build",
                 "kind": "npm",
                 "source": ""
-            },
-            "vi": {
-                "command": "viur install admin",
-                "kind": "exec"
             }
         },
         "core": "3.5.1",
@@ -16,7 +17,7 @@
         "format": "1.1.1",
         "pyodide": "0.19.1",
         "sources_folder": "./sources",
-        "vi": "admin-v4.0.4"
+        "vi": "not-in-use"
     },
     "develop": {
         "application_name": "{{app_id}}",
