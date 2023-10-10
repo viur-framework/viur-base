@@ -48,7 +48,7 @@
     "postcss-focus": "^5.0.1",
     "postcss-zindex": "^5.0.1",
     "graceful-fs": "^4.2.8",
-    "postcss": "^8.3.6",
+    "postcss": "^8.4.31",
     "trim-newlines": "^4.0.2",
     "postcss-discard-comments": "^5.0.1"
   }
