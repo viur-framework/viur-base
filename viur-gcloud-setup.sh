@@ -64,7 +64,7 @@ else
 fi
 
 # Activate APIs and Services
-for service in firestore.googleapis.com iamcredentials.googleapis.com cloudbuild.googleapis.com cloudtasks.googleapis.com cloudscheduler.googleapis.com
+for service in firestore.googleapis.com iamcredentials.googleapis.com cloudbuild.googleapis.com cloudtasks.googleapis.com cloudscheduler.googleapis.com secretmanager.googleapis.com
 do
 	gcloud services enable --project=$project $service
 done
