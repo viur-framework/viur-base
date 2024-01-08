@@ -18,7 +18,7 @@ Before you start, please check out the following preliminaries are met:
 1. You either need Linux, macOS, or Windows with WSL.
     See [awesome-viur](https://awesome.viur.dev/README#tutorials--examples) for further help and information for specific operating systems.
 2. `git`, `python`, `pyenv` and `pipenv` should be installed
-    You can use any Python version >= 3.10 with ViUR, we recommend Python 3.10 currently.
+    You can use any Python version >= 3.10 with ViUR, we recommend Python 3.11 currently.
 3. install [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) and the required components with the following commands
     ```
     gcloud components update
