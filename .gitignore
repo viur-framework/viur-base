@@ -3,7 +3,9 @@
 *.bak
 *.bat
 
+.venv
 .idea
+.vscode
 
 deploy/pyodide
 deploy/vi

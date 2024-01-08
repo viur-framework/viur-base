@@ -1,9 +1,9 @@
 {
     "default": {
-        "admin": "4.0.8",
+        "admin": "4.0.22",
         "builds": {
             "admin": {
-                "command": "viur install admin 4.0.8",
+                "command": "viur install admin 4.0.22",
                 "kind": "exec"
             },
             "npm": {
@@ -12,10 +12,9 @@
                 "source": ""
             }
         },
-        "core": "3.5.1",
+        "core": "3.5.10",
         "distribution_folder": "./deploy",
         "format": "1.1.1",
-        "pyodide": "0.19.1",
         "sources_folder": "./sources",
         "vi": "not-in-use"
     },
