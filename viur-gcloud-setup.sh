@@ -64,7 +64,14 @@ else
 fi
 
 # Activate APIs and Services
-for service in firestore.googleapis.com iamcredentials.googleapis.com cloudbuild.googleapis.com cloudtasks.googleapis.com cloudscheduler.googleapis.com secretmanager.googleapis.com
+for service in \
+    datastore.googleapis.com \
+    firestore.googleapis.com \
+    iamcredentials.googleapis.com \
+    cloudbuild.googleapis.com \
+    cloudtasks.googleapis.com \
+    cloudscheduler.googleapis.com \
+    secretmanager.googleapis.com
 do
 	gcloud services enable --project=$project $service
 done
@@ -109,6 +116,9 @@ then
 		exit 1
 	fi
 fi
+
+# Check if  $project@appspot.gserviceaccount.com has Cloud Datastore User
+
 
 echo
 echo "##############################################################"
