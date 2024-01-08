@@ -117,9 +117,6 @@ then
 	fi
 fi
 
-# Check if  $project@appspot.gserviceaccount.com has Cloud Datastore User
-
-
 echo
 echo "##############################################################"
 echo "# All done!                                                  #"
