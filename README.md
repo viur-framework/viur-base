@@ -51,7 +51,7 @@ We take great interest in your opinion about ViUR. We appreciate your feedback a
 
 ## License
 
-Copyright © 2023 by Mausbrand Informationssysteme GmbH.<br>
+Copyright © 2024 by Mausbrand Informationssysteme GmbH.<br>
 Mausbrand and ViUR are registered trademarks of Mausbrand Informationssysteme GmbH.
 
 You may use, modify and distribute this software under the terms and conditions of the GNU Lesser General Public License (LGPL).<br>
