@@ -4,10 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-viur-core = "==3.5.10"
+viur-core = "==3.5.12"
 
 [dev-packages]
-viur-cli = "==1.1.1"
+viur-cli = "==1.1.2"
 pycodestyle = "==2.10.0"
 
 [requires]
