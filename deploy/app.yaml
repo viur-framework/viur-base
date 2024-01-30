@@ -1,4 +1,4 @@
-runtime: python310
+runtime: python311
 
 # (1) Under some circumstances, you need to set a higher instance_class,
 #     like F2 or F4. Unfortunately, this will increase App Engine cost,
@@ -16,20 +16,11 @@ automatic_scaling:
   max_instances: 1
   max_idle_instances: 1
 
+# (4) Required for viur-core >= 3.6, leave as is for viur-core <= 3.5
+# app_engine_apis: true
+
+# (5) Default handlers for ViUR. Add project-specific handlers if wanted.
 handlers:
-# (4) For a local Pyodide installation, activate below and run get-pyodide.py from project root.
-#     Leave the comments to use the CDN-version of Pyodide, which also runs very well.
-#- url: /pyodide/(.*\.(wasm|data))$
-#  static_files: pyodide/\1
-#  upload: pyodide/.*\.(wasm|data)$
-#  mime_type: application/wasm
-#- url: /pyodide
-#  static_dir: pyodide
-
-# (5) Activate this when vi_plugins should be used
-#- url: /vi_plugins/s
-#  static_dir: vi_plugins
-
 - url: /vi/s
   static_dir: vi
 - url: /static
@@ -45,9 +36,6 @@ handlers:
 - url: /robots.txt
   static_files: static/meta/robots.txt
   upload: robots.txt
-# (5) This is necessary to use the Google appengine apis
-app_engine_apis: true
 
 inbound_services:
 - warmup
-

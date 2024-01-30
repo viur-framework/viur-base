@@ -15,20 +15,22 @@ project demands.
 
 Before you start, please check out the following preliminaries are met:
 
-1. You either need Linux, macOS, or Windows with WSL. See [awesome-viur](https://awesome.viur.dev/README#tutorials--examples) for further help and information for specific operating systems.
-2. `git`, `python >= 3.10` and `pipenv` should be installed
+1. You either need Linux, macOS, or Windows with WSL.
+    See [awesome-viur](https://awesome.viur.dev/README#tutorials--examples) for further help and information for specific operating systems.
+2. `git`, `python`, `pyenv` and `pipenv` should be installed
+    You can use any Python version >= 3.10 with ViUR, we recommend Python 3.11 currently.
 3. install [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) and the required components with the following commands
-    ``` 
-    gcloud components update 
-    gcloud components install app-engine-python app-engine-python-extras 
-    gcloud auth application-default login 
+    ```
+    gcloud components update
+    gcloud components install app-engine-python app-engine-python-extras
+    gcloud auth application-default login
     ```
     or (see [here](https://core.docs.viur.dev/en/stable/doc_start/index.html#prerequisites) for further help)
 
 ## Usage
 
 1. Create a new Google Cloud project [here](https://console.cloud.google.com/projectcreate) and activate billing.
-   
+
     > We will refer to the name of the project you created as `YOUR-APP-ID`.
 2. Clone this repository with `git clone https://github.com/viur-framework/viur-base.git YOUR-PROJECT`.
 
@@ -37,7 +39,7 @@ Before you start, please check out the following preliminaries are met:
 4. `./clean-base.py -A YOUR-APP-ID`
 5. `./viur-gcloud-setup.sh YOUR-APP-ID`
 6. Install local development dependencies with `pipenv install --dev`
-7. Locally run your project with `pipenv run viur run` or deploy it with `pipenv run viur deploy app`. Run a `pipenv shell` to work with the [viur-cli](https://github.com/viur-framework/viur-cli) command line tool. 
+7. Locally run your project with `pipenv run viur run` or deploy it with `pipenv run viur deploy app`. Run a `pipenv shell` to work with the [viur-cli](https://github.com/viur-framework/viur-cli) command line tool.
 
 See the [documentation](https://viur-core.readthedocs.io/en/latest/doc_start/index.html) for further help.
 
