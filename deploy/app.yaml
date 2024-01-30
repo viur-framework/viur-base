@@ -7,7 +7,7 @@ instance_class: F1
 default_expiration: "30s"
 
 # (2) To get more memory and concurrent requests, a separate gunicorn is run.
-entrypoint: gunicorn -b :$PORT -w 1 --threads 2 --disable-redirect-access-to-syslog --timeout 60 main:app
+entrypoint: gunicorn -b :$PORT -w 1 --threads 2 --disable-redirect-access-to-syslog main:app
 
 # (3) Limited scaling is default, to keep frontend instance hours low.
 #     Please change these values on your demands.
