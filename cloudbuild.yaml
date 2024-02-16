@@ -1,0 +1,49 @@
+# clone main repository and all private submodules:
+# https://source.cloud.google.com/
+#
+# create a trigger for main repository
+# https://console.cloud.google.com/cloud-build/triggers/add
+# add name (BuildDeploy) and description (Build & Deploy)
+#    triggertyp: Tag
+#    regex: ^release-.*$
+#    Build-Konfiguration: Cloud Build-Konfigurationsdatei
+#
+# activate App Engine Admin api
+# https://console.developers.google.com/apis/api/appengine.googleapis.com/overview
+#
+# allow AppEngine Deployment
+# https://console.cloud.google.com/cloud-build/settings
+#
+#
+# Make sure the projects cloudbuild service account has permission to download from
+#
+# Modify project Submodules
+# for public Repos:
+#     use https urls
+#     git config -f .gitmodules submodule.sources/less/ignite.url https://github.com/viur-framework/ignite.git
+#
+
+steps:
+  # clone source code
+  # if you need to reconfigure submodules to use https or git, do this here
+  - name: 'gcr.io/cloud-builders/git'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        git config -f .gitmodules submodule.sources/less/ignite.url https://github.com/viur-framework/ignite.git
+        git submodule update --init --recursive
+
+  # buildTasks: we are using our new alpine container which includes a pyenv install so we can use viur-cli/flare with a fixed python version (3.9.5)
+  - name: 'europe-west3-docker.pkg.dev/viur-build/viur-build-debian/viur-build:containerbuild-v0.10'
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        pipenv install --dev
+        pipenv run viur build release
+
+  # deploy: use googles own gcloud container to deploy our build
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'deploy', './deploy/app.yaml', "--project=$PROJECT_ID", "--version=gcb-$SHORT_SHA-$_TAG_NAME", "--no-promote"]
+timeout: 6000s
