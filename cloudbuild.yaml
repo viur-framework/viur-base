@@ -18,8 +18,6 @@
 # Make sure the projects cloudbuild service account has permission to download from
 #
 # Modify project Submodules
-# for private Repos:
-#     git config -f .gitmodules submodule.appengine/server.url https://source.developers.google.com/p/$PROJECT_ID/r/bitbucket_mausbrand_dt-server
 # for public Repos:
 #     use https urls
 #     git config -f .gitmodules submodule.sources/less/ignite.url https://github.com/viur-framework/ignite.git
