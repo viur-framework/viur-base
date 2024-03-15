@@ -47,9 +47,12 @@ conf["viur.validApplicationIDs"] = ["{{app_id}}"]
 # conf["viur.debug.traceExceptions"] = True
 # db.config["traceQueries"] = True
 
-# ViUR<3.4 compatibility feature disabling
-# conf["viur.compatibility"].remove("json.bone.structure.keytuples")  # render new dict-style bone-structure
-# conf["viur.compatibility"].remove("json.bone.structure.camelcasenames")  # render new keys in bone structure only
+# ViUR >= 3.4 compatibility feature disabling
+conf["viur.compatibility"].remove("json.bone.structure.keytuples")  # render new dict-style bone-structure
+conf["viur.compatibility"].remove("json.bone.structure.camelcasenames")  # render new keys in bone structure only
+
+# ViUR >= 3.5 compatibility feature disabling
+conf["viur.compatibility"].remove("json.bone.structure.inlists")  # disable structure rendering on list
 
 # ------------------------------------------------------------------------------
 # File module
