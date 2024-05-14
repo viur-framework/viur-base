@@ -30,9 +30,9 @@ handlers:
   upload: scriptor/.+$
 - url: /resources
   static_dir: viur/core/resources
-- url: /favicon.ico
-  static_files: static/meta/favicon.ico
-  upload: favicon.ico
+- url: /favicon.png
+  static_files: static/meta/favicon.png
+  upload: favicon.png
 - url: /robots.txt
   static_files: static/meta/robots.txt
   upload: robots.txt
