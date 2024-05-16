@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "47a99a1424fa2fe3650ce8067b043596d068d5f1fad9237e808e2cdc18b50fe4"
+            "sha256": "fad164393fa73b3d245e14701b8b0988f43461a456a5fc4cb7392af286a7d4ee"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1004,11 +1004,11 @@
         },
         "viur-core": {
             "hashes": [
-                "sha256:4ba0016a58a54c6b044efd3e4af02f358898bab78a4e374a89911ee3bf34c7dd"
+                "sha256:9fa7ca8555f13e0c30d063ec14543c3fc6315acf7aef4b9afcf12a2e4f6950f8"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==3.6.5"
+            "version": "==3.6.6"
         },
         "viur-datastore": {
             "hashes": [

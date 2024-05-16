@@ -1,10 +1,12 @@
 {
+    "cli-version": "2.0.1",
     "default": {
-        "admin": "4.0.24",
+        "application_name": "{{app_id}}-dev",
         "builds": {
             "admin": {
-                "command": "viur install admin 4.0.24",
-                "kind": "exec"
+                "command": "viur package install admin",
+                "kind": "exec",
+                "version": "4.2.6"
             },
             "npm": {
                 "command": "build",
@@ -12,18 +14,12 @@
                 "source": ""
             }
         },
-        "core": "3.5.12",
         "distribution_folder": "./deploy",
-        "format": "1.1.1",
         "sources_folder": "./sources",
-        "vi": "not-in-use"
+        "version": "$(year)-$(month)-$(day)-$(user)"
     },
-    "develop": {
-        "application_name": "{{app_id}}",
-        "version": "dev-$(user)"
-    },
+    "format": "2.0.0",
     "live": {
-        "application_name": "{{app_id}}",
-        "version": "live-$(year)-$(month)-$(day)-$(hour)-$(minute)-$(second)"
+        "application_name": "{{app_id}}"
     }
 }
