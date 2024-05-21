@@ -1,7 +1,7 @@
 {
     "cli-version": "2.0.1",
     "default": {
-        "application_name": "{{app_id}}-dev",
+        "application_name": "{{app_id}}",
         "builds": {
             "admin": {
                 "command": "viur package install admin",
@@ -16,10 +16,10 @@
         },
         "distribution_folder": "./deploy",
         "sources_folder": "./sources",
-        "version": "$(year)-$(month)-$(day)-$(user)"
+        "version": "$(year)-$(month)-$(day)-$(user)-dev"
     },
     "format": "2.0.0",
     "live": {
-        "application_name": "{{app_id}}"
+        "version": "$(year)-$(month)-$(day)-$(user)"
     }
 }
