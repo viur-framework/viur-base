@@ -2,7 +2,7 @@
     <img src="https://github.com/viur-framework/viur-artwork/raw/main/icons/icon-base.svg" height="196" alt="A hexagonal logo of the viur-base" title="viur-base">
     <h1>viur-base</h1>
     <br>
-    This is the best place to start a new <a href="https://www.viur.dev">ViUR</a> project from!
+    This is the place to start your new <a href="https://www.viur.dev">ViUR</a> project from!
 </div>
 
 ## About
@@ -56,5 +56,4 @@ We take great interest in your opinion about ViUR. We appreciate your feedback a
 Copyright © 2024 by Mausbrand Informationssysteme GmbH.<br>
 Mausbrand and ViUR are registered trademarks of Mausbrand Informationssysteme GmbH.
 
-You may use, modify and distribute this software under the terms and conditions of the GNU Lesser General Public License (LGPL).<br>
-See the file LICENSE provided within this package for more information.
+Licensed under the MIT license. See LICENSE for more information.

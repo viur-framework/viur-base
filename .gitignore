@@ -7,8 +7,7 @@
 .idea
 .vscode
 
-deploy/pyodide
-deploy/vi
+deploy/admin
 node_modules
 
 storage
