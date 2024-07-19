@@ -5,10 +5,10 @@
 # https://console.cloud.google.com/cloud-build/triggers/add
 # add name (BuildDeploy) and description (Build & Deploy)
 
-# activate App Engine Admin api
+# activate App Engine Admin API
 # https://console.developers.google.com/apis/api/appengine.googleapis.com/overview
 #
-# allow AppEngine Deployment
+# allow App Engine Deployment
 # https://console.cloud.google.com/cloud-build/settings
 #
 # Make sure the projects cloudbuild service account has permission to download from
@@ -16,7 +16,7 @@
 # Modify project Submodules
 # for public Repos:
 #     use https urls
-#     git config -f .gitmodules submodule.sources/less/ignite.url https://github.com/viur-framework/ignite.git
+#     git config -f .gitmodules submodule.sources/less/ignite.url https://github.com/viur-framework/viur-ignite.git
 #
 
 steps:
@@ -27,7 +27,7 @@ steps:
     args:
       - '-c'
       - |
-        git config -f .gitmodules submodule.sources/less/ignite.url https://github.com/viur-framework/ignite.git
+        git config -f .gitmodules submodule.sources/less/ignite.url https://github.com/viur-framework/viur-ignite.git
         git submodule update --init --recursive
 
   # buildTasks: we are using our new alpine container which includes a pyenv install so we can use viur-cli/flare with a fixed python version (3.9.5)
