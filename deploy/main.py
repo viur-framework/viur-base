@@ -118,10 +118,10 @@ conf.admin.name = \
     + " v" + conf.project.version
 
 # conf.admin.logo = "/static/images/logo.svg"
-# conf.admin.login.logo = "/static/images/logo.svg"
-# conf.admin.login.background = "login-backgound-2.jpg"
-# conf.admin.color.primary = "#2e7291"
-# conf.admin.color.secondary = "#15a995"
+# conf.admin.login_logo = "/static/images/logo.svg"
+# conf.admin.login_background = "login-backgound-2.jpg"
+# conf.admin.color_primary = "#2e7291"
+# conf.admin.color_secondary = "#15a995"
 # conf.admin.module_groups = {
 #     "system": {
 #         "name": "System",
