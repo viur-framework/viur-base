@@ -10,14 +10,13 @@
 #
 # allow App Engine Deployment
 # https://console.cloud.google.com/cloud-build/settings
-#
+
 # Make sure the projects cloudbuild service account has permission to download from
-#
+
 # Modify project Submodules
 # for public Repos:
 #     use https urls
 #     git config -f .gitmodules submodule.sources/less/ignite.url https://github.com/viur-framework/viur-ignite.git
-#
 
 steps:
   # clone source code

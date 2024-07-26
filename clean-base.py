@@ -2,16 +2,10 @@
 import argparse
 import datetime
 import getpass
-import io
 import os
 import subprocess
 import sys
-import time
-import zipfile
 
-from urllib.request import urlopen
-
-VI_VERSION = "3.0.31"
 
 try:
     whoami = getpass.getuser()
@@ -49,27 +43,24 @@ clean_history = args.clean_history
 update = False  # this might be changed by command-line flag later on
 
 if args.app_id is None:
-    prompt = f"Enter Author Name (leave empty to default to {whoami}): "
-    name = input(prompt)
+    prompt = input(f"Enter author name (leave empty to default to {whoami}): ")
 
-    if name:
-        whoami = name
+    if prompt:
+        whoami = prompt
 
     app_id = os.path.split(os.getcwd())[-1]
 
-    prompt = f"Enter application-id (leave empty to default to {app_id}): "
-    name = input(prompt)
+    prompt = input(f"Enter application-id (leave empty to default to {app_id}): ")
 
-    if name:
-        app_id = name
+    if prompt:
+        app_id = prompt
 
-    prompt = "Do you want to clean the git history? [Y/n] "
-    while (option := input(prompt).lower().strip()) not in {"", "y", "n"}:
-        print(f'Invalid option "{option}". "y", "n" or empty input expected.')
-    clean_history = option != "n"
+    while (prompt := input("Do you want to clean the git history? [Y/n] ").lower().strip()) not in {"", "y", "n"}:
+        print(f'Invalid option "{prompt}". "y", "n" or empty input expected.')
 
-time = time.time()
-timestamp = datetime.datetime.fromtimestamp(time).strftime("%Y-%m-%d %H:%M:%S")
+    clean_history = prompt != "n"
+
+timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 workdir = os.getcwd() + "/deploy"
 file_list = ["viur-project.md"]
@@ -99,8 +90,8 @@ for file_obj in file_list:
 
 # Update submodules
 
-if os.path.exists(".git") and clean_history:
-    print("Clean git history")
+if clean_history and os.path.exists(".git"):
+    print("Cleaning git history")
     subprocess.check_output("git checkout --orphan main_tmp", shell=True)
     print(subprocess.check_output("git branch -D main", shell=True).decode().rstrip("\n"))
     subprocess.check_output("git branch -m main", shell=True)
@@ -110,14 +101,6 @@ if os.path.exists(".git") and clean_history:
         .decode().rstrip("\n")
     )
     print("---")
-
-# Install prebuilt Vi
-sys.stdout.write("Downloading latest build of viur-vi...")
-zip = urlopen(f"https://github.com/viur-framework/viur-vi/releases/download/v{VI_VERSION}/viur-vi.zip").read()
-zip = zipfile.ZipFile(io.BytesIO(zip))
-zip.extractall("deploy/vi")
-zip.close()
-print("Done")
 
 # Generate files
 sys.stdout.write("Generating project documentation...")
@@ -138,8 +121,9 @@ print("#                                                            #")
 print("# Next run                                                   #")
 print("#                                                            #")
 print("#     pipenv install --dev                                   #")
+print("#     pipenv run viur build release                          #")
 print("#                                                            #")
-print("# Then, run                                                  #")
+print("# Afterwards, run                                            #")
 print("#                                                            #")
 print("#     ./viur-gcloud-setup.sh                                 #")
 print("#                                                            #")

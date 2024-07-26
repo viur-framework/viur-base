@@ -7,7 +7,7 @@ https://{{app_id}}.appspot.com
 
 ## Description
 
-This is {{app_id}}. It is an absolutely nice project written in the powerful ViUR 3 framework.
+This is {{app_id}}. It is an absolutely nice project doing something, and is written using the ViUR framework.
 
 
 ## First time project setup
