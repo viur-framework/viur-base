@@ -12,3 +12,6 @@ pycodestyle = "==2.10.0"
 
 [requires]
 python_version = "3.12"
+
+[scripts]
+kill_server = "bash -c 'pkill app_server -ef -9 ; pkill gunicorn -ef -9'"
