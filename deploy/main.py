@@ -91,6 +91,9 @@ conf.compatibility.remove("json.bone.structure.camelcasenames")  # render new ke
 # ViUR >= 3.5 compatibility feature disabling
 conf.compatibility.remove("json.bone.structure.inlists")  # disable structure rendering on list
 
+# ViUR >= 3.6 compatibility feature disabling
+conf.compatibility.remove("bone.select.structure.values.keytuple")  # render old-style tuple-list in SelectBone's values structure
+
 # ------------------------------------------------------------------------------
 # File module
 #
