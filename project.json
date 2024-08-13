@@ -1,12 +1,12 @@
 {
-    "cli-version": "2.0.1",
+    "cli-version": "2.0.3",
     "default": {
         "application_name": "{{app_id}}",
         "builds": {
             "admin": {
                 "command": "viur package install admin",
                 "kind": "exec",
-                "version": "4.2.6"
+                "version": "4.4.3"
             },
             "npm": {
                 "command": "build",
