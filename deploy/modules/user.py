@@ -13,5 +13,7 @@ class User(User):
             "firstname",
             "lastname",
         ],
-        "filter": {"orderby": "lastname"},
+        "filter": {
+            "orderby": "lastname",
+        },
     }
