@@ -8,6 +8,12 @@ class User(User):
 
     # Extend default adminInfo to custom adminInfo
     adminInfo = User.adminInfo | {
-        "columns": ["lastname", "firstname", "name"],
-        "filter": {"orderby": "lastname"},
+        "columns": [
+            "name",
+            "firstname",
+            "lastname",
+        ],
+        "filter": {
+            "orderby": "lastname",
+        },
     }
