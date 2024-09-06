@@ -71,8 +71,6 @@ conf.project = ProjectConfig()
 
 conf.valid_application_ids = list(conf.project.appnames.keys())
 
-# Client-ID for OAuth with google
-# conf.user.google_client_id = ""
 
 # ------------------------------------------------------------------------------
 # Debugging & Performance
@@ -94,6 +92,23 @@ conf.compatibility.remove("json.bone.structure.inlists")  # disable structure re
 # ViUR >= 3.6 compatibility feature disabling
 # render old-style tuple-list in SelectBone's values structure
 conf.compatibility.remove("bone.select.structure.values.keytuple")
+
+# ------------------------------------------------------------------------------
+# User module
+#
+
+# Client-ID for OAuth with Google Account
+# conf.user.google_client_id = ""
+# conf.user.google_gsuite_domains = ["example.com"]
+
+# User roles
+#
+# conf.user.roles = {
+#     "custom": "Custom setting",
+#     "admin": "Administrator",
+#     "backoffice": "Back office worker",
+#     "salesforce": "Sales force worker",
+# }
 
 # ------------------------------------------------------------------------------
 # File module
@@ -137,9 +152,10 @@ conf.admin.name = \
 # Email configuration
 #
 
-conf.email.sendinblue_api_key = "xkeysib-XXX"  # better: use secret.get("sib-api-key")
-conf.email.transport_class = email.EmailTransportSendInBlue
-conf.email.send_from_local_development_server = True  # enable sending emails from local development server
+# conf.email.mailjet_api_key = "xxx"  # better: use secret.get("mailjet-api-key")
+# conf.email.mailjet_api_secret = "xxx"  # better: use secret.get("mailjet-api-secret")
+# conf.email.transport_class = email.EmailTransportMailjet
+# conf.email.send_from_local_development_server = True  # enable sending emails from local development server
 # conf.email.sender_override = "mail@viur.dev"
 # conf.email.recipient_override = ["mail@viur.dev"]  # send all emails to this recipient
 
@@ -221,8 +237,8 @@ securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 # Server startup
 #
 
-import modules
-import render
+import modules  # noqa
+import render  # noqa
 
 # core.setDefaultLanguage("de")
 app = setup(modules, render)

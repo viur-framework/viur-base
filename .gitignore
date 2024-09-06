@@ -1,7 +1,6 @@
 *.pyc
 *.log
 *.bak
-*.bat
 
 .venv
 .idea
