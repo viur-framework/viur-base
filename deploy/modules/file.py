@@ -1,4 +1,4 @@
-from viur.core import i18n, db, current
+from viur.core import i18n, current
 from viur.core.modules.file import File
 
 

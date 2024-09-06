@@ -6,7 +6,7 @@
             "admin": {
                 "command": "viur package install admin",
                 "kind": "exec",
-                "version": "4.4.6"
+                "version": "4.4.7"
             },
             "npm": {
                 "command": "build",
