@@ -11,6 +11,11 @@
 		</label>
 
 		{{ editWidget }}
+
+        {% if boneErrors %}
+            <span>{{ boneErrors[0].errorMessage if boneErrors and (boneErrors[0].severity.value == 3 or boneParams.required) }}</span>
+        {% endif %}
+
 	</div>
 {% else %}
 	{{ editWidget }}
