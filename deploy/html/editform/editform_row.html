@@ -14,9 +14,9 @@
 
         {% if boneErrors %}
             {% for error in boneErrors -%}
-                {% if error.severity.value == 3 or boneParams.required %}
+                {%- if error.severity.value == 3 or boneParams.required -%}
                     <span>{{ error.errorMessage }}</span>
-                {% endif -%}
+                {%- endif -%}
             {%- endfor %}
         {% endif %}
 
