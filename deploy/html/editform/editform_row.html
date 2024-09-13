@@ -13,7 +13,11 @@
 		{{ editWidget }}
 
         {% if boneErrors %}
-            <span>{{ boneErrors[0].errorMessage if boneErrors and (boneErrors[0].severity.value == 3 or boneParams.required) }}</span>
+            {% for error in boneErrors -%}
+                {% if error.severity.value == 3 or boneParams.required %}
+                    <span>{{ error.errorMessage }}</span>
+                {% endif -%}
+            {%- endfor %}
         {% endif %}
 
 	</div>
