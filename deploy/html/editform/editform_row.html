@@ -15,7 +15,7 @@
         {% if boneErrors %}
             {% for error in boneErrors -%}
                 {%- if error.severity.value == 3 or boneParams.required -%}
-                    <span>{{ error.errorMessage }}</span>
+                    <span class="ignt-input-error">{{ error.errorMessage }}</span>
                 {%- endif -%}
             {%- endfor %}
         {% endif %}
