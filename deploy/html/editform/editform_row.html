@@ -11,6 +11,15 @@
 		</label>
 
 		{{ editWidget }}
+
+        {% if boneErrors %}
+            {% for error in boneErrors -%}
+                {%- if error.severity.value == 3 or boneParams.required -%}
+                    <span class="ignt-input-error">{{ error.errorMessage }}</span>
+                {%- endif -%}
+            {%- endfor %}
+        {% endif %}
+
 	</div>
 {% else %}
 	{{ editWidget }}
