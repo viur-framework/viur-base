@@ -152,8 +152,8 @@ conf.admin.name = \
 # Email configuration
 #
 
-# conf.email.mailjet_api_key = "xxx"  # better: use secret.get("mailjet-api-key")
-# conf.email.mailjet_api_secret = "xxx"  # better: use secret.get("mailjet-api-secret")
+# conf.email.mailjet_api_key = secret.get("mailjet-api-key")
+# conf.email.mailjet_api_secret = secret.get("mailjet-api-secret")
 # conf.email.transport_class = email.EmailTransportMailjet
 # conf.email.send_from_local_development_server = True  # enable sending emails from local development server
 # conf.email.sender_override = "mail@viur.dev"
