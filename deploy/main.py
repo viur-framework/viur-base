@@ -222,16 +222,28 @@ securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 #     conf.request_preprocessor = maintenance_mode
 
 # ------------------------------------------------------------------------------
-# VueJS development
+# CORS configuration for VueJS development
 #
 
-# if conf.instance.is_dev_server:
-#     def vuejs_cors_allow_all(path):
-#         current.request.get().response.headers["Access-Control-Allow-Origin"] = "http://localhost:8081"
-#         current.request.get().response.headers["Access-Control-Allow-Credentials"] = "true"
-#         return path
+# import re
 #
-#     conf.request_preprocessor = vuejs_cors_allow_all
+# conf.security.cors_max_age = datetime.timedelta(seconds=30)
+# conf.security.cors_allow_credentials = True
+# conf.security.cors_origins = "*"
+# conf.security.cors_origins = [
+#     # "*",
+#     # "http://localhost:8080",
+#     # "http://localhost:9090",
+#     # Allows any localhost port:
+#     re.compile(r"^(http://localhost:(\d{4,5}))/?$", flags=re.IGNORECASE),
+# ]
+# # conf.security.cors_origins_use_wildcard = True
+#
+# # Allows the header "X-Requested-With" and "X-ViUR-*"
+# conf.security.cors_allow_headers = [
+#     "X-Requested-With",
+#     re.compile(r"^X-ViUR-.*$", flags=re.IGNORECASE),
+# ]
 
 # ------------------------------------------------------------------------------
 # Server startup
