@@ -47,7 +47,12 @@ To deploy your project, use `pipenv run viur deploy app`, with additional option
   - http://localhost:8082 (for VueJS development)
   - http://localhost
 12. Create
-13. Copy cliend id and assign it to `conf.user.google_client_id` in `main.py`
+13. Copy the client id and assign it to `conf.user.google_client_id` in `main.py` or,
+    when you have multiple projects with the same code-base, you can also store this client id as a secret value and use the same
+    identifier. To do this, follow these steps:
+    - https://console.cloud.google.com/security/secret-manager/create?project={{app_id}}
+    - Name: google-clientid
+    - Paste copyied client id and set `conf.user.google_client_id = secret.get("google-clientid")` in your `main.py`
 14. Optionally set `conf.user.google_gsuite_domains` to authorized Gsuite domains that allow for User registration in your project
 
 ## Contact
