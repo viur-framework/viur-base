@@ -9,57 +9,52 @@ the dynamic code provided below.
 # Automatic imports are done here! #
 ####################################
 
-import logging
-import types
-import viur
+import os
+import importlib
+import inspect
 from pathlib import Path
+from viur.core import Module as __viur_Module
 
-_viur_modules = {}
+# Get the current directory (where this __init__.py is located)
+__current_dir = Path(__file__).parent
 
-BLACKLIST = []  # filenames that should be blacklisted for the import
-
-
-def _import_modules(_dir: Path, _prefix: str = "") -> None:
-    for _path in _dir.iterdir():
-        if _path.is_dir():
-            _import_modules(_path, f"{_prefix}{_path.stem}.")
-            continue
-
-        elif _path.stem.startswith("_") or _path.suffix != ".py":
-            continue
-
-        _module = _prefix + _path.stem
-
-        try:
-            _import = __import__(_module, globals(), locals(), [_module], level=1)
-
-            for _name in dir(_import):
-                if _name.startswith("_"):
-                    continue
-
-                _symbol = getattr(_import, _name)
-                if (getattr(_symbol, "__module__", None) != f"modules.{_module}"
-                        or isinstance(_symbol, viur.core.Module) or isinstance(_symbol, types.FunctionType)):
-                    continue
-
-                if (alias := f"{_prefix}{_name.lower()}") not in BLACKLIST:
-                    logging.debug(f"Importing {_symbol} as {alias}")
-                    _viur_modules[alias] = _symbol
-
-        except Exception:
-            logging.exception(f"Unable to import '{_module}'")
-            raise
+# Define a blacklist of filenames (without path)
+BLACKLIST = {"exclude_this.py", "ignore_me.py"}
 
 
-_import_modules(Path(__file__).resolve().parent)
+# Recursive function to find all .py files in subdirectories
+def __find_py_files(directory):
+    py_files = []
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".py") and file != "__init__.py" and file not in BLACKLIST:
+                py_files.append(Path(root) / file)
 
-globals().update(_viur_modules)
+    return py_files
 
-del _viur_modules, Path, logging, viur, _import_modules, BLACKLIST
+
+# Iterate over all Python files in the module hierarchy
+for __py_file in __find_py_files(__current_dir):
+    # Convert file path to module name
+    __relative_path = __py_file.relative_to(__current_dir)
+    __module_name = ".".join(__relative_path.with_suffix("").parts)
+
+    # Import the module
+    __module = importlib.import_module(f".{__module_name}", package=__name__)
+
+    # Inspect module for classes of type Module
+    for name, obj in inspect.getmembers(__module, inspect.isclass):
+        if issubclass(obj, __viur_Module) and obj.__module__ == __module.__name__:
+            # Import the class into the current namespace
+            print(name.lower(), obj)
+            globals()[name.lower()] = obj
+
 
 #########################################
 # Manual imports can also be done here! #
 #########################################
 
 # noinspection PyUnresolvedReferences
-from viur.core.modules.site import Site as s  # noqa: E402
+from viur.core.modules.site import Site as s  # noqa: E402, E401
+from .shop import shop
+from skeletons.address import AddressSkel
