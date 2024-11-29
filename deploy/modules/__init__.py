@@ -55,4 +55,4 @@ for __py_file in __find_py_files(__current_dir):
 #########################################
 
 # noinspection PyUnresolvedReferences
-# from viur.core.modules.site import Site as s  # noqa: E402, E401
+from viur.core.modules.site import Site as s  # noqa: E402, E401
