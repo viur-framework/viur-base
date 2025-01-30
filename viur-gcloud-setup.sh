@@ -79,6 +79,14 @@ done
 # Configure Google Cloud Storage
 gsutil uniformbucketlevelaccess set on gs://$project.appspot.com/
 
+# Add public bucket with ACL
+gcloud storage buckets create gs://public-dot-$project \
+  --project=$project \
+  --default-storage-class=standard \
+  --location=europe-west3 \
+  --public-access-prevention \
+  --no-uniform-bucket-level-access
+
 # Deployment of cron, queue and index settings
 pushd deploy
 for yaml in cron.yaml queue.yaml index.yaml
