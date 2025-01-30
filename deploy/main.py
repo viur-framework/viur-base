@@ -58,7 +58,7 @@ class ProjectConfig(ConfigType):
     #         {"width": 1920},
     #         {"width": 1280},
     #         {"width": 900},
-    #         {"width": 500}
+    #         {"width": 500},
     #     ]
     # }
 
@@ -71,8 +71,6 @@ conf.project = ProjectConfig()
 
 conf.valid_application_ids = list(conf.project.appnames.keys())
 
-# Client-ID for OAuth with google
-# conf.user.google_client_id = ""
 
 # ------------------------------------------------------------------------------
 # Debugging & Performance
@@ -94,6 +92,23 @@ conf.compatibility.remove("json.bone.structure.inlists")  # disable structure re
 # ViUR >= 3.6 compatibility feature disabling
 # render old-style tuple-list in SelectBone's values structure
 conf.compatibility.remove("bone.select.structure.values.keytuple")
+
+# ------------------------------------------------------------------------------
+# User module
+#
+
+# Client-ID for OAuth with Google Account
+# conf.user.google_client_id = ""
+# conf.user.google_gsuite_domains = ["example.com"]
+
+# User roles
+#
+# conf.user.roles = {
+#     "custom": "Custom setting",
+#     "admin": "Administrator",
+#     "backoffice": "Back office worker",
+#     "salesforce": "Sales force worker",
+# }
 
 # ------------------------------------------------------------------------------
 # File module
@@ -137,11 +152,13 @@ conf.admin.name = \
 # Email configuration
 #
 
-conf.email.sendinblue_api_key = "xkeysib-XXX"  # better: use secret.get("sib-api-key")
-conf.email.transport_class = email.EmailTransportSendInBlue
-conf.email.send_from_local_development_server = True  # enable sending emails from local development server
+# conf.email.transport_class = email.EmailTransportMailjet(
+#     api_key=secret.get("mailjet-api-key"),
+#     secret_key=secret.get("mailjet-api-secret"),
+# )
+# conf.email.send_from_local_development_server = True  # enable sending emails from local development server
 # conf.email.sender_override = "mail@viur.dev"
-# conf.email.recipient_override = ["mail@viur.dev"]  # send all emails to this recipient
+# conf.email.recipient_override = "mail@viur.dev"  # send all emails to this recipient
 
 # ------------------------------------------------------------------------------
 # Content Security Policy (CSP)
@@ -206,23 +223,35 @@ securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 #     conf.request_preprocessor = maintenance_mode
 
 # ------------------------------------------------------------------------------
-# VueJS development
+# CORS configuration for VueJS development
 #
 
-# if conf.instance.is_dev_server:
-#     def vuejs_cors_allow_all(path):
-#         current.request.get().response.headers["Access-Control-Allow-Origin"] = "http://localhost:8081"
-#         current.request.get().response.headers["Access-Control-Allow-Credentials"] = "true"
-#         return path
+# import re
 #
-#     conf.request_preprocessor = vuejs_cors_allow_all
+# conf.security.cors_max_age = datetime.timedelta(seconds=30)
+# conf.security.cors_allow_credentials = True
+# conf.security.cors_origins = "*"
+# conf.security.cors_origins = [
+#     # "*",
+#     # "http://localhost:8080",
+#     # "http://localhost:9090",
+#     # Allows any localhost port:
+#     re.compile(r"^(http://localhost:(\d{4,5}))/?$", flags=re.IGNORECASE),
+# ]
+# # conf.security.cors_origins_use_wildcard = True
+#
+# # Allows the header "X-Requested-With" and "X-ViUR-*"
+# conf.security.cors_allow_headers = [
+#     "X-Requested-With",
+#     re.compile(r"^X-ViUR-.*$", flags=re.IGNORECASE),
+# ]
 
 # ------------------------------------------------------------------------------
 # Server startup
 #
 
-import modules
-import render
+import modules  # noqa
+import render  # noqa
 
 # core.setDefaultLanguage("de")
 app = setup(modules, render)
