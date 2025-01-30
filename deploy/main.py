@@ -58,7 +58,7 @@ class ProjectConfig(ConfigType):
     #         {"width": 1920},
     #         {"width": 1280},
     #         {"width": 900},
-    #         {"width": 500}
+    #         {"width": 500},
     #     ]
     # }
 
