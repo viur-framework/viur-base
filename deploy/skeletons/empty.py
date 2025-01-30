@@ -1,16 +1,9 @@
-from viur.core import conf
 from viur.core.bones import *
 from viur.core.skeleton import Skeleton
 
 
-class ExampleSkel(Skeleton):
-    # Defaults
+class EmptySkel(Skeleton):
     name = StringBone(
         descr="Name",
         required=True,
     )
-
-    # image = FileBone(
-    #     descr="Image",
-    #     derive=conf.project.standard_derives,
-    # )
