@@ -79,7 +79,7 @@ done
 # Configure Google Cloud Storage
 gsutil uniformbucketlevelaccess set on gs://$project.appspot.com/
 
-# Add public bucket with ACL
+# Create public bucket with ACL
 gcloud storage buckets create gs://public-dot-$project \
   --project=$project \
   --default-storage-class=standard \
