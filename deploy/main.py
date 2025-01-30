@@ -152,12 +152,13 @@ conf.admin.name = \
 # Email configuration
 #
 
-# conf.email.mailjet_api_key = secret.get("mailjet-api-key")
-# conf.email.mailjet_api_secret = secret.get("mailjet-api-secret")
-# conf.email.transport_class = email.EmailTransportMailjet
+# conf.email.transport_class = email.EmailTransportMailjet(
+#     api_key=secret.get("mailjet-api-key"),
+#     secret_key=secret.get("mailjet-api-secret"),
+# )
 # conf.email.send_from_local_development_server = True  # enable sending emails from local development server
 # conf.email.sender_override = "mail@viur.dev"
-# conf.email.recipient_override = ["mail@viur.dev"]  # send all emails to this recipient
+# conf.email.recipient_override = "mail@viur.dev"  # send all emails to this recipient
 
 # ------------------------------------------------------------------------------
 # Content Security Policy (CSP)
