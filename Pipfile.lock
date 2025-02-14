@@ -42,11 +42,11 @@
         },
         "certifi": {
             "hashes": [
-                "sha256:1275f7a45be9464efc1173084eaa30f866fe2e47d389406136d332ed4967ec56",
-                "sha256:b650d30f370c2b724812bee08008be0c4163b163ddaec3f2546c1caf65f191db"
+                "sha256:3d5da6925056f6f18f119200434a4780a94263f10d1c21d032a6f6b2baa20651",
+                "sha256:ca78db4565a652026a4db2bcdf68f2fb589ea80d0be70e03929ed730746b84fe"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==2024.12.14"
+            "version": "==2025.1.31"
         },
         "charset-normalizer": {
             "hashes": [
@@ -220,11 +220,11 @@
         },
         "google-cloud-appengine-logging": {
             "hashes": [
-                "sha256:39a2df694d97981ed00ef5df541f7cfcca920a92496707557f2b07bb7ba9d67a",
-                "sha256:81e36606e13c377c4898c918542888abb7a6896837ac5f559011c7729fc63d8a"
+                "sha256:2f6ef52dfa88eca3bea078bc3c2b55ea61ff08b5e0c37912027fbb2a5f2d91ce",
+                "sha256:741557e5281e351ccc90f774685a1adb0e5996cc233bcd019ef072280aaad13f"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.5.0"
+            "version": "==1.6.0"
         },
         "google-cloud-audit-log": {
             "hashes": [
@@ -252,11 +252,11 @@
         },
         "google-cloud-iam": {
             "hashes": [
-                "sha256:4b7c4fa6593bd32618fe1dbdbde4cffe0d7f4e7c7851e94f5234d8a1ba2f1ebf",
-                "sha256:d78b14fc48b1645d986e028d403415f085d22356e2751252c9cbd909cf1f643e"
+                "sha256:1b817a722c49ea7126343f9da26298726b4c38a06da12d26d79c5ef52a7d91a7",
+                "sha256:da973586e9e50a0becd33dc9c3334a9348c97b6cd96e5d2c7276769cb1d6c14b"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==2.17.0"
+            "version": "==2.18.0"
         },
         "google-cloud-logging": {
             "hashes": [
@@ -268,11 +268,11 @@
         },
         "google-cloud-secret-manager": {
             "hashes": [
-                "sha256:f18c5094d2d462a58d1ef23cd62895f68ad0adebf96f6b8612f35197a456908c",
-                "sha256:f245e505b429990388f0f92cd4a24d424a4c4cdc2acb866e52c24e7680d15e77"
+                "sha256:0249f433b6f0899b5e2adfc495e5b2d4a76c484937cad7c27e2b374bebf8f248",
+                "sha256:fc4c28dd3e932b89d1057100c6625686a43b5ca26e6dd73ffea2afbfbbc97209"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==2.22.1"
+            "version": "==2.23.0"
         },
         "google-cloud-storage": {
             "hashes": [
@@ -284,11 +284,11 @@
         },
         "google-cloud-tasks": {
             "hashes": [
-                "sha256:11a26b5b48733405cc4ea066b4f81ac353e5fb8566419b9b4d35d4bd1ceec58c",
-                "sha256:5d994ba60a136c942e322b76bc178e1089fbb9bc08ad58b5178e035cc26d2fe9"
+                "sha256:488ef92ef742bf279b255460949c82aefd459f1ce0881023d9e3733ac7c75b2d",
+                "sha256:c68cbcda04a778cae72c2b154729dd89dbbfd1d4986e946edd2d2c2e976a8d1c"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==2.18.0"
+            "version": "==2.19.0"
         },
         "google-crc32c": {
             "hashes": [
@@ -336,11 +336,11 @@
                 "grpc"
             ],
             "hashes": [
-                "sha256:c3e7b33d15fdca5374cc0a7346dd92ffa847425cc4ea941d970f13680052ec8c",
-                "sha256:d7abcd75fabb2e0ec9f74466401f6c119a0b498e27370e9be4c94cb7e382b8ed"
+                "sha256:21398025365f138be356d5923e9168737d94d46a72aefee4a6110a1f23463c86",
+                "sha256:579de760800d13616f51cf8be00c876f00a9f146d3e6510e19d1f4111758b741"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.66.0"
+            "version": "==1.67.0"
         },
         "grpc-google-iam-v1": {
             "hashes": [
@@ -467,6 +467,14 @@
             "markers": "python_version >= '3.9'",
             "version": "==2024.10.1"
         },
+        "legacy-cgi": {
+            "hashes": [
+                "sha256:9952471ceb304043b104c22d00b4f333cac27a6abe446d8a528fc437cf13c85f",
+                "sha256:a7b83afb1baf6ebeb56522537c5943ef9813cf933f6715e88a803f7edbce0bff"
+            ],
+            "markers": "python_version >= '3.10'",
+            "version": "==2.6.2"
+        },
         "markupsafe": {
             "hashes": [
                 "sha256:0bff5e0ae4ef2e1ae4fdf2dfd5b76c75e5c2fa4132d05fc1b0dabcd20c7e28c4",
@@ -544,11 +552,11 @@
         },
         "opentelemetry-api": {
             "hashes": [
-                "sha256:5fcd94c4141cc49c736271f3e1efb777bebe9cc535759c54c936cca4f1b312b8",
-                "sha256:d04a6cf78aad09614f52964ecb38021e248f5714dc32c2e0d8fd99517b4d69cf"
+                "sha256:375893400c1435bf623f7dfb3bcd44825fe6b56c34d0667c542ea8257b1a1240",
+                "sha256:d5f5284890d73fdf47f843dda3210edf37a38d66f44f2b5aedc1e89ed455dc09"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==1.29.0"
+            "version": "==1.30.0"
         },
         "packaging": {
             "hashes": [
@@ -985,19 +993,19 @@
         },
         "tzlocal": {
             "hashes": [
-                "sha256:49816ef2fe65ea8ac19d19aa7a1ae0551c834303d5014c6d5a62e4cbda8047b8",
-                "sha256:8d399205578f1a9342816409cc1e46a93ebd5755e39ea2d85334bea911bf0e6e"
+                "sha256:2fafbfc07e9d8b49ade18f898d6bcd37ae88ce3ad6486842a2e4f03af68323d2",
+                "sha256:3814135a1bb29763c6e4f08fd6e41dbb435c7a60bfbb03270211bcc537187d8c"
             ],
-            "markers": "python_version >= '3.8'",
-            "version": "==5.2"
+            "markers": "python_version >= '3.9'",
+            "version": "==5.3"
         },
         "ua-parser": {
             "hashes": [
-                "sha256:5b31133606a781f56692caa11a9671a9f330c22604b3c4957a7ba18c152212d0",
-                "sha256:a9740f53f4fbb72b7a03d304cae32a2785cafc55e8207efb74877bba17c35324"
+                "sha256:b059f2cb0935addea7e551251cbbf42e9a8872f86134163bc1a4f79e0945ffea",
+                "sha256:f9d92bf19d4329019cef91707aecc23c6d65143ad7e29a233f0580fb0d15547d"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==1.0.0"
+            "version": "==1.0.1"
         },
         "ua-parser-builtins": {
             "hashes": [
@@ -1023,11 +1031,11 @@
         },
         "viur-core": {
             "hashes": [
-                "sha256:fca968aecf6b8a7e34446a8e1e2cbd411a14627e23d6e44509d7ea3dc214fdab"
+                "sha256:ec3c31d35bba20fdc4f164ece7660d07facf6602096d0bff7987a80568fe7368"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==3.7.2"
+            "version": "==3.7.6"
         },
         "viur-datastore": {
             "hashes": [
