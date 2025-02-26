@@ -80,6 +80,7 @@ conf.valid_application_ids = list(conf.project.appnames.keys())
 # conf.debug.trace = True
 # conf.debug.trace_external_call_routing = True
 # conf.debug.trace_exceptions = True
+# conf.debug.skeleton_from_client = True  # Gives useful error messages in the log, e.g. for data imports
 # db.config["traceQueries"] = True
 
 # ViUR >= 3.4 compatibility feature disabling
