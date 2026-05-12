@@ -48,8 +48,6 @@
 		<!-- icons -->
 		<link rel="shortcut icon" href="/static/meta/favicon.png" type="image/png">
 
-		<!-- css -->
-		<link href="/static/css/style.min.css" rel="stylesheet">
 
 		<!-- Touch Icons -->
 		<link rel="apple-touch-icon" href="/static/images/touch-icon-120.png">
@@ -60,52 +58,54 @@
 		{% block additionalHead %}
 			{# use additionalHead for important template specific JS or CSS file imports. #}
 		{% endblock %}
+
+        {{inject_vite()}}
 	</head>
 	<body>
-		<div class="wrap">
-			<div class="bind flex">
-				<div class="content">
-					<header>
-						{% block header %}
-							{# put your header here #}
-							<nav class="bar">
-								<div class="bar-group bar-group--left bar-group--nav">
-									<a class="bar-link" href="https://docs.viur.is/latest/start.html" target="_blank">Documentation</a>
-								</div>
-								<div class="bar-group bar-group--center bar-group--nav">
-									<div class="bar-item">
-										<a class="github-button" href="https://github.com/viur-framework/viur-core" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star viur-framework/viur-core on GitHub">Star</a>
-									</div>
-									<div class="bar-item">
-										<a class="github-button" href="https://github.com/viur-framework/viur-core/subscription" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch viur-framework/viur-core on GitHub">Watch</a>
-									</div>
-								</div>
-								<div class="bar-group bar-group--right bar-group--nav">
-									<a class="bar-link" href="{{ getHostUrl() }}/">Welcome</a>
-									<a class="bar-link" href="{{ getHostUrl() }}/s/gettingstarted">Getting started</a>
-									<a class="bar-link" href="{{ getHostUrl() }}/vi">Vi</a>
-								</div>
-							</nav>
-						{% endblock header %}
-					</header>
-					<main class="{{pageContent}}"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
-						{% block content %}
-							{# put your content here #}
-						{% endblock content %}
-					</main><!-- content -->
-					<footer>
-						{% block footer %}
-							{# put your footer here #}
-						{% endblock footer %}
-					</footer>
-				</div>
-			</div>
-		</div>
-		{% block additionalFooter %}
-			{# use additionalFooter for less important template specific JS or CSS file imports. #}
-			<script async defer src="https://buttons.github.io/buttons.js"></script>
-		{% endblock %}
-		<!-- js -->
-		<script async defer src="/static/js/app.js"></script>
+        <div id="vite_context">
+            <div class="wrap">
+                <div class="bind flex">
+                    <div class="content">
+                        <header id="header">
+                            {% block header %}
+                                {# put your header here #}
+                                <nav class="bar">
+                                    <div class="bar-group bar-group--left bar-group--nav">
+                                        <a class="bar-link" href="https://docs.viur.is/latest/start.html" target="_blank">Documentation</a>
+                                    </div>
+                                    <div class="bar-group bar-group--center bar-group--nav">
+                                        <div class="bar-item">
+                                            <a class="github-button" href="https://github.com/viur-framework/viur-core" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star viur-framework/viur-core on GitHub">Star</a>
+                                        </div>
+                                        <div class="bar-item">
+                                            <a class="github-button" href="https://github.com/viur-framework/viur-core/subscription" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch viur-framework/viur-core on GitHub">Watch</a>
+                                        </div>
+                                    </div>
+                                    <div class="bar-group bar-group--right bar-group--nav">
+                                        <a class="bar-link" href="{{ getHostUrl() }}/">Welcome</a>
+                                        <a class="bar-link" href="{{ getHostUrl() }}/s/gettingstarted">Getting started</a>
+                                        <a class="bar-link" href="{{ getHostUrl() }}/vi">Vi</a>
+                                    </div>
+                                </nav>
+                            {% endblock header %}
+                        </header>
+                        <main class="{{pageContent}}"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
+                            {% block content %}
+                                {# put your content here #}
+                            {% endblock content %}
+                        </main><!-- content -->
+                        <footer id="footer">
+                            {% block footer %}
+                                {# put your footer here #}
+                            {% endblock footer %}
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            {% block additionalFooter %}
+                {# use additionalFooter for less important template specific JS or CSS file imports. #}
+                <script async defer src="https://buttons.github.io/buttons.js"></script>
+            {% endblock %}
+        </div>
 	</body>
 </html>

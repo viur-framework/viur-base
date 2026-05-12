@@ -12,7 +12,12 @@
                 "command": "build",
                 "kind": "npm",
                 "source": ""
-            }
+            },
+            "app": {
+                "command": "build",
+                "kind": "npm",
+                "source": "sources/app"
+            },
         },
         "distribution_folder": "./deploy",
         "sources_folder": "./sources",

@@ -247,6 +247,24 @@ securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 #     re.compile(r"^X-ViUR-.*$", flags=re.IGNORECASE),
 # ]
 
+
+# ------------------------------------------------------------------------------
+# VueJS development
+#
+
+if conf.instance.is_dev_server:
+    securityheaders.addCspRule("script-src", "http://localhost:8081", "enforce")
+    securityheaders.addCspRule("connect-src", "ws://localhost:8081", "enforce")
+    securityheaders.addCspRule("img-src", "http://localhost:8081", "enforce")
+    securityheaders.addCspRule("font-src", "http://localhost:8081", "enforce")
+    securityheaders.addCspRule("connect-src","*","enforce")
+    def vuejs_cors_allow_all(path):
+        current.request.get().response.headers["Access-Control-Allow-Origin"] = "http://localhost:8081"
+        current.request.get().response.headers["Access-Control-Allow-Credentials"] = "true"
+        return path
+    conf.request_preprocessor = vuejs_cors_allow_all
+
+
 # ------------------------------------------------------------------------------
 # Server startup
 #

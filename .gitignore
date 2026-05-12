@@ -6,7 +6,10 @@
 .idea
 .vscode
 
+node_modules
+
 deploy/admin
+deploy/app
 node_modules
 
 storage

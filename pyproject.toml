@@ -1,0 +1,20 @@
+[project]
+name = "mausbrand"
+version = "3.0.0"
+description = "Mausbrand Website"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "rsa>=4.9.1",
+    "viur-core[mailjet]==3.9.0.dev2",
+    "viur-toolkit==0.7.1",
+]
+
+[dependency-groups]
+dev = [
+    "viur-cli==3.0.0.beta2",
+]
+
+[tool.uv.sources]
+# viur-cli = { path = "../viur-cli", editable = true }
+# viur-core = { path = "../viur-core", editable = true }
