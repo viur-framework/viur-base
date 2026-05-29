@@ -3,6 +3,7 @@ from viur.core import conf, current, config, translate
 from . import html
 from viur.core.render.html.utils import jinjaGlobalFunction
 
+
 @jinjaGlobalFunction
 def inject_vite(render, development: bool | None = None, development_server: str = "http://localhost:8081"):
     """build vue imports from manifest"""
@@ -28,8 +29,8 @@ def inject_vite(render, development: bool | None = None, development_server: str
     vite_path = "static/site"
 
     try:
-        fd = open(f"{vite_path}/.vite/manifest.json", "r")
-        manifest = json.load(fd)
+        with open(f"{vite_path}/.vite/manifest.json", "r") as fd:
+            manifest = json.load(fd)
     except Exception as e:
         raise Exception(
             f"Vite manifest file not found or invalid {e=}. Maybe your /{vite_path}/.vite/manifest.json file is empty?"
