@@ -1,6 +1,4 @@
 [project]
-# valid package-name placeholder (uv rejects "{{app_id}}", and normalizes names to lowercase/hyphens in uv.lock,
-# so the token must be lowercase-hyphen to match in both files); clean-base.py replaces it with the real app_id
 name = "viur-base-appid"
 version = "3.0.0"
 description = "{{app_id}} Website"

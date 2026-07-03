@@ -69,6 +69,8 @@ replacements = {
     "{{whoami}}": whoami,
     "{{timestamp}}": timestamp,
     # valid package-name placeholder used for the project name in pyproject.toml/uv.lock
+    # (uv rejects "{{app_id}}", and normalizes names to lowercase/hyphens in uv.lock,
+    # so the token must be lowercase-hyphen to match in both files)
     "viur-base-appid": app_id,
 }
 
