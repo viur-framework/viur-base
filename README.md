@@ -17,8 +17,8 @@ Before you start, please check out the following preliminaries are met:
 
 1. You either need Linux, macOS, or Windows with WSL.
     See [awesome-viur](https://awesome.viur.dev/README#tutorials--examples) for further help and information for specific operating systems.
-2. `git`, `python`, `pyenv` and `pipenv` should be installed
-    You can use any Python version >= 3.10 with ViUR, we recommend Python 3.11 currently.
+2. `git`, `python` and [`uv`](https://docs.astral.sh/uv/) should be installed
+    `uv` manages the virtual environment and can install the required Python for you (this project targets Python 3.14).
 3. install [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) and the required components with the following commands
     ```
     gcloud components update
@@ -38,8 +38,8 @@ Before you start, please check out the following preliminaries are met:
 3. `cd YOUR-PROJECT`
 4. `./clean-base.py -A YOUR-APP-ID`
 5. `./viur-gcloud-setup.sh YOUR-APP-ID`
-6. Install local development dependencies with `pipenv install --dev`
-7. Locally run your project with `pipenv run viur run` or deploy it with `pipenv run viur deploy app`. Run a `pipenv shell` to work with the [viur-cli](https://github.com/viur-framework/viur-cli) command line tool.
+6. Install local development dependencies with `uv sync`
+7. Locally run your project with `uv run viur run` or deploy it with `uv run viur deploy app`. Prefix any [viur-cli](https://github.com/viur-framework/viur-cli) command with `uv run` to run it inside the project environment.
 
 See the [documentation](https://viur-core.readthedocs.io/en/latest/doc_start/index.html) for further help.
 
