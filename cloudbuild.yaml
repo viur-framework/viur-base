@@ -11,7 +11,7 @@
 # allow App Engine Deployment
 # https://console.cloud.google.com/cloud-build/settings
 
-# Make sure the projects cloudbuild service account has permission to download from
+# Make sure the project's Cloud Build service account has permission to download from
 
 # Modify project Submodules
 # for public Repos:
@@ -21,26 +21,32 @@
 steps:
   # clone source code
   # if you need to reconfigure submodules to use https or git, do this here
-  - name: 'gcr.io/cloud-builders/git'
-    entrypoint: 'bash'
+  - name: "gcr.io/cloud-builders/git"
+    entrypoint: bash
     args:
-      - '-c'
+      - "-c"
       - |
         git config -f .gitmodules submodule.sources/less/ignite.url https://github.com/viur-framework/viur-ignite.git
         git submodule update --init --recursive
 
-  # buildTasks: we are using our new alpine container which includes a pyenv install so we can use viur-cli/flare with a fixed python version (3.9.5)
-  - name: 'europe-west3-docker.pkg.dev/viur-build/viur-build-debian/viur-build:containerbuild-v0.10'
+  # buildTasks: run the release build in the viur-build container — a Debian build image with a fixed Python toolchain for viur-cli
+  - name: "europe-west3-docker.pkg.dev/viur-build/viur-build-debian/viur-build:containerbuild-v0.14n22"
     entrypoint: bash
     args:
-      - '-c'
+      - "-c"
       - |
-        pipenv install --dev
-        pipenv run viur build release
+        uv sync
+        uv run viur build release
 
-  # deploy: use googles own gcloud container to deploy our build
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['app', 'deploy', './deploy/app.yaml', "--project=$PROJECT_ID", "--version=gcb-$SHORT_SHA-$_TAG_NAME", "--no-promote"]
+  # deploy: use Google's own gcloud container to deploy our build
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "app"
+      - "deploy"
+      - "./deploy/app.yaml"
+      - "--project=$PROJECT_ID"
+      - "--version=gcb-$SHORT_SHA-$_TAG_NAME"
+      - "--no-promote"
 
 options:
   logging: CLOUD_LOGGING_ONLY
