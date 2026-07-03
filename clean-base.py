@@ -78,9 +78,7 @@ for subdir, dirs, files in os.walk("."):
     for file in files:
         filepath = subdir + os.sep + file
 
-        if any([filepath.endswith(ext) for ext in [
-            ".py", ".yaml", ".html", ".md", ".sh", ".json", ".js", ".less", ".toml", ".lock",
-        ]]):
+        if filepath.endswith((".py", ".yaml", ".html", ".md", ".sh", ".json", ".js", ".less", ".toml", ".lock")):
             file_list.append(filepath)
 
 # Replace placeholders with values entered by user or defaults
