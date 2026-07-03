@@ -33,7 +33,6 @@ const app = createApp({
   },
   mounted: function () {
     console.debug("mounted Vue.js app", document.readyState);
-    boot();
   },
 });
 
