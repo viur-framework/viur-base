@@ -6,7 +6,7 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 
-const APPNAME = "app"
+const APPNAME = "site"
 console.log(path.join("..", "..", "deploy", 'static', APPNAME, "*"))
 export default defineConfig(({command, mode}) => {
     let conf = {
@@ -36,9 +36,10 @@ export default defineConfig(({command, mode}) => {
                 "@": path.resolve(__dirname, "./src")
             }
         },
-        base: `/${APPNAME}`,
+        base: command === "serve" ? "/" : `/static/${APPNAME}/`,
         build: {
-            "outDir": "../../deploy/" + APPNAME,
+            "outDir": "../../deploy/static/" + APPNAME,
+            "manifest": true,
             "assetsInlineLimit": 0,
             "chunkSizeWarningLimit": 700,
             rollupOptions: {

@@ -8,16 +8,16 @@
                 "kind": "exec",
                 "version": "4.11.2"
             },
-            "npm": {
-                "command": "build",
+            "site": {
+                "command": "build:site",
                 "kind": "npm",
                 "source": ""
             },
             "app": {
-                "command": "build",
+                "command": "build:app",
                 "kind": "npm",
-                "source": "sources/app"
-            },
+                "source": ""
+            }
         },
         "distribution_folder": "./deploy",
         "sources_folder": "./sources",
