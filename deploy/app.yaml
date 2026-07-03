@@ -1,4 +1,4 @@
-runtime: python313
+runtime: python314
 
 # (1) Under some circumstances, you need to set a higher instance_class,
 #     like F2 or F4. Unfortunately, this will increase App Engine cost,
