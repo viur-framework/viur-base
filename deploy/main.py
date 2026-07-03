@@ -83,16 +83,18 @@ conf.valid_application_ids = list(conf.project.appnames.keys())
 # conf.debug.skeleton_from_client = True  # Gives useful error messages in the log, e.g. for data imports
 # db.config["traceQueries"] = True
 
-# ViUR >= 3.4 compatibility feature disabling
-conf.compatibility.remove("json.bone.structure.keytuples")  # render new dict-style bone-structure
-conf.compatibility.remove("json.bone.structure.camelcasenames")  # render new keys in bone structure only
-
-# ViUR >= 3.5 compatibility feature disabling
-conf.compatibility.remove("json.bone.structure.inlists")  # disable structure rendering on list
-
-# ViUR >= 3.6 compatibility feature disabling
-# render old-style tuple-list in SelectBone's values structure
-conf.compatibility.remove("bone.select.structure.values.keytuple")
+# Disable legacy compatibility behaviours if the used viur-core still offers them.
+# viur-core 3.8+ dropped these flags entirely (conf.compatibility is empty), so the
+# guard keeps this working across versions instead of raising on a missing flag.
+for _flag in (
+    "json.bone.structure.keytuples",  # render new dict-style bone-structure (ViUR >= 3.4)
+    "json.bone.structure.camelcasenames",  # render new keys in bone structure only (ViUR >= 3.4)
+    "json.bone.structure.inlists",  # disable structure rendering on list (ViUR >= 3.5)
+    "bone.select.structure.values.keytuple",  # old-style tuple-list in SelectBone values (ViUR >= 3.6)
+):
+    if _flag in conf.compatibility:
+        conf.compatibility.remove(_flag)
+del _flag
 
 # ------------------------------------------------------------------------------
 # User module

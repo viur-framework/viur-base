@@ -1,6 +1,5 @@
-from viur.core.render import admin, json, vi
+from viur.core.render import admin, html, json, vi
 from viur.core import conf, current, config, translate
-from . import html
 from viur.core.render.html.utils import jinjaGlobalFunction
 
 
