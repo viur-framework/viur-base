@@ -1,20 +1,20 @@
 {
-    "cli-version": "2.3.1",
+    "cli-version": "3.0.2",
     "default": {
         "application_name": "{{app_id}}",
         "builds": {
             "admin": {
-                "command": "viur package install admin",
+                "command": "viur admin install 4.14.7",
                 "kind": "exec",
-                "version": "4.11.2"
-            },
-            "site": {
-                "command": "build:site",
-                "kind": "npm",
-                "source": ""
+                "version": "4.14.7"
             },
             "app": {
                 "command": "build:app",
+                "kind": "npm",
+                "source": ""
+            },
+            "site": {
+                "command": "build:site",
                 "kind": "npm",
                 "source": ""
             }
