@@ -17,6 +17,8 @@ class ExampleSkel(Skeleton):
     image = FileBone(
         descr="Image",
         # derive=conf.project.standard_derives,
+        # - or -
+        # public=True,
     )
 
     # SEO
