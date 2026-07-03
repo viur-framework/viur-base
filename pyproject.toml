@@ -1,18 +1,19 @@
 [project]
-name = "mausbrand"
+# valid package-name placeholder (uv rejects "{{app_id}}", and normalizes names to lowercase/hyphens in uv.lock,
+# so the token must be lowercase-hyphen to match in both files); clean-base.py replaces it with the real app_id
+name = "viur-base-appid"
 version = "3.0.0"
-description = "Mausbrand Website"
+description = "{{app_id}} Website"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
-    "rsa>=4.9.1",
-    "viur-core[mailjet]==3.9.0.dev2",
-    "viur-toolkit==0.7.1",
+    "viur-core[mailjet]~=3.8.0",
+    "viur-toolkit~=0.8",
 ]
 
 [dependency-groups]
 dev = [
-    "viur-cli==3.0.0.beta2",
+    "viur-cli~=3.0",
 ]
 
 [tool.uv.sources]
