@@ -8,6 +8,7 @@ dependencies = [
     "viur-core[mailjet]~=3.8.0",
     "viur-toolkit~=0.8",
 ]
+# After changing dependencies, run `uv run viur update requirements` to regenerate deploy/requirements.txt
 
 [dependency-groups]
 dev = [
