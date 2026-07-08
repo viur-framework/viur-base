@@ -14,13 +14,7 @@ import { de_translations } from "@viur/vue-utils"
 
 
 
-const app = createApp({
-  setup() {
-  },
-  mounted: function () {
-    console.debug("mounted Vue.js app", document.readyState);
-  },
-});
+const app = createApp(App);
 
 app.use(pinia)
 

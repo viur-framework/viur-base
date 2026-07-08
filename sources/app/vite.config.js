@@ -56,8 +56,8 @@ export default defineConfig(({command, mode}) => {
                     }
                   },
                   manualChunks(id) {
-                    if (id.includes("node_modules/@viur/shoelace/dist/components")) {
-                      return "shoelace/component_" + id.split("/").slice(-2)[0]
+                    if (id.includes("node_modules/@viur/shoelace")) {
+                      return "shoelace"
                     }
                     if (id.includes("node_modules/vue")) {
                       return `vue/${id.split("node_modules/")[1]}`
