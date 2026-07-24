@@ -6,9 +6,8 @@ export const useAppStore = defineStore("appStore", () => {
   const state = reactive({
     user: null,
     ready: false,
-    selectedLedgerentryKey: null,
-    background: publicAsset("login-background.jpg", "/app/images"),
-    logo: publicAsset("mb-clock.svg", "/app/logos"),
+    background: "",
+    logo: publicAsset("logo.svg", "/app/logos"),
   })
 
   function publicAsset(path, prefix = "static") {

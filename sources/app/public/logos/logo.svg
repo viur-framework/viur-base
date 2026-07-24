@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Logo">
+  <!-- Placeholder logo for the ViUR base template — replace with your project logo. -->
+  <polygon points="60,8 106,34 106,86 60,112 14,86 14,34" fill="none" stroke="#888" stroke-width="6" stroke-linejoin="round"/>
+  <text x="60" y="74" text-anchor="middle" font-family="sans-serif" font-size="34" fill="#888">V</text>
+</svg>
