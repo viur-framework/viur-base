@@ -39,6 +39,7 @@ export default defineConfig(({command, mode}) => {
         base: `/${APPNAME}`,
         build: {
             "outDir": "../../deploy/" + APPNAME,
+            "emptyOutDir": true,
             "assetsInlineLimit": 0,
             "chunkSizeWarningLimit": 700,
             rollupOptions: {
