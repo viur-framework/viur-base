@@ -30,7 +30,7 @@ steps:
         git submodule update --init --recursive
 
   # buildTasks: run the release build in the viur-build container — a Debian build image with a fixed Python toolchain for viur-cli
-  - name: "europe-west3-docker.pkg.dev/viur-build/viur-build-debian/viur-build:containerbuild-v0.14n22"
+  - name: "europe-west3-docker.pkg.dev/viur-build/viur-build-debian/viur-build:containerbuild-v0.14n24"
     entrypoint: bash
     args:
       - "-c"
