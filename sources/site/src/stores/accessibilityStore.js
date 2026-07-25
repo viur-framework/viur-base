@@ -4,7 +4,7 @@ import { Request } from "@viur/vue-utils";
 //import Utils, { isEmpty } from "@/utils";
 //import config from "@/config.js";
 
-export const useAccessabilityStore = defineStore("accessability", () => {
+export const useAccessibilityStore = defineStore("accessibility", () => {
   // State
   const state = reactive({
     cursorSize: "default",

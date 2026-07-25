@@ -1,5 +1,5 @@
 <template>
-  <wa-button class="accessability-btn" variant="white" outline @click="state.drawerOpen = !state.drawerOpen"
+  <wa-button class="accessibility-btn" variant="white" outline @click="state.drawerOpen = !state.drawerOpen"
     title="Optionen für Barrierefreiheit">
     <wa-icon name="universal-access"></wa-icon>
   </wa-button>
@@ -12,7 +12,7 @@
 
     <div class="access-option-wrap">
       <wa-button class="access-option-btn"
-        :class="accessabilityStore.state.cursorSize != 'default' ? 'is-selected' : ''" outline variant="white" size=""
+        :class="accessibilityStore.state.cursorSize != 'default' ? 'is-selected' : ''" outline variant="white" size=""
         @click="setCursorSize()">
         <wa-icon name="check" class="access-active-icon"></wa-icon>
         <wa-icon name="arrow-pointer" class="access-option-icon"></wa-icon>
@@ -20,53 +20,53 @@
       </wa-button>
 
       <wa-button class="access-option-btn"
-        :class="accessabilityStore.state.contrastMode != 'default' ? 'is-selected' : ''" outline variant="white" size=""
+        :class="accessibilityStore.state.contrastMode != 'default' ? 'is-selected' : ''" outline variant="white" size=""
         @click="setContrastMode()">
         <wa-icon name="check" class="access-active-icon"></wa-icon>
         <wa-icon name="circle-half-stroke" class="access-option-icon"></wa-icon>
         <div class="access-option-name">
           {{
-            accessabilityStore.state.contrastMode === 'invert'
+            accessibilityStore.state.contrastMode === 'invert'
               ? 'Invertierter Kontrast'
-              : accessabilityStore.state.contrastMode === 'dark'
+              : accessibilityStore.state.contrastMode === 'dark'
                 ? 'Dunkler Kontrast'
-                : accessabilityStore.state.contrastMode === 'light'
+                : accessibilityStore.state.contrastMode === 'light'
                   ? 'Heller Kontrast'
                   : 'Kontrast'
           }}
         </div>
       </wa-button>
 
-      <wa-button class="access-option-btn" :class="accessabilityStore.state.fontSize != 0 ? 'is-selected' : ''" outline
+      <wa-button class="access-option-btn" :class="accessibilityStore.state.fontSize != 0 ? 'is-selected' : ''" outline
         variant="white" size="" @click="setFontSize()">
         <wa-icon name="check" class="access-active-icon"></wa-icon>
         <wa-icon name="text-width" class="access-option-icon"></wa-icon>
         <div class="access-option-name">Textgröße</div>
         <div class="access-option-amount access-option-amount-3">
-          <div class="access-amount-bar" v-for="i in accessabilityStore.state.fontSize" :key="i"></div>
+          <div class="access-amount-bar" v-for="i in accessibilityStore.state.fontSize" :key="i"></div>
         </div>
       </wa-button>
 
-      <wa-button class="access-option-btn" :class="accessabilityStore.state.lineHeight != 0 ? 'is-selected' : ''"
+      <wa-button class="access-option-btn" :class="accessibilityStore.state.lineHeight != 0 ? 'is-selected' : ''"
         outline variant="white" size="" @click="setLineHeight()">
         <wa-icon name="check" class="access-active-icon"></wa-icon>
         <wa-icon name="text-height" class="access-option-icon"></wa-icon>
         <div class="access-option-name">Zeilenhöhe</div>
         <div class="access-option-amount access-option-amount-3">
-          <div class="access-amount-bar" v-for="i in accessabilityStore.state.lineHeight" :key="i"></div>
+          <div class="access-amount-bar" v-for="i in accessibilityStore.state.lineHeight" :key="i"></div>
         </div>
       </wa-button>
 
       <wa-button class="access-option-btn"
-        :class="accessabilityStore.state.fontFamily != 'default' ? 'is-selected' : ''" outline variant="white" size=""
+        :class="accessibilityStore.state.fontFamily != 'default' ? 'is-selected' : ''" outline variant="white" size=""
         @click="setFontFamily()">
         <wa-icon name="check" class="access-active-icon"></wa-icon>
         <wa-icon name="font" class="access-option-icon"></wa-icon>
         <div class="access-option-name">
           {{
-            accessabilityStore.state.fontFamily === 'dyslexic'
+            accessibilityStore.state.fontFamily === 'dyslexic'
               ? 'Legasthenie freundlich'
-              : accessabilityStore.state.fontFamily === 'inclusive'
+              : accessibilityStore.state.fontFamily === 'inclusive'
                 ? 'Einfach Lesbar'
                 : 'Schriftart'
           }}
@@ -74,7 +74,7 @@
       </wa-button>
 
       <!--<wa-button class="access-option-btn"
-          :class="accessabilityStore.state.currentLanguage != 'de' ? 'is-selected' : ''"
+          :class="accessibilityStore.state.currentLanguage != 'de' ? 'is-selected' : ''"
           outline
           variant="white"
           size=""
@@ -84,40 +84,40 @@
             <div class="access-option-name">Einfache Sprache</div>
         </wa-button>-->
 
-      <wa-button class="access-option-btn" :class="accessabilityStore.state.textAlign != 'default' ? 'is-selected' : ''"
+      <wa-button class="access-option-btn" :class="accessibilityStore.state.textAlign != 'default' ? 'is-selected' : ''"
         outline variant="white" size="" @click="setTextAlign()">
         <wa-icon name="check" class="access-active-icon"></wa-icon>
         <wa-icon :name="{
           left: 'align-left',
           center: 'align-center',
           right: 'align-right'
-        }[accessabilityStore.state.textAlign] || 'align-left'" class="access-option-icon"></wa-icon>
+        }[accessibilityStore.state.textAlign] || 'align-left'" class="access-option-icon"></wa-icon>
         <div class="access-option-name">
           {{
             {
               left: 'Text linksbündig',
               center: 'Text zentriert',
               right: 'Text rechtsbündig'
-            }[accessabilityStore.state.textAlign] || 'Text ausrichten'
+            }[accessibilityStore.state.textAlign] || 'Text ausrichten'
           }}
         </div>
       </wa-button>
 
-      <wa-button class="access-option-btn" :class="accessabilityStore.state.linksHighlighted ? 'is-selected' : ''"
+      <wa-button class="access-option-btn" :class="accessibilityStore.state.linksHighlighted ? 'is-selected' : ''"
         outline variant="white" size="" @click="setLinksHighlighted()">
         <wa-icon name="check" class="access-active-icon"></wa-icon>
         <wa-icon name="link" class="access-option-icon"></wa-icon>
         <div class="access-option-name">Links hervorbehen</div>
       </wa-button>
 
-      <wa-button class="access-option-btn" :class="accessabilityStore.state.infoHints ? 'is-selected' : ''" outline
+      <wa-button class="access-option-btn" :class="accessibilityStore.state.infoHints ? 'is-selected' : ''" outline
         variant="white" size="" @click="setInfoHints()">
         <wa-icon name="check" class="access-active-icon"></wa-icon>
         <wa-icon name="circle-info" class="access-option-icon"></wa-icon>
         <div class="access-option-name">Kurzinfos</div>
       </wa-button>
 
-      <wa-button class="access-option-btn" :class="accessabilityStore.state.hideImages ? 'is-selected' : ''" outline
+      <wa-button class="access-option-btn" :class="accessibilityStore.state.hideImages ? 'is-selected' : ''" outline
         variant="white" size="" @click="setHideImages()">
         <wa-icon name="check" class="access-active-icon"></wa-icon>
         <wa-icon name="image" class="access-option-icon"></wa-icon>
@@ -171,12 +171,14 @@
         </wa-tab-group>
       </wa-dialog>
 
-      <wa-button outline variant="white" pill class="clear-all-btn" @click="clearAll()">
-        Alle Optionen auschalten
-      </wa-button>
-      <wa-button outline variant="primary" pill class="clear-all-btn" href="mailto:mail@mausbrand.de">
-        Barriere melden
-      </wa-button>
+      <div class="button-wrap">
+        <wa-button outline variant="white" pill class="clear-all-btn" @click="clearAll()">
+          Alle Optionen auschalten
+        </wa-button>
+        <wa-button outline variant="primary" pill class="clear-all-btn" href="mailto:mail@mausbrand.de">
+          Barriere melden
+        </wa-button>
+      </div>
 
 
     </div>
@@ -185,10 +187,10 @@
 
 <script setup>
 import { onMounted, reactive, ref, watch } from "vue";
-import { useAccessabilityStore } from "@/stores/accessabilityStore";
+import { useaccessibilityStore } from "@/stores/accessibilityStore";
 import { Request } from "@viur/vue-utils";
 
-const accessabilityStore = useAccessabilityStore();
+const accessibilityStore = useaccessibilityStore();
 const appElement = document.getElementById("vite_context");
 
 const state = reactive({
@@ -204,69 +206,69 @@ const state = reactive({
 });
 
 function setCursorSize() {
-  accessabilityStore.state.cursorSize =
-    accessabilityStore.state.cursorSize === "default" ? "big" : "default";
+  accessibilityStore.state.cursorSize =
+    accessibilityStore.state.cursorSize === "default" ? "big" : "default";
 
   ["default", "big"].forEach(family => {
     appElement.classList.remove(`app-cursor-size-${family}`);
   });
 
-  appElement.classList.add(`app-cursor-size-${accessabilityStore.state.cursorSize}`);
+  appElement.classList.add(`app-cursor-size-${accessibilityStore.state.cursorSize}`);
 }
 
 function setFontSize() {
-  accessabilityStore.state.fontSize =
-    (accessabilityStore.state.fontSize + 1) % 4;
+  accessibilityStore.state.fontSize =
+    (accessibilityStore.state.fontSize + 1) % 4;
 
   [0, 1, 2, 3].forEach(i => {
     appElement.classList.remove(`app-font-size-${i}`);
   });
 
-  appElement.classList.add(`app-font-size-${accessabilityStore.state.fontSize}`);
+  appElement.classList.add(`app-font-size-${accessibilityStore.state.fontSize}`);
 }
 
 function setLineHeight() {
-  accessabilityStore.state.lineHeight =
-    (accessabilityStore.state.lineHeight + 1) % 4;
+  accessibilityStore.state.lineHeight =
+    (accessibilityStore.state.lineHeight + 1) % 4;
 
   [0, 1, 2, 3].forEach(i => {
     appElement.classList.remove(`app-line-height-${i}`);
   });
 
-  appElement.classList.add(`app-line-height-${accessabilityStore.state.lineHeight}`);
+  appElement.classList.add(`app-line-height-${accessibilityStore.state.lineHeight}`);
 }
 
 function setLinksHighlighted() {
-  accessabilityStore.state.linksHighlighted = !accessabilityStore.state.linksHighlighted;
+  accessibilityStore.state.linksHighlighted = !accessibilityStore.state.linksHighlighted;
 
   ["true", "false"].forEach(mode => {
     appElement.classList.remove(`app-links-highlighted-${mode}`);
   });
-  appElement.classList.add('app-links-highlighted-' + accessabilityStore.state.linksHighlighted)
+  appElement.classList.add('app-links-highlighted-' + accessibilityStore.state.linksHighlighted)
 }
 
 function setFontFamily() {
   const fonts = ["default", "dyslexic", "inclusive"];
-  const currentFont = accessabilityStore.state.fontFamily;
+  const currentFont = accessibilityStore.state.fontFamily;
   const nextIndex = (fonts.indexOf(currentFont) + 1) % fonts.length;
   const nextFont = fonts[nextIndex];
 
-  accessabilityStore.state.fontFamily = nextFont;
+  accessibilityStore.state.fontFamily = nextFont;
 
   ["default", "dyslexic", "inclusive"].forEach(family => {
     appElement.classList.remove(`app-font-family-${family}`);
   });
 
-  appElement.classList.add(`app-font-family-${accessabilityStore.state.fontFamily}`);
+  appElement.classList.add(`app-font-family-${accessibilityStore.state.fontFamily}`);
 }
 
 function setContrastMode() {
   const modes = ["default", "invert", "dark", "light"];
-  const currentMode = accessabilityStore.state.contrastMode;
+  const currentMode = accessibilityStore.state.contrastMode;
   const nextIndex = (modes.indexOf(currentMode) + 1) % modes.length;
   const nextMode = modes[nextIndex];
 
-  accessabilityStore.state.contrastMode = nextMode;
+  accessibilityStore.state.contrastMode = nextMode;
 
   // Alte Klassen entfernen (optional, aber sicherheitshalber)
   modes.forEach(mode => {
@@ -278,22 +280,22 @@ function setContrastMode() {
 }
 
 function setHideImages() {
-  accessabilityStore.state.hideImages = !accessabilityStore.state.hideImages;
+  accessibilityStore.state.hideImages = !accessibilityStore.state.hideImages;
 
   ["true", "false"].forEach(family => {
     appElement.classList.remove(`app-hide-images-${family}`);
   });
-  appElement.classList.add('app-hide-images-' + accessabilityStore.state.hideImages)
+  appElement.classList.add('app-hide-images-' + accessibilityStore.state.hideImages)
 
 }
 
 function setTextAlign() {
   const modes = ["default", "left", "center", "right"];
-  const currentMode = accessabilityStore.state.textAlign;
+  const currentMode = accessibilityStore.state.textAlign;
   const nextIndex = (modes.indexOf(currentMode) + 1) % modes.length;
   const nextMode = modes[nextIndex];
 
-  accessabilityStore.state.textAlign = nextMode;
+  accessibilityStore.state.textAlign = nextMode;
 
   // Alte Klassen entfernen (optional, aber sicherheitshalber)
   modes.forEach(mode => {
@@ -305,10 +307,10 @@ function setTextAlign() {
 }
 
 async function setLanguage() {
-  accessabilityStore.state.currentLanguage =
-    accessabilityStore.state.currentLanguage === "de" ? "de-x-simple" : "de";
+  accessibilityStore.state.currentLanguage =
+    accessibilityStore.state.currentLanguage === "de" ? "de-x-simple" : "de";
 
-  let data = await Request.get("/set_lang/" + accessabilityStore.state.currentLanguage).then(async (resp) => {
+  let data = await Request.get("/set_lang/" + accessibilityStore.state.currentLanguage).then(async (resp) => {
     return resp.status === 200;
   });
   if (data) {
@@ -317,14 +319,14 @@ async function setLanguage() {
 }
 
 function setInfoHints() {
-  accessabilityStore.state.infoHints = !accessabilityStore.state.infoHints;
+  accessibilityStore.state.infoHints = !accessibilityStore.state.infoHints;
   hideInfoHints();
 }
 
 let hintElements = [];
 
 function showInfoHints() {
-  if (!accessabilityStore.state.infoHints) {
+  if (!accessibilityStore.state.infoHints) {
     // Tooltip-Events entfernen
     hintElements.forEach(el => {
       el.removeEventListener('mouseenter', el._showHint);
@@ -395,7 +397,7 @@ function showInfoHints() {
   });
 }
 
-watch(() => accessabilityStore.state.infoHints, () => {
+watch(() => accessibilityStore.state.infoHints, () => {
   showInfoHints();
 });
 
@@ -429,19 +431,19 @@ function scrollToEl(element) {
 }
 
 async function clearAll() {
-  accessabilityStore.state.cursorSize = "default";
-  accessabilityStore.state.cursorSize = "default";
-  accessabilityStore.state.fontSize = 0;
-  accessabilityStore.state.lineHeight = 0,
-    accessabilityStore.state.linksHighlighted = false;
-  accessabilityStore.state.fontFamily = "default";
-  accessabilityStore.state.contrastMode = "default";
-  accessabilityStore.state.hideImages = false;
-  accessabilityStore.state.textAlign = "default";
-  accessabilityStore.state.currentLanguage = "de";
-  accessabilityStore.state.infoHints = false;
+  accessibilityStore.state.cursorSize = "default";
+  accessibilityStore.state.cursorSize = "default";
+  accessibilityStore.state.fontSize = 0;
+  accessibilityStore.state.lineHeight = 0,
+    accessibilityStore.state.linksHighlighted = false;
+  accessibilityStore.state.fontFamily = "default";
+  accessibilityStore.state.contrastMode = "default";
+  accessibilityStore.state.hideImages = false;
+  accessibilityStore.state.textAlign = "default";
+  accessibilityStore.state.currentLanguage = "de";
+  accessibilityStore.state.infoHints = false;
 
-  let data = await Request.get("/set_lang/" + accessabilityStore.state.currentLanguage).then(async (resp) => {
+  let data = await Request.get("/set_lang/" + accessibilityStore.state.currentLanguage).then(async (resp) => {
     return resp.status === 200;
   });
   if (data) {
@@ -456,13 +458,14 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.accessability-btn {
+.accessibility-btn {
   position: fixed;
   right: var(--wa-space-l);
   bottom: var(--wa-space-l);
   border-radius: 50%;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, .25);
   z-index: 29;
+  font-size: 1.4em;
 
   &::part(base) {
     padding: 0;
@@ -481,7 +484,7 @@ onMounted(() => {
 
   wa-icon {
     background-color: transparent !important;
-    color: #000 !important;
+    color: #fff !important;
     transition: all ease .3s;
   }
 
@@ -504,8 +507,9 @@ onMounted(() => {
   }
 
   &::part(header) {
-    background: var(--ignt-color-gradient);
+    background: var(--bg);
     color: #fff;
+    padding-bottom: var(--wa-space-s);
   }
 
   &::part(close-button) {
@@ -516,22 +520,24 @@ onMounted(() => {
 .drawer-close-btn {
   aspect-ratio: 1;
   height: 100%;
-  background-color: transparent !important;
-  color: #fff !important;
   transform: all ease .3s;
 
   &::part(base) {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5em;
     width: 100%;
     height: 100%;
+    background-color: transparent !important;
+    color: #fff !important;
+    padding: var(--wa-space-2xs);
+  }
+
+  &::part(label) {
+    font-size: 1.5em;
   }
 
   &:hover {
-    font-size: 1.1em;
-
     &::part(base) {
       color: #fff;
     }
@@ -551,8 +557,10 @@ onMounted(() => {
     box-shadow: none !important;
     background-color: transparent !important;
     width: 100%;
+    height: auto;
     aspect-ratio: 4 / 3;
     border-radius: var(--ignt-border-radius-default);
+    position: relative;
   }
 
 
@@ -564,6 +572,7 @@ onMounted(() => {
     padding: var(--wa-space-m);
     width: 100%;
     white-space: initial;
+    color: var(--text);
   }
 
   &:hover {
@@ -586,13 +595,12 @@ onMounted(() => {
 }
 
 .access-option-name {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 600;
 }
 
 .access-active-icon {
   display: none;
-  ;
   background-color: var(--ignt-color-primary);
   border-radius: 50%;
   color: #fff;
@@ -601,11 +609,15 @@ onMounted(() => {
   position: absolute;
   top: var(--wa-space-m);
   right: var(--wa-space-m);
+  height: 1.5em;
+  width: 1.5em;
+  min-height: 1.5em;
+  min-width: 1.5em;
 }
 
 .access-option-icon {
   font-size: 2em;
-  margin-bottom: var(--wa-space-s);
+  margin-bottom: var(--wa-space-m);
 }
 
 
@@ -741,5 +753,13 @@ onMounted(() => {
   .structure-item-content {
     color: #00f !important;
   }
+}
+
+.button-wrap{
+  display: flex;
+  flex-direction: column;
+  gap: var(--wa-space-xs);
+  width: 100%;
+  grid-column: span 2;
 }
 </style>

@@ -12,23 +12,23 @@ import pinia from './pinia'
 import router from './router'
 import { de_translations } from "@viur/vue-utils"
 
-import { useAccessabilityStore } from "@/stores/accessabilityStore";
+import { useAccessibilityStore } from "@/stores/accessibilityStore";
 
 
 const app = createApp({
   setup() {
     const appElement = document.getElementById("vite_context");
-    const accessabilityStore = useAccessabilityStore();
-    // Setting Classes vor Accessability Functions
-    appElement.classList.add('app-cursor-size-' + accessabilityStore.state.cursorSize)
-    appElement.classList.add('app-font-size-' + accessabilityStore.state.fontSize)
-    appElement.classList.add('app-line-height-' + accessabilityStore.state.lineHeight)
-    appElement.classList.add('app-links-highlighted-' + accessabilityStore.state.linksHighlighted)
-    appElement.classList.add('app-font-family-' + accessabilityStore.state.fontFamily)
-    appElement.classList.add('app-contrast-mode-' + accessabilityStore.state.contrastMode)
-    appElement.classList.add('app-hide-images-' + accessabilityStore.state.hideImages)
-    appElement.classList.add('app-text-align-' + accessabilityStore.state.textAlign)
-    appElement.classList.add('app-info-hints-' + accessabilityStore.state.infoHints)
+    const accessibilityStore = useAccessibilityStore();
+    // Setting Classes vor Accessibility Functions
+    appElement.classList.add('app-cursor-size-' + accessibilityStore.state.cursorSize)
+    appElement.classList.add('app-font-size-' + accessibilityStore.state.fontSize)
+    appElement.classList.add('app-line-height-' + accessibilityStore.state.lineHeight)
+    appElement.classList.add('app-links-highlighted-' + accessibilityStore.state.linksHighlighted)
+    appElement.classList.add('app-font-family-' + accessibilityStore.state.fontFamily)
+    appElement.classList.add('app-contrast-mode-' + accessibilityStore.state.contrastMode)
+    appElement.classList.add('app-hide-images-' + accessibilityStore.state.hideImages)
+    appElement.classList.add('app-text-align-' + accessibilityStore.state.textAlign)
+    appElement.classList.add('app-info-hints-' + accessibilityStore.state.infoHints)
 
   },
   mounted: function () {
