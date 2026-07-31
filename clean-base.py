@@ -64,7 +64,15 @@ timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 workdir = os.getcwd() + "/deploy"
 file_list = ["viur-project.md"]
-replacements = {"{{app_id}}": app_id, "{{whoami}}": whoami, "{{timestamp}}": timestamp}
+replacements = {
+    "{{app_id}}": app_id,
+    "{{whoami}}": whoami,
+    "{{timestamp}}": timestamp,
+    # valid package-name placeholder used for the project name in pyproject.toml/uv.lock
+    # (uv rejects "{{app_id}}", and normalizes names to lowercase/hyphens in uv.lock,
+    # so the token must be lowercase-hyphen to match in both files)
+    "viur-base-appid": app_id,
+}
 
 # Build file list in which to search for placeholders to replace
 
@@ -72,7 +80,10 @@ for subdir, dirs, files in os.walk("."):
     for file in files:
         filepath = subdir + os.sep + file
 
-        if any([filepath.endswith(ext) for ext in [".py", ".yaml", ".html", ".md", ".sh", ".json", ".js", ".less"]]):
+        # `.txt` covers deploy/requirements.txt
+        if filepath.endswith((
+            ".py", ".yaml", ".html", ".md", ".sh", ".json", ".js", ".less", ".toml", ".lock", ".txt",
+        )):
             file_list.append(filepath)
 
 # Replace placeholders with values entered by user or defaults
@@ -120,8 +131,8 @@ print("# Well done! Project repository has been set-up now.         #")
 print("#                                                            #")
 print("# Next run                                                   #")
 print("#                                                            #")
-print("#     pipenv install --dev                                   #")
-print("#     pipenv run viur build release                          #")
+print("#     uv sync                                                #")
+print("#     uv run viur build release                              #")
 print("#                                                            #")
 print("# Afterwards, run                                            #")
 print("#                                                            #")

@@ -1,0 +1,20 @@
+[project]
+name = "viur-base-appid"
+version = "3.0.0"
+description = "{{app_id}} Website"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "viur-core[mailjet]~=3.8.0",
+    "viur-toolkit~=0.8",
+]
+# After changing dependencies, run `uv run viur update requirements` to regenerate deploy/requirements.txt
+
+[dependency-groups]
+dev = [
+    "viur-cli~=3.0",
+]
+
+[tool.uv.sources]
+# viur-cli = { path = "../viur-cli", editable = true }
+# viur-core = { path = "../viur-core", editable = true }

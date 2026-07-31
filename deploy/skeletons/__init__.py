@@ -4,10 +4,10 @@
 
 import os
 
-for skelModule in os.listdir(os.path.dirname(__file__)):
-    if skelModule == "__init__.py" or not skelModule.endswith(".py"):
+for skel_module in os.listdir(os.path.dirname(__file__)):
+    if skel_module == "__init__.py" or not skel_module.endswith(".py"):
         continue
 
-    __import__(skelModule[:-3], globals(), locals(), level=1)
+    __import__(skel_module[:-3], globals(), locals(), level=1)
 
-del skelModule
+del skel_module

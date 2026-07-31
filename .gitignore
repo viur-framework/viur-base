@@ -6,7 +6,15 @@
 .idea
 .vscode
 
-deploy/admin
 node_modules
+
+deploy/admin
+deploy/app
+deploy/static/site
+node_modules
+
+# generated frontend build artifacts (created by `npm run build`)
+sources/*/public/assets/icons
+sources/*/public/shoelace
 
 storage

@@ -1,4 +1,4 @@
-runtime: python313
+runtime: python314
 
 # (1) Under some circumstances, you need to set a higher instance_class,
 #     like F2 or F4. Unfortunately, this will increase App Engine cost,
@@ -36,6 +36,14 @@ handlers:
 - url: /robots.txt
   static_files: static/meta/robots.txt
   upload: robots.txt
+# app frontend (standalone SPA with hash routing) served under /app
+- url: /app/(.*\..+)$
+  static_files: app/\1
+  upload: app/(.*\..+)$
+  # catch all handler to index.html
+- url: /app/?$
+  static_files: app/index.html
+  upload: app/index.html
 
 inbound_services:
 - warmup

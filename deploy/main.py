@@ -20,10 +20,11 @@
 # Author:       {{whoami}}
 #
 # ------------------------------------------------------------------------------
+import datetime
+import re
 
 from viur.core import conf, db, email, securityheaders, secret, current, errors, setup
 from viur.core.config import ConfigType
-
 
 # ------------------------------------------------------------------------------
 # Project-specific configuration
@@ -71,7 +72,6 @@ conf.project = ProjectConfig()
 
 conf.valid_application_ids = list(conf.project.appnames.keys())
 
-
 # ------------------------------------------------------------------------------
 # Debugging & Performance
 #
@@ -83,16 +83,18 @@ conf.valid_application_ids = list(conf.project.appnames.keys())
 # conf.debug.skeleton_from_client = True  # Gives useful error messages in the log, e.g. for data imports
 # db.config["traceQueries"] = True
 
-# ViUR >= 3.4 compatibility feature disabling
-conf.compatibility.remove("json.bone.structure.keytuples")  # render new dict-style bone-structure
-conf.compatibility.remove("json.bone.structure.camelcasenames")  # render new keys in bone structure only
-
-# ViUR >= 3.5 compatibility feature disabling
-conf.compatibility.remove("json.bone.structure.inlists")  # disable structure rendering on list
-
-# ViUR >= 3.6 compatibility feature disabling
-# render old-style tuple-list in SelectBone's values structure
-conf.compatibility.remove("bone.select.structure.values.keytuple")
+# Disable legacy compatibility behaviours if the used viur-core still offers them.
+# viur-core 3.8+ dropped these flags entirely (conf.compatibility is empty), so the
+# guard keeps this working across versions instead of raising on a missing flag.
+for _flag in (
+    "json.bone.structure.keytuples",  # render new dict-style bone-structure (ViUR >= 3.4)
+    "json.bone.structure.camelcasenames",  # render new keys in bone structure only (ViUR >= 3.4)
+    "json.bone.structure.inlists",  # disable structure rendering on list (ViUR >= 3.5)
+    "bone.select.structure.values.keytuple",  # old-style tuple-list in SelectBone values (ViUR >= 3.6)
+):
+    if _flag in conf.compatibility:
+        conf.compatibility.remove(_flag)
+del _flag
 
 # ------------------------------------------------------------------------------
 # User module
@@ -170,6 +172,18 @@ securityheaders.addCspRule("style-src", "unsafe-inline", "enforce")  # yes, GitH
 securityheaders.addCspRule("script-src", "buttons.github.io", "enforce")
 securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 
+# VueJS development
+if conf.instance.is_dev_server:
+    # Omit this rule on localhost. Otherwise, Chrome will upgrade redirects via fetch to HTTPS
+    conf.security.content_security_policy["enforce"].pop("upgrade-insecure-requests")
+    # node devserver
+    securityheaders.addCspRule("script-src", "http://localhost:8081", "enforce")
+    securityheaders.addCspRule("connect-src", "ws://localhost:8081", "enforce")
+    securityheaders.addCspRule("img-src", "http://localhost:8081", "enforce")
+    securityheaders.addCspRule("connect-src", "http://localhost:8081", "enforce")
+    securityheaders.addCspRule("connect-src", "http://127.0.0.1:8080", "enforce")
+    securityheaders.addCspRule("font-src", "http://localhost:8081", "enforce")
+
 # Enable this if you want to use the captcha, but not unsafe-inline:
 # securityheaders.addCspRule("script-src", "sha256-TLq3i7CjxmHUoz+BrQ6w5D2+hv35BEkew240zhZ0uvA=", "enforce")
 
@@ -227,25 +241,21 @@ securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 # CORS configuration for VueJS development
 #
 
-# import re
-#
-# conf.security.cors_max_age = datetime.timedelta(seconds=30)
-# conf.security.cors_allow_credentials = True
-# conf.security.cors_origins = "*"
-# conf.security.cors_origins = [
-#     # "*",
-#     # "http://localhost:8080",
-#     # "http://localhost:9090",
-#     # Allows any localhost port:
-#     re.compile(r"^(http://localhost:(\d{4,5}))/?$", flags=re.IGNORECASE),
-# ]
-# # conf.security.cors_origins_use_wildcard = True
-#
-# # Allows the header "X-Requested-With" and "X-ViUR-*"
-# conf.security.cors_allow_headers = [
-#     "X-Requested-With",
-#     re.compile(r"^X-ViUR-.*$", flags=re.IGNORECASE),
-# ]
+
+conf.security.cors_max_age = datetime.timedelta(seconds=30)
+conf.security.cors_allow_credentials = True
+conf.security.cors_origins = "*"
+conf.security.cors_origins = [
+    # Allows any localhost port:
+    re.compile(r"^(http://localhost:(\d{4,5}))/?$", flags=re.IGNORECASE),
+]
+# conf.security.cors_origins_use_wildcard = True
+
+# Allows the header "X-Requested-With" and "X-ViUR-*"
+conf.security.cors_allow_headers = [
+    "X-Requested-With",
+    re.compile(r"^X-ViUR-.*$", flags=re.IGNORECASE),
+]
 
 # ------------------------------------------------------------------------------
 # Server startup

@@ -16,12 +16,12 @@ The following steps are necessary to setup this project appropriately.
 
 1. Create a new Google Cloud project named `{{app_id}}` at https://console.cloud.google.com/projectcreate
 2. Run `./viur-gcloud-setup.sh {{app_id}}`
-3. Once, run `pipenv install --dev` to install a local development environment
+3. Once, run `uv sync` to install a local development environment
 
 
-After that, you always can locally fire-up your new ViUR project with `pipenv run viur run`.
+After that, you always can locally fire-up your new ViUR project with `uv run viur run`.
 
-To deploy your project, use `pipenv run viur deploy app`, with additional options.
+To deploy your project, use `uv run viur deploy app`, with additional options.
 
 ## Setting up Google Login
 

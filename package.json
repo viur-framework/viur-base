@@ -1,0 +1,34 @@
+{
+  "name": "{{app_id}}",
+  "private": true,
+  "scripts": {
+    "dev:site": "npm run dev -w=sources/site",
+    "dev:app": "npm run dev -w=sources/app",
+    "build:site": "npm run icons:site && npm run lock:site && npm ci --prefix=sources/site && npm run build --prefix=sources/site",
+    "build:app": "npm run icons:app && npm run lock:app && npm ci --prefix=sources/app && npm run build --prefix=sources/app",
+    "build": "npm run build:site && npm run build:app",
+    "lock:site": "npm i --prefix=sources/site --package-lock-only",
+    "lock:app": "npm i --prefix=sources/app --package-lock-only",
+    "lock": "npm run lock:site && npm run lock:app",
+    "update:utils": "npm update @viur/vue-utils -ws -S --package-lock-only",
+    "update:components": "npm update @viur/vue-components -ws -S --package-lock-only",
+    "update": "npm run update:utils && npm run update:components",
+    "icons:site": "npx wa-icons . ./sources/site/public/assets/icons",
+    "icons:app": "npx wa-icons . ./sources/app/public/assets/icons"
+  },
+  "author": "{{whoami}}",
+  "workspaces": [
+    "sources/site",
+    "sources/app"
+  ],
+  "optionalDependencies": {
+    "@rollup/rollup-darwin-x64": "^4.53.3",
+    "@rollup/rollup-darwin-arm64":"^4.53.3"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-vue": "^10.5.1"
+  }
+}

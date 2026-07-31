@@ -1,0 +1,356 @@
+/* Dyslexic Font*/
+@font-face {
+  font-family: "Open Dyslexic";
+  src: url('@/assets/fonts/OpenDyslexic-Regular.eot#') format('eot'),
+        url('@/assets/fonts/OpenDyslexic-Regular.woff') format('woff'),
+        url('@/assets/fonts/OpenDyslexic-Regular.otf') format('opentype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Dyslexic";
+  src: url('@/assets/fonts/OpenDyslexic-Italic.eot#') format('eot'),
+        url('@/assets/fonts/OpenDyslexic-Italic.woff') format('woff'),
+        url('@/assets/fonts/OpenDyslexic-Italic.otf') format('opentype');
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: "Open Dyslexic";
+  src: url('@/assets/fonts/OpenDyslexic-Bold.eot#') format('eot'),
+        url('@/assets/fonts/OpenDyslexic-Bold.woff') format('woff'),
+        url('@/assets/fonts/OpenDyslexic-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Dyslexic";
+  src: url('@/assets/fonts/OpenDyslexic-Bold-Italic.eot#') format('eot'),
+        url('@/assets/fonts/OpenDyslexic-Bold-Italic.woff') format('woff'),
+        url('@/assets/fonts/OpenDyslexic-Bold-Italic.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Inclusive Font*/
+
+@font-face {
+  font-family: "Inclusive Sans";
+  src: url("@/assets/fonts/InclusiveSans-VariableFont_wght.ttf")
+    format('truetype');
+  font-weight: 125 950;
+  font-stretch: 75% 125%;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inclusive Sans";
+  src: url("@/assets/fonts/InclusiveSans-Italic-VariableFont_wght.ttf")
+    format('truetype');
+  font-weight: 125 950;
+  font-stretch: 75% 125%;
+
+  font-style: italic;
+}
+
+.app-cursor-size-big{
+  cursor: url(/static/images/cursor.svg), auto !important;
+
+  *{
+    cursor: url(/static/images/cursor.svg), auto !important;
+  }
+}
+
+.app-font-size-1{
+  font-size: 1.2em;
+}
+
+.app-font-size-2{
+  font-size: 1.4em;
+}
+
+.app-font-size-3{
+  font-size: 1.6em;
+}
+
+.app-line-height-1{
+  *{
+    line-height: 1.5 !important;
+  }
+}
+
+.app-line-height-2{
+  *{
+    line-height: 1.75 !important;
+  }
+}
+
+.app-line-height-3{
+  *{
+    line-height: 2 !important;
+  }
+}
+
+.app-links-highlighted-true{
+  a{
+
+    &:not(:has(wa-button)){
+      background-color: #000 !important;
+      color: #ff0 !important;
+    }
+
+    wa-button{
+      background-color: #000 !important;
+      color: #ff0 !important;
+
+      &::part(base){
+        background-color: transparent !important;
+        color: inherit !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+
+      &:hover{
+        &::part(base){
+          background-color: transparent !important;
+          color: inherit !important;
+          box-shadow: none !important;
+          border: none !important;
+        }
+      }
+    }
+  }
+
+  wa-button[href]{
+      background-color: #000 !important;
+      color: #ff0 !important;
+
+      &::part(base){
+        background-color: transparent !important;
+        color: inherit !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+
+      &:hover{
+        &::part(base){
+          background-color: transparent !important;
+          color: inherit !important;
+          box-shadow: none !important;
+          border: none !important;
+        }
+      }
+    }
+}
+
+.app-font-family-dyslexic{
+  *{
+    font-family: "Open Dyslexic", sans-serif !important;
+  }
+}
+
+
+.app-font-family-inclusive{
+  *{
+    font-family: "Inclusive Sans", sans-serif !important;
+  }
+}
+
+body{
+  &:has(.app-contrast-mode-invert){
+    &:after{
+      content: '';
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      pointer-events: none;
+      -webkit-backdrop-filter: invert(100%);
+      backdrop-filter: invert(100%);
+      z-index: 100;
+    }
+
+  }
+}
+
+.app-contrast-mode-invert{
+}
+
+.app-contrast-mode-dark{
+  *{
+    background-color: var(--wa-color-neutral-05) !important;
+    color: var(--wa-color-neutral-95) !important;
+    background: var(--wa-color-neutral-05) !important;
+  }
+
+  wa-dialog::part(panel){
+    background-color: var(--wa-color-neutral-05) !important;
+    color: var(--wa-color-neutral-95) !important;
+    background: var(--wa-color-neutral-05) !important;
+  }
+
+  wa-drawer{
+    &::part(dialog){
+      background: var(--wa-color-neutral-05) !important;
+      color: var(--wa-color-neutral-95) !important;
+    }
+
+    &::part(header){
+      background: var(--wa-color-neutral-05) !important;
+      color: var(--wa-color-neutral-95) !important;
+    }
+  }
+
+  wa-button{
+    &::part(base){
+      background: var(--wa-color-neutral-95) !important;
+    }
+    &::part(label){
+      color: var(--wa-color-neutral-05) !important;
+    }
+  }
+
+  wa-card{
+    &::part(base){
+      background: var(--wa-color-neutral-05) !important;
+    }
+  }
+
+  wa-tab::part(base){
+    color: var(--wa-color-neutral-95) !important;
+  }
+
+
+  img[src$='.svg']{
+    background-color: transparent !important;
+    background: transparent !important;
+    mix-blend-mode: exclusion;
+  }
+
+  a {
+    color: #ff0 !important;
+    text-decoration: underline;
+  }
+}
+
+.app-contrast-mode-light{
+  *{
+    background-color: var(--wa-color-neutral-95) !important;
+    color: var(--wa-color-neutral-05) !important;
+    background: var(--wa-color-neutral-95) !important;
+  }
+
+    wa-dialog::part(panel){
+    background-color: var(--wa-color-neutral-95) !important;
+    color: var(--wa-color-neutral-05) !important;
+    background: var(--wa-color-neutral-95) !important;
+  }
+
+  wa-drawer{
+    &::part(dialog){
+      background: var(--wa-color-neutral-95) !important;
+      color: var(--wa-color-neutral-05) !important;
+    }
+
+    &::part(header){
+      background: var(--wa-color-neutral-95) !important;
+      color: var(--wa-color-neutral-05) !important;
+    }
+  }
+
+  wa-button{
+    &::part(base){
+      background: var(--wa-color-neutral-05) !important;
+    }
+    &::part(label){
+      color: var(--wa-color-neutral-95) !important;
+    }
+  }
+
+  wa-card{
+    &::part(base){
+      background: var(--wa-color-neutral-95) !important;
+    }
+  }
+
+  wa-tab::part(base){
+    color: var(--wa-color-neutral-05) !important;
+  }
+
+  img[src$='.svg']{
+    background-color: transparent !important;
+    background: transparent !important;
+    mix-blend-mode: exclusion;
+  }
+
+  a {
+    color: #00f !important;
+    text-decoration: underline;
+  }
+}
+
+.app-hide-images-true{
+  img:not(.logo){
+    opacity: 0 !important;
+  }
+
+  picture{
+    opacity: 0 !important;
+  }
+}
+
+.app-text-align-left{
+  *{
+    text-align: left !important;
+  }
+
+  .headline,
+  .subline,
+  .paragraph{
+    width: 100%;
+    align-self: start;
+  }
+}
+
+.app-text-align-center{
+  *{
+    text-align: center !important;
+  }
+
+  .headline,
+  .subline,
+  .paragraph{
+    width: 100%;
+  }
+}
+
+.app-text-align-right{
+  *{
+    text-align: right !important;
+  }
+
+  .headline,
+  .subline,
+  .paragraph{
+    width: 100%;
+    align-self: end;
+  }
+}
+
+.dynamic-tooltip {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: var(--wa-spacing-small) var(--wa-spacing-medium);
+  border-radius: var(--ignt-border-radius-default);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2);
+  border: 3px solid #fff;
+  font-size: 1.2em;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1000;
+}
