@@ -182,6 +182,7 @@ if conf.instance.is_dev_server:
     securityheaders.addCspRule("img-src", "http://localhost:8081", "enforce")
     securityheaders.addCspRule("connect-src", "http://localhost:8081", "enforce")
     securityheaders.addCspRule("connect-src", "http://127.0.0.1:8080", "enforce")
+    securityheaders.addCspRule("font-src", "self", "enforce")
     securityheaders.addCspRule("font-src", "http://localhost:8081", "enforce")
 
 # Enable this if you want to use the captcha, but not unsafe-inline:
