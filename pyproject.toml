@@ -5,14 +5,14 @@ description = "{{app_id}} Website"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
-    "viur-core[mailjet]~=3.8.0",
+    "viur-core[mailjet]~=3.9.0",
     "viur-toolkit~=0.8",
 ]
 # After changing dependencies, run `uv run viur update requirements` to regenerate deploy/requirements.txt
 
 [dependency-groups]
 dev = [
-    "viur-cli~=3.0",
+    "viur-cli~=3.1",
 ]
 
 [tool.uv.sources]
