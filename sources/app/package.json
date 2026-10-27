@@ -14,13 +14,13 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-vue": "^7.4.2",
+    "@ckeditor/ckeditor5-vue": "^9.0.0",
     "@viur/shoelace": "^1.0.17-v2.20.1",
     "@viur/vue-utils": "^3.4.5",
     "@viur/webawesome": "^0.20.0",
     "@vueuse/components": "^15.0.0",
     "@vueuse/core": "^15.0.0",
-    "ckeditor5": "^47.7.6",
+    "ckeditor5": "^49.0.1",
     "pinia": "^2.3.1",
     "vue": "^3.5.44",
     "vue-i18n": "^11.4.16",
