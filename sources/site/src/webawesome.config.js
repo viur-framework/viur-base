@@ -31,7 +31,7 @@ import '@viur/webawesome/dist/components/tooltip/tooltip';
 
 
 import  {setBasePath, registerIconLibrary} from '@viur/webawesome/dist/webawesome.js';
-setBasePath("/app")
+setBasePath("/static/site")
 
 registerIconLibrary('icons', {
     resolver: name => `/app/icons/${name}.svg`,

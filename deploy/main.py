@@ -172,6 +172,11 @@ securityheaders.addCspRule("style-src", "unsafe-inline", "enforce")  # yes, GitH
 securityheaders.addCspRule("script-src", "buttons.github.io", "enforce")
 securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 
+# Vue runtime compiler: the site frontend compiles the server-rendered #vite_context in the browser
+securityheaders.addCspRule("script-src", "unsafe-eval", "enforce")
+# Web Awesome loads its built-in system icons from data: URLs via fetch()
+securityheaders.addCspRule("connect-src", "data:", "enforce")
+
 # VueJS development
 if conf.instance.is_dev_server:
     # Omit this rule on localhost. Otherwise, Chrome will upgrade redirects via fetch to HTTPS
