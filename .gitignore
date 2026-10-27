@@ -18,3 +18,4 @@ sources/*/public/assets/icons
 sources/*/public/shoelace
 
 storage
+.eslintcache

@@ -11,7 +11,6 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
-    "lint": "eslint . --fix --cache",
     "format": "prettier --write src/"
   },
   "dependencies": {
@@ -30,7 +29,6 @@
   "devDependencies": {
     "@guanghechen/rollup-plugin-copy": "^6.1.0",
     "@vitejs/plugin-vue": "^6.0.10",
-    "@vitest/eslint-plugin": "^1.6.28",
     "@vue/test-utils": "^2.5.1",
     "autoprefixer": "^10.6.2",
     "cssnano": "^9.9.0",

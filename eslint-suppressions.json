@@ -1,0 +1,22 @@
+{
+  "sources/app/src/stores/app.js": {
+    "no-unreachable": {
+      "count": 1
+    }
+  },
+  "sources/app/src/views/HomeView.vue": {
+    "vue/valid-template-root": {
+      "count": 1
+    }
+  },
+  "sources/site/src/components/generic/AccessibilityDrawer.vue": {
+    "vue/require-v-for-key": {
+      "count": 3
+    }
+  },
+  "sources/site/src/stores/app.js": {
+    "no-unreachable": {
+      "count": 1
+    }
+  }
+}
