@@ -36,6 +36,7 @@ handlers:
 - url: /robots.txt
   static_files: static/meta/robots.txt
   upload: robots.txt
+# [frontend:app]
 # app frontend (standalone SPA with hash routing) served under /app
 - url: /app/(.*\..+)$
   static_files: app/\1
@@ -44,6 +45,7 @@ handlers:
 - url: /app/?$
   static_files: app/index.html
   upload: app/index.html
+# [/frontend:app]
 
 inbound_services:
 - warmup

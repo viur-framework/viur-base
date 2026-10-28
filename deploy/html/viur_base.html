@@ -60,11 +60,15 @@
 		{% endblock %}
 
         <link href="/static/css/style.min.css" rel="stylesheet">
+        {# [frontend:site] #}
         {{inject_vite()}}
+        {# [/frontend:site] #}
 	</head>
 	<body>
+        {# [frontend:site] #}
         {# Vue mounts on #vite_context and compiles its markup at runtime: Vue components can be used here,
            but `{{ }}` in rendered content is evaluated by Vue as well. Wrap user-provided content in `v-pre`. #}
+        {# [/frontend:site] #}
         <div id="vite_context">
             <div class="wrap">
                 <div class="bind flex">
@@ -105,7 +109,9 @@
                     </div>
                 </div>
             </div>
+            {# [frontend:site] #}
             <accessibility-drawer></accessibility-drawer>
+            {# [/frontend:site] #}
         </div>
         {# outside of #vite_context: Vue drops <script> tags from the markup it compiles #}
         {% block additionalFooter %}
