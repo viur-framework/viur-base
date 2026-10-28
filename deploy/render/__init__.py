@@ -4,7 +4,12 @@ from viur.core.render.html.utils import jinjaGlobalFunction
 
 
 @jinjaGlobalFunction
-def inject_vite(render, development: bool | None = None, development_server: str = "http://localhost:8081"):
+def inject_vite(
+    render: html.default,
+    development: bool | None = None,
+    development_server: str = "http://localhost:8081",
+    entry: str = "src/main.js",
+) -> str:
     """build vue imports from the vite manifest"""
     import json
     import logging
@@ -12,9 +17,11 @@ def inject_vite(render, development: bool | None = None, development_server: str
     if development is None and conf.instance.is_dev_server:
         import requests
 
-        # autodetect whether the local vite dev server is alive
+        # autodetect whether the local vite dev server of this site is alive;
+        # vite answers unknown paths with its index.html (status 200), so check for actual JavaScript
         try:
-            development = requests.get(f"{development_server}/main.js", timeout=2).ok
+            resp = requests.get(f"{development_server}/{entry}", timeout=2)
+            development = resp.ok and "javascript" in resp.headers.get("Content-Type", "")
         except Exception:
             logging.warning(f"{development_server} isn't active, using prebuilt fallback")
             development = False
@@ -24,7 +31,7 @@ def inject_vite(render, development: bool | None = None, development_server: str
     if development:
         return "\n".join((
             f'<script type="module" src="{development_server}/@vite/client"></script>',
-            f'<script type="module" src="{development_server}/main.js"></script>',
+            f'<script type="module" src="{development_server}/{entry}"></script>',
         ))
 
     vite_path = "static/site"

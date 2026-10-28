@@ -23,6 +23,7 @@
     "@vueuse/core": "^15.0.0",
     "ckeditor5": "^49.0.1",
     "pinia": "^2.3.1",
+    "pinia-plugin-persistedstate": "~4.2.0",
     "vue": "^3.5.44",
     "vue-i18n": "^11.4.16",
     "vue-router": "^4.6.4"
