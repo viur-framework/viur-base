@@ -37,14 +37,22 @@ To deploy your project, use `uv run viur deploy app`, with additional options.
 10. Configure authorized JavaScript origins
   - https://{{app_id}}.appspot.com
   - http://localhost:8080
+<!-- [frontend:site] -->
   - http://localhost:8081 (for VueJS development)
+<!-- [/frontend:site] -->
+<!-- [frontend:app] -->
   - http://localhost:8082 (for VueJS development)
+<!-- [/frontend:app] -->
   - http://localhost
 11. Configure authorized redirect URIs
   - https://{{app_id}}.appspot.com
   - http://localhost:8080
+<!-- [frontend:site] -->
   - http://localhost:8081 (for VueJS development)
+<!-- [/frontend:site] -->
+<!-- [frontend:app] -->
   - http://localhost:8082 (for VueJS development)
+<!-- [/frontend:app] -->
   - http://localhost
 12. Create
 13. Copy the client id and assign it to `conf.user.google_client_id` in `main.py` or,
