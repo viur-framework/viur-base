@@ -14,7 +14,8 @@
     "update:components": "npm update @viur/vue-components -ws -S --package-lock-only",
     "update": "npm run update:utils && npm run update:components",
     "icons:site": "npx wa-icons . ./sources/site/public/assets/icons",
-    "icons:app": "npx wa-icons . ./sources/app/public/assets/icons"
+    "icons:app": "npx wa-icons . ./sources/app/public/assets/icons",
+    "lint": "eslint --cache ."
   },
   "author": "{{whoami}}",
   "workspaces": [
@@ -22,13 +23,16 @@
     "sources/app"
   ],
   "optionalDependencies": {
-    "@rollup/rollup-darwin-x64": "^4.53.3",
-    "@rollup/rollup-darwin-arm64":"^4.53.3"
+    "@rollup/rollup-darwin-arm64": "^4.53.3",
+    "@rollup/rollup-darwin-x64": "^4.53.3"
   },
   "devDependencies": {
-    "eslint": "^9.39.1",
+    "@eslint/js": "^10.0.1",
+    "@vitest/eslint-plugin": "^1.6.28",
+    "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-vue": "^10.5.1"
+    "eslint-plugin-prettier": "^5.5.7",
+    "eslint-plugin-vue": "^10.12.0",
+    "globals": "^17.13.0"
   }
 }
