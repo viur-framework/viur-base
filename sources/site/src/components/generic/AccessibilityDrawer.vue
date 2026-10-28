@@ -187,10 +187,10 @@
 
 <script setup>
 import { onMounted, reactive, ref, watch } from "vue";
-import { useaccessibilityStore } from "@/stores/accessibilityStore";
+import { useAccessibilityStore } from "@/stores/accessibilityStore";
 import { Request } from "@viur/vue-utils";
 
-const accessibilityStore = useaccessibilityStore();
+const accessibilityStore = useAccessibilityStore();
 const appElement = document.getElementById("vite_context");
 
 const state = reactive({
