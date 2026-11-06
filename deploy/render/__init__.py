@@ -1,5 +1,6 @@
 from viur.core.render import admin, html, json, vi
 from viur.core import conf, current, config, translate
+# [frontend:site]
 from viur.core.render.html.utils import jinjaGlobalFunction
 
 
@@ -61,3 +62,4 @@ def inject_vite(
         for css in entry.get("css") or ()
     ]
     return "\n".join(tags)
+# [/frontend:site]

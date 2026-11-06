@@ -172,16 +172,19 @@ securityheaders.addCspRule("style-src", "unsafe-inline", "enforce")  # yes, GitH
 securityheaders.addCspRule("script-src", "buttons.github.io", "enforce")
 securityheaders.addCspRule("connect-src", "api.github.com", "enforce")
 
+# [frontend:site]
 # Vue runtime compiler: the site frontend compiles the server-rendered #vite_context in the browser
 securityheaders.addCspRule("script-src", "unsafe-eval", "enforce")
 # Web Awesome loads its built-in system icons from data: URLs via fetch()
 securityheaders.addCspRule("connect-src", "data:", "enforce")
+# [/frontend:site]
 
-# VueJS development
+# Local development server
 if conf.instance.is_dev_server:
     # Omit this rule on localhost. Otherwise, Chrome will upgrade redirects via fetch to HTTPS
     conf.security.content_security_policy["enforce"].pop("upgrade-insecure-requests")
-    # node devserver
+    # [frontend:site]
+    # Vite dev server of the site frontend
     securityheaders.addCspRule("script-src", "http://localhost:8081", "enforce")
     securityheaders.addCspRule("connect-src", "ws://localhost:8081", "enforce")
     securityheaders.addCspRule("img-src", "http://localhost:8081", "enforce")
@@ -189,6 +192,7 @@ if conf.instance.is_dev_server:
     securityheaders.addCspRule("connect-src", "http://127.0.0.1:8080", "enforce")
     securityheaders.addCspRule("font-src", "self", "enforce")
     securityheaders.addCspRule("font-src", "http://localhost:8081", "enforce")
+    # [/frontend:site]
 
 # Enable this if you want to use the captcha, but not unsafe-inline:
 # securityheaders.addCspRule("script-src", "sha256-TLq3i7CjxmHUoz+BrQ6w5D2+hv35BEkew240zhZ0uvA=", "enforce")
