@@ -1,6 +1,7 @@
 [
   "solid/list",
   "solid/code",
+  "solid/language",
   "solid/calendar",
   "solid/calendar-day",
   "solid/calendar-check",

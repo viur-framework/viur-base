@@ -79,8 +79,8 @@
           variant="white"
           size=""
           @click="setLanguage()">
-            <wa-icon name="check-lg" class="access-active-icon"></wa-icon>
-            <wa-icon name="translate" class="access-option-icon"></wa-icon>
+            <wa-icon name="check" class="access-active-icon"></wa-icon>
+            <wa-icon name="language" class="access-option-icon"></wa-icon>
             <div class="access-option-name">Einfache Sprache</div>
         </wa-button>-->
 
