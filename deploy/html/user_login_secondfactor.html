@@ -1,5 +1,12 @@
 {%- extends "viur_base.html" %}
 
+{#- viur-core passes name, action_name and action_url as `params`; older releases passed them
+    as plain variables after a wrong token, so accept both. -#}
+{%- set p = params or {} -%}
+{%- set name = p.name or name -%}
+{%- set action_name = p.action_name or action_name -%}
+{%- set action_url = p.action_url or action_url -%}
+
 {%- block content %}
     <h1 class="headline">{{ name }}</h1>
 
