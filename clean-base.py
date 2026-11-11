@@ -306,7 +306,14 @@ def clean_git_history(root: Path) -> None:
         return
     print("Cleaning git history")
     subprocess.check_output("git checkout --orphan main_tmp", shell=True, cwd=root)
-    print(subprocess.check_output("git branch -D main", shell=True, cwd=root).decode().rstrip("\n"))
+    # delete every other local branch, they all carry the template history;
+    # don't rely on a `main` branch, a clone of a fork may only have `master`
+    branches = subprocess.check_output(
+        ["git", "for-each-ref", "--format=%(refname:short)", "refs/heads/"], cwd=root,
+    ).decode().split()
+    for branch in branches:
+        if branch != "main_tmp":
+            print(subprocess.check_output(["git", "branch", "-D", branch], cwd=root).decode().rstrip("\n"))
     subprocess.check_output("git branch -m main", shell=True, cwd=root)
     # the orphan branch keeps the old index; stage the cleaned tree instead (removed files included)
     subprocess.check_output("git add -A", shell=True, cwd=root)

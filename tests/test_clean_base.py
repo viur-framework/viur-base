@@ -240,6 +240,29 @@ class CleanGitHistoryTest(unittest.TestCase):
             self.assertEqual(git("status", "--porcelain").splitlines(), ["A  keep.txt"])
             self.assertEqual(git("show", ":keep.txt"), "changed\n")
 
+    def test_deletes_all_branches_without_main(self) -> None:
+        # e.g. a clone of a fork whose default branch is still `master`, with a feature branch checked out
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+
+            def git(*args: str) -> str:
+                return subprocess.run(
+                    ["git", "-c", "user.email=t@t", "-c", "user.name=t", *args],
+                    cwd=root, capture_output=True, text=True, check=True,
+                ).stdout
+
+            git("init", "-q", "-b", "master")
+            (root / "keep.txt").write_text("keep\n")
+            git("add", "-A")
+            git("commit", "-qm", "template")
+            git("checkout", "-qb", "feat/x")
+            with contextlib.redirect_stdout(io.StringIO()):
+                cb.clean_git_history(root)
+            self.assertEqual(git("branch", "--show-current").strip(), "main")
+            # the orphan `main` has no commit yet, so no branch ref may be left at all
+            self.assertEqual(git("for-each-ref", "refs/heads/"), "")
+            self.assertEqual(git("status", "--porcelain").splitlines(), ["A  keep.txt"])
+
 
 class ParseArgsTest(unittest.TestCase):
     def test_defaults_none(self) -> None:
