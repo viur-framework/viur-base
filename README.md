@@ -37,8 +37,11 @@ Before you start, please check out the following preliminaries are met:
     > This creates a new local folder `YOUR-PROJECT`. In most cases, `YOUR-PROJECT` and `YOUR-APP-ID` should be identical.
 3. `cd YOUR-PROJECT`
 4. `./clean-base.py -A YOUR-APP-ID`
+
+    > Asks for everything not given as argument, e.g. the frontend: `hybrid` (Vue on the Jinja pages), `spa`
+    > (standalone Vue app under `/app`), `both` or `none`. See `./clean-base.py --help`.
 5. `./viur-gcloud-setup.sh YOUR-APP-ID`
-6. Install local development dependencies with `uv sync`
+6. Install local development dependencies with `uv sync` (done by `clean-base.py` if `uv` is installed)
 7. Locally run your project with `uv run viur run` or deploy it with `uv run viur deploy app`. Prefix any [viur-cli](https://github.com/viur-framework/viur-cli) command with `uv run` to run it inside the project environment.
 
 See the [documentation](https://viur-core.readthedocs.io/en/latest/doc_start/index.html) for further help.
