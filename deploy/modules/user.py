@@ -20,3 +20,6 @@ class User(User):
                 "orderby": "lastname",
             },
         }
+
+
+User.json = True  # enable for JSON-rendering, used by the `app` frontend

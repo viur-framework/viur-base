@@ -13,10 +13,5 @@
     "vue/require-v-for-key": {
       "count": 3
     }
-  },
-  "sources/site/src/stores/app.js": {
-    "no-unreachable": {
-      "count": 1
-    }
   }
 }

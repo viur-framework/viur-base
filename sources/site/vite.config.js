@@ -33,8 +33,14 @@ export default defineConfig(({command, mode}) => {
         ],
         resolve: {
             alias: {
-                "@": path.resolve(__dirname, "./src")
+                "@": path.resolve(__dirname, "./src"),
+                // full build incl. the template compiler, required to compile the server-rendered `#vite_context`
+                "vue": "vue/dist/vue.esm-bundler",
             }
+        },
+        server: {
+            // assets are requested from the page served by the ViUR dev server, so they need an absolute origin
+            origin: "http://localhost:8081",
         },
         base: command === "serve" ? "/" : `/static/${APPNAME}/`,
         build: {

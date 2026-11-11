@@ -9,8 +9,12 @@
 node_modules
 
 deploy/admin
+# [frontend:app]
 deploy/app
+# [/frontend:app]
+# [frontend:site]
 deploy/static/site
+# [/frontend:site]
 node_modules
 
 # generated frontend build artifacts (created by `npm run build`)
