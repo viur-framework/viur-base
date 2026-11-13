@@ -219,7 +219,7 @@ TEMPLATE_ONLY: tuple[str, ...] = ("LICENSE", ".github", "tests")
 PLACEHOLDER_SUFFIXES: tuple[str, ...] = (
     ".py", ".yaml", ".html", ".md", ".sh", ".json", ".js", ".less", ".toml", ".lock", ".txt",
 )
-"""Files in which placeholders are replaced; `.txt` covers deploy/requirements.txt."""
+"""Files in which placeholders are replaced."""
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -324,7 +324,8 @@ def clean_git_history(root: Path) -> None:
 
 def bootstrap(root: Path, variant: str, install: bool) -> list[str]:
     """
-    Set up the project environment with ``uv sync``; regenerate the npm lockfile for a single frontend.
+    Set up the project environment with ``uv sync`` and generate ``deploy/requirements.txt``;
+    regenerate the npm lockfile for a single frontend.
 
     Failures are reported with the command to run manually; the project itself is already set up.
 
@@ -335,8 +336,10 @@ def bootstrap(root: Path, variant: str, install: bool) -> list[str]:
     uv = shutil.which("uv") if install else None
     if uv:
         steps.append([uv, "sync"])
+        steps.append([uv, "run", "viur", "update", "requirements"])
     else:
         manual.append("uv sync")
+        manual.append("uv run viur update requirements")
     npm = shutil.which("npm") if install else None
     if variant in ("hybrid", "spa"):
         if npm:
@@ -394,7 +397,7 @@ def main(argv: list[str] | None = None, *, interactive: bool | None = None) -> i
             print(f"  - {action}")
         print(f"  - delete {', '.join(TEMPLATE_ONLY)}")
         print(f"  - {'clean' if clean_history else 'keep'} the git history")
-        print(f"  - {'run uv sync' if args.install else 'skip uv sync'}")
+        print(f"  - {'run uv sync, generate deploy/requirements.txt' if args.install else 'skip uv sync'}")
         if interactive and not args.yes and ask("Apply?", "y", ("y", "n")) != "y":
             print("Aborted, nothing changed.")
             return 1

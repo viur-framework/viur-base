@@ -381,6 +381,7 @@ class MainTest(unittest.TestCase):
             self.assertEqual(self.main(["-A", "x", "--frontend", "hybrid"], interactive=False), 0)
         commands = [c.args[0] for c in self.run_mock.call_args_list]
         self.assertIn(["/usr/bin/uv", "sync"], commands)
+        self.assertIn(["/usr/bin/uv", "run", "viur", "update", "requirements"], commands)
         self.assertIn(["/usr/bin/npm", "install", "--package-lock-only"], commands)
 
     def test_bootstrap_without_uv(self) -> None:
@@ -388,6 +389,7 @@ class MainTest(unittest.TestCase):
             self.assertEqual(self.main(["-A", "x"], interactive=False), 0)
         self.run_mock.assert_not_called()
         self.assertIn("uv sync", self.output)
+        self.assertIn("uv run viur update requirements", self.output)
 
     def test_interrupt_during_bootstrap_still_finishes(self) -> None:
         self.run_mock.side_effect = KeyboardInterrupt()
