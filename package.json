@@ -34,5 +34,9 @@
     "eslint-plugin-prettier": "^5.5.7",
     "eslint-plugin-vue": "^10.12.0",
     "globals": "^17.13.0"
+  },
+  "overrides": {
+    "glob": "^14.0.5",
+    "minimatch": "^11.0.8"
   }
 }

@@ -4,9 +4,9 @@
         "application_name": "{{app_id}}",
         "builds": {
             "admin": {
-                "command": "viur admin install 4.14.7",
+                "command": "viur admin install 4.15.4",
                 "kind": "exec",
-                "version": "4.14.7"
+                "version": "4.15.4"
             },
             "app": {
                 "command": "build:app",
