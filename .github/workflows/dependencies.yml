@@ -1,0 +1,39 @@
+name: Dependencies
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  uv:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+
+      # fails if `uv.lock` does not match what `pyproject.toml` resolves to
+      - run: uv sync --locked --no-dev
+      # fails if an installed package violates another package's requirements
+      - run: uv pip check
+
+  npm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      # fails if `package-lock.json` is not in sync with the `package.json` files
+      - run: npm ci
+      # fails if an installed package violates another package's requirements;
+      # `--all` is needed, without it only the top level is checked
+      - run: npm ls --all
