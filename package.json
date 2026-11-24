@@ -23,8 +23,8 @@
     "sources/app"
   ],
   "optionalDependencies": {
-    "@rollup/rollup-darwin-arm64": "^4.68.3",
-    "@rollup/rollup-darwin-x64": "^4.68.3"
+    "@rollup/rollup-darwin-arm64": "^4.68.7",
+    "@rollup/rollup-darwin-x64": "^4.68.7"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

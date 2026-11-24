@@ -23,23 +23,23 @@
     "ckeditor5": "^49.1.0",
     "pinia": "^4.1.0",
     "pinia-plugin-persistedstate": "^4.7.1",
-    "vue": "^3.5.45",
-    "vue-i18n": "^11.4.20",
+    "vue": "^3.5.46",
+    "vue-i18n": "^11.4.23",
     "vue-router": "^5.5.1"
   },
   "devDependencies": {
     "@guanghechen/rollup-plugin-copy": "^6.1.0",
     "@vitejs/plugin-vue": "^6.0.11",
     "@vue/test-utils": "^2.6.0",
-    "autoprefixer": "^10.6.2",
+    "autoprefixer": "^10.7.0",
     "cssnano": "^9.9.0",
     "postcss": "^8.5.33",
     "postcss-import": "^17.0.1",
-    "postcss-preset-env": "^11.6.2",
+    "postcss-preset-env": "^11.6.3",
     "postcss-sort-media-queries": "^6.7.1",
     "rollup-plugin-delete": "^3.0.2",
     "vite": "^8.3.8",
     "vite-plugin-vue-devtools": "^8.2.1",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.1"
   }
 }
